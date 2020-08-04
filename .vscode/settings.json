@@ -1,0 +1,9 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "files.exclude": {
+    "**/.cache": true,
+    "**/node_modules": true
+  },
+  "vim.useSystemClipboard": true
+}
