@@ -5,6 +5,7 @@ module.exports = {
 		author: `@gatsbyjs`,
 	},
 	plugins: [
+		`gatsby-alias-imports`,
 		{
 			resolve: `gatsby-plugin-typescript`,
 			options: {
@@ -12,7 +13,7 @@ module.exports = {
 				allExtensions: true,
 			},
 		},
-		`gatsby-plugin-sass`,
+		`gatsby-plugin-scss-typescript`,
 		`gatsby-plugin-react-helmet`,
 		{
 			resolve: `gatsby-source-filesystem`,

@@ -26,7 +26,13 @@
 		"skipLibCheck": true,
 		"resolveJsonModule": true,
 		"noEmit": true,
-		"isolatedModules": true
+		"isolatedModules": true,
+		"paths": {
+			"components": ["src/components"],
+			"styles": ["src/styles"],
+			"pages": ["src/pages"],
+			"images": ["src/images"]
+		}
 	},
 	"include": ["src/**/*"]
 }
