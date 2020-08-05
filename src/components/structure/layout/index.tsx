@@ -8,7 +8,8 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 
-import Header from 'components/header';
+import Header from 'components/structure/header';
+import Footer from 'components/structure/footer';
 import 'styles/base.global.scss';
 import styles from './layout.module.scss';
 
@@ -38,10 +39,7 @@ const Layout: React.FC<React.PropsWithChildren<Record<string, unknown>>> = ({
 			<Header siteTitle={data.site.siteMetadata.title} />
 			<div className={styles.content}>
 				<main>{children}</main>
-				<footer>
-					© {new Date().getFullYear()}, Built with{' '}
-					<a href="https://www.gatsbyjs.org">Gatsby</a>
-				</footer>
+				<Footer />
 			</div>
 		</React.Fragment>
 	);
