@@ -12,10 +12,10 @@
 		"gatsby-plugin-manifest": "^2.4.21",
 		"gatsby-plugin-offline": "^3.2.21",
 		"gatsby-plugin-react-helmet": "^3.3.10",
+		"gatsby-plugin-scss-typescript": "^4.0.13",
 		"gatsby-plugin-sharp": "^2.6.24",
 		"gatsby-source-filesystem": "^2.3.23",
 		"gatsby-transformer-sharp": "^2.5.12",
-		"gatsby-plugin-scss-typescript": "^4.0.13",
 		"node-sass": "^4.14.1",
 		"prop-types": "^15.7.2",
 		"react": "^16.13.1",
@@ -38,6 +38,7 @@
 		"prettier": "^2.0.5",
 		"stylelint": "^13.6.1",
 		"stylelint-config-prettier": "^8.0.2",
+		"stylelint-config-sass-guidelines": "^7.0.0",
 		"stylelint-config-standard": "^20.0.0",
 		"tslib": "^2.0.0",
 		"typescript": "^3.9.7"
@@ -134,6 +135,7 @@
 	"stylelint": {
 		"extends": [
 			"stylelint-config-standard",
+			"stylelint-config-sass-guidelines",
 			"stylelint-config-prettier"
 		],
 		"rules": {
