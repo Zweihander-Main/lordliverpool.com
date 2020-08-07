@@ -1,6 +1,30 @@
-@use 'styles/module-import.global.scss';
-.main-title {
-}
+@use '~styles/util/variables.global' as v;
 
-.sub-title {
+.hero {
+	background-size: contain;
+	color: v.$white;
+	display: grid;
+	grid-template-columns: 100%;
+	grid-template-rows: 46% 27% 27%;
+	height: 100vh;
+	text-align: center;
+
+	.main-title {
+		font-family: v.$header-font;
+		font-size: v.$hero-large-size;
+		font-weight: normal;
+		grid-row-start: 2;
+		letter-spacing: 0.05em;
+		line-height: 4.93rem;
+		text-transform: uppercase;
+	} // TODO make it so that it's always two lines
+
+	.sub-title {
+		font-family: v.$header-font;
+		font-size: v.$hero-sub-size;
+		font-style: italic;
+		font-weight: normal;
+		grid-row-start: 3;
+		letter-spacing: 0.15em;
+	}
 }

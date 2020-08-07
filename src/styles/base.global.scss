@@ -1,9 +1,10 @@
-@use './module-import.global';
 @use './normalize.scss';
+@use './util/variables.global' as v;
+@use './util/mixins.global' as m;
 
 html {
-	background-color: $dargBg;
-	font-size: $baseSize;
+	background-color: v.$dark-bg;
+	font-size: v.$base-size;
 }
 
 body {

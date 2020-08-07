@@ -8,6 +8,7 @@
 	"dependencies": {
 		"gatsby": "^2.24.26",
 		"gatsby-alias-imports": "^1.0.4",
+		"gatsby-background-image": "^1.1.1",
 		"gatsby-image": "^2.4.14",
 		"gatsby-plugin-manifest": "^2.4.21",
 		"gatsby-plugin-offline": "^3.2.21",
@@ -16,11 +17,13 @@
 		"gatsby-plugin-sharp": "^2.6.24",
 		"gatsby-source-filesystem": "^2.3.23",
 		"gatsby-transformer-sharp": "^2.5.12",
-		"node-sass": "^4.14.1",
 		"prop-types": "^15.7.2",
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
-		"react-helmet": "^6.1.0"
+		"react-helmet": "^6.1.0",
+		"sass": "^1.26.10",
+		"typeface-cardo": "0.0.72",
+		"typeface-libre-baskerville": "0.0.72"
 	},
 	"devDependencies": {
 		"@babel/preset-typescript": "^7.10.4",
