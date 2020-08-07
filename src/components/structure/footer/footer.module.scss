@@ -1,0 +1,8 @@
+@use '~styles/util/variables.global' as v;
+
+.footer {
+	background-color: v.$black-bg;
+	color: v.$white;
+	height: 100vh;
+	text-align: center;
+}
