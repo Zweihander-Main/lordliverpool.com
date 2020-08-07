@@ -33,9 +33,15 @@ const Hero: React.FC = () => {
 			Tag={'section'}
 		>
 			<h1 className={styles.mainTitle}>
-				Britain’s Greatest Prime Minister
+				Britain’s Greatest
+				<br />
+				Prime Minister
 			</h1>
 			<h2 className={styles.subTitle}>Lord Liverpool</h2>
+			<span className={styles.arrow}>
+				<span></span>
+			</span>
+			<div className={styles.retailers}>Available November</div>
 		</BackgroundImage>
 	);
 };

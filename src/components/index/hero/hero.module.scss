@@ -4,27 +4,67 @@
 	background-size: contain;
 	color: v.$white;
 	display: grid;
+	font-family: v.$header-font;
 	grid-template-columns: 100%;
-	grid-template-rows: 46% 27% 27%;
-	height: 100vh;
+	grid-template-rows: 46% 27% 8% 9% 10%;
+	min-height: 100vh;
 	text-align: center;
+}
+.main-title {
+	font-size: v.$hero-large-size;
+	font-weight: normal;
+	grid-row-start: 2;
+	letter-spacing: 0.05em;
+	line-height: 4.93rem;
+	text-transform: uppercase;
+} // TODO make it so that it's always two lines
 
-	.main-title {
-		font-family: v.$header-font;
-		font-size: v.$hero-large-size;
-		font-weight: normal;
-		grid-row-start: 2;
-		letter-spacing: 0.05em;
-		line-height: 4.93rem;
-		text-transform: uppercase;
-	} // TODO make it so that it's always two lines
+.sub-title {
+	font-size: v.$hero-sub-size;
+	font-style: italic;
+	font-weight: normal;
+	grid-row-start: 3;
+	letter-spacing: 0.15em;
+}
 
-	.sub-title {
-		font-family: v.$header-font;
-		font-size: v.$hero-sub-size;
-		font-style: italic;
-		font-weight: normal;
-		grid-row-start: 3;
-		letter-spacing: 0.15em;
+.retailers {
+	background-color: v.$red;
+	font-size: v.$hero-tiny-size;
+	grid-row-start: 5;
+	letter-spacing: 0.03em;
+	padding-top: 1em;
+}
+
+.arrow {
+	grid-row-start: 4;
+	padding-top: 70px;
+	position: relative;
+
+	span {
+		animation: arrowdown 4s infinite;
+		border-bottom: 1px solid v.$white;
+		border-left: 1px solid v.$white;
+		box-sizing: border-box;
+		height: 24px;
+		left: 50%;
+		margin-left: -12px;
+		position: absolute;
+		top: 0;
+		transform: rotate(-45deg);
+		width: 24px;
+	}
+}
+
+@keyframes arrowdown {
+	0% {
+		opacity: 0;
+		transform: rotate(-45deg) translate(0, 0);
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+		transform: rotate(-45deg) translate(-20px, 20px);
 	}
 }
