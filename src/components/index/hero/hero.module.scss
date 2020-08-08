@@ -8,7 +8,7 @@
 	grid-template-columns: 100%;
 	grid-template-rows: 46% 27% 8% 9% 10%;
 	min-height: 100vh;
-	text-align: center;
+	text-align: center; //TODO figure out retina settings
 }
 .main-title {
 	font-size: v.$hero-large-size;
@@ -16,6 +16,7 @@
 	grid-row-start: 2;
 	letter-spacing: 0.05em;
 	line-height: 4.93rem;
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
 	text-transform: uppercase;
 } // TODO make it so that it's always two lines
 

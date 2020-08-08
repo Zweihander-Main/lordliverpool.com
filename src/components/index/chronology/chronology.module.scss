@@ -1,0 +1,64 @@
+@use '~styles/util/variables.global' as v;
+
+.chronology {
+	background-color: v.$blue-bg;
+	display: grid;
+	grid-template-columns: 100%;
+	grid-template-rows: 15% 1fr 15%;
+	min-height: 100vh;
+	justify-items: center;
+	align-items: center;
+	position: relative;
+}
+
+.title {
+	//TODO break out header tags into global font family
+	color: v.$white;
+	font-family: v.$header-font;
+	grid-row: 1;
+}
+
+.timeline {
+	color: v.$light-bg;
+	grid-row: 2;
+}
+
+.line {
+	position: absolute;
+	width: 50vw;
+	top: 50%;
+	right: 0;
+	height: 1px;
+	background-color: v.$light-bg;
+}
+
+.chrono-item {
+	align-items: center;
+	display: grid;
+	grid-template-columns: 100%;
+	grid-template-rows: 1fr 1fr 1fr;
+	justify-items: center;
+}
+
+.chrono-text {
+	font-family: v.$body-font;
+	font-size: v.$paragraph-size;
+	grid-row: 1;
+}
+
+.chrono-point {
+	background-color: v.$light-bg;
+	border-radius: 50%;
+	height: 2.25rem;
+	width: 2.25rem;
+	grid-row: 2;
+}
+
+.chrono-year {
+	color: v.$light-bg;
+	font-family: v.$header-font;
+	font-size: v.$chrono-year-size;
+	font-style: italic;
+	grid-row: 3;
+	align-self: start;
+}

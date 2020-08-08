@@ -2,6 +2,7 @@
 
 .book-info {
 	background-color: v.$light-bg;
+	color: v.$black;
 	display: grid;
 	grid-template-columns: 50% 40%;
 	grid-template-rows: 100%;
@@ -17,11 +18,12 @@
 }
 
 .info {
-	grid-column: 2;
 	align-self: center;
+	grid-column: 2;
 
 	p {
 		font-family: v.$body-font;
+		font-size: v.$paragraph-size;
 	}
 }
 
