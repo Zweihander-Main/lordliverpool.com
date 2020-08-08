@@ -1,0 +1,6 @@
+@use '~styles/util/variables.global' as v;
+
+.contendors {
+	background-color: v.$pastel-bg;
+	min-height: 100vh;
+}

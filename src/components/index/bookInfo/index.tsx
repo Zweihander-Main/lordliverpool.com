@@ -10,7 +10,7 @@ type BookImageProps = {
 		};
 	};
 };
-
+// TODO Change placeholder text to include bullet points
 const BookInfo: React.FC = () => {
 	//TODO better naming for images and support for alt ect.
 	const bookImageData = useStaticQuery<BookImageProps>(graphql`

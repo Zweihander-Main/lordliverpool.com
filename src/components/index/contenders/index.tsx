@@ -1,7 +1,8 @@
 import React from 'react';
+import styles from './contendors.module.scss';
 
 const Contenders: React.FC = () => {
-	return null;
+	return <section className={styles.contendors}>Test</section>;
 };
 
 export default Contenders;
