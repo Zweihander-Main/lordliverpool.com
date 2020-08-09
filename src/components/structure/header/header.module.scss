@@ -1,5 +1,7 @@
 @use '~styles/util/variables.global' as v;
 
+$menu-transition: 0.2s;
+
 .header {
 	position: fixed;
 	z-index: 999;
@@ -15,6 +17,9 @@
 	justify-content: center;
 	padding: 2rem;
 	position: absolute;
+	z-index: 1001;
+	color: v.$white;
+	transition: $menu-transition;
 
 	&:focus {
 		outline: 0;
@@ -25,6 +30,7 @@
 	display: inline-block;
 
 	div {
+		transition: $menu-transition;
 		background-color: v.$white;
 		height: 2px;
 		margin: 9px 1.4rem 9px 9px;
@@ -32,8 +38,7 @@
 	}
 }
 
-.menu {
-	color: v.$white;
+.menu-text {
 	float: right;
 	font-family: v.$header-font;
 	font-size: 1rem;
@@ -41,6 +46,10 @@
 	letter-spacing: 0.15em;
 	text-transform: uppercase;
 } //TODO Make sure em vs rem
+
+.menu-text-close {
+	display: none;
+}
 
 .overlay-navigation {
 	background-color: v.$white;
@@ -51,15 +60,49 @@
 	width: 0px;
 }
 
+.menu-input {
+	display: none;
+}
+
 .menu-input:checked ~ .overlay-navigation {
 	width: 100%;
+}
+
+.menu-input:checked ~ .menu-button {
+	color: v.$black;
+
+	& > .menu-text > .menu-text-open {
+		display: none;
+	}
+
+	& > .menu-text > .menu-text-close {
+		display: inline;
+	}
+
+	& > .menu-bars div {
+		background-color: v.$black;
+	}
+
+	& > .menu-bars div:first-child {
+		transform: rotate(-45deg) translate(-6px, 9px);
+	}
+
+	& > .menu-bars div:nth-child(2) {
+		opacity: 0;
+	}
+
+	& > .menu-bars div:last-child {
+		transform: rotate(45deg) translate(-6px, -9px);
+	}
 }
 
 .nav {
 	align-content: center;
 	align-items: center;
-	display: flex;
-	flex-direction: row;
+	column-gap: 1px;
+	display: grid;
+	grid-template-columns: repeat(5, minmax(0, 1fr));
+	grid-template-rows: 100%;
 	height: 100%;
 	justify-content: space-between;
 	left: 50%;
@@ -68,49 +111,4 @@
 	transform: translate(-50%, -50%);
 	width: 100%;
 	z-index: 1000;
-}
-
-.nav-link-container {
-}
-
-.nav-link {
-	align-items: center;
-	background-color: v.$white;
-	border-right: 1px solid v.$subtle-gray;
-	display: flex;
-	height: 100%;
-	justify-content: center;
-	width: 100%;
-	color: v.$black;
-
-	&:last-of-type {
-		border-right: 0;
-	}
-
-	&:hover {
-		background-color: v.$dark-bg;
-		color: v.$white;
-	}
-}
-
-.menu-input,
-.nav-input {
-	display: none;
-}
-
-%nav-header {
-	font-family: v.$header-font;
-	text-align: center;
-	text-transform: uppercase;
-	text-decoration: none;
-}
-
-.nav-header {
-	@extend %nav-header;
-	font-size: 2em;
-}
-
-.nav-sub-header {
-	@extend %nav-header;
-	font-size: 1em;
 }
