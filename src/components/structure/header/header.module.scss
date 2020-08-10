@@ -52,12 +52,12 @@ $menu-transition: 0.2s;
 }
 
 .overlay-navigation {
-	background-color: v.$white;
+	background-color: transparent;
 	height: 100%;
 	overflow: hidden;
 	position: fixed;
 	width: 100%;
-	width: 0px;
+	display: none;
 }
 
 .menu-input {
@@ -65,7 +65,7 @@ $menu-transition: 0.2s;
 }
 
 .menu-input:checked ~ .overlay-navigation {
-	width: 100%;
+	display: block;
 }
 
 .menu-input:checked ~ .menu-button {
@@ -99,7 +99,6 @@ $menu-transition: 0.2s;
 .nav {
 	align-content: center;
 	align-items: center;
-	column-gap: 1px;
 	display: grid;
 	grid-template-columns: repeat(5, minmax(0, 1fr));
 	grid-template-rows: 100%;

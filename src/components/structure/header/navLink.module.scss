@@ -27,6 +27,17 @@
 	height: 100%;
 	text-decoration: none;
 	width: 100%;
+	position: relative;
+	bottom: -100vh;
+	animation: menuup 0.3s;
+	animation-fill-mode: both;
+	animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+
+	@for $i from 1 through 10 {
+		&:nth-child(#{$i}) {
+			animation-delay: (55ms * $i) - 55ms;
+		}
+	}
 
 	&:last-of-type {
 		border-right: 0;
@@ -35,7 +46,16 @@
 	&:hover {
 		background-color: v.$dark-bg;
 		color: v.$white;
-		text-shadow: 0px 1px 1px rgba(0, 0, 0, 0.35);
+		text-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
+	}
+}
+
+@keyframes menuup {
+	from {
+		bottom: -100vh;
+	}
+	to {
+		bottom: 0;
 	}
 }
 

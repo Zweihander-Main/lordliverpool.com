@@ -66,6 +66,7 @@ const Header: React.FC = () => {
 	// TODO Menu color based on navlink hover
 	// TODO Animation
 	// TODO Check menu lines on large font screen
+	// TODO viewport font size fallback
 
 	return (
 		<header className={styles.header}>
