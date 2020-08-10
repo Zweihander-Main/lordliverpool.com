@@ -11,15 +11,15 @@ $menu-transition: 0.2s;
 	align-items: center;
 	background-color: transparent;
 	border: 0;
+	color: v.$white;
 	cursor: pointer;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	padding: 2rem;
 	position: absolute;
-	z-index: 1001;
-	color: v.$white;
 	transition: $menu-transition;
+	z-index: 1001;
 
 	&:focus {
 		outline: 0;
@@ -28,14 +28,14 @@ $menu-transition: 0.2s;
 
 .menu-bars {
 	display: inline-block;
+}
 
-	div {
-		transition: $menu-transition;
-		background-color: v.$white;
-		height: 2px;
-		margin: 9px 1.4rem 9px 9px;
-		width: 30px;
-	}
+.menu-bar-line {
+	background-color: v.$white;
+	height: 2px;
+	margin: 9px 1.4rem 9px 9px;
+	transition: $menu-transition;
+	width: 30px;
 }
 
 .menu-text {
@@ -53,11 +53,11 @@ $menu-transition: 0.2s;
 
 .overlay-navigation {
 	background-color: transparent;
+	display: none;
 	height: 100%;
 	overflow: hidden;
 	position: fixed;
 	width: 100%;
-	display: none;
 }
 
 .menu-input {
@@ -71,27 +71,27 @@ $menu-transition: 0.2s;
 .menu-input:checked ~ .menu-button {
 	color: v.$black;
 
-	& > .menu-text > .menu-text-open {
+	.menu-text-open {
 		display: none;
 	}
 
-	& > .menu-text > .menu-text-close {
+	.menu-text-close {
 		display: inline;
 	}
 
-	& > .menu-bars div {
+	.menu-bar-line {
 		background-color: v.$black;
 	}
 
-	& > .menu-bars div:first-child {
+	.menu-bar-line:first-child {
 		transform: rotate(-45deg) translate(-6px, 9px);
 	}
 
-	& > .menu-bars div:nth-child(2) {
+	.menu-bar-line:nth-child(2) {
 		opacity: 0;
 	}
 
-	& > .menu-bars div:last-child {
+	.menu-bar-line:last-child {
 		transform: rotate(45deg) translate(-6px, -9px);
 	}
 }

@@ -1,6 +1,7 @@
 export const header: string;
 export const menuButton: string;
 export const menuBars: string;
+export const menuBarLine: string;
 export const menuText: string;
 export const menuTextClose: string;
 export const overlayNavigation: string;

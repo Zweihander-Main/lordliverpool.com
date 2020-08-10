@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useStaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql } from 'gatsby';
 import { FluidObject } from 'gatsby-image';
 import styles from './header.module.scss';
 import NavLink from './navLink';
@@ -78,9 +78,9 @@ const Header: React.FC = () => {
 			/>
 			<label htmlFor="menu" className={styles.menuButton}>
 				<div className={styles.menuBars}>
-					<div></div>
-					<div></div>
-					<div></div>
+					<div className={styles.menuBarLine}></div>
+					<div className={styles.menuBarLine}></div>
+					<div className={styles.menuBarLine}></div>
 				</div>
 				<span className={styles.menuText}>
 					<span className={styles.menuTextOpen}>Menu</span>
@@ -88,7 +88,7 @@ const Header: React.FC = () => {
 				</span>
 			</label>
 
-			<div class={styles.overlayNavigation}>
+			<div className={styles.overlayNavigation}>
 				<nav className={styles.nav}>
 					<NavLink
 						linkTo={''}
