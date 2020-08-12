@@ -1,21 +1,12 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import BackgroundImage from 'gatsby-background-image';
-import { FluidObject } from 'gatsby-image';
 
 import styles from './hero.module.scss';
 
-type HeroImageProps = {
-	file: {
-		childImageSharp: {
-			fluid: FluidObject;
-		};
-	};
-};
-
 const Hero: React.FC = () => {
-	const heroImageData = useStaticQuery<HeroImageProps>(graphql`
-		query {
+	const heroImageData = useStaticQuery<GatsbyTypes.HeroImageQuery>(graphql`
+		query HeroImage {
 			file(relativePath: { eq: "liverpoolherobg.png" }) {
 				childImageSharp {
 					fluid {
@@ -25,6 +16,10 @@ const Hero: React.FC = () => {
 			}
 		}
 	`);
+
+	if (!heroImageData.file?.childImageSharp?.fluid) {
+		throw new Error('No file found for liverpoolherobg.png');
+	}
 
 	return (
 		<BackgroundImage

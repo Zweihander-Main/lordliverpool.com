@@ -1,20 +1,13 @@
 import React from 'react';
 import styles from './bookInfo.module.scss';
-import Img, { FluidObject } from 'gatsby-image';
+import Img from 'gatsby-image';
 import { useStaticQuery, graphql } from 'gatsby';
 
-type BookImageProps = {
-	file: {
-		childImageSharp: {
-			fluid: FluidObject;
-		};
-	};
-};
 // TODO Change placeholder text to include bullet points
 const BookInfo: React.FC = () => {
 	//TODO better naming for images and support for alt ect.
-	const bookImageData = useStaticQuery<BookImageProps>(graphql`
-		query {
+	const bookImageData = useStaticQuery<GatsbyTypes.BookCoverQuery>(graphql`
+		query BookCover {
 			file(relativePath: { eq: "bookcover.png" }) {
 				childImageSharp {
 					fluid {
@@ -24,6 +17,11 @@ const BookInfo: React.FC = () => {
 			}
 		}
 	`);
+
+	if (!bookImageData.file?.childImageSharp?.fluid) {
+		throw new Error('There is no file match for bookcover.png');
+	}
+
 	return (
 		<section className={styles.bookInfo}>
 			<Img

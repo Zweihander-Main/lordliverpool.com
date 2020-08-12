@@ -32,7 +32,14 @@
 			"styles": ["src/styles"],
 			"pages": ["src/pages"],
 			"images": ["src/images"]
-		}
+		},
+		"plugins": [
+			{
+				"name": "ts-graphql-plugin",
+				"schema": "src/__generated__/gatsby-schema-graphql",
+				"tag": "graphql"
+			}
+		]
 	},
 	"include": ["src/**/*"]
 }

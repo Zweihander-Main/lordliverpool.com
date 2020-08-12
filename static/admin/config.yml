@@ -2,22 +2,43 @@ backend:
     name: git-gateway
     branch: master
 
+# TODO set these options more carefully (uploads folder)
 media_folder: static/img
 public_folder: /img
-
+publish_mode: editorial_workflow
 collections:
-    - name: 'miscellany'
-      label: 'Miscellany'
-      folder: 'content/miscellany'
+    - name: miscellany
+      label: Miscellany
+      folder: content/miscellany
       create: true
-      slug: 'index'
+      slug: index
       media_folder: ''
       public_folder: ''
       path: '{{title}}/index'
       editor:
           preview: true
       fields:
-          - { label: 'Title', name: 'title', widget: 'string' }
-          - { label: 'Publish Date', name: 'date', widget: 'datetime' }
-          - { label: 'Description', name: 'description', widget: 'string' }
-          - { label: 'Body', name: 'body', widget: 'markdown' }
+          #   - label: Template Key
+          #     name: templateKey
+          #     widget: hidden
+          #     default: miscellany-post
+          - label: Title
+            name: title
+            widget: string
+            required: true
+          - label: Publish Date
+            name: date
+            widget: datetime
+            required: true
+          - label: (Optional) Description
+            name: description
+            widget: string
+            required: false
+          - label: Post Image
+            name: featuredImage
+            widget: image
+            required: true
+          - label: Body
+            name: body
+            widget: markdown
+            required: true

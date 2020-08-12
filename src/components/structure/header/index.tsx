@@ -1,20 +1,11 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
-import { FluidObject } from 'gatsby-image';
 import styles from './header.module.scss';
 import NavLink from './navLink';
 
-type ImageProps = {
-	[key: string]: {
-		childImageSharp: {
-			fluid: FluidObject;
-		};
-	};
-};
-
 const Header: React.FC = () => {
-	const imageData = useStaticQuery<ImageProps>(graphql`
-		query {
+	const imageData = useStaticQuery<GatsbyTypes.MenuImagesQuery>(graphql`
+		query MenuImages {
 			chronology: file(relativePath: { eq: "liverpoolherobg.png" }) {
 				childImageSharp {
 					fluid {
@@ -53,11 +44,25 @@ const Header: React.FC = () => {
 		}
 	`);
 
-	const { chronology, contenders, miscellany, author, book } = imageData;
+	const images = Object.keys(imageData);
+	images.forEach((imageKey) => {
+		if (
+			!(
+				imageData[imageKey] &&
+				imageData[imageKey]?.childImageSharp?.fluid
+			)
+		) {
+			throw new Error(`${imageKey} menu item background image not found`);
+		}
+	});
+	const imageDataArray = images.map(
+		(imageKey) => imageData[imageKey].childImageSharp.fluid
+	);
+	const [chronology, contenders, miscellany, author, book] = imageDataArray;
 
 	const authorBackgroundStack = [
 		'linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3))',
-		author.childImageSharp.fluid,
+		author,
 	];
 
 	// TODO Add in home link when not home
@@ -94,19 +99,19 @@ const Header: React.FC = () => {
 						linkTo={''}
 						headerText={'Chronology'}
 						subHeaderText={'The Life and Times'}
-						fluidData={chronology.childImageSharp.fluid}
+						fluidData={chronology}
 					/>
 					<NavLink
 						linkTo={''}
 						headerText={'Contenders'}
 						subHeaderText={'For Greatest Prime Minister'}
-						fluidData={contenders.childImageSharp.fluid}
+						fluidData={contenders}
 					/>
 					<NavLink
-						linkTo={''}
+						linkTo={'/miscellany/'}
 						headerText={'Miscellany'}
 						subHeaderText={'On All Things Liverpool'}
-						fluidData={miscellany.childImageSharp.fluid}
+						fluidData={miscellany}
 					/>
 					<NavLink
 						linkTo={''}
@@ -118,7 +123,7 @@ const Header: React.FC = () => {
 						linkTo={''}
 						headerText={'Book'}
 						subHeaderText={'Reviews and Information'}
-						fluidData={book.childImageSharp.fluid}
+						fluidData={book}
 					/>
 				</nav>
 			</div>

@@ -5,6 +5,18 @@ module.exports = {
 		author: `@gatsbyjs`,
 	},
 	plugins: [
+		{
+			resolve: `gatsby-plugin-typegen`,
+			options: {
+				emitSchema: {
+					'src/__generated__/gatsby-introspection.json': true,
+					'src/__generated__/gatsby-schema.graphql': true,
+				},
+				emitPluginDocuments: {
+					'src/__generated__/gatsby-plugin-documents.graphql': true,
+				},
+			},
+		},
 		`gatsby-alias-imports`,
 		{
 			resolve: `gatsby-plugin-typescript`,
@@ -44,9 +56,7 @@ module.exports = {
 				name: `miscellany`,
 			},
 		},
-		`gatsby-plugin-netlify-cms`,
-		// this (optional) plugin enables Progressive Web App + Offline functionality
-		// To learn more, visit: https://gatsby.dev/offline
-		// `gatsby-plugin-offline`,
+		`gatsby-transformer-remark`,
+		`gatsby-plugin-netlify-cms`, // should be last in the array
 	],
 };
