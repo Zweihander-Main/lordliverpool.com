@@ -19,11 +19,18 @@ const PostHeader: React.FC<SinglePostProps> = ({
 	date,
 	content,
 }) => {
+	const backgroundStack = [
+		'linear-gradient(180deg, rgba(66, 1, 1, 0.2) 0%, rgba(66, 1, 1, 0.4) 100%)',
+		headerImage,
+	];
+
+	//TODO add in author
+	// TODO figure out width
 	return (
 		<article>
 			<BackgroundImage
 				className={styles.postHeaderSection}
-				fluid={headerImage}
+				fluid={backgroundStack}
 				Tag={'section'}
 			>
 				<div className={styles.headings}>

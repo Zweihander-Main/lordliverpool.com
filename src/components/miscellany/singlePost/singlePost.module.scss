@@ -6,6 +6,10 @@
 	flex-direction: column;
 	height: 100vh;
 	justify-content: flex-end;
+
+	&::before {
+		filter: blur(1px); // TODO change based on screen size
+	}
 }
 
 .headings {
@@ -15,29 +19,37 @@
 %heading-common {
 	color: v.$white;
 	font-family: v.$header-font;
-}
+	letter-spacing: 0.05em;
+	margin-left: 2rem;
+	text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+} // TODO typography
 
 .post-main-header {
 	@extend %heading-common;
+	font-size: v.$heading-size;
+	margin-bottom: 0;
 }
+//TODO space above
 
 .post-sub-header {
 	@extend %heading-common;
+	font-size: v.$sub-heading-size;
+	margin-top: 0;
 }
 
 .post-content-container {
+	align-items: center;
 	background-color: v.$white;
 	color: v.$black;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 	font-family: v.$body-font;
 	font-size: v.$paragraph-size;
 }
 
 .post-content {
-	width: 960px; //TODO set to variable
 	text-align: left;
+	width: 960px; //TODO set to variable
 }
 
 .post-meta {
