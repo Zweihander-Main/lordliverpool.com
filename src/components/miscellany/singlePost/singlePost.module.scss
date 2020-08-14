@@ -1,0 +1,44 @@
+@use '~styles/util/variables.global' as v;
+
+.post-header-section {
+	align-items: flex-start;
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	justify-content: flex-end;
+}
+
+.headings {
+	color: v.$white;
+}
+
+%heading-common {
+	color: v.$white;
+	font-family: v.$header-font;
+}
+
+.post-main-header {
+	@extend %heading-common;
+}
+
+.post-sub-header {
+	@extend %heading-common;
+}
+
+.post-content-container {
+	background-color: v.$white;
+	color: v.$black;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-family: v.$body-font;
+	font-size: v.$paragraph-size;
+}
+
+.post-content {
+	width: 960px; //TODO set to variable
+	text-align: left;
+}
+
+.post-meta {
+}
