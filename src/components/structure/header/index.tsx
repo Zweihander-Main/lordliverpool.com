@@ -1,9 +1,14 @@
 import React from 'react';
-import { useStaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql, Link } from 'gatsby';
 import styles from './header.module.scss';
 import NavLink from './navLink';
+import { MdHome } from 'react-icons/md';
 
-const Header: React.FC = () => {
+type HeaderProps = {
+	isHome?: boolean;
+};
+
+const Header: React.FC<HeaderProps> = ({ isHome }) => {
 	const imageData = useStaticQuery<GatsbyTypes.MenuImagesQuery>(graphql`
 		query MenuImages {
 			chronology: file(relativePath: { eq: "liverpoolherobg.png" }) {
@@ -125,6 +130,12 @@ const Header: React.FC = () => {
 						subHeaderText={'Reviews and Information'}
 						fluidData={book}
 					/>
+					{!isHome && (
+						<Link to="/" className={styles.homeButtonLink}>
+							<span className={styles.homeButtonText}>Home</span>
+							<MdHome className={styles.homeButtonIcon} />
+						</Link>
+					)}
 				</nav>
 			</div>
 		</header>

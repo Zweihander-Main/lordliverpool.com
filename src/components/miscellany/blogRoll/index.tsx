@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './miscellany.module.scss';
+import styles from './blogRoll.module.scss';
 
 const Miscellany: React.FC = () => {
 	return <p>Test</p>;

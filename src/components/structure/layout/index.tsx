@@ -4,12 +4,16 @@ import Footer from 'components/structure/footer';
 import 'styles/base.global.scss';
 import styles from './layout.module.scss';
 
-const Layout: React.FC<React.PropsWithChildren<Record<string, unknown>>> = ({
-	children,
-}) => {
+type LayoutProps = {
+	isHome?: boolean;
+};
+
+const Layout: React.FC<
+	LayoutProps & React.PropsWithChildren<Record<string, unknown>>
+> = ({ children, isHome }) => {
 	return (
 		<React.Fragment>
-			<Header />
+			<Header isHome={isHome} />
 			<div className={styles.content}>
 				<main>{children}</main>
 				<Footer />
@@ -17,5 +21,5 @@ const Layout: React.FC<React.PropsWithChildren<Record<string, unknown>>> = ({
 		</React.Fragment>
 	);
 };
-
+// TODO make sure nojs works
 export default Layout;

@@ -9,7 +9,7 @@ import Contenders from 'components/index/contenders';
 import Miscellany from 'components/index/miscellany';
 
 const IndexPage: React.FC = () => (
-	<Layout>
+	<Layout isHome={true}>
 		<SEO title="Home" />
 		<Hero />
 		<BookInfo />

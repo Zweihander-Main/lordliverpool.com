@@ -38,13 +38,18 @@ $menu-transition: 0.2s;
 	width: 30px;
 }
 
-.menu-text {
-	float: right;
+%menu-button-text {
 	font-family: v.$header-font;
 	font-size: 1rem;
 	font-weight: bold;
 	letter-spacing: 0.15em;
+	text-decoration: none;
 	text-transform: uppercase;
+}
+
+.menu-text {
+	@extend %menu-button-text;
+	float: right;
 } //TODO Make sure em vs rem
 
 .menu-text-close {
@@ -110,4 +115,27 @@ $menu-transition: 0.2s;
 	transform: translate(-50%, -50%);
 	width: 100%;
 	z-index: 1000;
+}
+
+.home-button-link {
+	align-items: center;
+	color: v.$black;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	padding: 2rem;
+	position: absolute;
+	right: 0;
+	text-decoration: none;
+	top: 0;
+}
+// TODO fix animation of home button appearing
+
+.home-button-text {
+	@extend %menu-button-text;
+}
+
+.home-button-icon {
+	font-size: 40px;
+	margin: 4px 9px 6px 1.1rem;
 }
