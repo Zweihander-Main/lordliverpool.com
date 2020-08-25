@@ -1,1 +1,40 @@
 @use '~styles/util/variables.global' as v;
+@use 'sass:color';
+
+$intensity: 3%;
+$drop-shadow-size: 15px;
+$drop-shadow-blur: 40px;
+$masonry-margin: 5em;
+
+$dark-drop-shadow-color: color.adjust(v.$red, $lightness: (-$intensity * 4));
+$light-drop-shadow-color: color.adjust(v.$red, $lightness: $intensity);
+
+.masonry {
+	box-sizing: border-box;
+	column-count: 3;
+	column-fill: balance;
+	column-gap: $masonry-margin;
+	margin: $masonry-margin;
+}
+
+.item {
+	background-color: v.$black;
+	box-shadow: $drop-shadow-size $drop-shadow-size $drop-shadow-blur
+			$dark-drop-shadow-color,
+		(-$drop-shadow-size) (-$drop-shadow-size) $drop-shadow-blur
+			$light-drop-shadow-color;
+	box-sizing: border-box;
+	display: inline-block;
+	margin: 0 0 $masonry-margin;
+	width: 100%;
+	position: relative;
+}
+
+.header {
+	bottom: 0;
+	position: absolute;
+}
+
+.item-image {
+	position: initial;
+}
