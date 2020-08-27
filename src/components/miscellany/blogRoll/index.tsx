@@ -55,12 +55,16 @@ const Miscellany: React.FC = () => {
 								)}
 								{post?.frontmatter && (
 									<header className={styles.header}>
-										<h2>{post.frontmatter.title}</h2>
-										{post.frontmatter?.subtitle && (
-											<h3>
-												{post.frontmatter?.subtitle}
-											</h3>
-										)}
+										<div className={styles.headings}>
+											<h2 className={styles.title}>
+												{post.frontmatter.title}
+											</h2>
+											{post.frontmatter?.subtitle && (
+												<h3 className={styles.subtitle}>
+													{post.frontmatter?.subtitle}
+												</h3>
+											)}
+										</div>
 									</header>
 								)}
 							</article>

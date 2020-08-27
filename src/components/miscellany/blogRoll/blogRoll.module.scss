@@ -1,13 +1,20 @@
 @use '~styles/util/variables.global' as v;
 @use 'sass:color';
 
-$intensity: 3%;
-$drop-shadow-size: 15px;
-$drop-shadow-blur: 40px;
+$light-shadow-intensity: 3%;
+$dark-shadow-intensity: 12%;
+$drop-shadow-size: 13px;
+$drop-shadow-blur: 35px;
 $masonry-margin: 5em;
 
-$dark-drop-shadow-color: color.adjust(v.$red, $lightness: (-$intensity * 4));
-$light-drop-shadow-color: color.adjust(v.$red, $lightness: $intensity);
+$dark-drop-shadow-color: color.adjust(
+	v.$red,
+	$lightness: -$dark-shadow-intensity
+);
+$light-drop-shadow-color: color.adjust(
+	v.$red,
+	$lightness: $light-shadow-intensity
+);
 
 .masonry {
 	box-sizing: border-box;
@@ -18,7 +25,7 @@ $light-drop-shadow-color: color.adjust(v.$red, $lightness: $intensity);
 }
 
 .item {
-	background-color: v.$black;
+	background-color: v.$red;
 	box-shadow: $drop-shadow-size $drop-shadow-size $drop-shadow-blur
 			$dark-drop-shadow-color,
 		(-$drop-shadow-size) (-$drop-shadow-size) $drop-shadow-blur
@@ -30,11 +37,54 @@ $light-drop-shadow-color: color.adjust(v.$red, $lightness: $intensity);
 	position: relative;
 }
 
+$r: red(v.$red);
+$g: green(v.$red);
+$b: blue(v.$red);
+
 .header {
 	bottom: 0;
 	position: absolute;
+	pointer-events: none;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(
+		180deg,
+		rgba($r, $g, $b, 0) 46.35%,
+		rgba($r, $g, $b, 0.35) 66.67%,
+		rgba($r, $g, $b, 0.45) 100%
+	);
+	display: grid;
+	grid-template-rows: 100%;
+	grid-template-columns: 100%;
+	align-items: end;
+	padding-bottom: 1rem;
 }
+
+// TODO: font size and text shadow
 
 .item-image {
 	position: initial;
+	opacity: 0.8;
+	transition: 0.1s;
+
+	&:hover {
+		opacity: 1;
+	}
+}
+
+%headings {
+	color: v.$white;
+	font-family: v.$header-font;
+	letter-spacing: 0.05em;
+	margin-right: 2rem;
+	margin-left: 2rem;
+}
+
+.title {
+	@extend %headings;
+}
+
+.subtitle {
+	@extend %headings;
+	font-weight: normal;
 }
