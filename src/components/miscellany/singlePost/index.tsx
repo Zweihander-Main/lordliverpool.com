@@ -12,6 +12,9 @@ type SinglePostProps = {
 	content: string;
 };
 
+//TODO attribution for lifted posts
+//TODO figure out origin source stuff
+
 const PostHeader: React.FC<SinglePostProps> = ({
 	headerImage,
 	title,
@@ -20,7 +23,7 @@ const PostHeader: React.FC<SinglePostProps> = ({
 	content,
 }) => {
 	const backgroundStack = [
-		'linear-gradient(180deg, rgba(66, 1, 1, 0.2) 0%, rgba(66, 1, 1, 0.4) 100%)',
+		'linear-gradient(180deg, rgba(66, 1, 1, 0.0) 50%, rgba(66,1,1,0.15) 75%, rgba(66, 1, 1, 0.6) 100%)',
 		headerImage,
 	];
 

@@ -158,7 +158,12 @@
 			"stylelint-config-prettier"
 		],
 		"rules": {
-			"indentation": "tab",
+			"indentation": [
+				"tab",
+				{
+					"ignore": "value"
+				}
+			],
 			"max-empty-lines": 2,
 			"comment-whitespace-inside": null,
 			"declaration-block-no-shorthand-property-overrides": true,

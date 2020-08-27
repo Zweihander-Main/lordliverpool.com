@@ -2,13 +2,14 @@
 
 .post-header-section {
 	align-items: flex-start;
+	background-position: initial;
 	display: flex;
 	flex-direction: column;
 	height: 100vh;
 	justify-content: flex-end;
 
 	&::before {
-		filter: blur(1px); // TODO change based on screen size
+		filter: blur(2px); // TODO change based on screen size
 	}
 }
 
@@ -30,12 +31,13 @@
 	margin-bottom: 0;
 }
 //TODO space above
+//TODO no subtitle spacing
 
 .post-sub-header {
 	@extend %heading-common;
 	font-size: v.$sub-heading-size;
-	margin-top: 0;
 	font-weight: normal;
+	margin-top: 0;
 }
 
 .post-content-container {
@@ -46,11 +48,12 @@
 	flex-direction: column;
 	font-family: v.$body-font;
 	font-size: v.$paragraph-size;
+	padding: 1rem;
 }
 
 .post-content {
+	max-width: 960px; //TODO set to variable
 	text-align: left;
-	width: 960px; //TODO set to variable
 }
 
 .post-meta {

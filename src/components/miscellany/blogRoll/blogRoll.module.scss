@@ -1,10 +1,10 @@
 @use '~styles/util/variables.global' as v;
 @use 'sass:color';
 
-$light-shadow-intensity: 3%;
+$light-shadow-intensity: 2%;
 $dark-shadow-intensity: 12%;
-$drop-shadow-size: 13px;
-$drop-shadow-blur: 35px;
+$drop-shadow-offset: 5px;
+$drop-shadow-blur: 20px;
 $masonry-margin: 5em;
 
 $dark-drop-shadow-color: color.adjust(
@@ -26,15 +26,15 @@ $light-drop-shadow-color: color.adjust(
 
 .item {
 	background-color: v.$red;
-	box-shadow: $drop-shadow-size $drop-shadow-size $drop-shadow-blur
+	box-shadow: $drop-shadow-offset $drop-shadow-offset $drop-shadow-blur
 			$dark-drop-shadow-color,
-		(-$drop-shadow-size) (-$drop-shadow-size) $drop-shadow-blur
+		(-$drop-shadow-offset) (-$drop-shadow-offset) $drop-shadow-blur
 			$light-drop-shadow-color;
 	box-sizing: border-box;
 	display: inline-block;
 	margin: 0 0 $masonry-margin;
-	width: 100%;
 	position: relative;
+	width: 100%;
 }
 
 $r: red(v.$red);
@@ -42,29 +42,29 @@ $g: green(v.$red);
 $b: blue(v.$red);
 
 .header {
-	bottom: 0;
-	position: absolute;
-	pointer-events: none;
-	width: 100%;
-	height: 100%;
+	align-items: end;
 	background: linear-gradient(
 		180deg,
 		rgba($r, $g, $b, 0) 46.35%,
 		rgba($r, $g, $b, 0.35) 66.67%,
 		rgba($r, $g, $b, 0.45) 100%
 	);
+	bottom: 0;
 	display: grid;
-	grid-template-rows: 100%;
 	grid-template-columns: 100%;
-	align-items: end;
+	grid-template-rows: 100%;
+	height: 100%;
 	padding-bottom: 1rem;
+	pointer-events: none;
+	position: absolute;
+	width: 100%;
 }
 
 // TODO: font size and text shadow
 
 .item-image {
-	position: initial;
 	opacity: 0.8;
+	position: initial;
 	transition: 0.1s;
 
 	&:hover {
@@ -76,8 +76,8 @@ $b: blue(v.$red);
 	color: v.$white;
 	font-family: v.$header-font;
 	letter-spacing: 0.05em;
-	margin-right: 2rem;
 	margin-left: 2rem;
+	margin-right: 2rem;
 }
 
 .title {
@@ -86,5 +86,6 @@ $b: blue(v.$red);
 
 .subtitle {
 	@extend %headings;
+
 	font-weight: normal;
 }

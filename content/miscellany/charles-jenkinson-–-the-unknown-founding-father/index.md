@@ -1,8 +1,11 @@
 ---
-title: Charles Jenkinson – the unknown Founding Father
+title: Charles Jenkinson
+subtitle: The Unknown Founding Father
+description: Charles Jenkinson deserves to be remembered as a Founding Father.
 date: 2015-04-11T19:20:25.872Z
 featuredImage: charles_jenkinson-_1st_earl_of_liverpool_by_george_romney.jpg
 ---
+
 Charles Jenkinson never travelled to the American colonies. Nor did he quite reach the top of British politics, though he was rewarded for his efforts with the Earldom of Liverpool and his son was Prime Minister for almost fifteen years. Yet as a middle-ranking junior minister he had an enormous effect, critical to the progress of American independence, on two separate occasions. For his services to the Patriot cause, for which he probably contributed more than any other single person but George Washington, he deserves to be remembered on July 4 as a Founding Father.
 
 Jenkinson was born into the Oxfordshire squirearchy, cousin to a line of Baronets, the first four of whom all served as MPs for Oxfordshire, generally in the Tory interest. While his first electoral foray was in the Whig interest in the hard-fought Oxfordshire election campaign of 1754, he moved firmly into the Tory camp after 1760, as a new monarch George III ended the Whig one-party state and made Toryism no longer a cause doomed to perpetual opposition. (Indeed, both Oxfordshire’s victorious Whig candidates of 1754 were to support Tory-led governments after 1760.)
