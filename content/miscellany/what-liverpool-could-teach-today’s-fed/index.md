@@ -1,5 +1,7 @@
 ---
 title: What Liverpool could teach today’s Fed
+subtitle: Thoughts from the most sophisticated thinker among senior politicians
+  of the nineteenth century
 date: 2019-07-22T20:10:04.252Z
 featuredImage: bank_of_england_-soane-_-_lothbury_court_with_triumphal_arch.jpg
 ---
