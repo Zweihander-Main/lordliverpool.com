@@ -1,5 +1,6 @@
 ---
 title: Lord Liverpool 2016
+subtitle: How the U.S. could enjoy a second Industrial Revolution
 date: 2015-11-09T21:08:18.453Z
 featuredImage: liverpool2016.png
 ---
