@@ -9,7 +9,9 @@
 	justify-content: flex-end;
 
 	&::before {
-		filter: blur(2px); // TODO change based on screen size
+		filter: blur(
+			2px
+		); // TODO change based on screen size and/or increase pulled image size
 	}
 }
 

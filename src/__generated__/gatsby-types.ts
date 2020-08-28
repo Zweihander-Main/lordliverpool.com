@@ -693,6 +693,8 @@ enum FileFieldsEnum {
   internal___type = 'internal.type',
   childMarkdownRemark___id = 'childMarkdownRemark.id',
   childMarkdownRemark___frontmatter___title = 'childMarkdownRemark.frontmatter.title',
+  childMarkdownRemark___frontmatter___subtitle = 'childMarkdownRemark.frontmatter.subtitle',
+  childMarkdownRemark___frontmatter___description = 'childMarkdownRemark.frontmatter.description',
   childMarkdownRemark___frontmatter___date = 'childMarkdownRemark.frontmatter.date',
   childMarkdownRemark___frontmatter___featuredImage___sourceInstanceName = 'childMarkdownRemark.frontmatter.featuredImage.sourceInstanceName',
   childMarkdownRemark___frontmatter___featuredImage___absolutePath = 'childMarkdownRemark.frontmatter.featuredImage.absolutePath',
@@ -730,8 +732,6 @@ enum FileFieldsEnum {
   childMarkdownRemark___frontmatter___featuredImage___publicURL = 'childMarkdownRemark.frontmatter.featuredImage.publicURL',
   childMarkdownRemark___frontmatter___featuredImage___id = 'childMarkdownRemark.frontmatter.featuredImage.id',
   childMarkdownRemark___frontmatter___featuredImage___children = 'childMarkdownRemark.frontmatter.featuredImage.children',
-  childMarkdownRemark___frontmatter___subtitle = 'childMarkdownRemark.frontmatter.subtitle',
-  childMarkdownRemark___frontmatter___description = 'childMarkdownRemark.frontmatter.description',
   childMarkdownRemark___excerpt = 'childMarkdownRemark.excerpt',
   childMarkdownRemark___rawMarkdownBody = 'childMarkdownRemark.rawMarkdownBody',
   childMarkdownRemark___fileAbsolutePath = 'childMarkdownRemark.fileAbsolutePath',
@@ -1511,6 +1511,8 @@ type MarkdownRemarkFields = {
 enum MarkdownRemarkFieldsEnum {
   id = 'id',
   frontmatter___title = 'frontmatter.title',
+  frontmatter___subtitle = 'frontmatter.subtitle',
+  frontmatter___description = 'frontmatter.description',
   frontmatter___date = 'frontmatter.date',
   frontmatter___featuredImage___sourceInstanceName = 'frontmatter.featuredImage.sourceInstanceName',
   frontmatter___featuredImage___absolutePath = 'frontmatter.featuredImage.absolutePath',
@@ -1573,8 +1575,6 @@ enum MarkdownRemarkFieldsEnum {
   frontmatter___featuredImage___childMarkdownRemark___timeToRead = 'frontmatter.featuredImage.childMarkdownRemark.timeToRead',
   frontmatter___featuredImage___childMarkdownRemark___tableOfContents = 'frontmatter.featuredImage.childMarkdownRemark.tableOfContents',
   frontmatter___featuredImage___childMarkdownRemark___children = 'frontmatter.featuredImage.childMarkdownRemark.children',
-  frontmatter___subtitle = 'frontmatter.subtitle',
-  frontmatter___description = 'frontmatter.description',
   excerpt = 'excerpt',
   rawMarkdownBody = 'rawMarkdownBody',
   fileAbsolutePath = 'fileAbsolutePath',
@@ -1705,10 +1705,10 @@ type MarkdownRemarkFilterInput = {
 
 type MarkdownRemarkFrontmatter = {
   readonly title: Maybe<Scalars['String']>;
-  readonly date: Maybe<Scalars['Date']>;
-  readonly featuredImage: Maybe<File>;
   readonly subtitle: Maybe<Scalars['String']>;
   readonly description: Maybe<Scalars['String']>;
+  readonly date: Maybe<Scalars['Date']>;
+  readonly featuredImage: Maybe<File>;
 };
 
 
@@ -1721,10 +1721,10 @@ type MarkdownRemarkFrontmatter_dateArgs = {
 
 type MarkdownRemarkFrontmatterFilterInput = {
   readonly title: Maybe<StringQueryOperatorInput>;
-  readonly date: Maybe<DateQueryOperatorInput>;
-  readonly featuredImage: Maybe<FileFilterInput>;
   readonly subtitle: Maybe<StringQueryOperatorInput>;
   readonly description: Maybe<StringQueryOperatorInput>;
+  readonly date: Maybe<DateQueryOperatorInput>;
+  readonly featuredImage: Maybe<FileFilterInput>;
 };
 
 type MarkdownRemarkGroupConnection = {
@@ -3016,16 +3016,5 @@ type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
-
-type BlogRollQueryQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type BlogRollQueryQuery = { readonly allMarkdownRemark: { readonly edges: ReadonlyArray<{ readonly node: (
-        Pick<MarkdownRemark, 'id'>
-        & { readonly fields: Maybe<Pick<MarkdownRemarkFields, 'slug'>>, readonly frontmatter: Maybe<(
-          Pick<MarkdownRemarkFrontmatter, 'title' | 'subtitle' | 'date'>
-          & { readonly featuredImage: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }> }
-        )> }
-      ) }> } };
 
 }

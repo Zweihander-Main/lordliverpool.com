@@ -41,7 +41,7 @@ const Miscellany: React.FC = () => {
 			{posts &&
 				posts.map(({ node: post }) => {
 					return post?.fields?.slug ? (
-						<Link to={post.fields.slug}>
+						<Link to={post.fields.slug} className={styles.link}>
 							<article key={post.id} className={styles.item}>
 								{post?.frontmatter?.featuredImage
 									?.childImageSharp?.fluid && (

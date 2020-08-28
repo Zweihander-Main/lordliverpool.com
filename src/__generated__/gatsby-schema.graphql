@@ -804,6 +804,8 @@ enum FileFieldsEnum {
   internal___type
   childMarkdownRemark___id
   childMarkdownRemark___frontmatter___title
+  childMarkdownRemark___frontmatter___subtitle
+  childMarkdownRemark___frontmatter___description
   childMarkdownRemark___frontmatter___date
   childMarkdownRemark___frontmatter___featuredImage___sourceInstanceName
   childMarkdownRemark___frontmatter___featuredImage___absolutePath
@@ -841,8 +843,6 @@ enum FileFieldsEnum {
   childMarkdownRemark___frontmatter___featuredImage___publicURL
   childMarkdownRemark___frontmatter___featuredImage___id
   childMarkdownRemark___frontmatter___featuredImage___children
-  childMarkdownRemark___frontmatter___subtitle
-  childMarkdownRemark___frontmatter___description
   childMarkdownRemark___excerpt @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMarkdownRemark___rawMarkdownBody @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMarkdownRemark___fileAbsolutePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -1501,6 +1501,8 @@ type MarkdownRemarkFields {
 enum MarkdownRemarkFieldsEnum {
   id
   frontmatter___title
+  frontmatter___subtitle
+  frontmatter___description
   frontmatter___date
   frontmatter___featuredImage___sourceInstanceName
   frontmatter___featuredImage___absolutePath
@@ -1563,8 +1565,6 @@ enum MarkdownRemarkFieldsEnum {
   frontmatter___featuredImage___childMarkdownRemark___timeToRead @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   frontmatter___featuredImage___childMarkdownRemark___tableOfContents @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   frontmatter___featuredImage___childMarkdownRemark___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  frontmatter___subtitle
-  frontmatter___description
   excerpt @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   rawMarkdownBody @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   fileAbsolutePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -1695,6 +1695,8 @@ input MarkdownRemarkFilterInput {
 
 type MarkdownRemarkFrontmatter {
   title: String
+  subtitle: String
+  description: String
   date(
     # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY
     # MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for
@@ -1713,16 +1715,14 @@ type MarkdownRemarkFrontmatter {
     locale: String
   ): Date
   featuredImage: File
-  subtitle: String
-  description: String
 }
 
 input MarkdownRemarkFrontmatterFilterInput {
   title: StringQueryOperatorInput
-  date: DateQueryOperatorInput
-  featuredImage: FileFilterInput
   subtitle: StringQueryOperatorInput
   description: StringQueryOperatorInput
+  date: DateQueryOperatorInput
+  featuredImage: FileFilterInput
 }
 
 type MarkdownRemarkGroupConnection {

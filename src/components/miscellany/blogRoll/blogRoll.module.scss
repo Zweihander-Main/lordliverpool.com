@@ -24,15 +24,19 @@ $light-drop-shadow-color: color.adjust(
 	margin: $masonry-margin;
 }
 
+.link {
+	box-sizing: border-box;
+	display: inline-block;
+	width: 100%;
+	margin: ($masonry-margin/2) 0;
+}
+
 .item {
 	background-color: v.$red;
 	box-shadow: $drop-shadow-offset $drop-shadow-offset $drop-shadow-blur
 			$dark-drop-shadow-color,
 		(-$drop-shadow-offset) (-$drop-shadow-offset) $drop-shadow-blur
 			$light-drop-shadow-color;
-	box-sizing: border-box;
-	display: inline-block;
-	margin: 0 0 $masonry-margin;
 	position: relative;
 	width: 100%;
 }
@@ -43,12 +47,6 @@ $b: blue(v.$red);
 
 .header {
 	align-items: end;
-	background: linear-gradient(
-		180deg,
-		rgba($r, $g, $b, 0) 46.35%,
-		rgba($r, $g, $b, 0.35) 66.67%,
-		rgba($r, $g, $b, 0.45) 100%
-	);
 	bottom: 0;
 	display: grid;
 	grid-template-columns: 100%;
@@ -63,7 +61,7 @@ $b: blue(v.$red);
 // TODO: font size and text shadow
 
 .item-image {
-	opacity: 0.8;
+	opacity: 0.7;
 	position: initial;
 	transition: 0.1s;
 
@@ -78,6 +76,7 @@ $b: blue(v.$red);
 	letter-spacing: 0.05em;
 	margin-left: 2rem;
 	margin-right: 2rem;
+	text-shadow: 0 1px 4px v.$black;
 }
 
 .title {
