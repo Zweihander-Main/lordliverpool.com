@@ -1,6 +1,6 @@
 ---
 title: The decline of good economics
-subtitle: ""
+subtitle: On the development of economic ideas over the last 200 years
 date: 2019-01-28T21:03:17.428Z
 featuredImage: william_hogarth_-_gin_lane.jpg
 ---
