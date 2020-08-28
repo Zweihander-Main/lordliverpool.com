@@ -1,5 +1,6 @@
 ---
 title: How Charles Jenkinson turned a Whig government Tory
+subtitle: The politics of the neglected 1st Earl of Liverpool
 date: 2015-02-21T20:28:20.240Z
 featuredImage: the_house_of_commons_1793-94_by_karl_anton_hickel.jpg
 ---
