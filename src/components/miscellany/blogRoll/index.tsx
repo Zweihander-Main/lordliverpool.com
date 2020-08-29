@@ -55,7 +55,7 @@ const Miscellany: React.FC = () => {
 								)}
 								{post?.frontmatter && (
 									<header className={styles.header}>
-										<div className={styles.headings}>
+										<div>
 											<h2 className={styles.title}>
 												{post.frontmatter.title}
 											</h2>

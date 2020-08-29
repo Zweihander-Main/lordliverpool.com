@@ -27,8 +27,8 @@ $light-drop-shadow-color: color.adjust(
 .link {
 	box-sizing: border-box;
 	display: inline-block;
-	width: 100%;
 	margin: ($masonry-margin/2) 0;
+	width: 100%;
 }
 
 .item {
@@ -61,14 +61,14 @@ $b: blue(v.$red);
 // TODO: font size and text shadow
 
 .item-image {
+	filter: grayscale(100%);
 	opacity: 0.6;
 	position: initial;
 	transition: 0.1s;
-	filter: grayscale(100%);
 
 	&:hover {
-		opacity: 1;
 		filter: grayscale(0%);
+		opacity: 1;
 	}
 }
 
