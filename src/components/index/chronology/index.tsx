@@ -9,7 +9,7 @@ const Chronology: React.FC = () => {
 			<div className={styles.timeline}>
 				<div className={styles.chronoItem}>
 					<p className={styles.chronoText}>
-						<strong>July 7</strong>
+						<strong>June 7</strong>
 						<br /> The birth of Robert Jenkinson.
 					</p>
 					<div className={styles.chronoPoint}></div>
