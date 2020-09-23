@@ -42,3 +42,53 @@ collections:
             name: body
             widget: markdown
             required: true
+    - name: chronology
+      label: Chronology
+      folder: content/chronology
+      create: true
+      slug: index
+      media_folder: ''
+      public_folder: ''
+      path: '{{title}}/index'
+      editor:
+          preview: true
+      fields:
+          - label: Title
+            name: title
+            widget: string
+            required: true
+          - label: SEO Description
+            name: description
+            widget: string
+            required: false
+          - label: Featured Image
+            name: featuredImage
+            widget: image
+            required: false
+          - label: Timeline Date
+            name: timelineDate
+            widget: datetime
+            required: true
+            time_format: false
+            date_format: true
+          - label: Display Date
+            name: displaydate
+            widget: string
+            required: true
+          - label: Type of Content
+            name: category
+            widget: select
+            required: true
+            default: 'events'
+            options:
+                - { label: 'Family', value: 'family' }
+                - { label: 'Colleagues', value: 'colleagues' }
+                - { label: 'Events', value: 'events' }
+          - label: Card Content
+            name: card
+            widget: markdown
+            required: true
+          - label: Article Content
+            name: body
+            widget: markdown
+            required: false

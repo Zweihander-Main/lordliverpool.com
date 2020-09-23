@@ -4,7 +4,7 @@ import styles from './chronology.module.scss';
 const Chronology: React.FC = () => {
 	return (
 		<section className={styles.chronology}>
-			<h1 className={styles.title}>The Life and Times</h1>
+			<h1 className={styles.title}>The Life and Colleagues</h1>
 			<span className={styles.line}></span>
 			<div className={styles.timeline}>
 				<div className={styles.chronoItem}>

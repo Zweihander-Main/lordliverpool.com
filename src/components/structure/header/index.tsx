@@ -103,7 +103,7 @@ const Header: React.FC<HeaderProps> = ({ isHome }) => {
 					<NavLink
 						linkTo={''}
 						headerText={'Chronology'}
-						subHeaderText={'The Life and Times'}
+						subHeaderText={'The Life and Colleagues'}
 						fluidData={chronology}
 					/>
 					<NavLink
