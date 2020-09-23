@@ -56,6 +56,13 @@ module.exports = {
 				name: `miscellany`,
 			},
 		},
+		{
+			resolve: `gatsby-source-filesystem`,
+			options: {
+				path: `${__dirname}/content/chronology`,
+				name: `chronology`,
+			},
+		},
 		`gatsby-transformer-remark`,
 		`gatsby-plugin-netlify-cms`, // should be last in the array
 	],

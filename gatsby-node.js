@@ -25,18 +25,26 @@ exports.createPages = ({ actions, graphql }) => {
 		const posts = result.data.allMarkdownRemark.edges;
 		posts.forEach((edge) => {
 			const id = edge.node.id;
-			createPage({
-				path: edge.node.fields.slug,
-				component: path.resolve(
-					`src/templates/${String(
-						edge.node.fields.sourceInstanceName
-					)}.tsx`
-				),
-				// additional data can be passed via context
-				context: {
-					id,
-				},
-			});
+			if (
+				!(
+					edge.node.fields.sourceInstanceName === 'chronology' &&
+					edge.node.rawMarkdownRemark &&
+					edge.node.rawMarkdownRemark !== ''
+				)
+			) {
+				createPage({
+					path: edge.node.fields.slug,
+					component: path.resolve(
+						`src/templates/${String(
+							edge.node.fields.sourceInstanceName
+						)}.tsx`
+					),
+					// additional data can be passed via context
+					context: {
+						id,
+					},
+				});
+			}
 		});
 	});
 };

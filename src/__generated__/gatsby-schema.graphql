@@ -843,6 +843,10 @@ enum FileFieldsEnum {
   childMarkdownRemark___frontmatter___featuredImage___publicURL
   childMarkdownRemark___frontmatter___featuredImage___id
   childMarkdownRemark___frontmatter___featuredImage___children
+  childMarkdownRemark___frontmatter___timelineDate
+  childMarkdownRemark___frontmatter___displaydate
+  childMarkdownRemark___frontmatter___category
+  childMarkdownRemark___frontmatter___card
   childMarkdownRemark___excerpt @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMarkdownRemark___rawMarkdownBody @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMarkdownRemark___fileAbsolutePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -1565,6 +1569,10 @@ enum MarkdownRemarkFieldsEnum {
   frontmatter___featuredImage___childMarkdownRemark___timeToRead @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   frontmatter___featuredImage___childMarkdownRemark___tableOfContents @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   frontmatter___featuredImage___childMarkdownRemark___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
+  frontmatter___timelineDate
+  frontmatter___displaydate
+  frontmatter___category
+  frontmatter___card
   excerpt @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   rawMarkdownBody @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   fileAbsolutePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -1715,6 +1723,26 @@ type MarkdownRemarkFrontmatter {
     locale: String
   ): Date
   featuredImage: File
+  timelineDate(
+    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY
+    # MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for
+    # documentation for different tokens.
+    formatString: String
+
+    # Returns a string generated with Moment.js' `fromNow` function
+    fromNow: Boolean
+
+    # Returns the difference between this date and the current time. Defaults to
+    # "milliseconds" but you can also pass in as the measurement "years",
+    # "months", "weeks", "days", "hours", "minutes", and "seconds".
+    difference: String
+
+    # Configures the locale Moment.js will use to format the date.
+    locale: String
+  ): Date
+  displaydate: String
+  category: String
+  card: String
 }
 
 input MarkdownRemarkFrontmatterFilterInput {
@@ -1723,6 +1751,10 @@ input MarkdownRemarkFrontmatterFilterInput {
   description: StringQueryOperatorInput
   date: DateQueryOperatorInput
   featuredImage: FileFilterInput
+  timelineDate: DateQueryOperatorInput
+  displaydate: StringQueryOperatorInput
+  category: StringQueryOperatorInput
+  card: StringQueryOperatorInput
 }
 
 type MarkdownRemarkGroupConnection {
