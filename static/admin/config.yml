@@ -72,7 +72,7 @@ collections:
             time_format: false
             date_format: true
           - label: Display Date
-            name: displaydate
+            name: displayDate
             widget: string
             required: true
           - label: Type of Content

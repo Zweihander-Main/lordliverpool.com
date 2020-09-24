@@ -1,0 +1,79 @@
+@use '~styles/util/variables.global' as v;
+
+$card-height: 70vh;
+$card-margin: 100px;
+$card-width: $card-height/1.5;
+$header-height: (100vh - $card-height)/2;
+$timeline-height: (100vh - $card-height)/2;
+
+%hide-scrollbars {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+// TODO -- JS for touch scrolling sideways
+
+:global(body) {
+	overflow: hidden;
+} //TODO footer
+
+.chronology {
+	background-color: v.$blue-bg;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: $header-height $card-height $timeline-height;
+	height: 100vh;
+	width: 100vw;
+}
+
+.chronology-title {
+	color: v.$white;
+	font-family: v.$header-font;
+	grid-row: 1;
+	margin-left: auto;
+	margin-right: auto;
+	text-transform: uppercase;
+} // TODO letter spacing
+
+.card-container-wrapper {
+	@extend %hide-scrollbars;
+	grid-row: 2;
+	height: 100vw;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	transform: rotate(-90deg) translateX(-100vmin);
+	transform-origin: top left;
+}
+
+.card-container {
+	display: flex;
+	flex-direction: row;
+	transform: rotate(90deg) translateY(-100vmin);
+	transform-origin: top left;
+}
+
+.card {
+	background-color: v.$blue-card-bg;
+	color: v.$white;
+	height: $card-height;
+	width: $card-width;
+	margin: 0 $card-margin 0 0;
+	display: table;
+
+	&:first-of-type {
+		margin-left: $card-margin;
+	}
+}
+
+.buffer {
+	width: $card-margin;
+	height: $card-height;
+}
+
+.timeline {
+	grid-row: 3;
+	color: v.$white;
+}

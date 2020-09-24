@@ -101,7 +101,7 @@ const Header: React.FC<HeaderProps> = ({ isHome }) => {
 			<div className={styles.overlayNavigation}>
 				<nav className={styles.nav}>
 					<NavLink
-						linkTo={''}
+						linkTo={'/chronology/'}
 						headerText={'Chronology'}
 						subHeaderText={'The Life and Colleagues'}
 						fluidData={chronology}
