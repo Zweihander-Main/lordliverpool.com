@@ -1,6 +1,6 @@
 @use '~styles/util/variables.global' as v;
 
-$card-height: 70vh;
+$card-height: 60vh;
 $card-margin: 100px;
 $card-width: $card-height/1.5;
 $header-height: (100vh - $card-height)/2;
@@ -17,8 +17,9 @@ $timeline-height: (100vh - $card-height)/2;
 // TODO -- JS for touch scrolling sideways
 
 :global(body) {
-	overflow: hidden;
+	overflow-x: hidden;
 } //TODO footer
+// TODO better way? since it carries over to the site maybe ok
 
 .chronology {
 	background-color: v.$blue-bg;
@@ -44,8 +45,11 @@ $timeline-height: (100vh - $card-height)/2;
 	height: 100vw;
 	overflow-x: hidden;
 	overflow-y: scroll;
-	transform: rotate(-90deg) translateX(-100vmin);
+	transform: rotate(-90deg) translateX(-100vmin); // TODO verify vmin
 	transform-origin: top left;
+	position: absolute;
+	top: $header-height;
+	padding-right: 45px; // TODO box-shadow vars
 }
 
 .card-container {
@@ -57,15 +61,25 @@ $timeline-height: (100vh - $card-height)/2;
 
 .card {
 	background-color: v.$blue-card-bg;
+	box-shadow: 15px 15px 30px #01060a, -15px -15px 30px #092435; //TODO vars and mixins
 	color: v.$white;
 	height: $card-height;
 	width: $card-width;
 	margin: 0 $card-margin 0 0;
 	display: table;
+	padding: 30px;
+	box-sizing: border-box;
 
 	&:first-of-type {
-		margin-left: $card-margin;
+		margin-left: $card-margin * 2;
 	}
+}
+
+.card-header {
+	margin-top: 0;
+}
+
+.card-image {
 }
 
 .buffer {

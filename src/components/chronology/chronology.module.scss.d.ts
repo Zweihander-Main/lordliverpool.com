@@ -3,5 +3,6 @@ export const chronology: string;
 export const chronologyTitle: string;
 export const cardContainer: string;
 export const card: string;
+export const cardHeader: string;
 export const buffer: string;
 export const timeline: string;

@@ -50,8 +50,23 @@ const Miscellany: React.FC = () => {
 						cards.map(({ node: card }) => {
 							return (
 								<article key={card.id} className={styles.card}>
-									{card.frontmatter && (
-										<h2>{card.frontmatter.title}</h2>
+									{card?.frontmatter?.featuredImage
+										?.childImageSharp?.fluid && (
+										<Img
+											className={styles.cardImage}
+											fluid={
+												card.frontmatter.featuredImage
+													.childImageSharp.fluid
+											}
+										/>
+									)}
+									{card?.frontmatter?.title && (
+										<h2 className={styles.cardHeader}>
+											{card.frontmatter.title}
+										</h2>
+									)}
+									{card?.frontmatter?.card && (
+										<p>{card.frontmatter.card}</p>
 									)}
 								</article>
 							);
