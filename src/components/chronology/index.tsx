@@ -64,10 +64,23 @@ const Miscellany: React.FC = () => {
 											/>
 										)}
 										{card?.frontmatter?.title && (
-											<h2 className={styles.cardHeader}>
+											<h2
+												className={
+													card?.frontmatter
+														?.featuredImage
+														?.childImageSharp?.fluid
+														? styles.cardHeader
+														: `${styles.cardHeader} ${styles.cardHeaderNoImage}`
+												}
+											>
 												{card?.rawMarkdownBody !== '' &&
 												card?.fields?.slug ? (
-													<Link to={card.fields.slug}>
+													<Link
+														to={card.fields.slug}
+														className={
+															styles.titleLink
+														}
+													>
 														{card.frontmatter.title}
 													</Link>
 												) : (
@@ -76,7 +89,9 @@ const Miscellany: React.FC = () => {
 											</h2>
 										)}
 										{card?.frontmatter?.card && (
-											<p>{card.frontmatter.card}</p>
+											<p className={styles.cardText}>
+												{card.frontmatter.card}
+											</p>
 										)}
 									</div>
 									{card?.frontmatter?.displayDate && (

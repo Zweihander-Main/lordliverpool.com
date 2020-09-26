@@ -2,7 +2,8 @@
 
 $card-height: 60vh;
 $card-margin: 100px;
-$card-width: $card-height/1.6;
+$card-border: 35px;
+$card-width: $card-height/1.5;
 $header-height: (100vh - $card-height)/2;
 $timeline-height: (100vh - $card-height)/2;
 
@@ -45,11 +46,11 @@ $timeline-height: (100vh - $card-height)/2;
 	height: 100vw;
 	overflow-x: hidden;
 	overflow-y: scroll;
-	transform: rotate(-90deg) translateX(-100vmin); // TODO verify vmin
-	transform-origin: top left;
+	padding-right: 45px; // TODO box-shadow vars
 	position: absolute;
 	top: $header-height;
-	padding-right: 45px; // TODO box-shadow vars
+	transform: rotate(-90deg) translateX(-100vmin); // TODO verify vmin
+	transform-origin: top left;
 }
 
 .card-container {
@@ -62,16 +63,16 @@ $timeline-height: (100vh - $card-height)/2;
 .card {
 	background-color: v.$blue-card-bg;
 	box-shadow: 15px 15px 30px #01060a, -15px -15px 30px #092435; //TODO vars and mixins
-	color: v.$white;
-	height: $card-height;
-	width: $card-width;
-	margin: 0 $card-margin 0 0;
-	display: table-cell;
 	box-sizing: border-box;
+	color: v.$white;
+	display: table-cell;
 
 	display: grid;
-	grid-template-rows: 1fr 30px;
 	grid-template-columns: 1fr;
+	grid-template-rows: 1fr $card-border;
+	height: $card-height;
+	margin: 0 $card-margin 0 0;
+	width: $card-width;
 
 	&:first-of-type {
 		margin-left: $card-margin * 2;
@@ -79,35 +80,51 @@ $timeline-height: (100vh - $card-height)/2;
 }
 
 .inner-card {
-	border: 30px solid transparent;
+	border: $card-border solid transparent;
 	box-sizing: border-box;
-	overflow-y: auto;
-	grid-row-start: 1;
-	grid-row-end: 3;
 	grid-column: 1;
+	grid-row-end: 3;
+	grid-row-start: 1;
+	overflow-y: auto;
 }
 
 .card-header {
+	outline: none;
+}
+
+.title-link {
+	color: v.$white;
+}
+
+.card-header-no-image {
 	margin-top: 0;
 }
 
 .card-image {
+	max-height: $card-height * 0.7;
+	object-fit: contain;
 	outline: none;
+	width: 100%;
+}
+
+.card-text {
+	font-family: v.$body-font;
+	font-size: v.$paragraph-size;
 }
 
 .display-date {
-	text-align: center;
-	grid-row: 2;
 	grid-column: 1;
+	grid-row: 2;
+	text-align: center;
 	text-transform: uppercase;
 }
 
 .buffer {
-	width: $card-margin;
 	height: $card-height;
+	width: $card-margin;
 }
 
 .timeline {
-	grid-row: 3;
 	color: v.$white;
+	grid-row: 3;
 }

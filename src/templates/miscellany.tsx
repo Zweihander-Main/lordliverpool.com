@@ -11,7 +11,9 @@ const MiscellanyPostTemplate: React.FC<PageProps<
 
 	if (!post?.frontmatter?.featuredImage?.childImageSharp?.fluid) {
 		throw new Error(
-			`Image for post ${JSON.stringify(post?.title)} not found.`
+			`Image for post ${JSON.stringify(
+				post?.frontmatter?.title
+			)} not found.`
 		);
 	}
 

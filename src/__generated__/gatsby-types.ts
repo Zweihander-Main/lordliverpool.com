@@ -3036,6 +3036,16 @@ type BlogPostBySlugQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe
     )> }
   )> };
 
+type ChronologyPostBySlugQueryVariables = Exact<{
+  path: Scalars['String'];
+}>;
+
+
+type ChronologyPostBySlugQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title'>> }>, readonly markdownRemark: Maybe<(
+    Pick<MarkdownRemark, 'id' | 'excerpt'>
+    & { readonly frontmatter: Maybe<Pick<MarkdownRemarkFrontmatter, 'title' | 'description'>> }
+  )> };
+
 type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
