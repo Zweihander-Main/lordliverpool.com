@@ -2,7 +2,7 @@
 
 $card-height: 60vh;
 $card-margin: 100px;
-$card-width: $card-height/1.5;
+$card-width: $card-height/1.6;
 $header-height: (100vh - $card-height)/2;
 $timeline-height: (100vh - $card-height)/2;
 
@@ -66,13 +66,25 @@ $timeline-height: (100vh - $card-height)/2;
 	height: $card-height;
 	width: $card-width;
 	margin: 0 $card-margin 0 0;
-	display: table;
-	padding: 30px;
+	display: table-cell;
 	box-sizing: border-box;
+
+	display: grid;
+	grid-template-rows: 1fr 30px;
+	grid-template-columns: 1fr;
 
 	&:first-of-type {
 		margin-left: $card-margin * 2;
 	}
+}
+
+.inner-card {
+	border: 30px solid transparent;
+	box-sizing: border-box;
+	overflow-y: auto;
+	grid-row-start: 1;
+	grid-row-end: 3;
+	grid-column: 1;
 }
 
 .card-header {
@@ -80,6 +92,14 @@ $timeline-height: (100vh - $card-height)/2;
 }
 
 .card-image {
+	outline: none;
+}
+
+.display-date {
+	text-align: center;
+	grid-row: 2;
+	grid-column: 1;
+	text-transform: uppercase;
 }
 
 .buffer {

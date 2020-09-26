@@ -33,6 +33,7 @@ const Miscellany: React.FC = () => {
 								}
 							}
 						}
+						rawMarkdownBody
 					}
 				}
 			}
@@ -50,23 +51,38 @@ const Miscellany: React.FC = () => {
 						cards.map(({ node: card }) => {
 							return (
 								<article key={card.id} className={styles.card}>
-									{card?.frontmatter?.featuredImage
-										?.childImageSharp?.fluid && (
-										<Img
-											className={styles.cardImage}
-											fluid={
-												card.frontmatter.featuredImage
-													.childImageSharp.fluid
-											}
-										/>
-									)}
-									{card?.frontmatter?.title && (
-										<h2 className={styles.cardHeader}>
-											{card.frontmatter.title}
-										</h2>
-									)}
-									{card?.frontmatter?.card && (
-										<p>{card.frontmatter.card}</p>
+									<div className={styles.innerCard}>
+										{card?.frontmatter?.featuredImage
+											?.childImageSharp?.fluid && (
+											<Img
+												className={styles.cardImage}
+												fluid={
+													card.frontmatter
+														.featuredImage
+														.childImageSharp.fluid
+												}
+											/>
+										)}
+										{card?.frontmatter?.title && (
+											<h2 className={styles.cardHeader}>
+												{card?.rawMarkdownBody !== '' &&
+												card?.fields?.slug ? (
+													<Link to={card.fields.slug}>
+														{card.frontmatter.title}
+													</Link>
+												) : (
+													card.frontmatter.title
+												)}
+											</h2>
+										)}
+										{card?.frontmatter?.card && (
+											<p>{card.frontmatter.card}</p>
+										)}
+									</div>
+									{card?.frontmatter?.displayDate && (
+										<span className={styles.displayDate}>
+											{card.frontmatter.displayDate}
+										</span>
 									)}
 								</article>
 							);
