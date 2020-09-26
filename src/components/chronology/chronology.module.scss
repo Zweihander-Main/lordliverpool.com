@@ -54,6 +54,7 @@ $timeline-height: (100vh - $card-height)/2;
 }
 
 .card-container {
+	align-items: center;
 	display: flex;
 	flex-direction: row;
 	transform: rotate(90deg) translateY(-100vmin);
@@ -65,13 +66,11 @@ $timeline-height: (100vh - $card-height)/2;
 	box-shadow: 15px 15px 30px #01060a, -15px -15px 30px #092435; //TODO vars and mixins
 	box-sizing: border-box;
 	color: v.$white;
-	display: table-cell;
-
 	display: grid;
 	grid-template-columns: 1fr;
 	grid-template-rows: 1fr $card-border;
-	height: $card-height;
 	margin: 0 $card-margin 0 0;
+	max-height: $card-height;
 	width: $card-width;
 
 	&:first-of-type {
@@ -113,6 +112,7 @@ $timeline-height: (100vh - $card-height)/2;
 }
 
 .display-date {
+	align-self: center;
 	grid-column: 1;
 	grid-row: 2;
 	text-align: center;
