@@ -3,7 +3,7 @@ import styles from './chronology.module.scss';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import Img from 'gatsby-image';
 
-const Miscellany: React.FC = () => {
+const Chronology: React.FC = () => {
 	const chronologyData = useStaticQuery<
 		GatsbyTypes.ChronologyQueryQuery
 	>(graphql`
@@ -41,16 +41,50 @@ const Miscellany: React.FC = () => {
 	`);
 
 	const { edges: cards } = chronologyData.allMarkdownRemark;
+	const pulledInCategories = cards
+		.map((c) => c?.node.frontmatter?.category || '')
+		.filter((value, index, self) => self.indexOf(value) === index)
+		.filter((value) => value && value !== '');
+	const categories = ['all', ...pulledInCategories];
+
+	const [selectedCategory, setSelectedCategory] = React.useState<
+		typeof categories[number]
+	>(categories[0]);
 
 	return (
 		<section className={styles.chronology}>
 			<h1 className={styles.chronologyTitle}>Chronology</h1>
+			<div className={styles.filterMenu}>
+				{categories.map((category) => (
+					<h3
+						key={category}
+						onClick={() => setSelectedCategory(category)}
+						className={
+							category === selectedCategory
+								? `${styles.filterMenuLink} ${styles.selectedLink}`
+								: styles.filterMenuLink
+						}
+					>
+						{category.charAt(0).toUpperCase() + category.slice(1)}
+					</h3>
+				))}
+			</div>
 			<div className={styles.cardContainerWrapper}>
 				<div className={styles.cardContainer}>
+					<div className={styles.buffer}>&nbsp;</div>
 					{cards &&
 						cards.map(({ node: card }) => {
+							const show =
+								selectedCategory === categories[0] ||
+								card?.frontmatter?.category ===
+									selectedCategory;
 							return (
-								<article key={card.id} className={styles.card}>
+								<article
+									key={card.id}
+									className={`${styles.card} ${
+										show ? '' : styles.cardHidden
+									}`}
+								>
 									<div className={styles.innerCard}>
 										{card?.frontmatter?.featuredImage
 											?.childImageSharp?.fluid && (
@@ -110,4 +144,4 @@ const Miscellany: React.FC = () => {
 	);
 };
 
-export default Miscellany;
+export default Chronology;

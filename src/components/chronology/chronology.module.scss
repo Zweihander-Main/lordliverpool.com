@@ -4,8 +4,9 @@ $card-height: 60vh;
 $card-margin: 100px;
 $card-border: 35px;
 $card-width: $card-height/1.5;
-$header-height: (100vh - $card-height)/2;
-$timeline-height: (100vh - $card-height)/2;
+$header-height: 5vh;
+$filter-menu-height: (100vh - $card-height)/2 - $header-height;
+$timeline-height: (100vh - $card-height)/2 - $header-height;
 
 %hide-scrollbars {
 	-ms-overflow-style: none;
@@ -26,7 +27,7 @@ $timeline-height: (100vh - $card-height)/2;
 	background-color: v.$blue-bg;
 	display: grid;
 	grid-template-columns: 1fr;
-	grid-template-rows: $header-height $card-height $timeline-height;
+	grid-template-rows: $header-height $filter-menu-height $card-height $timeline-height;
 	height: 100vh;
 	width: 100vw;
 }
@@ -34,21 +35,42 @@ $timeline-height: (100vh - $card-height)/2;
 .chronology-title {
 	color: v.$white;
 	font-family: v.$header-font;
+	grid-column: 1;
 	grid-row: 1;
 	margin-left: auto;
 	margin-right: auto;
 	text-transform: uppercase;
 } // TODO letter spacing
 
+.filter-menu {
+	align-items: center;
+	color: v.$white;
+	display: flex;
+	flex-direction: row;
+	grid-column: 1;
+	grid-row: 2;
+	justify-content: space-around;
+}
+
+.filter-menu-link {
+	cursor: pointer;
+	z-index: 999;
+}
+
+.selected-link {
+	text-decoration: underline;
+}
+
 .card-container-wrapper {
 	@extend %hide-scrollbars;
-	grid-row: 2;
+	grid-row: 3;
 	height: 100vw;
+	min-width: 100vh;
 	overflow-x: hidden;
 	overflow-y: scroll;
 	padding-right: 45px; // TODO box-shadow vars
 	position: absolute;
-	top: $header-height;
+	top: $header-height + $filter-menu-height;
 	transform: rotate(-90deg) translateX(-100vmin); // TODO verify vmin
 	transform-origin: top left;
 }
@@ -71,11 +93,14 @@ $timeline-height: (100vh - $card-height)/2;
 	grid-template-rows: 1fr $card-border;
 	margin: 0 $card-margin 0 0;
 	max-height: $card-height;
+	overflow: hidden;
+	transition: 250ms cubic-bezier(0.65, 0.05, 0.36, 1);
 	width: $card-width;
+	will-change: width;
+}
 
-	&:first-of-type {
-		margin-left: $card-margin * 2;
-	}
+.card-hidden {
+	width: 0;
 }
 
 .inner-card {
@@ -85,6 +110,7 @@ $timeline-height: (100vh - $card-height)/2;
 	grid-row-end: 3;
 	grid-row-start: 1;
 	overflow-y: auto;
+	width: $card-width;
 }
 
 .card-header {
@@ -115,8 +141,10 @@ $timeline-height: (100vh - $card-height)/2;
 	align-self: center;
 	grid-column: 1;
 	grid-row: 2;
+	overflow: hidden;
 	text-align: center;
 	text-transform: uppercase;
+	width: $card-width;
 }
 
 .buffer {
@@ -126,5 +154,5 @@ $timeline-height: (100vh - $card-height)/2;
 
 .timeline {
 	color: v.$white;
-	grid-row: 3;
+	grid-row: 4;
 }

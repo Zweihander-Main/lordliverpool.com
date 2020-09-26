@@ -107,7 +107,7 @@ const Header: React.FC<HeaderProps> = ({ isHome }) => {
 						fluidData={chronology}
 					/>
 					<NavLink
-						linkTo={''}
+						linkTo={'/'}
 						headerText={'Contenders'}
 						subHeaderText={'For Greatest Prime Minister'}
 						fluidData={contenders}
@@ -119,13 +119,13 @@ const Header: React.FC<HeaderProps> = ({ isHome }) => {
 						fluidData={miscellany}
 					/>
 					<NavLink
-						linkTo={''}
+						linkTo={'/'}
 						headerText={'Author'}
 						subHeaderText={'About Martin Hutchinson'}
 						fluidData={authorBackgroundStack}
 					/>
 					<NavLink
-						linkTo={''}
+						linkTo={'/'}
 						headerText={'Book'}
 						subHeaderText={'Reviews and Information'}
 						fluidData={book}
