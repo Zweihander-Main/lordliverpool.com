@@ -7,5 +7,8 @@ displayDate: 1729-1808
 category: family
 card: Liverpool's father
 ---
+Liverpool's father.
 
-(Liverpool’s father) 1st Baron Hawkesbury, 1786, 1st Earl of Liverpool, 1796. MP for Cockermouth, Appleby, Harwich, Hastings and Saltash, 1761-86. Secretary of the Treasury, 1763-65, Secretary at War, 1778-82. President of the Board of Trade, 1786-1804. A full biography of Charles Jenkinson is attached (link).
+1st Baron Hawkesbury, 1786, 1st Earl of Liverpool, 1796. MP for Cockermouth, Appleby, Harwich, Hastings and Saltash, 1761-86. Secretary of the Treasury, 1763-65, Secretary at War, 1778-82. President of the Board of Trade, 1786-1804.
+
+ A full biography of Charles Jenkinson is available here.
