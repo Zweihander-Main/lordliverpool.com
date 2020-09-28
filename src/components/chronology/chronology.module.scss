@@ -5,8 +5,8 @@ $card-margin: 100px;
 $card-border: 35px;
 $card-width: $card-height/1.5;
 $header-height: 5vh;
-$filter-menu-height: (100vh - $card-height)/2 - $header-height;
-$timeline-height: (100vh - $card-height)/2 - $header-height;
+$filter-menu-height: (100vh - $card-height)/2 - $header-height/2;
+$timeline-height: (100vh - $card-height)/2 - $header-height/2;
 
 %hide-scrollbars {
 	-ms-overflow-style: none;
@@ -155,4 +155,14 @@ $timeline-height: (100vh - $card-height)/2 - $header-height;
 .timeline {
 	color: v.$white;
 	grid-row: 4;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: flex-end;
+} // TODO bug with scrollbar hiding last tick?
+
+.tick {
+	background: v.$white;
+	height: 30px;
+	width: 1px;
 }

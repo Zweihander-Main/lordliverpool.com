@@ -51,6 +51,18 @@ const Chronology: React.FC = () => {
 		typeof categories[number]
 	>(categories[0]);
 
+	const ticks =
+		selectedCategory !== categories[0]
+			? cards.filter(
+					(value) =>
+						value?.node?.frontmatter?.category === selectedCategory
+			  ).length
+			: cards.length;
+
+	const tickContent = Array(ticks).fill(
+		<span className={styles.tick}></span>
+	);
+
 	return (
 		<section className={styles.chronology}>
 			<h1 className={styles.chronologyTitle}>Chronology</h1>
@@ -139,7 +151,7 @@ const Chronology: React.FC = () => {
 					<div className={styles.buffer}>&nbsp;</div>
 				</div>
 			</div>
-			<div className={styles.timeline}>Timeline here</div>
+			<div className={styles.timeline}>{tickContent}</div>
 		</section>
 	);
 };

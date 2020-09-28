@@ -16,3 +16,4 @@ export const cardText: string;
 export const displayDate: string;
 export const buffer: string;
 export const timeline: string;
+export const tick: string;
