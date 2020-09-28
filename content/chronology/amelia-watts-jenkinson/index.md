@@ -6,7 +6,7 @@ displayDate: December 22, 1750 - July 12, 1770
 category: family
 card: Liverpool's mother
 ---
-Amelia Watts Jenkinson (1750-70) (Liverpool’s mother) married Charles Jenkinson in 1769 but died on 12 July, 1770. Amelia was the daughter of William Watts of the East India Company. She was ‘a girl of great beauty and accomplishments’<sup>1</sup>  but alas we don’t know much about her character, what she looked like or where she was educated. The portrait traditionally held to be of her, by Joshua Reynolds, in the guise of the Roman goddess Flora, is dated by art historians to 1745-46, before she was born.<sup>2</sup> 
+**Amelia Watts Jenkinson (1750-70)** (Liverpool’s mother) married Charles Jenkinson in 1769 but died on 12 July, 1770. Amelia was the daughter of William Watts of the East India Company. She was ‘a girl of great beauty and accomplishments’<sup>1</sup>  but alas we don’t know much about her character, what she looked like or where she was educated. The portrait traditionally held to be of her, by Joshua Reynolds, in the guise of the Roman goddess Flora, is dated by art historians to 1745-46, before she was born.<sup>2</sup> 
 
 Amelia had an adventurous early childhood before returning to England at the age of eight. In 1756, her parents, brother and sister were captured at Kasimbazar by Siraj-ud-Daulah, the Nawab of Bengal. Fortunately, the Nawab’s grandmother befriended the women and took them into the zenana, where they remained for over a month before sending them under escort to the French factory (or trading post). There they remained until the Battle of Plassey liberated them the following year.<sup>3</sup>
 
