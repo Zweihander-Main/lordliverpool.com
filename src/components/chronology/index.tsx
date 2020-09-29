@@ -1,7 +1,8 @@
 import React from 'react';
-import styles from './chronology.module.scss';
+import styles, { cardContainerWrapper } from './chronology.module.scss';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import Img from 'gatsby-image';
+import useTimelineWidth from 'hooks/useTimelineWidth';
 
 const Chronology: React.FC = () => {
 	const chronologyData = useStaticQuery<
@@ -38,7 +39,7 @@ const Chronology: React.FC = () => {
 				}
 			}
 		}
-	`);
+	`); // TODO restrain max width of image
 
 	const { edges: cards } = chronologyData.allMarkdownRemark;
 	const pulledInCategories = cards
@@ -59,12 +60,36 @@ const Chronology: React.FC = () => {
 			  ).length
 			: cards.length;
 
-	const tickContent = Array(ticks).fill(
-		<span className={styles.tick}></span>
+	const tickContent = [];
+	for (let i = 0; i < ticks; i++) {
+		tickContent.push(<span key={i} className={styles.tick}></span>);
+	}
+
+	const chronologyRef = React.useRef<HTMLElement>(null);
+	const cardContainerRef = React.useRef<HTMLDivElement>(null);
+	const cardContainerWrapperRef = React.useRef<HTMLDivElement>(null);
+	const [viewportWidth, containerWidth, startPos] = useTimelineWidth(
+		chronologyRef,
+		cardContainerRef,
+		cardContainerWrapperRef,
+		selectedCategory
+	);
+
+	const areaGrabberLeftEdge =
+		-(startPos / containerWidth) * viewportWidth || 0;
+	const areaGrabberWidth =
+		(viewportWidth / containerWidth) * viewportWidth || 0;
+
+	console.log(
+		viewportWidth,
+		containerWidth,
+		startPos,
+		areaGrabberLeftEdge,
+		areaGrabberWidth
 	);
 
 	return (
-		<section className={styles.chronology}>
+		<section className={styles.chronology} ref={chronologyRef}>
 			<h1 className={styles.chronologyTitle}>Chronology</h1>
 			<div className={styles.filterMenu}>
 				{categories.map((category) => (
@@ -81,8 +106,11 @@ const Chronology: React.FC = () => {
 					</h3>
 				))}
 			</div>
-			<div className={styles.cardContainerWrapper}>
-				<div className={styles.cardContainer}>
+			<div
+				className={styles.cardContainerWrapper}
+				ref={cardContainerWrapperRef}
+			>
+				<div className={styles.cardContainer} ref={cardContainerRef}>
 					<div className={styles.buffer}>&nbsp;</div>
 					{cards &&
 						cards.map(({ node: card }) => {
@@ -151,7 +179,16 @@ const Chronology: React.FC = () => {
 					<div className={styles.buffer}>&nbsp;</div>
 				</div>
 			</div>
-			<div className={styles.timeline}>{tickContent}</div>
+			<div className={styles.timeline}>
+				<div
+					className={styles.areaGrabber}
+					style={{
+						left: areaGrabberLeftEdge,
+						width: areaGrabberWidth,
+					}}
+				></div>
+				{tickContent}
+			</div>
 		</section>
 	);
 };
