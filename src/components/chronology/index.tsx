@@ -1,8 +1,9 @@
 import React from 'react';
-import styles, { cardContainerWrapper } from './chronology.module.scss';
+import styles from './chronology.module.scss';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import Img from 'gatsby-image';
 import useTimelineWidth from 'hooks/useTimelineWidth';
+import Timeline from './timeline';
 
 const Chronology: React.FC = () => {
 	const chronologyData = useStaticQuery<
@@ -73,19 +74,6 @@ const Chronology: React.FC = () => {
 		cardContainerRef,
 		cardContainerWrapperRef,
 		selectedCategory
-	);
-
-	const areaGrabberLeftEdge =
-		-(startPos / containerWidth) * viewportWidth || 0;
-	const areaGrabberWidth =
-		(viewportWidth / containerWidth) * viewportWidth || 0;
-
-	console.log(
-		viewportWidth,
-		containerWidth,
-		startPos,
-		areaGrabberLeftEdge,
-		areaGrabberWidth
 	);
 
 	return (
@@ -183,16 +171,15 @@ const Chronology: React.FC = () => {
 					<div className={styles.buffer}>&nbsp;</div>
 				</div>
 			</div>
-			<div className={styles.timeline}>
-				<div
-					className={styles.areaGrabber}
-					style={{
-						left: areaGrabberLeftEdge,
-						width: areaGrabberWidth,
-					}}
-				></div>
-				{tickContent}
-			</div>
+			<Timeline
+				{...{
+					ticks,
+					viewportWidth,
+					containerWidth,
+					startPos,
+					cardContainerWrapperRef,
+				}}
+			/>
 		</section>
 	);
 };

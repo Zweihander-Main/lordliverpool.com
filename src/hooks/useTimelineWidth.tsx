@@ -14,10 +14,6 @@ const useTimelineWidth = (
 		const setWidths = () => {
 			setViewportWidth(viewportRef.current?.offsetWidth || 0);
 			setContainerWidth(containerRef.current?.offsetWidth || 0);
-			console.log(
-				containerRef.current,
-				containerRef.current?.offsetWidth
-			);
 		};
 
 		const setPos = () => {

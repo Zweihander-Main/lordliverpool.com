@@ -15,6 +15,3 @@ export const cardImage: string;
 export const cardText: string;
 export const displayDate: string;
 export const buffer: string;
-export const timeline: string;
-export const areaGrabber: string;
-export const tick: string;

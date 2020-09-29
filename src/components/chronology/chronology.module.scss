@@ -7,7 +7,6 @@ $card-width: $card-height/1.5;
 $header-height: 5vh;
 $filter-menu-height: (100vh - $card-height)/2 - $header-height/2;
 $timeline-height: (100vh - $card-height)/2 - $header-height/2;
-$timing-function: cubic-bezier(0.65, 0.05, 0.36, 1);
 
 %hide-scrollbars {
 	-ms-overflow-style: none;
@@ -96,7 +95,7 @@ $timing-function: cubic-bezier(0.65, 0.05, 0.36, 1);
 	margin: 0 $card-margin 0 0;
 	max-height: $card-height;
 	overflow: hidden;
-	transition: 250ms $timing-function;
+	transition: 250ms v.$timing-function;
 	width: $card-width;
 	will-change: width, margin;
 }
@@ -154,30 +153,4 @@ $timing-function: cubic-bezier(0.65, 0.05, 0.36, 1);
 .buffer {
 	height: $card-height;
 	width: $card-margin;
-}
-
-.timeline {
-	align-items: flex-end;
-	color: v.$white;
-	display: flex;
-	flex-direction: row;
-	grid-row: 4;
-	justify-content: space-between;
-} // TODO bug with scrollbar hiding last tick?
-
-.area-grabber {
-	background: v.$white;
-	cursor: grab;
-	height: 50px;
-	opacity: 0.5;
-	position: absolute;
-	transition: width 150ms $timing-function, left 5ms; //TODO test phone and check if 5ms left transition is good/bad
-	will-change: width, left;
-	z-index: 9999;
-}
-
-.tick {
-	background: v.$white;
-	height: 30px;
-	width: 1px;
 }
