@@ -130,6 +130,10 @@ const Chronology: React.FC = () => {
 											?.childImageSharp?.fluid && (
 											<Img
 												className={styles.cardImage}
+												imgStyle={{
+													objectPosition:
+														'center 10%',
+												}}
 												fluid={
 													card.frontmatter
 														.featuredImage

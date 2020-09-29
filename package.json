@@ -168,7 +168,16 @@
 			"comment-whitespace-inside": null,
 			"declaration-block-no-shorthand-property-overrides": true,
 			"declaration-colon-newline-after": null,
-			"no-descending-specificity": null
+			"no-descending-specificity": null,
+			"value-keyword-case": null,
+			"selector-pseudo-class-no-unknown": [
+				true,
+				{
+					"ignorePseudoClasses": [
+						"global"
+					]
+				}
+			]
 		}
 	},
 	"browserslist": {
