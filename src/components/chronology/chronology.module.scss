@@ -20,6 +20,7 @@ $timeline-height: (100vh - $card-height)/2 - $header-height/2;
 
 :global(body) {
 	overflow-x: hidden;
+	overflow-y: hidden;
 } //TODO footer
 // TODO better way? since it carries over to the site maybe ok
 

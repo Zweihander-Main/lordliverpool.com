@@ -63,11 +63,9 @@ const Chronology: React.FC = () => {
 		.map((card) => card.node.frontmatter?.timelineDate)
 		.filter((year) => typeof year !== 'undefined') as Array<string>; //not cheating, TS won't filter out undefined types
 
-	const chronologyRef = React.useRef<HTMLElement>(null);
 	const cardContainerRef = React.useRef<HTMLDivElement>(null);
 	const cardContainerWrapperRef = React.useRef<HTMLDivElement>(null);
 	const [viewportWidth, containerWidth, startPos] = useTimelineWidth(
-		chronologyRef,
 		cardContainerRef,
 		cardContainerWrapperRef,
 		selectedCategory
@@ -78,7 +76,7 @@ const Chronology: React.FC = () => {
 	}
 
 	return (
-		<section className={styles.chronology} ref={chronologyRef}>
+		<section className={styles.chronology}>
 			<h1 className={styles.chronologyTitle}>Chronology</h1>
 			<div className={styles.filterMenu}>
 				{categories.map((category) => (

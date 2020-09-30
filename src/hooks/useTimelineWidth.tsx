@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 const useTimelineWidth = (
-	viewportRef: React.RefObject<HTMLElement>,
 	containerRef: React.RefObject<HTMLDivElement>,
 	containerWrapperRef: React.RefObject<HTMLDivElement>,
 	selectedCategory: string
@@ -12,7 +11,7 @@ const useTimelineWidth = (
 
 	useEffect(() => {
 		const setWidths = () => {
-			setViewportWidth(viewportRef.current?.offsetWidth || 0);
+			setViewportWidth(window.innerWidth || 0);
 			setContainerWidth(containerRef.current?.offsetWidth || 0);
 		};
 
@@ -29,7 +28,7 @@ const useTimelineWidth = (
 			setPos();
 		};
 
-		if (viewportRef.current && containerRef.current) {
+		if (containerRef.current) {
 			// Wait 300ms for animations to clear before sampling width
 			setTimeout(() => {
 				setWidths();
@@ -47,7 +46,7 @@ const useTimelineWidth = (
 				handleScroll
 			);
 		};
-	}, [viewportRef, containerRef, containerWrapperRef, selectedCategory]);
+	}, [containerRef, containerWrapperRef, selectedCategory]);
 
 	return [viewportWidth, containerWidth, startPos];
 };
