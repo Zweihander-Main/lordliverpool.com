@@ -23,7 +23,7 @@ const Chronology: React.FC = () => {
 						frontmatter {
 							title
 							subtitle
-							timelineDate
+							timelineDate(formatString: "y")
 							displayDate
 							category
 							card
@@ -53,18 +53,15 @@ const Chronology: React.FC = () => {
 		typeof categories[number]
 	>(categories[0]);
 
-	const ticks =
-		selectedCategory !== categories[0]
-			? cards.filter(
-					(value) =>
-						value?.node?.frontmatter?.category === selectedCategory
-			  ).length
-			: cards.length;
-
-	const tickContent = [];
-	for (let i = 0; i < ticks; i++) {
-		tickContent.push(<span key={i} className={styles.tick}></span>);
-	}
+	const ticks = (selectedCategory !== categories[0]
+		? cards.filter(
+				(value) =>
+					value?.node?.frontmatter?.category === selectedCategory
+		  )
+		: cards
+	)
+		.map((card) => card.node.frontmatter?.timelineDate)
+		.filter((year) => typeof year !== 'undefined') as Array<string>; //not cheating, TS won't filter out undefined types
 
 	const chronologyRef = React.useRef<HTMLElement>(null);
 	const cardContainerRef = React.useRef<HTMLDivElement>(null);

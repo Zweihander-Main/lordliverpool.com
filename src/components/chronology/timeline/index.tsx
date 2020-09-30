@@ -1,12 +1,11 @@
 import React from 'react';
 import styles from './timeline.module.scss';
-import { cardContainerWrapper } from '../chronology.module.scss';
 
 type TimelineProps = {
 	viewportWidth: number;
 	containerWidth: number;
 	startPos: number;
-	ticks: number;
+	ticks: Array<string>;
 	cardContainerWrapperRef: React.RefObject<HTMLDivElement>;
 };
 
@@ -18,12 +17,12 @@ const Timeline: React.FC<TimelineProps> = ({
 	cardContainerWrapperRef,
 }) => {
 	const tickContent = [];
-	for (let i = 0; i < ticks; i++) {
+	for (let i = 0, len = ticks.length; i < len; i++) {
 		tickContent.push(<span key={i} className={styles.tick}></span>);
 	}
 
-	let areaGrabberLeftEdge = 0;
 	let areaGrabberWidth = 0;
+	let areaGrabberLeftEdge = 0;
 
 	if (containerWidth !== 0) {
 		areaGrabberLeftEdge = -(startPos / containerWidth) * viewportWidth || 0;
@@ -35,7 +34,9 @@ const Timeline: React.FC<TimelineProps> = ({
 	const [containerX, setContainerX] = React.useState(0);
 	const [grabberX, setGrabberX] = React.useState(0);
 
-	const onGrabberMouseScroll = () => {};
+	const onGrabberMouseScroll = () => {
+		console.log('scroll');
+	};
 
 	const onGrabberMouseMove = (event: MouseEvent) => {
 		if (cardContainerWrapperRef.current) {
@@ -62,18 +63,29 @@ const Timeline: React.FC<TimelineProps> = ({
 	};
 
 	React.useEffect(() => {
+		const removeListeners = () => {
+			window.removeEventListener('mouseup', onGrabberMouseUp);
+			window.removeEventListener('mousemove', onGrabberMouseMove);
+		};
+
 		if (isScrolling) {
 			window.addEventListener('mousemove', onGrabberMouseMove);
 			window.addEventListener('mouseup', onGrabberMouseUp);
 		} else {
-			window.removeEventListener('mousemove', onGrabberMouseMove);
-			window.removeEventListener('mouseup', onGrabberMouseUp); // TODO test?
+			removeListeners();
 		}
+
 		return () => {
-			window.removeEventListener('mouseup', onGrabberMouseUp);
-			window.removeEventListener('mousemove', onGrabberMouseMove);
+			removeListeners();
 		};
 	}, [isScrolling]);
+
+	const percentageAlong = Math.abs(
+		startPos / (containerWidth - viewportWidth / 2)
+	);
+	const currentTick = Math.round(percentageAlong * ticks.length);
+	const year = ticks[currentTick] || ticks[0] || '1800';
+	const yearLeftEdge = percentageAlong * areaGrabberWidth;
 
 	return (
 		<div className={styles.timeline}>
@@ -89,7 +101,17 @@ const Timeline: React.FC<TimelineProps> = ({
 					left: areaGrabberLeftEdge,
 					width: areaGrabberWidth,
 				}}
-			></div>
+			>
+				<time
+					className={styles.year}
+					dateTime={year}
+					style={{
+						left: yearLeftEdge,
+					}}
+				>
+					{year}
+				</time>
+			</div>
 			{tickContent}
 		</div>
 	);

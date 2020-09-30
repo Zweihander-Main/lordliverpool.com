@@ -1,19 +1,20 @@
 @use '~styles/util/variables.global' as v;
 
+$area-grabber-height: 50px;
+
 .timeline {
 	align-items: flex-end;
 	color: v.$white;
 	display: flex;
 	flex-direction: row;
 	grid-row: 4;
-	justify-content: space-between;
+	justify-content: space-around;
 } // TODO bug with scrollbar hiding last tick?
 
 .area-grabber {
-	background: v.$white;
+	background: rgba(v.$white, 0.5);
 	cursor: grab;
-	height: 50px;
-	opacity: 0.5;
+	height: $area-grabber-height;
 	position: absolute;
 	transition: width 150ms v.$timing-function, left 5ms; //TODO test phone and check if 5ms left transition is good/bad
 	will-change: width, left;
@@ -22,6 +23,16 @@
 
 .is-scrolling {
 	cursor: ew-resize;
+}
+
+.year {
+	color: v.$light-bg;
+	font-family: v.$header-font;
+	font-size: v.$chrono-year-size;
+	font-style: italic;
+	position: relative;
+	bottom: v.$chrono-year-size + 0.25rem;
+	user-select: none;
 }
 
 .tick {
