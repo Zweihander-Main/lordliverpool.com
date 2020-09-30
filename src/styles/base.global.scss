@@ -4,11 +4,16 @@
 
 html {
 	background-color: v.$dark-bg;
-	font-size: v.$base-size;
 	font-family: v.$header-font;
+	font-size: v.$base-size;
 }
 
 body {
 	font-feature-settings: 'kern', 'liga', 'clig', 'calt';
 	font-kerning: normal;
+}
+
+.app-body {
+	overflow-x: hidden;
+	overflow-y: hidden;
 }

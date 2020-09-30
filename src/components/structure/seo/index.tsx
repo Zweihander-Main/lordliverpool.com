@@ -18,6 +18,7 @@ type SEOProps = {
 		  }
 	>;
 	title: string;
+	app: boolean;
 };
 
 const SEO: React.FC<SEOProps> = ({
@@ -25,6 +26,7 @@ const SEO: React.FC<SEOProps> = ({
 	lang = 'en',
 	meta = [],
 	title,
+	app = false,
 }) => {
 	const { site } = useStaticQuery<GatsbyTypes.SEOSiteMetadataQuery>(
 		graphql`
@@ -59,6 +61,13 @@ const SEO: React.FC<SEOProps> = ({
 			htmlAttributes={{
 				lang,
 			}}
+			bodyAttributes={
+				app
+					? {
+							class: 'app-body',
+					  }
+					: {}
+			}
 			title={title}
 			titleTemplate={`%s | ${site.siteMetadata.title}`}
 			meta={[
