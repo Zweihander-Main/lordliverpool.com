@@ -1,9 +1,9 @@
 @use '~styles/util/variables.global' as v;
 
-$card-height: 60vh;
+$card-height: 70vh;
 $card-margin: 100px;
 $card-width: $card-height/1.5;
-$header-height: 5vh;
+$header-height: 4vh;
 $filter-menu-height: (100vh - $card-height)/2 - $header-height/2;
 $timeline-height: (100vh - $card-height)/2 - $header-height/2;
 
@@ -34,6 +34,13 @@ $timeline-height: (100vh - $card-height)/2 - $header-height/2;
 	margin-left: auto;
 	margin-right: auto;
 	text-transform: uppercase;
+	margin: 0;
+	padding: 0;
+	align-self: center;
+	text-align: center;
+	letter-spacing: v.$header-letter-spacing;
+	font-size: v.$hero-tiny-size;
+	font-weight: normal;
 } // TODO letter spacing
 
 .filter-menu {
@@ -44,15 +51,25 @@ $timeline-height: (100vh - $card-height)/2 - $header-height/2;
 	grid-column: 1;
 	grid-row: 2;
 	justify-content: space-around;
+	font-size: v.$sub-heading-size;
+	margin: 0px 50px 50px 50px;
+	border-bottom: 1px solid v.$white;
 }
 
 .filter-menu-link {
 	cursor: pointer;
 	z-index: 999;
+	font-weight: normal;
+	margin: 0;
+	padding: 1rem 0.5rem;
+	transition: 100ms v.$timing-function;
 }
 
 .selected-link {
-	text-decoration: underline;
+	color: v.$light-bg;
+	border-bottom: 2px solid v.$light-bg;
+	padding-top: 0.3rem;
+	padding-bottom: 0.2rem;
 }
 
 .card-container-wrapper {
