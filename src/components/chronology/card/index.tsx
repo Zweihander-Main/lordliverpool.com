@@ -30,15 +30,26 @@ const Card: React.FC<CardProps> = ({
 	return (
 		<article className={`${styles.card} ${show ? '' : styles.hidden}`}>
 			<div className={styles.inner}>
-				{featuredImage && (
-					<Img
-						className={styles.image}
-						imgStyle={{
-							objectPosition: 'center 10%',
-						}}
-						fluid={featuredImage}
-					/>
-				)}
+				{featuredImage &&
+					(isFullArticle && slug ? (
+						<Link to={slug} className={styles.titleLink}>
+							<Img
+								className={styles.image}
+								imgStyle={{
+									objectPosition: 'center 10%',
+								}}
+								fluid={featuredImage}
+							/>
+						</Link>
+					) : (
+						<Img
+							className={styles.image}
+							imgStyle={{
+								objectPosition: 'center 10%',
+							}}
+							fluid={featuredImage}
+						/>
+					))}
 				{title && (
 					<h2
 						className={
