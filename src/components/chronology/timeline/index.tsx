@@ -23,11 +23,24 @@ const Timeline: React.FC<TimelineProps> = ({
 
 	let areaGrabberWidth = 0;
 	let areaGrabberLeftEdge = 0;
+	let yearRef = React.useRef<HTMLTimeElement>(null);
+
+	let percentageAlong = 0;
+	let currentTick = 0;
+	let year = ticks[0] || '1800';
+	let yearWidth = 0;
+	let yearOffset = 0;
 
 	if (containerWidth !== 0) {
 		areaGrabberLeftEdge = -(startPos / containerWidth) * viewportWidth || 0;
 		areaGrabberWidth =
 			(viewportWidth / containerWidth) * viewportWidth || 0;
+
+		percentageAlong = Math.abs(startPos / (containerWidth - viewportWidth));
+		currentTick = Math.ceil(percentageAlong * ticks.length) - 1;
+		year = ticks[currentTick] || ticks[0] || '1800';
+		yearWidth = yearRef.current ? yearRef.current.offsetWidth : 0;
+		yearOffset = percentageAlong * (areaGrabberWidth - yearWidth);
 	}
 
 	const [isScrolling, setIsScrolling] = React.useState(false);
@@ -80,13 +93,6 @@ const Timeline: React.FC<TimelineProps> = ({
 		};
 	}, [isScrolling]);
 
-	const percentageAlong = Math.abs(
-		startPos / (containerWidth - viewportWidth / 2)
-	);
-	const currentTick = Math.round(percentageAlong * ticks.length);
-	const year = ticks[currentTick] || ticks[0] || '1800';
-	const yearLeftEdge = percentageAlong * areaGrabberWidth;
-
 	return (
 		<div className={styles.timeline}>
 			<div
@@ -103,10 +109,11 @@ const Timeline: React.FC<TimelineProps> = ({
 				}}
 			>
 				<time
+					ref={yearRef}
 					className={styles.year}
 					dateTime={year}
 					style={{
-						left: yearLeftEdge,
+						left: yearOffset,
 					}}
 				>
 					{year}

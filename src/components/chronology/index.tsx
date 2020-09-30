@@ -73,6 +73,10 @@ const Chronology: React.FC = () => {
 		selectedCategory
 	);
 
+	if (cardContainerRef.current) {
+		cardContainerRef.current.focus();
+	}
+
 	return (
 		<section className={styles.chronology} ref={chronologyRef}>
 			<h1 className={styles.chronologyTitle}>Chronology</h1>

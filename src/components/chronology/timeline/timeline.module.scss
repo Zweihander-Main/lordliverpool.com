@@ -17,6 +17,7 @@ $area-grabber-height: 50px;
 	height: $area-grabber-height;
 	position: absolute;
 	transition: width 150ms v.$timing-function, left 5ms; //TODO test phone and check if 5ms left transition is good/bad
+	user-select: none;
 	will-change: width, left;
 	z-index: 9999;
 }
@@ -26,12 +27,12 @@ $area-grabber-height: 50px;
 }
 
 .year {
+	bottom: v.$chrono-year-size + 0.25rem;
 	color: v.$light-bg;
 	font-family: v.$header-font;
 	font-size: v.$chrono-year-size;
 	font-style: italic;
 	position: relative;
-	bottom: v.$chrono-year-size + 0.25rem;
 	user-select: none;
 }
 
