@@ -2,7 +2,6 @@
 
 $card-height: 60vh;
 $card-margin: 100px;
-$card-border: 35px;
 $card-width: $card-height/1.5;
 $header-height: 5vh;
 $filter-menu-height: (100vh - $card-height)/2 - $header-height/2;
@@ -77,72 +76,6 @@ $timeline-height: (100vh - $card-height)/2 - $header-height/2;
 	flex-direction: row;
 	transform: rotate(90deg) translateY(-100vmin);
 	transform-origin: top left;
-}
-
-.card {
-	background-color: v.$blue-card-bg;
-	box-shadow: 15px 15px 30px #01060a, -15px -15px 30px #092435; //TODO vars and mixins
-	box-sizing: border-box;
-	color: v.$white;
-	display: grid;
-	grid-template-columns: 1fr;
-	grid-template-rows: 1fr $card-border;
-	margin: 0 $card-margin 0 0;
-	max-height: $card-height;
-	overflow: hidden;
-	transition: 250ms v.$timing-function;
-	width: $card-width;
-	will-change: width, margin;
-}
-
-.card-hidden {
-	margin: 0;
-	width: 0;
-}
-
-.inner-card {
-	border: $card-border solid transparent;
-	box-sizing: border-box;
-	grid-column: 1;
-	grid-row-end: 3;
-	grid-row-start: 1;
-	overflow-y: auto;
-	width: $card-width;
-}
-
-.card-header {
-	outline: none;
-}
-
-.title-link {
-	color: v.$white;
-}
-
-.card-header-no-image {
-	margin-top: 0;
-}
-
-.card-image {
-	max-height: $card-height * 0.7; // TODO do something better than this
-	object-fit: contain;
-	object-position: center 35%;
-	outline: none;
-	width: 100%;
-}
-
-.card-text {
-	font-family: v.$body-font;
-	font-size: v.$paragraph-size;
-}
-
-.display-date {
-	align-self: center;
-	grid-column: 1;
-	grid-row: 2;
-	overflow: hidden;
-	text-align: center;
-	text-transform: uppercase;
-	width: $card-width;
 }
 
 .buffer {

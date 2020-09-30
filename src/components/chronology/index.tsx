@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from './chronology.module.scss';
-import { useStaticQuery, graphql, Link } from 'gatsby';
-import Img from 'gatsby-image';
+import { useStaticQuery, graphql } from 'gatsby';
 import useTimelineWidth from 'hooks/useTimelineWidth';
 import Timeline from './timeline';
+import Card from './card';
 
 const Chronology: React.FC = () => {
 	const chronologyData = useStaticQuery<
@@ -106,65 +106,19 @@ const Chronology: React.FC = () => {
 								card?.frontmatter?.category ===
 									selectedCategory;
 							return (
-								<article
+								<Card
 									key={card.id}
-									className={`${styles.card} ${
-										show ? '' : styles.cardHidden
-									}`}
-								>
-									<div className={styles.innerCard}>
-										{card?.frontmatter?.featuredImage
-											?.childImageSharp?.fluid && (
-											<Img
-												className={styles.cardImage}
-												imgStyle={{
-													objectPosition:
-														'center 10%',
-												}}
-												fluid={
-													card.frontmatter
-														.featuredImage
-														.childImageSharp.fluid
-												}
-											/>
-										)}
-										{card?.frontmatter?.title && (
-											<h2
-												className={
-													card?.frontmatter
-														?.featuredImage
-														?.childImageSharp?.fluid
-														? styles.cardHeader
-														: `${styles.cardHeader} ${styles.cardHeaderNoImage}`
-												}
-											>
-												{card?.rawMarkdownBody !== '' &&
-												card?.fields?.slug ? (
-													<Link
-														to={card.fields.slug}
-														className={
-															styles.titleLink
-														}
-													>
-														{card.frontmatter.title}
-													</Link>
-												) : (
-													card.frontmatter.title
-												)}
-											</h2>
-										)}
-										{card?.frontmatter?.card && (
-											<p className={styles.cardText}>
-												{card.frontmatter.card}
-											</p>
-										)}
-									</div>
-									{card?.frontmatter?.displayDate && (
-										<span className={styles.displayDate}>
-											{card.frontmatter.displayDate}
-										</span>
-									)}
-								</article>
+									show={show}
+									featuredImage={
+										card?.frontmatter?.featuredImage
+											?.childImageSharp?.fluid
+									}
+									title={card?.frontmatter?.title}
+									isFullArticle={card?.rawMarkdownBody !== ''}
+									slug={card?.fields?.slug}
+									text={card?.frontmatter?.card}
+									displayDate={card?.frontmatter?.displayDate}
+								/>
 							);
 						})}
 					<div className={styles.buffer}>&nbsp;</div>

@@ -35,9 +35,15 @@ const Timeline: React.FC<TimelineProps> = ({
 		areaGrabberLeftEdge = -(startPos / containerWidth) * viewportWidth || 0;
 		areaGrabberWidth =
 			(viewportWidth / containerWidth) * viewportWidth || 0;
+		if (areaGrabberLeftEdge + areaGrabberWidth > viewportWidth) {
+			areaGrabberLeftEdge = viewportWidth - areaGrabberWidth;
+		}
 
 		percentageAlong = Math.abs(startPos / (containerWidth - viewportWidth));
-		currentTick = Math.ceil(percentageAlong * ticks.length) - 1;
+		if (percentageAlong > 1) {
+			percentageAlong = 1;
+		}
+		currentTick = Math.ceil(percentageAlong * ticks.length - 1);
 		year = ticks[currentTick] || ticks[0] || '1800';
 		yearWidth = yearRef.current ? yearRef.current.offsetWidth : 0;
 		yearOffset = percentageAlong * (areaGrabberWidth - yearWidth);
@@ -47,43 +53,61 @@ const Timeline: React.FC<TimelineProps> = ({
 	const [containerX, setContainerX] = React.useState(0);
 	const [grabberX, setGrabberX] = React.useState(0);
 
-	const onGrabberMouseScroll = () => {
-		console.log('scroll');
-	};
-
-	const onGrabberMouseMove = (event: MouseEvent) => {
+	const handleGrabberMove = (clientX: number) => {
 		if (cardContainerWrapperRef.current) {
-			const scrollDistance = event.clientX - grabberX;
+			const scrollDistance = clientX - grabberX;
 			const toScroll = (scrollDistance / viewportWidth) * containerWidth;
 			cardContainerWrapperRef.current.scrollTop = containerX + toScroll;
 		}
 	};
 
-	const onGrabberMouseUp = () => {
+	const onGrabberMouseMove = (event: MouseEvent) => {
+		handleGrabberMove(event.clientX);
+	};
+
+	const onGrabberTouchMove = (event: TouchEvent) => {
+		handleGrabberMove(event.touches[0].clientX);
+	};
+
+	const onGrabberEnd = () => {
 		setIsScrolling(false);
 		setContainerX(0);
 		setGrabberX(0);
 	};
 
-	const onGrabberMouseDown = (
-		event: React.MouseEvent<HTMLDivElement, MouseEvent>
-	) => {
+	const handleGrabberStart = (clientX: number) => {
 		if (cardContainerWrapperRef.current) {
 			setContainerX(cardContainerWrapperRef.current.scrollTop);
 		}
-		setGrabberX(event.clientX);
+		setGrabberX(clientX);
 		setIsScrolling(true);
+	};
+
+	const onGrabberMouseDown = (
+		event: React.MouseEvent<HTMLDivElement, MouseEvent>
+	) => {
+		handleGrabberStart(event.clientX);
+	};
+
+	const onGrabberTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
+		handleGrabberStart(event.touches[0].clientX);
 	};
 
 	React.useEffect(() => {
 		const removeListeners = () => {
-			window.removeEventListener('mouseup', onGrabberMouseUp);
+			window.removeEventListener('mouseup', onGrabberEnd);
 			window.removeEventListener('mousemove', onGrabberMouseMove);
+			window.removeEventListener('touchend', onGrabberEnd);
+			window.removeEventListener('touchcancel', onGrabberEnd);
+			window.removeEventListener('touchmove', onGrabberTouchMove);
 		};
 
 		if (isScrolling) {
 			window.addEventListener('mousemove', onGrabberMouseMove);
-			window.addEventListener('mouseup', onGrabberMouseUp);
+			window.addEventListener('mouseup', onGrabberEnd);
+			window.addEventListener('touchend', onGrabberEnd);
+			window.addEventListener('touchcancel', onGrabberEnd);
+			window.addEventListener('touchmove', onGrabberTouchMove);
 		} else {
 			removeListeners();
 		}
@@ -102,7 +126,7 @@ const Timeline: React.FC<TimelineProps> = ({
 						: styles.areaGrabber
 				}
 				onMouseDown={onGrabberMouseDown}
-				onScroll={onGrabberMouseScroll}
+				onTouchStart={onGrabberTouchStart}
 				style={{
 					left: areaGrabberLeftEdge,
 					width: areaGrabberWidth,

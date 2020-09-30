@@ -1,0 +1,70 @@
+@use '~styles/util/variables.global' as v;
+@use '../chronology.module.scss' as c;
+
+$card-border: 35px;
+
+.card {
+	background-color: v.$blue-card-bg;
+	box-shadow: 15px 15px 30px #01060a, -15px -15px 30px #092435; //TODO vars and mixins
+	box-sizing: border-box;
+	color: v.$white;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 1fr $card-border;
+	margin: 0 c.$card-margin 0 0;
+	max-height: c.$card-height;
+	overflow: hidden;
+	transition: 250ms v.$timing-function;
+	width: c.$card-width;
+	will-change: width, margin;
+}
+
+.hidden {
+	margin: 0;
+	width: 0;
+}
+
+.inner {
+	border: $card-border solid transparent;
+	box-sizing: border-box;
+	grid-column: 1;
+	grid-row-end: 3;
+	grid-row-start: 1;
+	overflow-y: auto;
+	width: c.$card-width;
+}
+
+.header {
+	outline: none;
+}
+
+.title-link {
+	color: v.$white;
+}
+
+.header-no-image {
+	margin-top: 0;
+}
+
+.image {
+	max-height: c.$card-height * 0.7; // TODO do something better than this
+	object-fit: contain;
+	object-position: center 35%;
+	outline: none;
+	width: 100%;
+}
+
+.text {
+	font-family: v.$body-font;
+	font-size: v.$paragraph-size;
+}
+
+.display-date {
+	align-self: center;
+	grid-column: 1;
+	grid-row: 2;
+	overflow: hidden;
+	text-align: center;
+	text-transform: uppercase;
+	width: c.$card-width;
+}
