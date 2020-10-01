@@ -18,7 +18,7 @@ type SEOProps = {
 		  }
 	>;
 	title: string;
-	app: boolean;
+	app?: boolean;
 };
 
 const SEO: React.FC<SEOProps> = ({

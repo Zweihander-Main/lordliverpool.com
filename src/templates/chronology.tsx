@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql, PageProps } from 'gatsby';
 import Layout from 'components/structure/layout';
 import SEO from 'components/structure/seo';
+import ChronologySinglePost from 'components/chronology/singlePost';
 
 const ChronologyPostTemplate: React.FC<PageProps<
 	GatsbyTypes.ChronologyPostBySlugQuery
@@ -15,6 +16,14 @@ const ChronologyPostTemplate: React.FC<PageProps<
 				description={
 					post?.frontmatter?.description || post?.excerpt || ''
 				}
+			/>
+
+			<ChronologySinglePost
+				headerImage={
+					post?.frontmatter?.featuredImage?.childImageSharp?.fluid
+				}
+				title={post?.frontmatter?.title || ''}
+				content={post?.html || ''}
 			/>
 		</Layout>
 	);
@@ -32,9 +41,17 @@ export const pageQuery = graphql`
 		markdownRemark(fields: { slug: { eq: $path } }) {
 			id
 			excerpt(pruneLength: 160)
+			html
 			frontmatter {
 				title
 				description
+				featuredImage {
+					childImageSharp {
+						fluid {
+							...GatsbyImageSharpFluid
+						}
+					}
+				}
 			}
 		}
 	}
