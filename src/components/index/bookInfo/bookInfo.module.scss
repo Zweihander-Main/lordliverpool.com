@@ -9,10 +9,6 @@
 	min-height: 100vh;
 } //TODO fix columns
 
-%headers {
-	font-family: v.$header-font;
-} //TODO sizes
-
 .book-display {
 	grid-column: 1;
 }
@@ -20,21 +16,13 @@
 .info {
 	align-self: center;
 	grid-column: 2;
-
-	p {
-		font-family: v.$body-font;
-		font-size: v.$paragraph-size;
-	}
 }
 
 .header {
-	@extend %headers;
 }
 
 .sub-header {
-	@extend %headers;
 }
 
 .author-header {
-	@extend %headers;
 }

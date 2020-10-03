@@ -1,15 +1,10 @@
-// typography related
-$base-size: 16px;
+// typography related //TODO remove more of these or convert to vw
 $hero-large-size: 4rem;
 $hero-sub-size: 1.5rem;
 $hero-tiny-size: 1.125rem;
-$paragraph-size: 1.0625rem;
 $chrono-year-size: 2.25rem;
-$heading-size: 3rem;
-$sub-heading-size: 1.5rem;
 $header-font: 'Libre Baskerville', serif;
 $body-font: 'Cardo', serif;
-$header-letter-spacing: 0.05em;
 
 // colors
 $white: #f7f7f7;
@@ -22,6 +17,13 @@ $pastel-bg: #bfaaaa;
 $black: #222;
 $subtle-gray: #aaa;
 $blue-card-bg: #030e15;
-// TODO natural letter spacing on headers?
 
+// animation
 $timing-function: cubic-bezier(0.65, 0.05, 0.36, 1); //TODO make sure consistent
+
+/*stylelint-disable */
+// export for JS
+:export {
+	headerFont: $header-font;
+	bodyFont: $body-font;
+}

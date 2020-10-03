@@ -1,3 +1,5 @@
+export const headerFont: string;
+export const bodyFont: string;
 export const navLinkContainer: string;
 export const navLink: string;
 export const menuup: string;

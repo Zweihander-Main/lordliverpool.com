@@ -14,7 +14,6 @@
 .title {
 	//TODO break out header tags into global font family
 	color: v.$white;
-	font-family: v.$header-font;
 	grid-row: 1;
 }
 
@@ -41,8 +40,6 @@
 }
 
 .chrono-text {
-	font-family: v.$body-font;
-	font-size: v.$paragraph-size;
 	grid-row: 1;
 }
 

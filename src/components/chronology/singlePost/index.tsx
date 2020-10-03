@@ -27,7 +27,7 @@ const PostHeader: React.FC<SinglePostProps> = ({
 	//TODO add in author
 	// TODO figure out width
 	return (
-		<article>
+		<article className={styles.singlePost}>
 			{headerImage && (
 				<BackgroundImage
 					className={styles.postHeaderSection}

@@ -1,3 +1,5 @@
+export const headerFont: string;
+export const bodyFont: string;
 export const cardContainerWrapper: string;
 export const chronology: string;
 export const chronologyTitle: string;
@@ -13,5 +15,4 @@ export const header: string;
 export const titleLink: string;
 export const headerNoImage: string;
 export const image: string;
-export const text: string;
 export const displayDate: string;

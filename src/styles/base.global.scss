@@ -1,11 +1,8 @@
-@use './normalize.scss';
 @use './util/variables.global' as v;
 @use './util/mixins.global' as m;
 
 html {
 	background-color: v.$dark-bg;
-	font-family: v.$header-font;
-	font-size: v.$base-size;
 }
 
 body {

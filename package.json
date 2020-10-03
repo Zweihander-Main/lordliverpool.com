@@ -17,6 +17,7 @@
 		"gatsby-plugin-scss-typescript": "^4.0.13",
 		"gatsby-plugin-sharp": "^2.6.27",
 		"gatsby-plugin-typegen": "^2.2.1",
+		"gatsby-plugin-typography": "^2.5.12",
 		"gatsby-source-filesystem": "^2.3.24",
 		"gatsby-transformer-remark": "^2.8.28",
 		"gatsby-transformer-sharp": "^2.5.13",
@@ -26,9 +27,11 @@
 		"react-dom": "^16.13.1",
 		"react-helmet": "^6.1.0",
 		"react-icons": "^3.10.0",
+		"react-typography": "^0.16.19",
 		"sass": "^1.26.10",
 		"typeface-cardo": "0.0.72",
-		"typeface-libre-baskerville": "0.0.72"
+		"typeface-libre-baskerville": "0.0.72",
+		"typography": "^0.16.19"
 	},
 	"devDependencies": {
 		"@babel/preset-typescript": "^7.10.4",

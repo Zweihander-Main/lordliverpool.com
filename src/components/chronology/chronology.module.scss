@@ -1,4 +1,5 @@
 @use '~styles/util/variables.global' as v;
+@use '~styles/util/mixins.global' as m;
 
 $card-height: 70vh;
 $card-margin: 100px;
@@ -27,8 +28,8 @@ $timeline-height: (100vh - $card-height)/2 - $header-height/2;
 }
 
 .chronology-title {
+	@include m.header-normal;
 	color: v.$white;
-	font-family: v.$header-font;
 	grid-column: 1;
 	grid-row: 1;
 	margin-left: auto;
@@ -38,10 +39,8 @@ $timeline-height: (100vh - $card-height)/2 - $header-height/2;
 	padding: 0;
 	align-self: center;
 	text-align: center;
-	letter-spacing: v.$header-letter-spacing;
 	font-size: v.$hero-tiny-size;
-	font-weight: normal;
-} // TODO letter spacing
+}
 
 .filter-menu {
 	align-items: center;
@@ -51,15 +50,14 @@ $timeline-height: (100vh - $card-height)/2 - $header-height/2;
 	grid-column: 1;
 	grid-row: 2;
 	justify-content: space-around;
-	font-size: v.$sub-heading-size;
 	margin: 0px 50px 50px 50px;
 	border-bottom: 1px solid v.$white;
 }
 
 .filter-menu-link {
+	@include m.header-normal;
 	cursor: pointer;
 	z-index: 999;
-	font-weight: normal;
 	margin: 0;
 	padding: 1rem 0.5rem;
 	transition: 100ms v.$timing-function;

@@ -61,7 +61,6 @@
 }
 
 %nav-header {
-	font-family: v.$header-font;
 	text-align: center;
 }
 
@@ -70,7 +69,7 @@
 
 	font-size: 1.7vw;
 	grid-row: 1;
-	letter-spacing: 0.15em;
+	letter-spacing: 0.15em; //TODO var
 	margin-bottom: 0.3rem;
 	text-transform: uppercase;
 }

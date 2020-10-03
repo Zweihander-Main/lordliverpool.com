@@ -36,7 +36,9 @@ const Hero: React.FC = () => {
 			<span className={styles.arrow}>
 				<span></span>
 			</span>
-			<div className={styles.retailers}>Available November</div>
+			<div className={styles.retailers}>
+				<h4>Available November</h4>
+			</div>
 		</BackgroundImage>
 	);
 };

@@ -4,7 +4,6 @@
 	background-size: contain;
 	color: v.$white;
 	display: grid;
-	font-family: v.$header-font;
 	grid-template-columns: 100%;
 	grid-template-rows: 46% 27% 8% 9% 10%;
 	min-height: 100vh;
@@ -14,9 +13,8 @@
 	font-size: v.$hero-large-size;
 	font-weight: normal;
 	grid-row-start: 2;
-	letter-spacing: 0.05em;
-	line-height: 4.93rem;
-	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+	line-height: 4.93rem; //TODO var
+	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5); //TODO var
 	text-transform: uppercase;
 } // TODO make it so that it's always two lines
 
@@ -25,14 +23,14 @@
 	font-style: italic;
 	font-weight: normal;
 	grid-row-start: 3;
-	letter-spacing: 0.15em;
+	letter-spacing: 0.15em; //TODO var
 }
 
 .retailers {
 	background-color: v.$red;
 	font-size: v.$hero-tiny-size;
 	grid-row-start: 5;
-	letter-spacing: 0.03em;
+	letter-spacing: 0.03em; //TODO var or convert
 	padding-top: 1em;
 }
 

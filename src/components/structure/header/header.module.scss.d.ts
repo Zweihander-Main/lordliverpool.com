@@ -1,3 +1,5 @@
+export const headerFont: string;
+export const bodyFont: string;
 export const header: string;
 export const menuButton: string;
 export const menuBars: string;

@@ -1,3 +1,5 @@
+export const headerFont: string;
+export const bodyFont: string;
 export const chronology: string;
 export const title: string;
 export const timeline: string;

@@ -1,4 +1,5 @@
 @use '~styles/util/variables.global' as v;
+@use '~styles/util/mixins.global' as m;
 
 $menu-transition: 0.2s;
 
@@ -40,12 +41,11 @@ $menu-transition: 0.2s;
 
 %menu-button-text {
 	font-family: v.$header-font;
-	font-size: 1rem;
 	font-weight: bold;
-	letter-spacing: 0.15em;
+	letter-spacing: 0.15em; //TODO var
 	text-decoration: none;
 	text-transform: uppercase;
-}
+} // TODO combine with other menu button stuff
 
 .menu-text {
 	@extend %menu-button-text;
