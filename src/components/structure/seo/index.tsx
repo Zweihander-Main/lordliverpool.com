@@ -58,9 +58,14 @@ const SEO: React.FC<SEOProps> = ({
 
 	return (
 		<Helmet
-			htmlAttributes={{
-				lang,
-			}}
+			htmlAttributes={
+				app
+					? {
+							class: 'app-body',
+							lang,
+					  }
+					: { lang }
+			}
 			bodyAttributes={
 				app
 					? {
