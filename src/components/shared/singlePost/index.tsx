@@ -1,6 +1,8 @@
 import React from 'react';
 import Img, { FluidObject } from 'gatsby-image';
+import Link from 'gatsby-link';
 import styles from './singlePost.module.scss';
+import { MdArrowBack } from 'react-icons/md';
 
 type SinglePostProps = {
 	headerImage?: FluidObject;
@@ -8,6 +10,9 @@ type SinglePostProps = {
 	subtitle?: string;
 	extraHeaderText?: string;
 	content: string;
+	meta?: string;
+	linkBackURL?: string;
+	linkBackName?: string;
 };
 
 //TODO attribution for lifted posts
@@ -19,12 +24,21 @@ const PostHeader: React.FC<SinglePostProps> = ({
 	subtitle,
 	extraHeaderText,
 	content,
+	meta,
+	linkBackURL,
+	linkBackName,
 }) => {
 	//TODO add in author
 	// TODO figure out width
 	return (
 		<div className={styles.postContainer}>
 			<article className={styles.singlePost}>
+				{linkBackURL && linkBackName && (
+					<Link to={linkBackURL} className={styles.linkBack}>
+						<MdArrowBack className={styles.arrowBack} />
+						Back to {linkBackName}
+					</Link>
+				)}
 				<div className={styles.headings}>
 					<h1
 						className={
@@ -49,6 +63,11 @@ const PostHeader: React.FC<SinglePostProps> = ({
 				)}
 				<section className={styles.postContent}>
 					<div dangerouslySetInnerHTML={{ __html: content }} />
+					{meta && (
+						<div>
+							<p>{meta}</p>
+						</div>
+					)}
 				</section>
 			</article>
 		</div>

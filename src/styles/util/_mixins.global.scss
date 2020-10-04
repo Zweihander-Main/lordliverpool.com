@@ -2,3 +2,7 @@
 	font-weight: normal;
 	letter-spacing: 0;
 }
+
+@mixin successive-headings {
+	margin-bottom: 0.4rem;
+}

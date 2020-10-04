@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql, PageProps } from 'gatsby';
 import Layout from 'components/structure/layout';
 import SEO from 'components/structure/seo';
-import MiscellanySinglePost from 'components/miscellany/singlePost';
+import SinglePost from 'components/shared/singlePost';
 
 const MiscellanyPostTemplate: React.FC<PageProps<
 	GatsbyTypes.BlogPostBySlugQuery
@@ -26,14 +26,16 @@ const MiscellanyPostTemplate: React.FC<PageProps<
 				}
 			/>
 
-			<MiscellanySinglePost
+			<SinglePost
 				headerImage={
 					post.frontmatter.featuredImage.childImageSharp.fluid
 				}
 				title={post?.frontmatter?.title || ''}
 				subtitle={post?.frontmatter?.subtitle}
 				content={post?.html || ''}
-				date={post?.frontmatter?.date}
+				meta={post?.frontmatter?.date}
+				linkBackName={'Miscellany'}
+				linkBackURL={'/miscellany'}
 			/>
 		</Layout>
 	);

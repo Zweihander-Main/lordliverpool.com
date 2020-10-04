@@ -2,7 +2,7 @@ import React from 'react';
 import { graphql, PageProps } from 'gatsby';
 import Layout from 'components/structure/layout';
 import SEO from 'components/structure/seo';
-import ChronologySinglePost from 'components/chronology/singlePost';
+import SinglePost from 'components/shared/singlePost';
 
 const ChronologyPostTemplate: React.FC<PageProps<
 	GatsbyTypes.ChronologyPostBySlugQuery
@@ -18,7 +18,7 @@ const ChronologyPostTemplate: React.FC<PageProps<
 				}
 			/>
 
-			<ChronologySinglePost
+			<SinglePost
 				headerImage={
 					post?.frontmatter?.featuredImage?.childImageSharp?.fluid
 				}
@@ -26,6 +26,8 @@ const ChronologyPostTemplate: React.FC<PageProps<
 				content={post?.html || ''}
 				subtitle={post?.frontmatter?.card}
 				extraHeaderText={post?.frontmatter?.displayDate}
+				linkBackName={'Chronology'}
+				linkBackURL={'/chronology'}
 			/>
 		</Layout>
 	);

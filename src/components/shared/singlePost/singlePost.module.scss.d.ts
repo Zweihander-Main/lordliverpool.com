@@ -2,6 +2,8 @@ export const headerFont: string;
 export const bodyFont: string;
 export const postContainer: string;
 export const singlePost: string;
+export const linkBack: string;
+export const arrowBack: string;
 export const headings: string;
 export const successiveHeadings: string;
 export const subtitle: string;
