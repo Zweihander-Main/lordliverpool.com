@@ -24,6 +24,8 @@ const ChronologyPostTemplate: React.FC<PageProps<
 				}
 				title={post?.frontmatter?.title || ''}
 				content={post?.html || ''}
+				subtitle={post?.frontmatter?.card}
+				extraHeaderText={post?.frontmatter?.displayDate}
 			/>
 		</Layout>
 	);
@@ -44,6 +46,8 @@ export const pageQuery = graphql`
 			html
 			frontmatter {
 				title
+				card
+				displayDate
 				description
 				featuredImage {
 					childImageSharp {

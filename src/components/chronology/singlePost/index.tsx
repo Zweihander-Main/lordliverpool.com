@@ -1,11 +1,12 @@
 import React from 'react';
-import { FluidObject } from 'gatsby-image';
-import BackgroundImage from 'gatsby-background-image';
+import Img, { FluidObject } from 'gatsby-image';
 import styles from './singlePost.module.scss';
 
 type SinglePostProps = {
 	headerImage?: FluidObject;
 	title: string;
+	subtitle?: string;
+	extraHeaderText?: string;
 	content: string;
 };
 
@@ -15,40 +16,43 @@ type SinglePostProps = {
 const PostHeader: React.FC<SinglePostProps> = ({
 	headerImage,
 	title,
+	subtitle,
+	extraHeaderText,
 	content,
 }) => {
-	const backgroundStack = headerImage
-		? [
-				'linear-gradient(180deg, rgba(66, 1, 1, 0.0) 50%, rgba(66,1,1,0.15) 75%, rgba(66, 1, 1, 0.6) 100%)',
-				headerImage,
-		  ]
-		: [];
-
 	//TODO add in author
 	// TODO figure out width
 	return (
-		<article className={styles.singlePost}>
-			{headerImage && (
-				<BackgroundImage
-					className={styles.postHeaderSection}
-					fluid={backgroundStack}
-					Tag={'section'}
-				>
-					<div className={styles.headings}>
-						<h1 className={styles.postMainHeader}>{title}</h1>
-					</div>
-				</BackgroundImage>
-			)}
-			<section className={styles.postContentContainer}>
-				<div className={styles.postContent}>
-					<div
-						className={styles.postText}
-						dangerouslySetInnerHTML={{ __html: content }}
-					/>
+		<div className={styles.postContainer}>
+			<article className={styles.singlePost}>
+				<div className={styles.headings}>
+					<h1
+						className={
+							subtitle
+								? `${styles.title} ${styles.successiveHeadings}`
+								: styles.title
+						}
+					>
+						{title}
+					</h1>
+					{subtitle && (
+						<h2 className={styles.subtitle}>{subtitle}</h2>
+					)}
+					{extraHeaderText && (
+						<h4 className={styles.extraHeaderText}>
+							{extraHeaderText}
+						</h4>
+					)}
 				</div>
-			</section>
-		</article>
+				{headerImage && (
+					<Img className={styles.postImage} fluid={headerImage} />
+				)}
+				<section className={styles.postContent}>
+					<div dangerouslySetInnerHTML={{ __html: content }} />
+				</section>
+			</article>
+		</div>
 	);
 };
-
+//TODO alt attributes
 export default PostHeader;
