@@ -1,8 +1,10 @@
 @use '~styles/util/variables.global' as v;
 
 .footer {
+	align-items: center;
 	background-color: v.$black-bg;
 	color: v.$white;
-	min-height: 100vh;
-	text-align: center;
+	display: flex;
+	justify-content: center;
+	min-height: 5vh;
 }
