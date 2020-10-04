@@ -27,47 +27,81 @@ $timeline-height: (100vh - $card-height)/2 - $header-height/2;
 	width: 100vw;
 }
 
+@mixin show-more-bg($direction) {
+	background-image: linear-gradient(
+		$direction,
+		rgba(v.$blue-bg, 0) 0%,
+		rgba(v.$blue-bg, 0) 90.1%,
+		rgba(#0a2536, 0.75) 100%
+	); // TODO vars
+}
+
+.show-more-bg-right {
+	@include show-more-bg(90deg);
+}
+
+.show-more-bg-left {
+	@include show-more-bg(270deg);
+}
+
+.show-more-bg-both {
+	background-image: linear-gradient(
+			90deg,
+			rgba(v.$blue-bg, 0) 0%,
+			rgba(v.$blue-bg, 0) 90.1%,
+			rgba(#0a2536, 0.75) 100%
+		),
+		linear-gradient(
+			270deg,
+			rgba(v.$blue-bg, 0) 0%,
+			rgba(v.$blue-bg, 0) 90.1%,
+			rgba(#0a2536, 0.75) 100%
+		); // TODO better mixin support
+}
+
 .chronology-title {
 	@include m.header-normal;
+
+	align-self: center;
 	color: v.$white;
+	font-size: v.$hero-tiny-size;
 	grid-column: 1;
 	grid-row: 1;
+	margin: 0;
 	margin-left: auto;
 	margin-right: auto;
-	text-transform: uppercase;
-	margin: 0;
 	padding: 0;
-	align-self: center;
 	text-align: center;
-	font-size: v.$hero-tiny-size;
+	text-transform: uppercase;
 }
 
 .filter-menu {
 	align-items: center;
+	border-bottom: 1px solid v.$white;
 	color: v.$white;
 	display: flex;
 	flex-direction: row;
 	grid-column: 1;
 	grid-row: 2;
 	justify-content: space-around;
-	margin: 0px 50px 50px 50px;
-	border-bottom: 1px solid v.$white;
+	margin: 0 50px 50px;
 }
 
 .filter-menu-link {
 	@include m.header-normal;
+
 	cursor: pointer;
-	z-index: 999;
 	margin: 0;
 	padding: 1rem 0.5rem;
 	transition: 100ms v.$timing-function;
+	z-index: 999;
 }
 
 .selected-link {
-	color: v.$light-bg;
 	border-bottom: 2px solid v.$light-bg;
-	padding-top: 0.3rem;
+	color: v.$light-bg;
 	padding-bottom: 0.2rem;
+	padding-top: 0.3rem;
 }
 
 .card-container-wrapper {

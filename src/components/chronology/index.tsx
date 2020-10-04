@@ -75,8 +75,20 @@ const Chronology: React.FC = () => {
 		cardContainerRef.current.focus();
 	}
 
+	const showMoreBGRight = !(containerWidth + startPos <= viewportWidth);
+	const showMoreBGLeft = Math.round(startPos) !== 0;
+	const sectionClass = `${styles.chronology} `; /**${
+		(showMoreBGLeft && showMoreBGRight)
+			? styles.showMoreBgBoth
+			: showMoreBGLeft
+			? styles.showMoreBgLeft
+			: showMoreBGRight
+			? styles.showMoreBgRight
+			: ''
+	}`;**/
+
 	return (
-		<section className={styles.chronology}>
+		<section className={sectionClass}>
 			<h1 className={styles.chronologyTitle}>Chronology</h1>
 			<div className={styles.filterMenu}>
 				{categories.map((category) => (

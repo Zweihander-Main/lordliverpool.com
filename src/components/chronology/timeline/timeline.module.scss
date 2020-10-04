@@ -12,7 +12,7 @@ $area-grabber-height: 50px;
 } // TODO bug with scrollbar hiding last tick?
 
 .area-grabber {
-	background: rgba(v.$white, 0.5);
+	background: rgba(v.$white, 0.3);
 	cursor: grab;
 	height: $area-grabber-height;
 	position: absolute;
