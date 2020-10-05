@@ -4,7 +4,7 @@ featuredImage: henry-addington-1st-viscount-sidmouth.jpg
 timelineDate: 1757-05-30T05:50:02.000Z
 displayDate: May 30, 1757 - February 15, 1844
 category: colleagues
-card: Home Secretary, 1812-22. Minister without Portfolio, 1822-24
+card: Home Secretary, 1812-22.
 ---
 **Henry Addington (1757-1844)** First Viscount **Sidmouth** from 1805. Home Secretary, 1812-22. Minister without Portfolio, 1822-24. Speaker of the House of Commons, 1789-1801. Prime Minister and Chancellor of the Exchequer, 1801-4. Lord President of the Council, 1805, 1806-7 and 1812. Lord Privy Seal, 1806. The son of the Pitt family’s physician, he was educated at Winchester and Brasenose College, Oxford and called to the Bar at Lincoln’s Inn. A mild-mannered supporter of Pitt, who nominated him for Speaker in 1789, he held that office with considerable distinction for eleven years, after which as an opponent of Catholic Emancipation whom Pitt liked and few objected to, he became Prime Minister, albeit reluctantly. 
 
