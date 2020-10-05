@@ -4,18 +4,10 @@ import Layout from 'components/structure/layout';
 import SEO from 'components/structure/seo';
 import SinglePost from 'components/shared/singlePost';
 
-const MiscellanyPostTemplate: React.FC<PageProps<
-	GatsbyTypes.BlogPostBySlugQuery
+const ContenderPostTemplate: React.FC<PageProps<
+	GatsbyTypes.ContenderPostBySlugQuery
 >> = ({ data }) => {
 	const post = data.markdownRemark;
-
-	if (!post?.frontmatter?.featuredImage?.childImageSharp?.fluid) {
-		throw new Error(
-			`Image for post ${JSON.stringify(
-				post?.frontmatter?.title
-			)} not found.`
-		);
-	}
 
 	return (
 		<Layout>
@@ -28,23 +20,22 @@ const MiscellanyPostTemplate: React.FC<PageProps<
 
 			<SinglePost
 				headerImage={
-					post.frontmatter.featuredImage.childImageSharp.fluid
+					post?.frontmatter?.featuredImage?.childImageSharp?.fluid
 				}
 				title={post?.frontmatter?.title || ''}
-				subtitle={post?.frontmatter?.subtitle}
 				content={post?.html || ''}
-				meta={post?.frontmatter?.date}
-				linkBackName={'Miscellany'}
-				linkBackURL={'/miscellany'}
+				extraHeaderText={post?.frontmatter?.displayDate}
+				linkBackName={'Contenders'}
+				linkBackURL={'/contenders'}
 			/>
 		</Layout>
 	);
 };
 
-export default MiscellanyPostTemplate;
+export default ContenderPostTemplate;
 
 export const pageQuery = graphql`
-	query BlogPostBySlug($path: String!) {
+	query ContenderPostBySlug($path: String!) {
 		site {
 			siteMetadata {
 				title
@@ -56,9 +47,8 @@ export const pageQuery = graphql`
 			html
 			frontmatter {
 				title
-				date(formatString: "MMMM DD, YYYY")
+				displayDate
 				description
-				subtitle
 				featuredImage {
 					childImageSharp {
 						fluid(maxWidth: 540) {

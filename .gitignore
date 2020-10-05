@@ -155,3 +155,6 @@ public
 
 # Yarn Integrity file
 .yarn-integrity
+
+# Local Netlify folder
+.netlify
