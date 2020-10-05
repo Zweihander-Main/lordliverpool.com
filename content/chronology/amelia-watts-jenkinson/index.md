@@ -10,7 +10,7 @@ card: Liverpool's mother
 
 Amelia had an adventurous early childhood before returning to England at the age of eight. In 1756, her parents, brother and sister were captured at Kasimbazar by Siraj-ud-Daulah, the Nawab of Bengal. Fortunately, the Nawab’s grandmother befriended the women and took them into the zenana, where they remained for over a month before sending them under escort to the French factory (or trading post). There they remained until the Battle of Plassey liberated them the following year.<sup>3</sup>
 
-\[1] An Echo from old Bengal’, Blackwood’s Magazine, Vol. 182 (1907) p. 420.
+\[1] An Echo from old Bengal’, *Blackwood’s Magazine*, Vol. 182 (1907) p. 420.
 
 \[2] The portrait is available on poster and claimed to be of Amelia Watts, whose dates are given as 1750-70, yet the picture is dated to 1745. Art historians can be clueless!
 
