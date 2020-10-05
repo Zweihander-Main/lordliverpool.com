@@ -34,10 +34,10 @@ Eldon retired reluctantly in 1827, attempted to return when Wellington formed a 
 
 Mrs Arbuthnot liked Eldon; she called him a ‘delightful person’ saying, ‘there was so much playfulness in his mind and manner and that, in conversing with him, one forgot that he was old and the greatest lawyer we ever had’<sup>4</sup>.
 
-\[1] John Campbell (1779-1861). 1st Baron Campbell from 1841. Lord Chancellor, 1859-61. Author of the ultra-Whiggish, Lives of the Lord Chancellors and Keeper of the Great Seal of England (London: John Murray, 1845).
+\[1] John Campbell (1779-1861). 1st Baron Campbell from 1841. Lord Chancellor, 1859-61. Author of the ultra-Whiggish, *Lives of the Lord Chancellors and Keeper of the Great Seal of England* (London: John Murray, 1845).
 
 \[2] Ibid., Vol. 7, p. 112.
 
 \[3] Ibid., p. 196.
 
-\[4] Bamford and Wellington, The Journal of Mrs. Arbuthnot, 1820-1832, Vol. 1, p. 36.
+\[4] Bamford and Wellington, *The Journal of Mrs. Arbuthnot*, 1820-1832, Vol. 1, p. 36.
