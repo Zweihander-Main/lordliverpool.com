@@ -9,7 +9,7 @@ const Contenders: React.FC = () => {
 	>(graphql`
 		query ContendersQuery {
 			allMarkdownRemark(
-				sort: { order: DESC, fields: [frontmatter___date] }
+				sort: { order: ASC, fields: [frontmatter___date] }
 				filter: { fields: { sourceInstanceName: { eq: "contenders" } } }
 			) {
 				edges {
@@ -23,7 +23,7 @@ const Contenders: React.FC = () => {
 							displayDate
 							featuredImage {
 								childImageSharp {
-									fluid(maxWidth: 450) {
+									fluid(maxWidth: 800, grayscale: true) {
 										...GatsbyImageSharpFluid
 									}
 								}
@@ -37,21 +37,61 @@ const Contenders: React.FC = () => {
 
 	const { edges: contenders } = blogRollData.allMarkdownRemark;
 
+	const [selected, setSelected] = React.useState(contenders[0].node.id || '');
+	const selectedContender = contenders.find((c) => c.node.id === selected);
+
+	if (
+		!selectedContender?.node.frontmatter?.featuredImage?.childImageSharp
+			?.fluid
+	) {
+		throw new Error('Missing image for currently selected Prime Minsiter');
+	}
+
 	return (
-		<div>
-			{contenders &&
-				contenders.map(({ node: contender }) => {
-					return contender?.fields?.slug ? (
-						<Link
-							key={contender.id}
-							to={contender.fields.slug}
-							className={styles.link}
-						>
-							{contender?.frontmatter?.title}
-						</Link>
-					) : null;
-				})}
-		</div>
+		<section className={styles.contenders}>
+			<figure className={styles.pictureContainer}>
+				<Img
+					className={styles.picture}
+					fluid={
+						selectedContender.node.frontmatter.featuredImage
+							.childImageSharp.fluid
+					}
+				/>
+				<figcaption className={styles.caption}>
+					<h2 className={styles.dates}>
+						{selectedContender.node.frontmatter.displayDate}
+					</h2>
+					<h1 className={styles.name}>
+						{selectedContender.node.frontmatter.title}
+					</h1>
+				</figcaption>
+			</figure>
+			<div className={styles.menu}>
+				<h1>Contenders for Greatest</h1>
+				<ul className={styles.menuList}>
+					{contenders &&
+						contenders.map(({ node: contender }) => {
+							return contender?.fields?.slug ? (
+								<li key={contender.id}>
+									<Link
+										onMouseEnter={() =>
+											setSelected(contender.id)
+										}
+										to={contender.fields.slug}
+										className={
+											contender.id === selected
+												? `${styles.link} ${styles.selected}`
+												: styles.link
+										}
+									>
+										{contender?.frontmatter?.title}
+									</Link>
+								</li>
+							) : null;
+						})}
+				</ul>
+			</div>
+		</section>
 	);
 };
 
