@@ -1,4 +1,5 @@
 @use '~styles/util/variables.global' as v;
+@use '~styles/util/mixins.global' as m;
 
 .book-info {
 	background-color: v.$light-bg;
@@ -19,10 +20,17 @@
 }
 
 .header {
+	@include m.successive-headings;
 }
 
 .sub-header {
+	@include m.header-normal;
 }
 
 .author-header {
+	@include m.header-normal;
+}
+
+.author-link {
+	color: v.$black;
 }

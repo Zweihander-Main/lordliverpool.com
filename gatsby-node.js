@@ -30,7 +30,8 @@ exports.createPages = ({ actions, graphql }) => {
 					edge.node.fields.sourceInstanceName === 'chronology' &&
 					edge.node.rawMarkdownRemark &&
 					edge.node.rawMarkdownRemark !== ''
-				)
+				) &&
+				edge.node.fields.sourceInstanceName !== 'pages'
 			) {
 				createPage({
 					path: edge.node.fields.slug,

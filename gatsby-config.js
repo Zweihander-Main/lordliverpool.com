@@ -77,6 +77,13 @@ module.exports = {
 				name: `contenders`,
 			},
 		},
+		{
+			resolve: `gatsby-source-filesystem`,
+			options: {
+				path: `${__dirname}/content/pages`,
+				name: `pages`,
+			},
+		},
 		`gatsby-transformer-remark`,
 		`gatsby-plugin-netlify-cms`, // should be last in the array
 	],

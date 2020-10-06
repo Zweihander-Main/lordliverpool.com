@@ -129,3 +129,30 @@ collections:
             name: body
             widget: markdown
             required: false
+    - name: pages
+      label: Pages and Content
+      folder: content/pages
+      create: true
+      slug: index
+      media_folder: ''
+      public_folder: ''
+      path: '{{title}}/index'
+      editor:
+          preview: false
+      fields:
+          - label: Name
+            name: title
+            widget: string
+            required: true
+          - label: SEO Description
+            name: description
+            widget: string
+            required: false
+          - label: Featured Image
+            name: featuredImage
+            widget: image
+            required: false
+          - label: Body
+            name: body
+            widget: markdown
+            required: false

@@ -3,3 +3,7 @@ export const bodyFont: string;
 export const bookInfo: string;
 export const bookDisplay: string;
 export const info: string;
+export const header: string;
+export const subHeader: string;
+export const authorHeader: string;
+export const authorLink: string;
