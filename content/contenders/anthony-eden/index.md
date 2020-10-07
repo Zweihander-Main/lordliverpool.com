@@ -1,6 +1,6 @@
 ---
 title: Anthony Eden
-featuredImage:
+featuredImage: Anthony_Eden.jpg
 date: 1955-01-01T20:20:00.000Z
 displayDate: 1955 - 1957
 ---

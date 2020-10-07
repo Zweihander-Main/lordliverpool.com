@@ -1,6 +1,6 @@
 ---
 title: John, 1st Earl Russell
-featuredImage:
+featuredImage: John_1st_Earl_Russell.jpg
 date: 1846-01-01T20:20:00.000Z
 displayDate: 1846 - 1852, 1865 - 1866
 ---

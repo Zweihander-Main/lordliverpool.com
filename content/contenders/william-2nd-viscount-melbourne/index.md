@@ -1,6 +1,6 @@
 ---
 title: William, 2nd Viscount Melbourne
-featuredImage:
+featuredImage: William_2nd_Viscount_Melbourne.jpg
 date: 1834-01-02T20:20:00.000Z
 displayDate: 1834, 1835 - 1841
 ---

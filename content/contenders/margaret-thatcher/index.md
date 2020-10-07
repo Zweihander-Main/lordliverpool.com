@@ -1,6 +1,6 @@
 ---
 title: Margaret Thatcher
-featuredImage:
+featuredImage: Margaret_Thatcher.jpg
 date: 1979-01-01T20:20:00.000Z
 displayDate: 1979 - 1990
 ---

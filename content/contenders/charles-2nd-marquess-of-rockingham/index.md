@@ -1,6 +1,6 @@
 ---
 title: Charles, 2nd Marquess of Rockingham
-featuredImage:
+featuredImage: Charles_2nd_Marquess_of_Rockingham.jpg
 date: 1765-01-01T20:20:00.000Z
 displayDate: 1765 - 1766, 1782
 ---

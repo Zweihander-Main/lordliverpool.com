@@ -1,6 +1,6 @@
 ---
 title: Theresa May
-featuredImage:
+featuredImage: Theresa_May.jpg
 date: 2016-01-01T20:20:00.000Z
 displayDate: 2016 - 2019
 ---

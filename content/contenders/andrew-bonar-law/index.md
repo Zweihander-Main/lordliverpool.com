@@ -1,6 +1,6 @@
 ---
 title: Andrew Bonar Law
-featuredImage:
+featuredImage: Andrew_Bonar_Law.jpg
 date: 1922-01-01T20:20:00.000Z
 displayDate: 1922 - 1923
 ---

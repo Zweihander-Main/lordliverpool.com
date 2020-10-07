@@ -1,6 +1,6 @@
 ---
 title: Robert, 2nd Earl of Liverpool
-featuredImage:
+featuredImage: Robert_2nd_Earl_of_Liverpool.jpg
 date: 1812-01-01T20:20:00.000Z
 displayDate: 1812 - 1827
 ---

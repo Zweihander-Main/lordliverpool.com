@@ -1,6 +1,6 @@
 ---
 title: Edward Heath
-featuredImage:
+featuredImage: Edward_Heath.jpg
 date: 1970-01-01T20:20:00.000Z
 displayDate: 1970 - 1974
 ---

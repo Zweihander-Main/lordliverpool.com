@@ -1,6 +1,6 @@
 ---
 title: John, 3rd Earl of Bute
-featuredImage:
+featuredImage: John_3rd_Earl_of_Bute.jpg
 date: 1762-01-01T20:20:00.000Z
 displayDate: 1762 - 1763
 ---

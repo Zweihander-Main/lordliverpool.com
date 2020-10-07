@@ -1,6 +1,6 @@
 ---
 title: James Callaghan
-featuredImage:
+featuredImage: James_Callaghan.jpg
 date: 1976-01-01T20:20:00.000Z
 displayDate: 1976 - 1979
 ---

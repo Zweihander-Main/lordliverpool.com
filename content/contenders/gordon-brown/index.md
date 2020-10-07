@@ -1,6 +1,6 @@
 ---
 title: Gordon Brown
-featuredImage:
+featuredImage: Gordon_Brown.jpg
 date: 2007-01-01T20:20:00.000Z
 displayDate: 2007 - 2010
 ---

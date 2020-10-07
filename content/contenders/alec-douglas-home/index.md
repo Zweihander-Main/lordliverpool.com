@@ -1,6 +1,6 @@
 ---
 title: Alec Douglas-Home
-featuredImage:
+featuredImage: Alex_Douglas-Home.jpg
 date: 1963-01-01T20:20:00.000Z
 displayDate: 1963 - 1964
 ---

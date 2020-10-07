@@ -1,6 +1,6 @@
 ---
 title: William Pitt, the Younger
-featuredImage:
+featuredImage: William_Pitt_the_Younger.jpg
 date: 1783-01-01T20:20:00.000Z
 displayDate: 1783 - 1801, 1804 - 1806
 ---

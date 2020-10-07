@@ -1,6 +1,6 @@
 ---
 title: David Lloyd George
-featuredImage:
+featuredImage: David_Lloyd_George.jpg
 date: 1916-01-01T20:20:00.000Z
 displayDate: 1916 - 1922
 ---

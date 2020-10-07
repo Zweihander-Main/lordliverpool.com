@@ -1,6 +1,6 @@
 ---
 title: Edward, 14th Earl of Derby
-featuredImage:
+featuredImage: Edward_14th_Earl_of_Derby.jpg
 date: 1852-01-01T20:20:00.000Z
 displayDate: 1852, 1858 - 1859, 1866 - 1868
 ---

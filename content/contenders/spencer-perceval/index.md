@@ -1,6 +1,6 @@
 ---
 title: Spencer Perceval
-featuredImage:
+featuredImage: Spencer_Perceval.jpg
 date: 1809-01-01T20:20:00.000Z
 displayDate: 1809 - 1812
 ---

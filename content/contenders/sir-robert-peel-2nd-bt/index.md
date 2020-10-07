@@ -1,6 +1,6 @@
 ---
 title: Sir Robert Peel, 2nd Bt.
-featuredImage:
+featuredImage: Sir_Robert_Peel_2nd_Bt.jpg
 date: 1834-01-04T20:20:00.000Z
 displayDate: 1834 - 1835, 1841 - 1846
 ---

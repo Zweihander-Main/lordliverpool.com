@@ -1,6 +1,6 @@
 ---
 title: Henry Pelham
-featuredImage:
+featuredImage: Henry_Pelham.jpg
 date: 1743-01-01T20:20:00.000Z
 displayDate: 1743 - 1754
 ---

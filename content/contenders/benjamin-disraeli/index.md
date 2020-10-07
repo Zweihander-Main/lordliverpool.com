@@ -1,6 +1,6 @@
 ---
 title: Benjamin Disraeli
-featuredImage:
+featuredImage: Benjamin_Disraeli.jpg
 date: 1868-01-01T20:20:00.000Z
 displayDate: 1868, 1874 - 1880
 ---

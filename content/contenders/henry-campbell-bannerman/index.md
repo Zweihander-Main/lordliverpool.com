@@ -1,6 +1,6 @@
 ---
 title: Henry Campbell-Bannerman
-featuredImage:
+featuredImage: Henry_Campbell-Bannerman.jpg
 date: 1905-01-01T20:20:00.000Z
 displayDate: 1905 - 1908
 ---

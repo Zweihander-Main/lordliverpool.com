@@ -1,6 +1,6 @@
 ---
 title: William, 4th Duke of Devonshire
-featuredImage:
+featuredImage: William_4th_Duke_of_Devonshire.jpg
 date: 1756-01-01T20:20:00.000Z
 displayDate: 1756 - 1757
 ---

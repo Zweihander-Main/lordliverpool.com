@@ -1,6 +1,6 @@
 ---
 title: Neville Chamberlain
-featuredImage:
+featuredImage: Neville_Chamberlain.jpg
 date: 1937-01-01T20:20:00.000Z
 displayDate: 1937 - 1939
 ---

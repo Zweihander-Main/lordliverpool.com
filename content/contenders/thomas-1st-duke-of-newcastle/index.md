@@ -1,6 +1,6 @@
 ---
 title: Thomas, 1st Duke of Newcastle
-featuredImage:
+featuredImage: Thomas_1st_Duke_of_Newcastle.jpg
 date: 1754-01-01T20:20:00.000Z
 displayDate: 1754 - 1756, 1757 - 1762
 ---

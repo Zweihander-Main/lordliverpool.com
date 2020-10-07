@@ -1,6 +1,6 @@
 ---
 title: Archibald, 5th Earl of Rosebery
-featuredImage:
+featuredImage: Archibald_5th_Earl_of_Rosebery.jpg
 date: 1894-01-01T20:20:00.000Z
 displayDate: 1894 - 1895
 ---

@@ -1,6 +1,6 @@
 ---
 title: Ramsay Macdonald
-featuredImage:
+featuredImage: Ramsay_MacDonald.jpg
 date: 1924-01-01T20:20:00.000Z
 displayDate: 1924, 1929 - 1935
 ---

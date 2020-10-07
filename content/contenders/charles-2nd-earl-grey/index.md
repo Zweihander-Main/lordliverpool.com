@@ -1,6 +1,6 @@
 ---
 title: Charles, 2nd Earl Grey
-featuredImage:
+featuredImage: Charles_2nd_Earl_Grey.jpg
 date: 1830-01-01T20:20:00.000Z
 displayDate: 1830 - 1834
 ---

@@ -1,6 +1,6 @@
 ---
 title: Augustus, 3rd Duke of Grafton
-featuredImage:
+featuredImage: Augustus_3rd_Duke_of_Grafton.jpg
 date: 1768-01-01T20:20:00.000Z
 displayDate: 1768 - 1770
 ---

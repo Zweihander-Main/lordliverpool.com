@@ -1,6 +1,6 @@
 ---
 title: Stanley Baldwin
-featuredImage:
+featuredImage: Stanley_Baldwin.jpg
 date: 1923-01-01T20:20:00.000Z
 displayDate: 1923 - 1924, 1924 - 1929, 1935 - 1937
 ---

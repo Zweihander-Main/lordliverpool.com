@@ -1,6 +1,6 @@
 ---
 title: George Grenville
-featuredImage:
+featuredImage: George_Grenvillle.jpg
 date: 1763-01-01T20:20:00.000Z
 displayDate: 1763 - 1765
 ---

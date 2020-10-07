@@ -1,6 +1,6 @@
 ---
 title: Frederick, Lord North
-featuredImage:
+featuredImage: Frederick_Lord_North.jpg
 date: 1770-01-01T20:20:00.000Z
 displayDate: 1770 - 1782
 ---

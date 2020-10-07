@@ -1,6 +1,6 @@
 ---
 title: Henry, 3rd Viscount Palmerston
-featuredImage:
+featuredImage: Henry_3rd_Viscount_Palmerston.jpg
 date: 1855-01-01T20:20:00.000Z
 displayDate: 1855 - 1858, 1859 - 1865
 ---

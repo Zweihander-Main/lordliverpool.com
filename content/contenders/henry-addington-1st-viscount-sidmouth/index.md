@@ -1,6 +1,6 @@
 ---
 title: Henry Addington, 1st Viscount Sidmouth
-featuredImage:
+featuredImage: Henry_Addington_1st_Viscount_Sidmouth.jpg
 date: 1801-01-01T20:20:00.000Z
 displayDate: 1801 - 1804
 ---

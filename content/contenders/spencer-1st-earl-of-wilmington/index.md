@@ -1,6 +1,6 @@
 ---
 title: Spencer, 1st Earl of Wilmington
-featuredImage:
+featuredImage: Spencer_1st_Earl_of_Wilmington.jpg
 date: 1742-01-01T20:20:00.000Z
 displayDate: 1742 - 1743
 ---

@@ -1,6 +1,6 @@
 ---
 title: John Major
-featuredImage:
+featuredImage: John_Major.jpg
 date: 1990-01-01T20:20:00.000Z
 displayDate: 1990 - 1997
 ---

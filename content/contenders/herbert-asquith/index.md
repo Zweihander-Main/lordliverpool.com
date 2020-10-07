@@ -1,6 +1,6 @@
 ---
 title: Herbert Asquith
-featuredImage:
+featuredImage: Herbert_Asquith.jpg
 date: 1908-01-01T20:20:00.000Z
 displayDate: 1908 - 1916
 ---

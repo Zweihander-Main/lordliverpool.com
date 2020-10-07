@@ -1,6 +1,6 @@
 ---
 title: Arthur, Duke of Wellington
-featuredImage:
+featuredImage: Arthur_Duke_of_Wellington.jpg
 date: 1828-01-01T20:20:00.000Z
 displayDate: 1828 - 1830, 1834
 ---

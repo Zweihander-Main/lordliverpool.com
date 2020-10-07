@@ -6,7 +6,9 @@ import SinglePost from 'components/shared/singlePost';
 
 const ContenderPostTemplate: React.FC<PageProps<
 	GatsbyTypes.ContenderPostBySlugQuery
->> = ({ data }) => {
+>> = ({ data }, ...ect) => {
+	console.log(data);
+	console.log(ect);
 	const post = data.markdownRemark;
 
 	return (

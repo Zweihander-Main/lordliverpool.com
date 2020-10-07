@@ -1,6 +1,6 @@
 ---
 title: Arthur Balfour
-featuredImage:
+featuredImage: Arthur_Balfour.jpg
 date: 1902-01-01T20:20:00.000Z
 displayDate: 1902 - 1905
 ---

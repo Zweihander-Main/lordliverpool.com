@@ -1,6 +1,6 @@
 ---
 title: William, 1st Baron Grenville
-featuredImage:
+featuredImage: William_1st_Baron_Grenville.jpg
 date: 1806-01-01T20:20:00.000Z
 displayDate: 1806 - 1807
 ---

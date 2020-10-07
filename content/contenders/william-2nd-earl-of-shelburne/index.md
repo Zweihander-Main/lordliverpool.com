@@ -1,6 +1,6 @@
 ---
 title: William, 2nd Earl of Shelburne
-featuredImage:
+featuredImage: William_2nd_Earl_of_Shelburne.jpg
 date: 1782-01-01T20:20:00.000Z
 displayDate: 1782 - 1783
 ---

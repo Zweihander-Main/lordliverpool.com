@@ -1,6 +1,6 @@
 ---
 title: George Canning
-featuredImage:
+featuredImage: George_Canning.jpg
 date: 1827-01-01T20:20:00.000Z
 displayDate: '1827'
 ---

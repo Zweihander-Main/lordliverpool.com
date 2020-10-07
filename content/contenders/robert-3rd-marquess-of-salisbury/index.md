@@ -1,6 +1,6 @@
 ---
 title: Robert, 3rd Marquess of Salisbury
-featuredImage:
+featuredImage: Robert_3rd_Marquess_of_Salisbury.jpg
 date: 1885-01-01T20:20:00.000Z
 displayDate: 1885 - 1886, 1886 - 1892, 1895 - 1902
 ---

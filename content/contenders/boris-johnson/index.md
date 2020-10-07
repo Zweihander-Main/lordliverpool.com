@@ -1,6 +1,6 @@
 ---
 title: Boris Johnson
-featuredImage:
+featuredImage: Boris_Johnson.jpg
 date: 2019-01-01T20:20:00.000Z
 displayDate: 2019 -
 ---

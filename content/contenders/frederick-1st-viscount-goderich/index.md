@@ -1,6 +1,6 @@
 ---
 title: Frederick, 1st Viscount Goderich
-featuredImage:
+featuredImage: Frederick_1st_Viscount_Goderich.jpg
 date: 1827-01-02T20:20:00.000Z
 displayDate: 1827 - 1828
 ---

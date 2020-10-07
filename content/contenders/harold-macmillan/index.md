@@ -1,6 +1,6 @@
 ---
 title: Harold Macmillan
-featuredImage:
+featuredImage: Harold_Macmillan.jpg
 date: 1957-01-01T20:20:00.000Z
 displayDate: 1957 - 1963
 ---

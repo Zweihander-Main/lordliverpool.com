@@ -1,6 +1,6 @@
 ---
 title: Sir Robert Walpole
-featuredImage:
+featuredImage: Sir_Robert_Walpole.jpg
 date: 1721-01-01T20:20:00.000Z
 displayDate: 1721 - 1742
 ---

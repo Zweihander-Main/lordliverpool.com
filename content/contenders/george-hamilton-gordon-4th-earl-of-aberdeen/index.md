@@ -1,6 +1,6 @@
 ---
 title: George Hamilton-Gordon 4th Earl of Aberdeen
-featuredImage:
+featuredImage: George_Hamilton-Gordon_4th_Earl_of_Aberdeen.jpg
 date: 1852-01-01T20:20:00.000Z
 displayDate: 1852 - 1855
 ---

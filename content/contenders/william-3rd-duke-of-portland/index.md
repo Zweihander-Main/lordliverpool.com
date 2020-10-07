@@ -1,6 +1,6 @@
 ---
 title: William, 3rd Duke of Portland
-featuredImage:
+featuredImage: William_3rd_Duke_of_Portland.jpg
 date: 1783-01-01T20:20:00.000Z
 displayDate: 1783, 1807 - 1809
 ---

@@ -1,6 +1,6 @@
 ---
 title: Clement Attlee
-featuredImage:
+featuredImage: Clement_Attlee.jpg
 date: 1945-01-01T20:20:00.000Z
 displayDate: 1945 - 1951
 ---

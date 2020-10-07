@@ -1,6 +1,6 @@
 ---
 title: Harold Wilson
-featuredImage:
+featuredImage: Harold_Wilson.jpg
 date: 1964-01-01T20:20:00.000Z
 displayDate: 1964 - 1970, 1974 - 1976
 ---

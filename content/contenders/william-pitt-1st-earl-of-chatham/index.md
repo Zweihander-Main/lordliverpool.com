@@ -1,6 +1,6 @@
 ---
 title: William Pitt, 1st Earl of Chatham
-featuredImage:
+featuredImage: William_Pitt_1st_Earl_of_Chatham.jpg
 date: 1766-01-01T20:20:00.000Z
 displayDate: 1766 - 1768
 ---

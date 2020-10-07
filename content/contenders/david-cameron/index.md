@@ -1,6 +1,6 @@
 ---
 title: David Cameron
-featuredImage:
+featuredImage: David_Cameron.jpg
 date: 2010-01-01T20:20:00.000Z
 displayDate: 2010 - 2016
 ---

@@ -1,6 +1,6 @@
 ---
 title: Tony Blair
-featuredImage:
+featuredImage: Tony_Blair.jpg
 date: 1997-01-01T20:20:00.000Z
 displayDate: 1997 - 2007
 ---
