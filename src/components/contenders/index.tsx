@@ -40,23 +40,28 @@ const Contenders: React.FC = () => {
 	const [selected, setSelected] = React.useState(contenders[0].node.id || '');
 	const selectedContender = contenders.find((c) => c.node.id === selected);
 
-	if (
-		!selectedContender?.node.frontmatter?.featuredImage?.childImageSharp
-			?.fluid
-	) {
-		throw new Error('Missing image for currently selected Prime Minsiter');
-	}
+	// if (
+	// 	!selectedContender?.node.frontmatter?.featuredImage?.childImageSharp
+	// 		?.fluid
+	// ) {
+	// 	throw new Error('Missing image for currently selected Prime Minister');
+	// }
+
+	//TODO Switch back
 
 	return (
 		<section className={styles.contenders}>
 			<figure className={styles.pictureContainer}>
-				<Img
-					className={styles.picture}
-					fluid={
-						selectedContender.node.frontmatter.featuredImage
-							.childImageSharp.fluid
-					}
-				/>
+				{selectedContender?.node?.frontmatter?.featuredImage
+					?.childImageSharp?.fluid && (
+					<Img
+						className={styles.picture}
+						fluid={
+							selectedContender.node.frontmatter.featuredImage
+								.childImageSharp.fluid
+						}
+					/>
+				)}
 				<figcaption className={styles.caption}>
 					<h2 className={styles.dates}>
 						{selectedContender.node.frontmatter.displayDate}

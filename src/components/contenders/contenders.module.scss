@@ -5,62 +5,69 @@
 $pic-bg: color.adjust(v.$light-bg, $lightness: -60%, $saturation: -10%);
 
 .contenders {
-	width: 100vw;
-	height: 100vh;
 	background-color: v.$light-bg;
+	color: v.$black;
 	display: grid;
 	grid-template-columns: 2fr 1fr;
 	grid-template-rows: 1fr;
-	color: v.$black;
+	height: 100vh;
+	width: 100vw;
 }
 
 .picture-container {
 	background-color: $pic-bg;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-template-rows: 1fr;
 	height: 100%;
 	width: 100%;
 }
 
 .picture {
+	grid-column: 1;
+	grid-row: 1;
 	height: 100%;
-	width: 100%;
 	mix-blend-mode: overlay;
+	width: 100%;
 }
 
 .caption {
-	padding-left: 1rem;
-	position: absolute;
-	bottom: 0px;
+	align-self: end;
 	color: v.$white;
-	text-transform: uppercase;
+	grid-column: 1;
+	grid-row: 1;
+	padding-left: 1rem;
 	text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+	text-transform: uppercase;
 }
 
 .name {
-	margin-bottom: 1rem;
 	font-size: 3.5vw;
+	margin-bottom: 1rem;
 }
 
 .dates {
 	@include m.header-normal;
-	margin-bottom: 0.1rem;
 	font-size: 1.6vw;
+	margin-bottom: 0.1rem;
 }
 
 .menu {
-	padding: 1rem;
-	grid-column: 2;
 	box-shadow: 0 0 15px v.$black;
+	grid-column: 2;
 	overflow-y: scroll;
+	padding: 1rem;
 }
+
 .menu-list {
 	list-style: none;
 	margin-left: 0;
 }
 
 .menu-list li {
-	margin-bottom: 1.38rem;
-	line-height: 1.1;
 	font-size: 1.31951rem;
+	line-height: 1.1;
+	margin-bottom: 1.38rem;
 }
 
 .link {
