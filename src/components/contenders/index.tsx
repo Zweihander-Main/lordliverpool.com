@@ -33,7 +33,7 @@ const Contenders: React.FC = () => {
 				}
 			}
 		}
-	`);
+	`); //TODO maxwidth change?
 
 	const { edges: contenders } = blogRollData.allMarkdownRemark;
 
@@ -56,6 +56,9 @@ const Contenders: React.FC = () => {
 					?.childImageSharp?.fluid && (
 					<Img
 						className={styles.picture}
+						imgStyle={{
+							objectPosition: 'center 25%',
+						}}
 						fluid={
 							selectedContender.node.frontmatter.featuredImage
 								.childImageSharp.fluid
