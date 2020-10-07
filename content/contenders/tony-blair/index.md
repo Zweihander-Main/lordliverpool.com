@@ -1,0 +1,20 @@
+---
+title: Tony Blair
+featuredImage:
+date: 1997-01-01T20:20:00.000Z
+displayDate: 1997 - 2007
+---
+
+Blair (1953- ) was the son of a Conservative Scottish law lecturer with political ambitions who fell seriously ill during Blair’s childhood. He was educated at Fettes College among pupils from richer backgrounds, which made him rebel, and at St. John’s College Oxford he devoted himself to leftist politics and rock music, gaining a second-class degree. After a decade at the Bar, he was nominated for the safe Labour seat of Sedgefield in 1983. Then he met Gordon Brown and together they moved up on the modernizing wing of the party until after the 1992 election defeat Brown was made Shadow Chancellor and Blair Shadow Home Secretary.
+
+In 1994, the Labour party’s leader John Smith (1938-94) died unexpectedly, and after some fast footwork against Brown, Blair emerged as leader, with Brown booked for the Chancellor of the Exchequer in a future Labour government. Blair immediately embarked on a program of “modernisation,” removing the commitment to public ownership (Clause 4) from the Labour party constitution and unofficially renaming the party “New Labour.” Given Major’s haplessness, this electability project achieved an element of overkill, and Labour came to power with a majority of 177 seats in May 1997.
+
+Economically, Blair was an improvement on his Labour predecessors. He did not nationalize anything significant, nor did he push up the top rates of income tax much, and his public spending only gradually came to exceed the levels under Major, although the dodgy accounting of the “private finance initiative” scheme make the figures flatter the more spendthrift real performance. In the fiscal year 1997, before Blair arrived, public spending was 37.2% of GDP. In the year to April 6, 2007, his last full year, it had only risen nominally to 39.1% of GDP (with some additional PFI spending) though it shot up in the following three years, because of a deep recession.
+
+Blair won another landslide in 2001 and a solid majority in 2005, although Labour, which won only 35% of the vote in 2005, was greatly helped by the vagaries of the British electoral system.
+
+In foreign policy, Blair was a strong European and multilateralist, though Brown prevented Britain replacing the pound with the euro. He refused a referendum on the European Constitution of 2004, allowing the EU to impose the same result by the Lisbon Treaty in 2007 after the French public had rejected the Constitution. He also joined George W. Bush’s ill-fated Iraq invasion in 2003 and produced a “dodgy dossier” of false information to justify the invasion. However, the foolish intervention in the Middle East was Bush’s idea; Blair was just following Britain’s traditional Atlanticist foreign policy.
+
+Blair’s main fault was meddling with Britain’s constitutional arrangements, to which meddling he brought all the quality control of Macmillan’s housing projects. His Good Friday Agreement with Northern Ireland imposed European obligations on Britain that proved massive obstacles to a Brexit agreement 20 years later. His incorporation of the European Convention on Human Rights caused endless statist meddling by unelected European bodies. His Scottish devolution empowered a Scottish Nationalist party that will demand referenda on separation from now till kingdom come, thus eventually splitting a Union that has worked well for 300 years. His reform of the House of Lords produced a disastrous assembly of “Tony’s cronies” life peers who seem determined to thwart any non-leftist impulses of the elected government. His reform of the Lord Chancellorship attempted to destroy an office that had existed for 1,400 years, to no obvious purpose. His “Supreme Court” has shown itself prone to every left-fashionable nostrum, inventing legal principles out of thin air.
+
+It is still too early to rank Blair accurately. At best he will rank below the middle of the pack, at worst he will rank among the dregs of the “more harm than good” brigade. The latter is looking increasingly likely.
