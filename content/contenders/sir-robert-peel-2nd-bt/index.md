@@ -14,3 +14,5 @@ Peel’s 1842 restoration of the Income Tax gave the state a solid fiscal basis,
 Corn Law Repeal was also damaging to Ireland, which under the Corn Laws had become a substantial granary for the rising British population. Peel and his Whig successors grossly mishandled the Irish potato famine, pursuing the irrelevant remedy of Corn Law abolition while failing for doctrinaire reasons to implement short-term relief measures that had been second nature to Jenkinson and others in the British famines of the 1790s.
 
 Peel was an admirable departmental minister, but twice in 1829 and 1846 failed by poor man-management to carry his party with him on reforms to which he became attached. As a prime minister, he was at best average.
+
+[More biographical information can be found in Peel's Chronology entry](/chronology/robert-peel)

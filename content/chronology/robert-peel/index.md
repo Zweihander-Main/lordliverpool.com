@@ -20,3 +20,5 @@ In March 1821, when Peel was talked of for the Exchequer, Mrs Arbuthnot said he 
 \[1] Quoted in James Gleick, _The Information: A History, A Theory, A Flood_ (London: Fourth Estate, 2012) p. 105.
 
 \[2] Bamford and Wellington, _The Journal of Mrs. Arbuthnot, 1820-32_, Vol. 2, pp. 69 and 345.
+
+[Information on how Peel stacks against other Prime Ministers can be found in his Contenders entry](/contenders/sir-robert-peel-2nd-bt)

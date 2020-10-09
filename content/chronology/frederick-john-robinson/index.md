@@ -22,3 +22,5 @@ Robinson was able and devoted to free market economics, but idle and diffident. 
 \[2] Ibid., Vol. 2, p. 67 (16 December 1826).
 
 \[3] Ibid., p. 162 (19 February 1828).
+
+[Information on how Robinson stacks against other Prime Ministers can be found in his Contenders entry](/contenders/frederick-1st-viscount-goderich)

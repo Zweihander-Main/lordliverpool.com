@@ -12,3 +12,5 @@ card: Secretary at War, 1809-28
 Palmerston broke with Liverpool over the Cambridge University election of 1826, when he and the other sitting member William John Bankes were opposed by two ministers, Copley and Goulburn, who opposed Catholic Emancipation (the position favoured by the largely clerical Cambridge University graduate electorate). He thus welcomed Canning’s advent to power in 1827 and resigned with Huskisson from Wellington’s government, moving thereafter towards the Whigs. Mrs Arbuthnot liked Palmerston before they became political opponents; in 1824 she wrote, ‘I like Lord Palmerston very much; he is very gentlemanlike and sensible and seems very amiable’<sup>1</sup>.
 
 \[1] Bamford and Wellington, _The Journal of Mrs. Arbuthnot_, 1820-32, Vol. 1, p. 419.
+
+[Information on how Palmerston stacks against other Prime Ministers can be found in his Contenders entry](/contenders/henry-3rd-viscount-palmerston)

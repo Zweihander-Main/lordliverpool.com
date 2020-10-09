@@ -34,3 +34,5 @@ Liverpool rescued Canning’s career on several occasions and remained good frie
 \[5] Ibid., Vol. 1, p. 91.
 
 \[6] Ibid., Vol. 2, p. 65 (15 December 1826).
+
+[Information on how Canning stacks against other Prime Ministers can be found in his Contenders entry](/contenders/george-canning)

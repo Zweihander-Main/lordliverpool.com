@@ -131,6 +131,8 @@ collections:
             required: false
     - name: pages
       label: Pages and Content
+			files:
+				- label: "Front page"
       folder: content/pages
       create: true
       slug: index

@@ -3,7 +3,7 @@ title: Robert Banks Jenkinson, Second Earl of Liverpool
 featuredImage: Robert_Banks_Jenkinson_Second_Earl_of_Liverpool.jpg
 timelineDate: 1770-06-07T01:01:01.000Z
 displayDate: June 7, 1770 – December 4, 1828
-category: colleagues
+category: family
 card: Prime Minister, 1812-27
 ---
 

@@ -6,3 +6,5 @@ displayDate: 1812 - 1827
 ---
 
 > **_Si monumentum requiris, circumspice!_**
+
+[More info about Liverpool can be found in the Chronology](/chronology/robert-banks-jenkinson-second-earl-of-liverpool)
