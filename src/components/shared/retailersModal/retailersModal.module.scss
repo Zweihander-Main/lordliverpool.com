@@ -1,0 +1,116 @@
+@use '~styles/util/variables.global' as v;
+@use '~styles/util/mixins.global' as m;
+
+$content-margin: 1rem;
+$bg-opacity: 0.7;
+$mobile-header: #27aae2;
+
+.outer {
+	bottom: 0;
+	color: v.$black;
+	height: 0;
+	left: 0;
+	line-height: 1.3;
+	opacity: 0;
+	overflow: hidden;
+	position: fixed;
+	right: 0;
+	top: 0;
+	transform: translate(0, 100%);
+	transform: translate3d(0, 100%, 0);
+	width: 0;
+	z-index: 999999;
+	transition: 250ms;
+}
+
+.outer:target,
+.outer.is-active {
+	height: auto;
+	opacity: 1;
+	transform: translate(0, 0);
+	width: auto;
+}
+
+.inner {
+	background: v.$white;
+	box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+	left: 50%;
+	max-height: calc(80vh - (3rem * 2));
+	max-width: 100%;
+	-webkit-overflow-scrolling: touch;
+	overflow-x: hidden;
+	overflow-y: auto;
+	position: absolute;
+	position: relative;
+	top: 3rem;
+	transform: translateX(-50%);
+	transition: max-width 0.25s linear, margin-left 0.125s linear;
+	z-index: 20;
+	max-width: 50vw;
+
+	> img,
+	> video,
+	> iframe {
+		height: auto;
+		min-height: 300px;
+		width: 100%;
+	}
+
+	> img {
+		max-width: 100%;
+		width: auto;
+	}
+
+	iframe {
+		border: 0;
+		display: block;
+		width: 100%;
+	}
+
+	> * {
+		max-width: 100%;
+	}
+}
+
+.close {
+	clip: rect(0 0 0 0);
+	display: block;
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	text-indent: -100px;
+}
+
+.close:focus::after {
+	outline: 1px dotted;
+	outline: -webkit-focus-ring-color auto 5px;
+}
+
+.close::before {
+	background-color: rgba(v.$black, $bg-opacity);
+	bottom: 0;
+	content: '';
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 10;
+}
+
+.close::after {
+	background: v.$white;
+	content: '';
+	content: '\00d7';
+	font-size: 1.2rem;
+	height: 1.5rem;
+	left: auto;
+	position: absolute;
+	right: 50%;
+	text-align: center;
+	text-decoration: none;
+	text-indent: 0;
+	top: 1.5rem;
+	vertical-align: middle;
+	width: 1.5rem;
+	z-index: 20;
+}

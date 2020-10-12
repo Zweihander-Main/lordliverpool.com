@@ -56,23 +56,25 @@ const SEO: React.FC<SEOProps> = ({
 
 	const metaDescription = description || site.siteMetadata.description;
 
+	let htmlClass = '';
+	if (app) {
+		htmlClass += 'app-body ';
+	}
+
+	let bodyClass = '';
+	if (app) {
+		bodyClass += 'app-body ';
+	}
+
 	return (
 		<Helmet
-			htmlAttributes={
-				app
-					? {
-							class: 'app-body',
-							lang,
-					  }
-					: { lang }
-			}
-			bodyAttributes={
-				app
-					? {
-							class: 'app-body',
-					  }
-					: {}
-			}
+			htmlAttributes={{
+				class: htmlClass,
+				lang,
+			}}
+			bodyAttributes={{
+				class: bodyClass,
+			}}
 			title={title}
 			titleTemplate={`%s | ${site.siteMetadata.title}`}
 			meta={[

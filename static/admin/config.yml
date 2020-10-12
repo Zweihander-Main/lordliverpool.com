@@ -131,8 +131,6 @@ collections:
             required: false
     - name: pages
       label: Pages and Content
-			files:
-				- label: "Front page"
       folder: content/pages
       create: true
       slug: index
@@ -158,3 +156,40 @@ collections:
             name: body
             widget: markdown
             required: false
+    - name: retailers
+      label: Retailers
+      folder: content/retailers
+      create: true
+      slug: index
+      media_folder: ''
+      public_folder: ''
+      path: '{{title}}/index'
+      editor:
+          preview: false
+      fields:
+          - label: Name
+            name: title
+            widget: string
+            required: true
+          - label: Featured Image
+            name: featuredImage
+            widget: image
+            required: false
+          - label: Currency
+            name: currency
+						widget: list
+						default: ["GBP"]
+						allow_add: true
+						required: true
+          - label: Format
+            name: format
+						widget: select
+						options: ["Paperback", "Hardback", "Ebook"]
+						min: 1
+						multiple: true
+						required: true
+					- label: link
+						name: link
+						widget: string
+						required: true
+

@@ -7,3 +7,11 @@
 // You can delete this file if you're not using it
 import 'typeface-libre-baskerville';
 import 'typeface-cardo';
+
+import React from 'react';
+
+import { ModalProvider } from './src/contexts/ModalContext';
+
+export const wrapRootElement = ({ element }) => (
+	<ModalProvider>{element}</ModalProvider>
+);

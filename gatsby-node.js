@@ -31,7 +31,8 @@ exports.createPages = ({ actions, graphql }) => {
 					edge.node.rawMarkdownRemark &&
 					edge.node.rawMarkdownRemark !== ''
 				) &&
-				edge.node.fields.sourceInstanceName !== 'pages'
+				edge.node.fields.sourceInstanceName !== 'pages' &&
+				edge.node.fields.sourceInstanceName !== 'retailers'
 			) {
 				createPage({
 					path: edge.node.fields.slug,

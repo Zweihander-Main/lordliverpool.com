@@ -1,6 +1,7 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import BackgroundImage from 'gatsby-background-image';
+import ModalButton from 'components/shared/retailersButton';
 
 import styles from './hero.module.scss';
 
@@ -37,7 +38,8 @@ const Hero: React.FC = () => {
 				<span></span>
 			</span>
 			<div className={styles.retailers}>
-				<h4>Available November</h4>
+				<h6 className={styles.availableText}>Available November 26</h6>
+				<ModalButton />
 			</div>
 		</BackgroundImage>
 	);

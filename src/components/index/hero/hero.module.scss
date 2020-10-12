@@ -1,4 +1,5 @@
 @use '~styles/util/variables.global' as v;
+@use '~styles/util/mixins.global' as m;
 
 .hero {
 	background-size: contain;
@@ -27,11 +28,18 @@
 }
 
 .retailers {
-	background-color: v.$red;
-	font-size: v.$hero-tiny-size;
 	grid-row-start: 5;
-	letter-spacing: 0.03em; //TODO var or convert
 	padding-top: 1em;
+	align-self: center;
+	padding-bottom: 3vh;
+
+	h4 {
+		@include m.header-normal;
+	}
+}
+
+.available-text {
+	font-weight: normal;
 }
 
 .arrow {
