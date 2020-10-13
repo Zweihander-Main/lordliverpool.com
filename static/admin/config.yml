@@ -6,6 +6,8 @@ backend:
 media_folder: static/img
 public_folder: /img
 publish_mode: editorial_workflow
+editor:
+    preview: true
 collections:
     - name: miscellany
       label: Miscellany
@@ -15,8 +17,6 @@ collections:
       media_folder: ''
       public_folder: ''
       path: '{{title}}/index'
-      editor:
-          preview: false
       fields:
           - label: Title
             name: title
@@ -50,8 +50,6 @@ collections:
       media_folder: ''
       public_folder: ''
       path: '{{title}}/index'
-      editor:
-          preview: false
       fields:
           - label: Title
             name: title
@@ -100,8 +98,6 @@ collections:
       media_folder: ''
       public_folder: ''
       path: '{{title}}/index'
-      editor:
-          preview: false
       fields:
           - label: Name
             name: title
@@ -137,8 +133,6 @@ collections:
       media_folder: ''
       public_folder: ''
       path: '{{title}}/index'
-      editor:
-          preview: false
       fields:
           - label: Name
             name: title
@@ -164,8 +158,6 @@ collections:
       media_folder: ''
       public_folder: ''
       path: '{{title}}/index'
-      editor:
-          preview: false
       fields:
           - label: Name
             name: title
