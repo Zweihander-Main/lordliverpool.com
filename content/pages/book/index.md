@@ -2,7 +2,6 @@
 title: Britain's Greatest Prime Minister
 featuredImage: Britains_Greatest_Prime_Minister.png
 ---
-
 ## Contents
 
 I – Introduction<br>
