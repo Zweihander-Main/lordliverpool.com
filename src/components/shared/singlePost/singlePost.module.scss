@@ -1,6 +1,9 @@
 @use '~styles/util/variables.global' as v;
 @use '~styles/util/mixins.global' as m;
 
+//TODO print styles
+//TODO links wrong color
+//TODO highlight color
 .post-container {
 	background-color: v.$light-bg;
 	min-height: 95vh;

@@ -27,6 +27,8 @@ const Book: React.FC = () => {
 
 	const page = bookData.markdownRemark;
 
+	// TODO descriptions and excerpts aren't being populated consistently
+	console.log(page.frontmatter.featuredImage);
 	return (
 		<Layout>
 			<SEO
