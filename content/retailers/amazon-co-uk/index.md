@@ -1,9 +1,11 @@
 ---
 title: Amazon.co.uk
-currency: ['GBP']
-flag: ['UK']
 featuredImage: Amazon.png
-format: ['Hardback']
+currency:
+  - GBP
+format:
+  - Hardback
 link: https://www.amazon.co.uk/Britains-Greatest-Prime-Minister-Liverpool/dp/0718895649
+flag: UK
 order: 2
 ---
