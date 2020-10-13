@@ -3,20 +3,20 @@
 
 .button {
 	background: #550003;
-	box-shadow: inset -6px -6px 13px #220001, inset 6px 6px 13px #880005,
+	box-shadow: inset -1px -1px 3px #220001, inset 1px 1px 3px #880005,
 		0px 0px 2px #220001; //TODO mixin
 	color: v.$white;
 	padding: 0.6rem 1rem;
 	text-decoration: none;
-	transition: 100ms;
+	transition: 75ms;
 
 	&:hover {
-		box-shadow: inset -10px -10px 21px #220001, inset 10px 10px 21px #880005,
+		box-shadow: inset -2px -2px 5px #220001, inset 2px 2px 5px #880005,
 			0px 0px 5px #220001;
 	}
 
 	&:active {
-		box-shadow: inset 6px 6px 13px #220001, inset -6px -6px 13px #880005,
+		box-shadow: inset 1px 1px 3px #220001, inset -1px -1px 3px #880005,
 			0px 0px 5px #220001;
 	}
 }

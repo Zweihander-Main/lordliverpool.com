@@ -848,8 +848,10 @@ enum FileFieldsEnum {
   childMarkdownRemark___frontmatter___category
   childMarkdownRemark___frontmatter___card
   childMarkdownRemark___frontmatter___currency
+  childMarkdownRemark___frontmatter___flag
   childMarkdownRemark___frontmatter___format
   childMarkdownRemark___frontmatter___link
+  childMarkdownRemark___frontmatter___order
   childMarkdownRemark___excerpt @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMarkdownRemark___rawMarkdownBody @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   childMarkdownRemark___fileAbsolutePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -1577,8 +1579,10 @@ enum MarkdownRemarkFieldsEnum {
   frontmatter___category
   frontmatter___card
   frontmatter___currency
+  frontmatter___flag
   frontmatter___format
   frontmatter___link
+  frontmatter___order
   excerpt @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   rawMarkdownBody @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   fileAbsolutePath @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
@@ -1750,8 +1754,10 @@ type MarkdownRemarkFrontmatter {
   category: String
   card: String
   currency: [String]
+  flag: [String]
   format: [String]
   link: String
+  order: Int
 }
 
 input MarkdownRemarkFrontmatterFilterInput {
@@ -1765,8 +1771,10 @@ input MarkdownRemarkFrontmatterFilterInput {
   category: StringQueryOperatorInput
   card: StringQueryOperatorInput
   currency: StringQueryOperatorInput
+  flag: StringQueryOperatorInput
   format: StringQueryOperatorInput
   link: StringQueryOperatorInput
+  order: IntQueryOperatorInput
 }
 
 type MarkdownRemarkGroupConnection {

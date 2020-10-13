@@ -192,4 +192,18 @@ collections:
 						name: link
 						widget: string
 						required: true
+					- label: flag
+						name: flag
+						widget: select
+						options: ["None", "UK", "USA"]
+						multiple: false
+						required: true
+						default: ["None"]
+					- label: Order
+						name: order
+						widget: number
+						default: 0
+						value_type: int
+						required: true
+
 

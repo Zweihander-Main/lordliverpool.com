@@ -737,8 +737,10 @@ enum FileFieldsEnum {
   childMarkdownRemark___frontmatter___category = 'childMarkdownRemark.frontmatter.category',
   childMarkdownRemark___frontmatter___card = 'childMarkdownRemark.frontmatter.card',
   childMarkdownRemark___frontmatter___currency = 'childMarkdownRemark.frontmatter.currency',
+  childMarkdownRemark___frontmatter___flag = 'childMarkdownRemark.frontmatter.flag',
   childMarkdownRemark___frontmatter___format = 'childMarkdownRemark.frontmatter.format',
   childMarkdownRemark___frontmatter___link = 'childMarkdownRemark.frontmatter.link',
+  childMarkdownRemark___frontmatter___order = 'childMarkdownRemark.frontmatter.order',
   childMarkdownRemark___excerpt = 'childMarkdownRemark.excerpt',
   childMarkdownRemark___rawMarkdownBody = 'childMarkdownRemark.rawMarkdownBody',
   childMarkdownRemark___fileAbsolutePath = 'childMarkdownRemark.fileAbsolutePath',
@@ -1587,8 +1589,10 @@ enum MarkdownRemarkFieldsEnum {
   frontmatter___category = 'frontmatter.category',
   frontmatter___card = 'frontmatter.card',
   frontmatter___currency = 'frontmatter.currency',
+  frontmatter___flag = 'frontmatter.flag',
   frontmatter___format = 'frontmatter.format',
   frontmatter___link = 'frontmatter.link',
+  frontmatter___order = 'frontmatter.order',
   excerpt = 'excerpt',
   rawMarkdownBody = 'rawMarkdownBody',
   fileAbsolutePath = 'fileAbsolutePath',
@@ -1728,8 +1732,10 @@ type MarkdownRemarkFrontmatter = {
   readonly category: Maybe<Scalars['String']>;
   readonly card: Maybe<Scalars['String']>;
   readonly currency: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
+  readonly flag: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
   readonly format: Maybe<ReadonlyArray<Maybe<Scalars['String']>>>;
   readonly link: Maybe<Scalars['String']>;
+  readonly order: Maybe<Scalars['Int']>;
 };
 
 
@@ -1759,8 +1765,10 @@ type MarkdownRemarkFrontmatterFilterInput = {
   readonly category: Maybe<StringQueryOperatorInput>;
   readonly card: Maybe<StringQueryOperatorInput>;
   readonly currency: Maybe<StringQueryOperatorInput>;
+  readonly flag: Maybe<StringQueryOperatorInput>;
   readonly format: Maybe<StringQueryOperatorInput>;
   readonly link: Maybe<StringQueryOperatorInput>;
+  readonly order: Maybe<IntQueryOperatorInput>;
 };
 
 type MarkdownRemarkGroupConnection = {
@@ -3087,10 +3095,7 @@ type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
-type SEOSiteMetadataQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type SEOSiteMetadataQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author'>> }> };
+type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
 type RetailersInfoQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -3098,9 +3103,9 @@ type RetailersInfoQueryVariables = Exact<{ [key: string]: never; }>;
 type RetailersInfoQuery = { readonly allMarkdownRemark: { readonly edges: ReadonlyArray<{ readonly node: (
         Pick<MarkdownRemark, 'id'>
         & { readonly frontmatter: Maybe<(
-          Pick<MarkdownRemarkFrontmatter, 'title' | 'currency' | 'format' | 'link'>
+          Pick<MarkdownRemarkFrontmatter, 'title' | 'currency' | 'format' | 'link' | 'flag'>
           & { readonly featuredImage: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }> }
         )> }
-      ) }> } };
+      ) }> }, readonly UK_pic: Maybe<{ readonly childImageSharp: Maybe<{ readonly fixed: Maybe<GatsbyImageSharpFixedFragment> }> }>, readonly USA_pic: Maybe<{ readonly childImageSharp: Maybe<{ readonly fixed: Maybe<GatsbyImageSharpFixedFragment> }> }> };
 
 }
