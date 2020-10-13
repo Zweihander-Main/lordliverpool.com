@@ -61,6 +61,11 @@
 
 .post-content {
 	text-align: left;
+
+	a {
+		color: v.$black;
+		font-style: italic;
+	}
 }
 //TODO menu
 
