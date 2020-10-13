@@ -177,33 +177,31 @@ collections:
             required: false
           - label: Currency
             name: currency
-						widget: list
-						default: ["GBP"]
-						allow_add: true
-						required: true
+            widget: list
+            default: ['GBP']
+            allow_add: true
+            required: true
           - label: Format
             name: format
-						widget: select
-						options: ["Paperback", "Hardback", "Ebook"]
-						min: 1
-						multiple: true
-						required: true
-					- label: link
-						name: link
-						widget: string
-						required: true
-					- label: flag
-						name: flag
-						widget: select
-						options: ["None", "UK", "USA"]
-						multiple: false
-						required: true
-						default: ["None"]
-					- label: Order
-						name: order
-						widget: number
-						default: 0
-						value_type: int
-						required: true
-
-
+            widget: select
+            options: ['Paperback', 'Hardback', 'Ebook']
+            min: 1
+            multiple: true
+            required: true
+          - label: link
+            name: link
+            widget: string
+            required: true
+          - label: flag
+            name: flag
+            widget: select
+            options: ['None', 'UK', 'USA']
+            multiple: false
+            required: true
+            default: ['None']
+          - label: Order
+            name: order
+            widget: number
+            default: 0
+            value_type: int
+            required: true
