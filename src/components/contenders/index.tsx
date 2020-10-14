@@ -33,7 +33,7 @@ const Contenders: React.FC = () => {
 				}
 			}
 		}
-	`); //TODO maxwidth change?
+	`);
 
 	const { edges: contenders } = blogRollData.allMarkdownRemark;
 

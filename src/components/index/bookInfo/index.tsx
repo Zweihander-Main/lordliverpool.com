@@ -1,5 +1,5 @@
 import React from 'react';
-import styles, { bookInfo } from './bookInfo.module.scss';
+import styles from './bookInfo.module.scss';
 import Img from 'gatsby-image';
 import { useStaticQuery, graphql } from 'gatsby';
 import Link from 'gatsby-link';
@@ -18,7 +18,6 @@ const BookInfo: React.FC = () => {
 				}
 			}
 			markdownRemark(fields: { slug: { eq: "/pages/home__bookInfo" } }) {
-				id
 				html
 			}
 		}

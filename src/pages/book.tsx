@@ -8,7 +8,6 @@ const Book: React.FC = () => {
 	const bookData = useStaticQuery<GatsbyTypes.BookQuery>(graphql`
 		query Book {
 			markdownRemark(fields: { slug: { eq: "/pages/book" } }) {
-				id
 				html
 				frontmatter {
 					title

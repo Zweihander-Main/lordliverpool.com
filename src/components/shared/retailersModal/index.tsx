@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './retailersModal.module.scss';
 import ModalContext from 'contexts/ModalContext';
 import useJS from 'hooks/useJS';
-import { useStaticQuery, graphql, Link } from 'gatsby';
+import { useStaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 
 const RetailersModal: React.FC = ({}) => {

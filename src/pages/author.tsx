@@ -8,7 +8,6 @@ const Author: React.FC = () => {
 	const authorData = useStaticQuery<GatsbyTypes.AuthorQuery>(graphql`
 		query Author {
 			markdownRemark(fields: { slug: { eq: "/pages/author" } }) {
-				id
 				html
 				frontmatter {
 					title

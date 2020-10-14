@@ -45,13 +45,7 @@ export default MiscellanyPostTemplate;
 
 export const pageQuery = graphql`
 	query BlogPostBySlug($path: String!) {
-		site {
-			siteMetadata {
-				title
-			}
-		}
 		markdownRemark(fields: { slug: { eq: $path } }) {
-			id
 			excerpt(pruneLength: 160)
 			html
 			frontmatter {

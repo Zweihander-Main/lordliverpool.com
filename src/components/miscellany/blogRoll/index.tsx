@@ -19,7 +19,6 @@ const Miscellany: React.FC = () => {
 						frontmatter {
 							title
 							subtitle
-							date(formatString: "MMMM DD, YYYY")
 							featuredImage {
 								childImageSharp {
 									fluid(maxWidth: 550) {

@@ -44,7 +44,6 @@ export const pageQuery = graphql`
 			}
 		}
 		markdownRemark(fields: { slug: { eq: $path } }) {
-			id
 			excerpt(pruneLength: 160)
 			html
 			frontmatter {
