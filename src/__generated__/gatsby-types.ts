@@ -2627,13 +2627,16 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___path = 'pluginCreator.pluginOptions.path',
   pluginCreator___pluginOptions___short_name = 'pluginCreator.pluginOptions.short_name',
   pluginCreator___pluginOptions___start_url = 'pluginCreator.pluginOptions.start_url',
+  pluginCreator___pluginOptions___lang = 'pluginCreator.pluginOptions.lang',
   pluginCreator___pluginOptions___background_color = 'pluginCreator.pluginOptions.background_color',
   pluginCreator___pluginOptions___theme_color = 'pluginCreator.pluginOptions.theme_color',
   pluginCreator___pluginOptions___display = 'pluginCreator.pluginOptions.display',
+  pluginCreator___pluginOptions___icon = 'pluginCreator.pluginOptions.icon',
   pluginCreator___pluginOptions___cache_busting_mode = 'pluginCreator.pluginOptions.cache_busting_mode',
   pluginCreator___pluginOptions___include_favicon = 'pluginCreator.pluginOptions.include_favicon',
   pluginCreator___pluginOptions___legacy = 'pluginCreator.pluginOptions.legacy',
   pluginCreator___pluginOptions___theme_color_in_head = 'pluginCreator.pluginOptions.theme_color_in_head',
+  pluginCreator___pluginOptions___cacheDigest = 'pluginCreator.pluginOptions.cacheDigest',
   pluginCreator___pluginOptions___pathCheck = 'pluginCreator.pluginOptions.pathCheck',
   pluginCreator___nodeAPIs = 'pluginCreator.nodeAPIs',
   pluginCreator___browserAPIs = 'pluginCreator.browserAPIs',
@@ -2833,13 +2836,16 @@ enum SitePluginFieldsEnum {
   pluginOptions___path = 'pluginOptions.path',
   pluginOptions___short_name = 'pluginOptions.short_name',
   pluginOptions___start_url = 'pluginOptions.start_url',
+  pluginOptions___lang = 'pluginOptions.lang',
   pluginOptions___background_color = 'pluginOptions.background_color',
   pluginOptions___theme_color = 'pluginOptions.theme_color',
   pluginOptions___display = 'pluginOptions.display',
+  pluginOptions___icon = 'pluginOptions.icon',
   pluginOptions___cache_busting_mode = 'pluginOptions.cache_busting_mode',
   pluginOptions___include_favicon = 'pluginOptions.include_favicon',
   pluginOptions___legacy = 'pluginOptions.legacy',
   pluginOptions___theme_color_in_head = 'pluginOptions.theme_color_in_head',
+  pluginOptions___cacheDigest = 'pluginOptions.cacheDigest',
   pluginOptions___pathCheck = 'pluginOptions.pathCheck',
   nodeAPIs = 'nodeAPIs',
   browserAPIs = 'browserAPIs',
@@ -2964,13 +2970,16 @@ type SitePluginPluginOptions = {
   readonly path: Maybe<Scalars['String']>;
   readonly short_name: Maybe<Scalars['String']>;
   readonly start_url: Maybe<Scalars['String']>;
+  readonly lang: Maybe<Scalars['String']>;
   readonly background_color: Maybe<Scalars['String']>;
   readonly theme_color: Maybe<Scalars['String']>;
   readonly display: Maybe<Scalars['String']>;
+  readonly icon: Maybe<Scalars['String']>;
   readonly cache_busting_mode: Maybe<Scalars['String']>;
   readonly include_favicon: Maybe<Scalars['Boolean']>;
   readonly legacy: Maybe<Scalars['Boolean']>;
   readonly theme_color_in_head: Maybe<Scalars['Boolean']>;
+  readonly cacheDigest: Maybe<Scalars['String']>;
   readonly pathCheck: Maybe<Scalars['Boolean']>;
 };
 
@@ -3003,13 +3012,16 @@ type SitePluginPluginOptionsFilterInput = {
   readonly path: Maybe<StringQueryOperatorInput>;
   readonly short_name: Maybe<StringQueryOperatorInput>;
   readonly start_url: Maybe<StringQueryOperatorInput>;
+  readonly lang: Maybe<StringQueryOperatorInput>;
   readonly background_color: Maybe<StringQueryOperatorInput>;
   readonly theme_color: Maybe<StringQueryOperatorInput>;
   readonly display: Maybe<StringQueryOperatorInput>;
+  readonly icon: Maybe<StringQueryOperatorInput>;
   readonly cache_busting_mode: Maybe<StringQueryOperatorInput>;
   readonly include_favicon: Maybe<BooleanQueryOperatorInput>;
   readonly legacy: Maybe<BooleanQueryOperatorInput>;
   readonly theme_color_in_head: Maybe<BooleanQueryOperatorInput>;
+  readonly cacheDigest: Maybe<StringQueryOperatorInput>;
   readonly pathCheck: Maybe<BooleanQueryOperatorInput>;
 };
 
@@ -3095,6 +3107,77 @@ type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 type PagesQueryQuery = { readonly allSitePage: { readonly nodes: ReadonlyArray<Pick<SitePage, 'path'>> } };
 
+type AuthorQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type AuthorQuery = { readonly markdownRemark: Maybe<(
+    Pick<MarkdownRemark, 'html'>
+    & { readonly frontmatter: Maybe<(
+      Pick<MarkdownRemarkFrontmatter, 'title' | 'description'>
+      & { readonly featuredImage: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }> }
+    )> }
+  )> };
+
+type BookQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type BookQuery = { readonly markdownRemark: Maybe<(
+    Pick<MarkdownRemark, 'html'>
+    & { readonly frontmatter: Maybe<(
+      Pick<MarkdownRemarkFrontmatter, 'title' | 'description'>
+      & { readonly featuredImage: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }> }
+    )> }
+  )> };
+
+type ChronologyQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type ChronologyQueryQuery = { readonly noPost: { readonly edges: ReadonlyArray<{ readonly node: (
+        Pick<MarkdownRemark, 'id'>
+        & { readonly frontmatter: Maybe<(
+          Pick<MarkdownRemarkFrontmatter, 'title' | 'timelineDate' | 'displayDate' | 'category' | 'card'>
+          & { readonly featuredImage: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }> }
+        )> }
+      ) }> }, readonly withPost: { readonly edges: ReadonlyArray<{ readonly node: (
+        Pick<MarkdownRemark, 'id'>
+        & { readonly fields: Maybe<Pick<MarkdownRemarkFields, 'slug'>>, readonly frontmatter: Maybe<(
+          Pick<MarkdownRemarkFrontmatter, 'title' | 'timelineDate' | 'displayDate' | 'category' | 'card'>
+          & { readonly featuredImage: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }> }
+        )> }
+      ) }> } };
+
+type ContendersQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type ContendersQueryQuery = { readonly allMarkdownRemark: { readonly edges: ReadonlyArray<{ readonly node: (
+        Pick<MarkdownRemark, 'id'>
+        & { readonly fields: Maybe<Pick<MarkdownRemarkFields, 'slug'>>, readonly frontmatter: Maybe<(
+          Pick<MarkdownRemarkFrontmatter, 'title' | 'displayDate'>
+          & { readonly featuredImage: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }> }
+        )> }
+      ) }> } };
+
+type BookInfoQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type BookInfoQuery = { readonly file: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }>, readonly markdownRemark: Maybe<Pick<MarkdownRemark, 'html'>> };
+
+type HeroImageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type HeroImageQuery = { readonly file: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }> };
+
+type BlogRollQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type BlogRollQueryQuery = { readonly allMarkdownRemark: { readonly edges: ReadonlyArray<{ readonly node: (
+        Pick<MarkdownRemark, 'id'>
+        & { readonly fields: Maybe<Pick<MarkdownRemarkFields, 'slug'>>, readonly frontmatter: Maybe<(
+          Pick<MarkdownRemarkFrontmatter, 'title' | 'subtitle'>
+          & { readonly featuredImage: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }> }
+        )> }
+      ) }> } };
+
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 
 type RetailersInfoQueryVariables = Exact<{ [key: string]: never; }>;
@@ -3107,5 +3190,15 @@ type RetailersInfoQuery = { readonly allMarkdownRemark: { readonly edges: Readon
           & { readonly featuredImage: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }> }
         )> }
       ) }> }, readonly UK_pic: Maybe<{ readonly childImageSharp: Maybe<{ readonly fixed: Maybe<GatsbyImageSharpFixedFragment> }> }>, readonly USA_pic: Maybe<{ readonly childImageSharp: Maybe<{ readonly fixed: Maybe<GatsbyImageSharpFixedFragment> }> }> };
+
+type MenuImagesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type MenuImagesQuery = { readonly chronology: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }>, readonly contenders: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }>, readonly miscellany: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }>, readonly author: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }>, readonly book: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }> };
+
+type SEOSiteMetadataQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type SEOSiteMetadataQuery = { readonly site: Maybe<{ readonly siteMetadata: Maybe<Pick<SiteSiteMetadata, 'title' | 'description' | 'author'>> }> };
 
 }

@@ -2372,13 +2372,16 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___path
   pluginCreator___pluginOptions___short_name
   pluginCreator___pluginOptions___start_url
+  pluginCreator___pluginOptions___lang
   pluginCreator___pluginOptions___background_color
   pluginCreator___pluginOptions___theme_color
   pluginCreator___pluginOptions___display
+  pluginCreator___pluginOptions___icon
   pluginCreator___pluginOptions___cache_busting_mode
   pluginCreator___pluginOptions___include_favicon
   pluginCreator___pluginOptions___legacy
   pluginCreator___pluginOptions___theme_color_in_head
+  pluginCreator___pluginOptions___cacheDigest
   pluginCreator___pluginOptions___pathCheck
   pluginCreator___nodeAPIs
   pluginCreator___browserAPIs
@@ -2566,13 +2569,16 @@ enum SitePluginFieldsEnum {
   pluginOptions___path
   pluginOptions___short_name
   pluginOptions___start_url
+  pluginOptions___lang
   pluginOptions___background_color
   pluginOptions___theme_color
   pluginOptions___display
+  pluginOptions___icon
   pluginOptions___cache_busting_mode
   pluginOptions___include_favicon
   pluginOptions___legacy
   pluginOptions___theme_color_in_head
+  pluginOptions___cacheDigest
   pluginOptions___pathCheck
   nodeAPIs
   browserAPIs
@@ -2697,13 +2703,16 @@ type SitePluginPluginOptions {
   path: String
   short_name: String
   start_url: String
+  lang: String
   background_color: String
   theme_color: String
   display: String
+  icon: String
   cache_busting_mode: String
   include_favicon: Boolean
   legacy: Boolean
   theme_color_in_head: Boolean
+  cacheDigest: String
   pathCheck: Boolean
 }
 
@@ -2736,13 +2745,16 @@ input SitePluginPluginOptionsFilterInput {
   path: StringQueryOperatorInput
   short_name: StringQueryOperatorInput
   start_url: StringQueryOperatorInput
+  lang: StringQueryOperatorInput
   background_color: StringQueryOperatorInput
   theme_color: StringQueryOperatorInput
   display: StringQueryOperatorInput
+  icon: StringQueryOperatorInput
   cache_busting_mode: StringQueryOperatorInput
   include_favicon: BooleanQueryOperatorInput
   legacy: BooleanQueryOperatorInput
   theme_color_in_head: BooleanQueryOperatorInput
+  cacheDigest: StringQueryOperatorInput
   pathCheck: BooleanQueryOperatorInput
 }
 

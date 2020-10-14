@@ -41,19 +41,20 @@ module.exports = {
 				path: `${__dirname}/src/images`,
 			},
 		},
+		`gatsby-plugin-remove-fingerprints`,
 		`gatsby-transformer-sharp`,
 		`gatsby-plugin-sharp`,
 		{
 			resolve: `gatsby-plugin-manifest`,
 			options: {
-				name: `gatsby-starter-default`,
-				short_name: `starter`,
+				name: `Britain's Greatest Prime Minister: Lord Liverpool`,
+				short_name: `Lord Liverpool`,
 				start_url: `/`,
-				background_color: `#663399`,
-				theme_color: `#663399`,
+				lang: `en`,
+				background_color: `#260101`,
+				theme_color: `#260101`,
 				display: `minimal-ui`,
-				// icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
-				// TODO add icon back in
+				icon: `src/images/bgpmicon.png`, // This path is relative to the root of the site.
 			},
 		},
 		{
