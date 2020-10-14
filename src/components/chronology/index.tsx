@@ -10,19 +10,18 @@ const Chronology: React.FC = () => {
 		GatsbyTypes.ChronologyQueryQuery
 	>(graphql`
 		query ChronologyQuery {
-			allMarkdownRemark(
+			noPost: allMarkdownRemark(
 				sort: { order: ASC, fields: [frontmatter___timelineDate] }
-				filter: { fields: { sourceInstanceName: { eq: "chronology" } } }
+				filter: {
+					fields: { sourceInstanceName: { eq: "chronology" } }
+					rawMarkdownBody: { eq: "" }
+				}
 			) {
 				edges {
 					node {
 						id
-						fields {
-							slug
-						}
 						frontmatter {
 							title
-							subtitle
 							timelineDate(formatString: "y")
 							displayDate
 							category
@@ -35,16 +34,55 @@ const Chronology: React.FC = () => {
 								}
 							}
 						}
-						rawMarkdownBody
+					}
+				}
+			}
+			withPost: allMarkdownRemark(
+				sort: { order: ASC, fields: [frontmatter___timelineDate] }
+				filter: {
+					fields: { sourceInstanceName: { eq: "chronology" } }
+					rawMarkdownBody: { ne: "" }
+				}
+			) {
+				edges {
+					node {
+						id
+						fields {
+							slug
+						}
+						frontmatter {
+							title
+							timelineDate(formatString: "y")
+							displayDate
+							category
+							card
+							featuredImage {
+								childImageSharp {
+									fluid(maxWidth: 500) {
+										...GatsbyImageSharpFluid
+									}
+								}
+							}
+						}
 					}
 				}
 			}
 		}
-	`); // TODO restrain max width of image
+	`);
 
-	const { edges: cards } = chronologyData.allMarkdownRemark;
+	const { edges: cardsWithoutPost } = chronologyData.noPost;
+	const { edges: cardsWithPost } = chronologyData.withPost;
+	const cards = [
+		...cardsWithPost.map((card) => {
+			return { ...card.node, hasPost: true };
+		}),
+		...cardsWithoutPost.map((card) => {
+			return { ...card.node, fields: { slug: '' }, hasPost: false };
+		}),
+	];
+
 	const pulledInCategories = cards
-		.map((c) => c?.node.frontmatter?.category || '')
+		.map((c) => c?.frontmatter?.category || '')
 		.filter((value, index, self) => self.indexOf(value) === index)
 		.filter((value) => value && value !== '');
 	const categories = ['all', ...pulledInCategories];
@@ -55,12 +93,11 @@ const Chronology: React.FC = () => {
 
 	const ticks = (selectedCategory !== categories[0]
 		? cards.filter(
-				(value) =>
-					value?.node?.frontmatter?.category === selectedCategory
+				(value) => value?.frontmatter?.category === selectedCategory
 		  )
 		: cards
 	)
-		.map((card) => card.node.frontmatter?.timelineDate)
+		.map((card) => card.frontmatter?.timelineDate)
 		.filter((year) => typeof year !== 'undefined') as Array<string>; //not cheating, TS won't filter out undefined types
 
 	const cardContainerRef = React.useRef<HTMLDivElement>(null);
@@ -75,17 +112,7 @@ const Chronology: React.FC = () => {
 		cardContainerRef.current.focus();
 	}
 
-	const showMoreBGRight = !(containerWidth + startPos <= viewportWidth);
-	const showMoreBGLeft = Math.round(startPos) !== 0;
-	const sectionClass = `${styles.chronology} `; /**${
-		(showMoreBGLeft && showMoreBGRight)
-			? styles.showMoreBgBoth
-			: showMoreBGLeft
-			? styles.showMoreBgLeft
-			: showMoreBGRight
-			? styles.showMoreBgRight
-			: ''
-	}`;**/
+	const sectionClass = `${styles.chronology} `;
 
 	return (
 		<section className={sectionClass}>
@@ -112,7 +139,7 @@ const Chronology: React.FC = () => {
 				<div className={styles.cardContainer} ref={cardContainerRef}>
 					<div className={styles.buffer}>&nbsp;</div>
 					{cards &&
-						cards.map(({ node: card }) => {
+						cards.map((card) => {
 							const show =
 								selectedCategory === categories[0] ||
 								card?.frontmatter?.category ===
@@ -126,7 +153,7 @@ const Chronology: React.FC = () => {
 											?.childImageSharp?.fluid
 									}
 									title={card?.frontmatter?.title}
-									isFullArticle={card?.rawMarkdownBody !== ''}
+									isFullArticle={card.hasPost}
 									slug={card?.fields?.slug}
 									text={card?.frontmatter?.card}
 									displayDate={card?.frontmatter?.displayDate}
