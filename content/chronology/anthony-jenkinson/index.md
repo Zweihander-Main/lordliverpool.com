@@ -4,7 +4,7 @@ featuredImage: 1570_(Anthony_Jenkinson_&_Abraham_Ortelius).jpg
 timelineDate: 1529-01-01T20:09:45.329Z
 displayDate: 1529 - 1611
 category: family
-card: Liverpool's Great(x3)-Grandfather
+card: Liverpool's Great(x4)-Grandfather
 ---
 
 **Anthony Jenkinson (1529-1611)** was born at Market Harborough, Leicestershire, into a mercantile family. He travelled extensively throughout Europe and in the Eastern Mediterranean from 1546-56, obtaining a safe conduct for travel in the Ottoman Empire from Suleiman II (‘the Magnificent’) in 1553. In 1557 he was appointed captain-general of the quite new Muscovy Company (the first major chartered joint stock company) after its founder Richard Chancellor was killed in a shipwreck.

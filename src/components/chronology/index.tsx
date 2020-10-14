@@ -29,7 +29,7 @@ const Chronology: React.FC = () => {
 							card
 							featuredImage {
 								childImageSharp {
-									fluid {
+									fluid(maxWidth: 500) {
 										...GatsbyImageSharpFluid
 									}
 								}
