@@ -223,6 +223,7 @@ $border-radius: 8px;
 	cursor: pointer;
 	margin: 0 1rem 0 0;
 	padding: 0.2rem 1rem;
+	user-select: none;
 
 	&:hover {
 		background: linear-gradient(145deg, #fff, #eaeaea);
