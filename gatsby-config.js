@@ -1,7 +1,7 @@
 module.exports = {
 	siteMetadata: {
-		title: `Gatsby Default Starter`, //TODO Change title and description
-		description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
+		title: `Britain's Greatest Prime Minister: Lord Liverpool`, //TODO Change title and description
+		description: `Britain’s Greatest Prime Minister: Lord Liverpool unpicks two centuries of Whig history to redeem Lord Liverpool (1770-1828) from ‘arch-mediocrity’ and establish him as the greatest political leader the country has ever seen.`,
 		author: `Martin Hutchinson`,
 	},
 	plugins: [

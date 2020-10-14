@@ -18,4 +18,5 @@ export const header: string;
 export const titleLink: string;
 export const headerNoImage: string;
 export const image: string;
+export const text: string;
 export const displayDate: string;
