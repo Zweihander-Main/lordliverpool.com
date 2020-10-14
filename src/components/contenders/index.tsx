@@ -63,6 +63,12 @@ const Contenders: React.FC = () => {
 							selectedContender.node.frontmatter.featuredImage
 								.childImageSharp.fluid
 						}
+						onLoad={() => {
+							console.log('load');
+						}}
+						onStartLoad={() => {
+							console.log('startload');
+						}}
 					/>
 				)}
 				<figcaption className={styles.caption}>

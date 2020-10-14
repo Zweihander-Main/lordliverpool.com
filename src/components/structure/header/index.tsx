@@ -11,37 +11,47 @@ type HeaderProps = {
 const Header: React.FC<HeaderProps> = ({ isHome }) => {
 	const imageData = useStaticQuery<GatsbyTypes.MenuImagesQuery>(graphql`
 		query MenuImages {
-			chronology: file(relativePath: { eq: "liverpoolherobg.png" }) {
+			chronology: file(
+				relativePath: {
+					eq: "Charles_Jenkinson,_1st_Earl_of_Liverpool_by_George_Romney.jpg"
+				}
+			) {
 				childImageSharp {
-					fluid {
+					fluid(maxWidth: 800) {
 						...GatsbyImageSharpFluid
 					}
 				}
 			}
-			contenders: file(relativePath: { eq: "liverpoolherobg.png" }) {
+			contenders: file(
+				relativePath: { eq: "William_Pitt_the_Younger.jpg" }
+			) {
 				childImageSharp {
-					fluid {
+					fluid(maxWidth: 800) {
 						...GatsbyImageSharpFluid
 					}
 				}
 			}
-			miscellany: file(relativePath: { eq: "liverpoolherobg.png" }) {
+			miscellany: file(
+				relativePath: {
+					eq: "The_House_of_Commons_1793-94_by_Karl_Anton_Hickel.jpg"
+				}
+			) {
 				childImageSharp {
-					fluid {
+					fluid(maxWidth: 800) {
 						...GatsbyImageSharpFluid
 					}
 				}
 			}
 			author: file(relativePath: { eq: "Martin Hutchinson.jpg" }) {
 				childImageSharp {
-					fluid {
+					fluid(maxWidth: 800) {
 						...GatsbyImageSharpFluid
 					}
 				}
 			}
 			book: file(relativePath: { eq: "Robert Banks Jenkinson.jpg" }) {
 				childImageSharp {
-					fluid {
+					fluid(maxWidth: 800) {
 						...GatsbyImageSharpFluid
 					}
 				}
@@ -68,6 +78,14 @@ const Header: React.FC<HeaderProps> = ({ isHome }) => {
 	const authorBackgroundStack = [
 		'linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3))',
 		author,
+	];
+	const chronologyBackgroundStack = [
+		'linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1))',
+		chronology,
+	];
+	const contendersBackgroundStack = [
+		'linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2))',
+		contenders,
 	];
 
 	// TODO Add in home link when not home
@@ -104,13 +122,13 @@ const Header: React.FC<HeaderProps> = ({ isHome }) => {
 						linkTo={'/chronology/'}
 						headerText={'Chronology'}
 						subHeaderText={'The Life and Colleagues'}
-						fluidData={chronology}
+						fluidData={chronologyBackgroundStack}
 					/>
 					<NavLink
 						linkTo={'/contenders/'}
 						headerText={'Contenders'}
 						subHeaderText={'For Greatest Prime Minister'}
-						fluidData={contenders}
+						fluidData={contendersBackgroundStack}
 					/>
 					<NavLink
 						linkTo={'/miscellany/'}
