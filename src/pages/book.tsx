@@ -15,7 +15,7 @@ const Book: React.FC = () => {
 					description
 					featuredImage {
 						childImageSharp {
-							fluid {
+							fluid(maxWidth: 550) {
 								...GatsbyImageSharpFluid
 							}
 						}

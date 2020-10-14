@@ -22,7 +22,7 @@ const Miscellany: React.FC = () => {
 							date(formatString: "MMMM DD, YYYY")
 							featuredImage {
 								childImageSharp {
-									fluid {
+									fluid(maxWidth: 550) {
 										...GatsbyImageSharpFluid
 									}
 								}

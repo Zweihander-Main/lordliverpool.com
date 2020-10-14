@@ -10,7 +10,7 @@ const Hero: React.FC = () => {
 		query HeroImage {
 			file(relativePath: { eq: "liverpoolherobg.png" }) {
 				childImageSharp {
-					fluid {
+					fluid(maxWidth: 800) {
 						...GatsbyImageSharpFluid
 					}
 				}

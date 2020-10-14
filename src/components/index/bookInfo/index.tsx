@@ -12,7 +12,7 @@ const BookInfo: React.FC = () => {
 		query BookInfo {
 			file(relativePath: { eq: "bookcover.png" }) {
 				childImageSharp {
-					fluid {
+					fluid(maxWidth: 950) {
 						...GatsbyImageSharpFluid
 					}
 				}
