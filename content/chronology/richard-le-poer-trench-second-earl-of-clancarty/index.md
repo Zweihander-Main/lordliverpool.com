@@ -4,7 +4,7 @@ featuredImage: Richard_Le_Poer_Trench_Second_Earl_of_Clancarty.jpg
 timelineDate: 1767-05-19T05:20:02.000Z
 displayDate: May 19, 1767 - November 24, 1837
 category: colleagues
-card: President of the Board of Trade, 1812-18; Master of the Mint, 1812-14; Postmaster General, 1814-16; Ambassador to the Netherlands, 1813-23
+card: President of the Board of Trade, 1812-18; Ambassador to the Netherlands, 1813-23
 ---
 
 **Richard Le Poer Trench (1767-1837)** Second Earl of **Clancarty** (Ireland) from 1805. First Baron Trench (UK) from 1815. First Viscount Clancarty (UK) from 1823. Marquess of Heusden (Netherlands) from 1815. President of the Board of Trade, 1812-18. Master of the Mint, 1812-14. Postmaster General, 1814-16. Ambassador to the Netherlands, 1813-23. Clancarty was an Anglo-Irish aristocrat, one of a family of nineteen children, one of whom became Archbishop of Tuam and another a rear-admiral. He was educated at Kimbolton School and St John’s College, Cambridge.

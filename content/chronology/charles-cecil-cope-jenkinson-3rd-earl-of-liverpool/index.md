@@ -1,6 +1,6 @@
 ---
 title: Charles Cecil Cope Jenkinson, 3rd Earl of Liverpool
-featuredImage:
+featuredImage: Charles_Cecil_Cope.jpg
 timelineDate: 1784-05-29T05:20:02.000Z
 displayDate: May 29, 1784 – October 3, 1851
 category: family
