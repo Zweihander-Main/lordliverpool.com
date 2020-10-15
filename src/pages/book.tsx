@@ -29,7 +29,7 @@ const Book: React.FC = () => {
 	// TODO descriptions and excerpts aren't being populated consistently
 	console.log(page.frontmatter.featuredImage);
 	return (
-		<Layout>
+		<Layout darkMenu={true}>
 			<SEO
 				title={page?.frontmatter?.title || ''}
 				description={

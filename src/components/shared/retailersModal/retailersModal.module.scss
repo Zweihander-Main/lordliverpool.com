@@ -75,6 +75,15 @@ $border-radius: 8px;
 	> * {
 		max-width: 100%;
 	}
+
+	@media (max-width: 1000px) {
+		//TODO vars and mixins and also for close
+		max-width: 75vw;
+	}
+
+	@media (max-width: 600px) {
+		max-width: 90vw;
+	}
 }
 
 .close {
@@ -120,6 +129,14 @@ $border-radius: 8px;
 	vertical-align: middle;
 	width: 2rem;
 	z-index: 20;
+
+	@media (max-width: 1000px) {
+		right: 7vw;
+	}
+
+	@media (max-width: 600px) {
+		right: 0; //TODO doesn't look right
+	}
 }
 
 .retailers-list {

@@ -6,9 +6,13 @@ import { MdHome } from 'react-icons/md';
 
 type HeaderProps = {
 	isHome?: boolean;
+	darkMenu?: boolean;
 };
 
-const Header: React.FC<HeaderProps> = ({ isHome }) => {
+const Header: React.FC<HeaderProps> = ({
+	isHome = false,
+	darkMenu = false,
+}) => {
 	const imageData = useStaticQuery<GatsbyTypes.MenuImagesQuery>(graphql`
 		query MenuImages {
 			chronology: file(
@@ -96,6 +100,10 @@ const Header: React.FC<HeaderProps> = ({ isHome }) => {
 	// TODO Check menu lines on large font screen
 	// TODO viewport font size fallback
 
+	const menuBarLineClass = darkMenu
+		? `${styles.menuBarLine} ${styles.menuBarLineDark}`
+		: styles.menuBarLine;
+
 	return (
 		<header className={styles.header}>
 			<input
@@ -104,11 +112,18 @@ const Header: React.FC<HeaderProps> = ({ isHome }) => {
 				id="menu"
 				className={styles.menuInput}
 			/>
-			<label htmlFor="menu" className={styles.menuButton}>
+			<label
+				htmlFor="menu"
+				className={
+					darkMenu
+						? `${styles.menuButton} ${styles.menuButtonDark}`
+						: styles.menuButton
+				}
+			>
 				<div className={styles.menuBars}>
-					<div className={styles.menuBarLine}></div>
-					<div className={styles.menuBarLine}></div>
-					<div className={styles.menuBarLine}></div>
+					<div className={menuBarLineClass}></div>
+					<div className={menuBarLineClass}></div>
+					<div className={menuBarLineClass}></div>
 				</div>
 				<span className={styles.menuText}>
 					<span className={styles.menuTextOpen}>Menu</span>

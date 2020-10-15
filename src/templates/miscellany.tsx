@@ -18,7 +18,7 @@ const MiscellanyPostTemplate: React.FC<PageProps<
 	}
 
 	return (
-		<Layout>
+		<Layout darkMenu={true}>
 			<SEO
 				title={post?.frontmatter?.title || ''}
 				description={

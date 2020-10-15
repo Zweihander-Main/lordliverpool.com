@@ -12,7 +12,7 @@ const ContenderPostTemplate: React.FC<PageProps<
 	const post = data.markdownRemark;
 
 	return (
-		<Layout>
+		<Layout darkMenu={true}>
 			<SEO
 				title={post?.frontmatter?.title || ''}
 				description={

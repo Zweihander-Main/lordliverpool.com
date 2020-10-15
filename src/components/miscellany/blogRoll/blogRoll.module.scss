@@ -23,6 +23,14 @@ $light-drop-shadow-color: color.adjust(
 	column-fill: balance;
 	column-gap: $masonry-margin;
 	margin: $masonry-margin;
+
+	@media (max-width: 1550px) {
+		column-count: 2;
+	} //TODO vars and mixins
+
+	@media (max-width: 1200px) {
+		column-count: 1;
+	} //TODO can do better
 }
 
 .link {

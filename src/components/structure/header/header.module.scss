@@ -28,6 +28,10 @@ $menu-transition: 0.2s;
 	}
 } // TODO more reset
 
+.menu-button-dark {
+	color: v.$black;
+}
+
 .menu-bars {
 	display: inline-block;
 }
@@ -40,6 +44,10 @@ $menu-transition: 0.2s;
 	width: 30px;
 }
 
+.menu-bar-line-dark {
+	background-color: v.$black;
+}
+
 %menu-button-text {
 	font-family: v.$header-font;
 	font-weight: bold;
@@ -50,6 +58,7 @@ $menu-transition: 0.2s;
 
 .menu-text {
 	@extend %menu-button-text;
+
 	float: right;
 } //TODO Make sure em vs rem
 

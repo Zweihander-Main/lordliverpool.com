@@ -27,7 +27,7 @@ const Author: React.FC = () => {
 	const page = authorData.markdownRemark;
 
 	return (
-		<Layout>
+		<Layout darkMenu={true}>
 			<SEO
 				title={page?.frontmatter?.title || ''}
 				description={

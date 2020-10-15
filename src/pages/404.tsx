@@ -5,7 +5,7 @@ import SEO from 'components/structure/seo';
 import SinglePost from 'components/shared/singlePost';
 
 const NotFoundPage: React.FC = () => (
-	<Layout>
+	<Layout darkMenu={true}>
 		<SEO title="404: Not found" />
 		<SinglePost
 			title={"Sorry, this page can't be found."}

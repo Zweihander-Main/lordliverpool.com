@@ -211,7 +211,7 @@ const RetailersModal: React.FC = ({}) => {
 				<div className={styles.retailersList}>
 					{retailers &&
 						retailers.map(({ node: retailer }) => {
-							const flag = retailer?.frontmatter?.flag?.[0];
+							const flag = retailer?.frontmatter?.flag;
 							let shouldDisplay = true;
 							if (
 								selectedCurrency !== null &&
