@@ -5,6 +5,7 @@ $hero-tiny-size: 1.125rem;
 $chrono-year-size: 2.25rem;
 $header-font: 'Libre Baskerville', serif;
 $body-font: 'Cardo', serif;
+$letter-spacing: 0.05em;
 
 // colors
 $white: #f7f7f7;
@@ -26,4 +27,5 @@ $timing-function: cubic-bezier(0.65, 0.05, 0.36, 1); //TODO make sure consistent
 :export {
 	headerFont: $header-font;
 	bodyFont: $body-font;
+	letterSpacing: $letter-spacing;
 }
