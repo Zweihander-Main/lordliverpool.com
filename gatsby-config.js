@@ -5,18 +5,6 @@ module.exports = {
 		author: `Martin Hutchinson`,
 	},
 	plugins: [
-		{
-			resolve: `gatsby-plugin-typegen`,
-			options: {
-				emitSchema: {
-					'src/__generated__/gatsby-introspection.json': true,
-					'src/__generated__/gatsby-schema.graphql': true,
-				},
-				emitPluginDocuments: {
-					'src/__generated__/gatsby-plugin-documents.graphql': true,
-				},
-			},
-		},
 		`gatsby-alias-imports`,
 		{
 			resolve: `gatsby-plugin-typescript`,
@@ -94,6 +82,18 @@ module.exports = {
 		},
 		`gatsby-transformer-remark`,
 		`gatsby-plugin-catch-links`,
-		`gatsby-plugin-netlify-cms`, // should be last in the array
+		`gatsby-plugin-netlify-cms`, // should be last in the array or close to it
+		{
+			resolve: `gatsby-plugin-typegen`,
+			options: {
+				emitSchema: {
+					'src/__generated__/gatsby-introspection.json': true,
+					'src/__generated__/gatsby-schema.graphql': true,
+				},
+				emitPluginDocuments: {
+					'src/__generated__/gatsby-plugin-documents.graphql': true,
+				},
+			},
+		},
 	],
 };
