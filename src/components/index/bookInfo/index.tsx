@@ -3,7 +3,7 @@ import styles from './bookInfo.module.scss';
 import Img from 'gatsby-image';
 import { useStaticQuery, graphql } from 'gatsby';
 import Link from 'gatsby-link';
-import ModalButton from 'components/shared/retailersButton';
+import ModalButton from 'components/shared/retailers/retailersButton';
 
 // TODO Change placeholder text to include bullet points
 const BookInfo: React.FC = () => {

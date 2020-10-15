@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './blogRoll.module.scss';
+import styles from './miscellany.module.scss';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import Img from 'gatsby-image';
 

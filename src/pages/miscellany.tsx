@@ -2,7 +2,7 @@ import React from 'react';
 
 import Layout from 'components/structure/layout';
 import SEO from 'components/structure/seo';
-import Miscellany from 'components/miscellany/blogRoll';
+import Miscellany from 'components/miscellany';
 
 const MiscellanyPage: React.FC = () => (
 	<Layout>
