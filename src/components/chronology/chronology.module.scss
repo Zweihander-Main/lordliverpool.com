@@ -27,38 +27,6 @@ $timeline-height: (100vh - $card-height)/2 - $header-height/2;
 	width: 100vw;
 }
 
-@mixin show-more-bg($direction) {
-	background-image: linear-gradient(
-		$direction,
-		rgba(v.$blue-bg, 0) 0%,
-		rgba(v.$blue-bg, 0) 90.1%,
-		rgba(#0a2536, 0.75) 100%
-	); // TODO vars
-}
-
-.show-more-bg-right {
-	@include show-more-bg(90deg);
-}
-
-.show-more-bg-left {
-	@include show-more-bg(270deg);
-}
-
-.show-more-bg-both {
-	background-image: linear-gradient(
-			90deg,
-			rgba(v.$blue-bg, 0) 0%,
-			rgba(v.$blue-bg, 0) 90.1%,
-			rgba(#0a2536, 0.75) 100%
-		),
-		linear-gradient(
-			270deg,
-			rgba(v.$blue-bg, 0) 0%,
-			rgba(v.$blue-bg, 0) 90.1%,
-			rgba(#0a2536, 0.75) 100%
-		); // TODO better mixin support
-}
-
 .chronology-title {
 	@include m.header-normal;
 
