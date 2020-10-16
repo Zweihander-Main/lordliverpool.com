@@ -39,7 +39,7 @@
 	top: 2px;
 }
 
-.arrow-back {
+.arrow-prev {
 	@extend %arrows;
 
 	left: -0.4rem;
@@ -51,11 +51,17 @@
 	right: -0.4rem;
 }
 
+.link-prev {
+	grid-column: 1;
+}
+
 .link-up {
+	grid-column: 2;
 	text-align: center;
 }
 
 .link-next {
+	grid-column: 3;
 	text-align: right;
 }
 

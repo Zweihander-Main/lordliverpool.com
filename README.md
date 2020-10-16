@@ -18,3 +18,4 @@
 // TODO https://www.gatsbyjs.com/plugins/gatsby-plugin-nprogress/?=
 // TODO https://www.gatsbyjs.com/plugins/gatsby-remark-external-links/?= and make sure all links not on markdown are right
 // TODO consistent prune length
+// TODO style prev/next links better

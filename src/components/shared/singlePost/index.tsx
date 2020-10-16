@@ -40,8 +40,8 @@ const PostHeader: React.FC<SinglePostProps> = ({
 			<article className={styles.singlePost}>
 				<nav className={styles.navLinks}>
 					{prev && prev.title && prev.slug && (
-						<Link to={prev.slug}>
-							<MdArrowBack className={styles.arrowBack} />
+						<Link to={prev.slug} className={styles.linkPrev}>
+							<MdArrowBack className={styles.arrowPrev} />
 							{prev.title}
 						</Link>
 					)}
