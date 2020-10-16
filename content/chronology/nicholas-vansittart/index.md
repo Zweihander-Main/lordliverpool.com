@@ -1,7 +1,7 @@
 ---
 title: Nicholas Vansittart
 featuredImage: Nicholas_Vansittart.png
-timelineDate: 1766-04-29T05:20:02.000Z
+date: 1766-04-29T05:20:02.000Z
 displayDate: April 29, 1766 - February 8, 1851
 category: colleagues
 card: Chancellor of the Exchequer, 1812-23

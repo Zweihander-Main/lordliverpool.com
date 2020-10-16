@@ -1,7 +1,7 @@
 ---
 title: Arthur Wellesley, 1st Duke of Wellington
 featuredImage: Arthur_Wellesley_First_Duke_of_Wellington.jpg
-timelineDate: 1769-05-01T05:20:02.000Z
+date: 1769-05-01T05:20:02.000Z
 displayDate: May 1, 1769 - September 14, 1852
 category: colleagues
 card: Master-General of the Ordnance 1818-27

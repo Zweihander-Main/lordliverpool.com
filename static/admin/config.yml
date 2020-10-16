@@ -64,7 +64,7 @@ collections:
             widget: image
             required: false
           - label: Timeline Date
-            name: timelineDate
+            name: date
             widget: datetime
             required: true
             time_format: false

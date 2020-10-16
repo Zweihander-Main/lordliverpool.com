@@ -1,7 +1,7 @@
 ---
 title: Charles Watkin Williams-Wynn
 featuredImage: Charles_Watkin_Williams-Wynn.jpg
-timelineDate: 1775-10-09T05:20:02.000Z
+date: 1775-10-09T05:20:02.000Z
 displayDate: October 9, 1775 – September 2, 1850
 category: colleagues
 card: President of the Board of Control, 1822-28.

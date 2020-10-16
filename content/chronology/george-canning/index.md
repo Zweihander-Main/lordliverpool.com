@@ -1,7 +1,7 @@
 ---
 title: George Canning
 featuredImage: George_Canning.jpg
-timelineDate: 1770-04-11T05:20:02.000Z
+date: 1770-04-11T05:20:02.000Z
 displayDate: April 11, 1770 – August 8, 1827
 category: colleagues
 card: President of the Board of Control, 1816-21; Foreign Secretary 1807-9, 1822-27

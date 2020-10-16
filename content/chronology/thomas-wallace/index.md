@@ -1,7 +1,7 @@
 ---
 title: Thomas Wallace
 featuredImage: Thomas_Wallace.jpg
-timelineDate: 1768-01-01T05:20:02.000Z
+date: 1768-01-01T05:20:02.000Z
 displayDate: 1768 - February 23, 1844
 category: colleagues
 card: Vice-President of the Board of Trade, 1818-23; Master of the Mint, 1823-27

@@ -1,7 +1,7 @@
 ---
 title: John Singleton Copley
 featuredImage: John_Singleton_Copley.jpg
-timelineDate: 1772-05-21T05:20:02.000Z
+date: 1772-05-21T05:20:02.000Z
 displayDate: May 21, 1772 – October 12, 1863
 category: colleagues
 card: Solicitor General, 1819-24; Attorney General, 1824-26; Master of the Rolls, 1826-27

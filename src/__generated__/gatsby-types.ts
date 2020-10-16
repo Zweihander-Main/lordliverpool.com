@@ -694,7 +694,6 @@ enum FileFieldsEnum {
   childMarkdownRemark___id = 'childMarkdownRemark.id',
   childMarkdownRemark___frontmatter___title = 'childMarkdownRemark.frontmatter.title',
   childMarkdownRemark___frontmatter___subtitle = 'childMarkdownRemark.frontmatter.subtitle',
-  childMarkdownRemark___frontmatter___description = 'childMarkdownRemark.frontmatter.description',
   childMarkdownRemark___frontmatter___date = 'childMarkdownRemark.frontmatter.date',
   childMarkdownRemark___frontmatter___featuredImage___sourceInstanceName = 'childMarkdownRemark.frontmatter.featuredImage.sourceInstanceName',
   childMarkdownRemark___frontmatter___featuredImage___absolutePath = 'childMarkdownRemark.frontmatter.featuredImage.absolutePath',
@@ -732,7 +731,7 @@ enum FileFieldsEnum {
   childMarkdownRemark___frontmatter___featuredImage___publicURL = 'childMarkdownRemark.frontmatter.featuredImage.publicURL',
   childMarkdownRemark___frontmatter___featuredImage___id = 'childMarkdownRemark.frontmatter.featuredImage.id',
   childMarkdownRemark___frontmatter___featuredImage___children = 'childMarkdownRemark.frontmatter.featuredImage.children',
-  childMarkdownRemark___frontmatter___timelineDate = 'childMarkdownRemark.frontmatter.timelineDate',
+  childMarkdownRemark___frontmatter___description = 'childMarkdownRemark.frontmatter.description',
   childMarkdownRemark___frontmatter___displayDate = 'childMarkdownRemark.frontmatter.displayDate',
   childMarkdownRemark___frontmatter___category = 'childMarkdownRemark.frontmatter.category',
   childMarkdownRemark___frontmatter___card = 'childMarkdownRemark.frontmatter.card',
@@ -1521,7 +1520,6 @@ enum MarkdownRemarkFieldsEnum {
   id = 'id',
   frontmatter___title = 'frontmatter.title',
   frontmatter___subtitle = 'frontmatter.subtitle',
-  frontmatter___description = 'frontmatter.description',
   frontmatter___date = 'frontmatter.date',
   frontmatter___featuredImage___sourceInstanceName = 'frontmatter.featuredImage.sourceInstanceName',
   frontmatter___featuredImage___absolutePath = 'frontmatter.featuredImage.absolutePath',
@@ -1584,7 +1582,7 @@ enum MarkdownRemarkFieldsEnum {
   frontmatter___featuredImage___childMarkdownRemark___timeToRead = 'frontmatter.featuredImage.childMarkdownRemark.timeToRead',
   frontmatter___featuredImage___childMarkdownRemark___tableOfContents = 'frontmatter.featuredImage.childMarkdownRemark.tableOfContents',
   frontmatter___featuredImage___childMarkdownRemark___children = 'frontmatter.featuredImage.childMarkdownRemark.children',
-  frontmatter___timelineDate = 'frontmatter.timelineDate',
+  frontmatter___description = 'frontmatter.description',
   frontmatter___displayDate = 'frontmatter.displayDate',
   frontmatter___category = 'frontmatter.category',
   frontmatter___card = 'frontmatter.card',
@@ -1724,10 +1722,9 @@ type MarkdownRemarkFilterInput = {
 type MarkdownRemarkFrontmatter = {
   readonly title: Maybe<Scalars['String']>;
   readonly subtitle: Maybe<Scalars['String']>;
-  readonly description: Maybe<Scalars['String']>;
   readonly date: Maybe<Scalars['Date']>;
   readonly featuredImage: Maybe<File>;
-  readonly timelineDate: Maybe<Scalars['Date']>;
+  readonly description: Maybe<Scalars['String']>;
   readonly displayDate: Maybe<Scalars['String']>;
   readonly category: Maybe<Scalars['String']>;
   readonly card: Maybe<Scalars['String']>;
@@ -1746,21 +1743,12 @@ type MarkdownRemarkFrontmatter_dateArgs = {
   locale: Maybe<Scalars['String']>;
 };
 
-
-type MarkdownRemarkFrontmatter_timelineDateArgs = {
-  formatString: Maybe<Scalars['String']>;
-  fromNow: Maybe<Scalars['Boolean']>;
-  difference: Maybe<Scalars['String']>;
-  locale: Maybe<Scalars['String']>;
-};
-
 type MarkdownRemarkFrontmatterFilterInput = {
   readonly title: Maybe<StringQueryOperatorInput>;
   readonly subtitle: Maybe<StringQueryOperatorInput>;
-  readonly description: Maybe<StringQueryOperatorInput>;
   readonly date: Maybe<DateQueryOperatorInput>;
   readonly featuredImage: Maybe<FileFilterInput>;
-  readonly timelineDate: Maybe<DateQueryOperatorInput>;
+  readonly description: Maybe<StringQueryOperatorInput>;
   readonly displayDate: Maybe<StringQueryOperatorInput>;
   readonly category: Maybe<StringQueryOperatorInput>;
   readonly card: Maybe<StringQueryOperatorInput>;
@@ -2469,10 +2457,34 @@ type SitePageConnection_groupArgs = {
 
 type SitePageContext = {
   readonly id: Maybe<Scalars['String']>;
+  readonly next: Maybe<SitePageContextNext>;
+  readonly prev: Maybe<SitePageContextPrev>;
 };
 
 type SitePageContextFilterInput = {
   readonly id: Maybe<StringQueryOperatorInput>;
+  readonly next: Maybe<SitePageContextNextFilterInput>;
+  readonly prev: Maybe<SitePageContextPrevFilterInput>;
+};
+
+type SitePageContextNext = {
+  readonly title: Maybe<Scalars['String']>;
+  readonly slug: Maybe<Scalars['String']>;
+};
+
+type SitePageContextNextFilterInput = {
+  readonly title: Maybe<StringQueryOperatorInput>;
+  readonly slug: Maybe<StringQueryOperatorInput>;
+};
+
+type SitePageContextPrev = {
+  readonly title: Maybe<Scalars['String']>;
+  readonly slug: Maybe<Scalars['String']>;
+};
+
+type SitePageContextPrevFilterInput = {
+  readonly title: Maybe<StringQueryOperatorInput>;
+  readonly slug: Maybe<StringQueryOperatorInput>;
 };
 
 type SitePageEdge = {
@@ -2575,6 +2587,10 @@ enum SitePageFieldsEnum {
   internal___type = 'internal.type',
   isCreatedByStatefulCreatePages = 'isCreatedByStatefulCreatePages',
   context___id = 'context.id',
+  context___next___title = 'context.next.title',
+  context___next___slug = 'context.next.slug',
+  context___prev___title = 'context.prev.title',
+  context___prev___slug = 'context.prev.slug',
   pluginCreator___id = 'pluginCreator.id',
   pluginCreator___parent___id = 'pluginCreator.parent.id',
   pluginCreator___parent___parent___id = 'pluginCreator.parent.parent.id',
@@ -3063,19 +3079,6 @@ type StringQueryOperatorInput = {
 
 type GatsbyImageSharpFluidFragment = Pick<ImageSharpFluid, 'base64' | 'aspectRatio' | 'src' | 'srcSet' | 'sizes'>;
 
-type BlogPostBySlugQueryVariables = Exact<{
-  path: Scalars['String'];
-}>;
-
-
-type BlogPostBySlugQuery = { readonly markdownRemark: Maybe<(
-    Pick<MarkdownRemark, 'excerpt' | 'html'>
-    & { readonly frontmatter: Maybe<(
-      Pick<MarkdownRemarkFrontmatter, 'title' | 'date' | 'description' | 'subtitle'>
-      & { readonly featuredImage: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }> }
-    )> }
-  )> };
-
 type ChronologyPostBySlugQueryVariables = Exact<{
   path: Scalars['String'];
 }>;
@@ -3102,6 +3105,19 @@ type ContenderPostBySlugQuery = { readonly site: Maybe<{ readonly siteMetadata: 
     )> }
   )> };
 
+type BlogPostBySlugQueryVariables = Exact<{
+  path: Scalars['String'];
+}>;
+
+
+type BlogPostBySlugQuery = { readonly markdownRemark: Maybe<(
+    Pick<MarkdownRemark, 'excerpt' | 'html'>
+    & { readonly frontmatter: Maybe<(
+      Pick<MarkdownRemarkFrontmatter, 'title' | 'date' | 'description' | 'subtitle'>
+      & { readonly featuredImage: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }> }
+    )> }
+  )> };
+
 type PagesQueryQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -3113,13 +3129,13 @@ type ChronologyQueryQueryVariables = Exact<{ [key: string]: never; }>;
 type ChronologyQueryQuery = { readonly noPost: { readonly edges: ReadonlyArray<{ readonly node: (
         Pick<MarkdownRemark, 'id'>
         & { readonly frontmatter: Maybe<(
-          Pick<MarkdownRemarkFrontmatter, 'title' | 'timelineDate' | 'displayDate' | 'category' | 'card'>
+          Pick<MarkdownRemarkFrontmatter, 'title' | 'date' | 'displayDate' | 'category' | 'card'>
           & { readonly featuredImage: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }> }
         )> }
       ) }> }, readonly withPost: { readonly edges: ReadonlyArray<{ readonly node: (
         Pick<MarkdownRemark, 'id'>
         & { readonly fields: Maybe<Pick<MarkdownRemarkFields, 'slug'>>, readonly frontmatter: Maybe<(
-          Pick<MarkdownRemarkFrontmatter, 'title' | 'timelineDate' | 'displayDate' | 'category' | 'card'>
+          Pick<MarkdownRemarkFrontmatter, 'title' | 'date' | 'displayDate' | 'category' | 'card'>
           & { readonly featuredImage: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }> }
         )> }
       ) }> } };

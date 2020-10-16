@@ -1,7 +1,7 @@
 ---
 title: John Wilson Croker
 featuredImage: John_Wilson_Croker.jpg
-timelineDate: 1780-12-20T05:20:02.000Z
+date: 1780-12-20T05:20:02.000Z
 displayDate: December 20, 1780 - August 10, 1857
 category: colleagues
 card: Secretary to the Admiralty, 1809-30

@@ -1,7 +1,7 @@
 ---
 title: Richard Le Poer Trench, Second Earl of Clancarty
 featuredImage: Richard_Le_Poer_Trench_Second_Earl_of_Clancarty.jpg
-timelineDate: 1767-05-19T05:20:02.000Z
+date: 1767-05-19T05:20:02.000Z
 displayDate: May 19, 1767 - November 24, 1837
 category: colleagues
 card: President of the Board of Trade, 1812-18; Ambassador to the Netherlands, 1813-23

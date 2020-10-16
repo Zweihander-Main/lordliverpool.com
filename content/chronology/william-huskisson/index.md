@@ -1,7 +1,7 @@
 ---
 title: William Huskisson
 featuredImage: William_Huskisson.jpg
-timelineDate: 1770-03-11T05:20:02.000Z
+date: 1770-03-11T05:20:02.000Z
 displayDate: March 11, 1770 - September 15, 1830
 category: colleagues
 card: First Commissioner of Woods and Forests, 1814-23; President of the Board of Trade, 1823-27

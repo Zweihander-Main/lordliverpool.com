@@ -1,7 +1,7 @@
 ---
 title: Frederick John Robinson
 featuredImage: Frederick_John_Robinson.jpg
-timelineDate: 1782-11-01T05:20:02.000Z
+date: 1782-11-01T05:20:02.000Z
 displayDate: November, 1 1782 – January 28, 1859
 category: colleagues
 card: President of the Board of Trade, 1818-23, 1841-43; Chancellor of the Exchequer, 1823-27

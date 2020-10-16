@@ -1,11 +1,71 @@
 const path = require('path');
 const { createFilePath } = require('gatsby-source-filesystem');
 
+const hasPage = (edge) => {
+	switch (edge.node.fields.sourceInstanceName) {
+		case 'chronology':
+			if (
+				!edge.node.rawMarkdownBody ||
+				edge.node.rawMarkdownBody.trim() === ''
+			) {
+				return false;
+			}
+			break;
+		case 'pages':
+			return false;
+			break;
+		case 'retailers':
+			return false;
+			break;
+	}
+	return true;
+};
+
+const constructPrevNextObject = (post) => {
+	return {
+		title: post.node.frontmatter.title,
+		slug: post.node.fields.slug,
+	};
+};
+
+const findPrev = (posts, startIndex, sourceInstanceName) => {
+	let i = startIndex - 1;
+	while (i >= 0) {
+		const post = posts[i];
+		if (
+			post.node.fields.sourceInstanceName === sourceInstanceName &&
+			hasPage(post)
+		) {
+			return constructPrevNextObject(post);
+		}
+		i--;
+	}
+	return null;
+};
+
+const findNext = (posts, startIndex, sourceInstanceName) => {
+	let i = startIndex + 1;
+	while (i < posts.length) {
+		const post = posts[i];
+		if (
+			post.node.fields.sourceInstanceName === sourceInstanceName &&
+			hasPage(post)
+		) {
+			return constructPrevNextObject(post);
+		}
+		i++;
+	}
+	return null;
+};
+
 exports.createPages = ({ actions, graphql }) => {
 	const { createPage } = actions;
 	return graphql(`
 		{
-			allMarkdownRemark(limit: 1000) {
+			allMarkdownRemark(
+				sort: { order: ASC, fields: [frontmatter___date] }
+				limit: 10000
+			) {
 				edges {
 					node {
 						id
@@ -13,6 +73,10 @@ exports.createPages = ({ actions, graphql }) => {
 							slug
 							sourceInstanceName
 						}
+						frontmatter {
+							title
+						}
+						rawMarkdownBody
 					}
 				}
 			}
@@ -23,17 +87,9 @@ exports.createPages = ({ actions, graphql }) => {
 			return Promise.reject(result.errors);
 		}
 		const posts = result.data.allMarkdownRemark.edges;
-		posts.forEach((edge) => {
+		posts.forEach((edge, index, array) => {
 			const id = edge.node.id;
-			if (
-				!(
-					edge.node.fields.sourceInstanceName === 'chronology' &&
-					edge.node.rawMarkdownRemark &&
-					edge.node.rawMarkdownRemark !== ''
-				) &&
-				edge.node.fields.sourceInstanceName !== 'pages' &&
-				edge.node.fields.sourceInstanceName !== 'retailers'
-			) {
+			if (hasPage(edge)) {
 				createPage({
 					path: edge.node.fields.slug,
 					component: path.resolve(
@@ -44,6 +100,16 @@ exports.createPages = ({ actions, graphql }) => {
 					// additional data can be passed via context
 					context: {
 						id,
+						next: findNext(
+							array,
+							index,
+							edge.node.fields.sourceInstanceName
+						),
+						prev: findPrev(
+							array,
+							index,
+							edge.node.fields.sourceInstanceName
+						),
 					},
 				});
 			}

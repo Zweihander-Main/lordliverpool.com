@@ -1,7 +1,7 @@
 ---
 title: Robert Stewart, Viscount Castlereagh
 featuredImage: Robert_Stewart_Viscount_Castlereagh.jpg
-timelineDate: 1769-06-18T05:20:02.000Z
+date: 1769-06-18T05:20:02.000Z
 displayDate: June 18, 1769 - August 12, 1822
 category: colleagues
 card: Foreign Secretary, 1812-22

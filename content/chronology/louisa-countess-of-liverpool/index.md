@@ -1,7 +1,7 @@
 ---
 title: Louisa, Countess of Liverpool
 featuredImage: Louisa,_Countess_of_Liverpool_by_George_Romney.png
-timelineDate: 1767-02-01T05:20:02.000Z
+date: 1767-02-01T05:20:02.000Z
 displayDate: February, 1767 – June 12, 1821
 category: family
 card: Liverpool's first wife

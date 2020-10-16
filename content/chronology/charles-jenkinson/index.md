@@ -2,7 +2,7 @@
 title: Charles Jenkinson
 description: ''
 featuredImage: charles_jenkinson-_1st_earl_of_liverpool_by_george_romney.jpg
-timelineDate: 1729-04-30T01:39:59.147Z
+date: 1729-04-30T01:39:59.147Z
 displayDate: April 26, 1729 - December 17, 1808
 category: family
 card: Liverpool's father

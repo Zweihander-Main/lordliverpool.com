@@ -1,6 +1,6 @@
 ---
 title: Mary, Countess of Liverpool
-timelineDate: 1777-06-24T05:20:02.000Z
+date: 1777-06-24T05:20:02.000Z
 displayDate: June 24, 1777 – October 18, 1846
 category: family
 card: Liverpool's second wife

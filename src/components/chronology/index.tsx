@@ -11,7 +11,7 @@ const Chronology: React.FC = () => {
 	>(graphql`
 		query ChronologyQuery {
 			noPost: allMarkdownRemark(
-				sort: { order: ASC, fields: [frontmatter___timelineDate] }
+				sort: { order: ASC, fields: [frontmatter___date] }
 				filter: {
 					fields: { sourceInstanceName: { eq: "chronology" } }
 					rawMarkdownBody: { eq: "" }
@@ -22,7 +22,7 @@ const Chronology: React.FC = () => {
 						id
 						frontmatter {
 							title
-							timelineDate(formatString: "y")
+							date(formatString: "y")
 							displayDate
 							category
 							card
@@ -38,7 +38,7 @@ const Chronology: React.FC = () => {
 				}
 			}
 			withPost: allMarkdownRemark(
-				sort: { order: ASC, fields: [frontmatter___timelineDate] }
+				sort: { order: ASC, fields: [frontmatter___date] }
 				filter: {
 					fields: { sourceInstanceName: { eq: "chronology" } }
 					rawMarkdownBody: { ne: "" }
@@ -52,7 +52,7 @@ const Chronology: React.FC = () => {
 						}
 						frontmatter {
 							title
-							timelineDate(formatString: "y")
+							date(formatString: "y")
 							displayDate
 							category
 							card
@@ -97,7 +97,7 @@ const Chronology: React.FC = () => {
 		  )
 		: cards
 	)
-		.map((card) => card.frontmatter?.timelineDate)
+		.map((card) => card.frontmatter?.date)
 		.filter((year) => typeof year !== 'undefined') as Array<string>; //not cheating, TS won't filter out undefined types
 
 	const cardContainerRef = React.useRef<HTMLDivElement>(null);

@@ -1,7 +1,7 @@
 ---
 title: Anthony Jenkinson
 featuredImage: 1570_(Anthony_Jenkinson_&_Abraham_Ortelius).jpg
-timelineDate: 1529-01-01T20:09:45.329Z
+date: 1529-01-01T20:09:45.329Z
 displayDate: 1529 - 1611
 category: family
 card: Liverpool's Great(x4)-Grandfather

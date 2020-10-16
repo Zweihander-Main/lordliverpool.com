@@ -805,7 +805,6 @@ enum FileFieldsEnum {
   childMarkdownRemark___id
   childMarkdownRemark___frontmatter___title
   childMarkdownRemark___frontmatter___subtitle
-  childMarkdownRemark___frontmatter___description
   childMarkdownRemark___frontmatter___date
   childMarkdownRemark___frontmatter___featuredImage___sourceInstanceName
   childMarkdownRemark___frontmatter___featuredImage___absolutePath
@@ -843,7 +842,7 @@ enum FileFieldsEnum {
   childMarkdownRemark___frontmatter___featuredImage___publicURL
   childMarkdownRemark___frontmatter___featuredImage___id
   childMarkdownRemark___frontmatter___featuredImage___children
-  childMarkdownRemark___frontmatter___timelineDate
+  childMarkdownRemark___frontmatter___description
   childMarkdownRemark___frontmatter___displayDate
   childMarkdownRemark___frontmatter___category
   childMarkdownRemark___frontmatter___card
@@ -1511,7 +1510,6 @@ enum MarkdownRemarkFieldsEnum {
   id
   frontmatter___title
   frontmatter___subtitle
-  frontmatter___description
   frontmatter___date
   frontmatter___featuredImage___sourceInstanceName
   frontmatter___featuredImage___absolutePath
@@ -1574,7 +1572,7 @@ enum MarkdownRemarkFieldsEnum {
   frontmatter___featuredImage___childMarkdownRemark___timeToRead @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   frontmatter___featuredImage___childMarkdownRemark___tableOfContents @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
   frontmatter___featuredImage___childMarkdownRemark___children @deprecated(reason: "Sorting on fields that need arguments to resolve is deprecated.")
-  frontmatter___timelineDate
+  frontmatter___description
   frontmatter___displayDate
   frontmatter___category
   frontmatter___card
@@ -1714,7 +1712,6 @@ input MarkdownRemarkFilterInput {
 type MarkdownRemarkFrontmatter {
   title: String
   subtitle: String
-  description: String
   date(
     # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY
     # MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for
@@ -1733,23 +1730,7 @@ type MarkdownRemarkFrontmatter {
     locale: String
   ): Date
   featuredImage: File
-  timelineDate(
-    # Format the date using Moment.js' date tokens, e.g. `date(formatString: "YYYY
-    # MMMM DD")`. See https://momentjs.com/docs/#/displaying/format/ for
-    # documentation for different tokens.
-    formatString: String
-
-    # Returns a string generated with Moment.js' `fromNow` function
-    fromNow: Boolean
-
-    # Returns the difference between this date and the current time. Defaults to
-    # "milliseconds" but you can also pass in as the measurement "years",
-    # "months", "weeks", "days", "hours", "minutes", and "seconds".
-    difference: String
-
-    # Configures the locale Moment.js will use to format the date.
-    locale: String
-  ): Date
+  description: String
   displayDate: String
   category: String
   card: String
@@ -1763,10 +1744,9 @@ type MarkdownRemarkFrontmatter {
 input MarkdownRemarkFrontmatterFilterInput {
   title: StringQueryOperatorInput
   subtitle: StringQueryOperatorInput
-  description: StringQueryOperatorInput
   date: DateQueryOperatorInput
   featuredImage: FileFilterInput
-  timelineDate: DateQueryOperatorInput
+  description: StringQueryOperatorInput
   displayDate: StringQueryOperatorInput
   category: StringQueryOperatorInput
   card: StringQueryOperatorInput
@@ -2214,10 +2194,34 @@ type SitePageConnection {
 
 type SitePageContext {
   id: String
+  next: SitePageContextNext
+  prev: SitePageContextPrev
 }
 
 input SitePageContextFilterInput {
   id: StringQueryOperatorInput
+  next: SitePageContextNextFilterInput
+  prev: SitePageContextPrevFilterInput
+}
+
+type SitePageContextNext {
+  title: String
+  slug: String
+}
+
+input SitePageContextNextFilterInput {
+  title: StringQueryOperatorInput
+  slug: StringQueryOperatorInput
+}
+
+type SitePageContextPrev {
+  title: String
+  slug: String
+}
+
+input SitePageContextPrevFilterInput {
+  title: StringQueryOperatorInput
+  slug: StringQueryOperatorInput
 }
 
 type SitePageEdge {
@@ -2320,6 +2324,10 @@ enum SitePageFieldsEnum {
   internal___type
   isCreatedByStatefulCreatePages
   context___id
+  context___next___title
+  context___next___slug
+  context___prev___title
+  context___prev___slug
   pluginCreator___id
   pluginCreator___parent___id
   pluginCreator___parent___parent___id

@@ -20,16 +20,43 @@
 	padding: 1rem;
 }
 
-.link-back {
-	text-decoration: underline;
+.nav-links {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr;
+	justify-items: center;
+}
+
+.nav-links a {
 	color: v.$black;
-	padding: 0 1rem 0.5rem 1rem;
+	padding: 0 1rem 0.5rem;
+	position: relative;
+	text-decoration: underline;
+}
+
+%arrows {
+	position: absolute;
+	top: 2px;
 }
 
 .arrow-back {
-	position: relative;
-	top: 3px;
-	right: 0.4rem;
+	@extend %arrows;
+
+	left: -0.4rem;
+}
+
+.arrow-next {
+	@extend %arrows;
+
+	right: -0.4rem;
+}
+
+.link-up {
+	text-align: center;
+}
+
+.link-next {
+	text-align: right;
 }
 
 .headings {
@@ -51,6 +78,7 @@
 
 .extra-header-text {
 	@include m.header-normal;
+
 	font-family: v.$body-font;
 }
 
@@ -67,7 +95,6 @@
 		font-style: italic;
 	}
 }
-//TODO menu
 
 .post-meta {
-}
+} // TODO build out a little

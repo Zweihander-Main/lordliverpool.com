@@ -1,7 +1,7 @@
 ---
 title: John Charles Herries
 featuredImage: John_Charles_Herries.jpg
-timelineDate: 1778-11-01T05:20:02.000Z
+date: 1778-11-01T05:20:02.000Z
 displayDate: November 1778 – April 24, 1855
 category: colleagues
 card: Joint Secretary of the Treasury, 1823-27

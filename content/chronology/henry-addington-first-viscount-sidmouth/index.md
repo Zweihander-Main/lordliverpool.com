@@ -1,7 +1,7 @@
 ---
 title: Henry Addington, First Viscount Sidmouth
 featuredImage: henry-addington-1st-viscount-sidmouth.jpg
-timelineDate: 1757-05-30T05:50:02.000Z
+date: 1757-05-30T05:50:02.000Z
 displayDate: May 30, 1757 - February 15, 1844
 category: colleagues
 card: Home Secretary, 1812-22.

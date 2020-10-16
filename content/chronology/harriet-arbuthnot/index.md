@@ -1,7 +1,7 @@
 ---
 title: Harriet Arbuthnot
 featuredImage: Harriet_Arbuthnot.jpg
-timelineDate: 1793-09-10T05:20:02.000Z
+date: 1793-09-10T05:20:02.000Z
 displayDate: September 10, 1793 – August 2, 1834
 category: colleagues
 card: Political diarist from 1820 - 1832

@@ -3,11 +3,14 @@ import { graphql, PageProps } from 'gatsby';
 import Layout from 'components/structure/layout';
 import SEO from 'components/structure/seo';
 import SinglePost from 'components/shared/singlePost';
+import { TemplatePageContext } from '../types';
 
 const MiscellanyPostTemplate: React.FC<PageProps<
-	GatsbyTypes.BlogPostBySlugQuery
->> = ({ data }) => {
+	GatsbyTypes.BlogPostBySlugQuery,
+	TemplatePageContext
+>> = ({ data, pageContext }) => {
 	const post = data.markdownRemark;
+	const { next, prev } = pageContext;
 
 	if (!post?.frontmatter?.featuredImage?.childImageSharp?.fluid) {
 		throw new Error(
@@ -36,6 +39,8 @@ const MiscellanyPostTemplate: React.FC<PageProps<
 				meta={post?.frontmatter?.date}
 				linkBackName={'Miscellany'}
 				linkBackURL={'/miscellany'}
+				next={next}
+				prev={prev}
 			/>
 		</Layout>
 	);

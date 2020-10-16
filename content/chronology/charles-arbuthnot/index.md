@@ -1,7 +1,7 @@
 ---
 title: Charles Arbuthnot
 featuredImage: Charles_Arbuthnot.jpg
-timelineDate: 1767-03-14T05:20:02.000Z
+date: 1767-03-14T05:20:02.000Z
 displayDate: March 14, 1767 - August 18, 1850
 category: colleagues
 card: Joint Secretary to the Treasury, 1809-1823

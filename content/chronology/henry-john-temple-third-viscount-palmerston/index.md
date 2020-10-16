@@ -1,7 +1,7 @@
 ---
 title: Henry John Temple, Third Viscount Palmerston
 featuredImage: Henry_John_Temple_Third_Viscount_Palmerston.jpg
-timelineDate: 1784-10-20T05:20:02.000Z
+date: 1784-10-20T05:20:02.000Z
 displayDate: October 20, 1784 – October 18, 1865
 category: colleagues
 card: Secretary at War, 1809-28

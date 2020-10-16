@@ -2,7 +2,8 @@ import React from 'react';
 import Img, { FluidObject } from 'gatsby-image';
 import Link from 'gatsby-link';
 import styles from './singlePost.module.scss';
-import { MdArrowBack } from 'react-icons/md';
+import { MdArrowBack, MdArrowForward } from 'react-icons/md';
+import { NextPrevInfo } from '../../../types';
 
 type SinglePostProps = {
 	headerImage?: FluidObject;
@@ -13,6 +14,8 @@ type SinglePostProps = {
 	meta?: string;
 	linkBackURL?: string;
 	linkBackName?: string;
+	prev?: NextPrevInfo;
+	next?: NextPrevInfo;
 };
 
 //TODO attribution for lifted posts
@@ -27,18 +30,33 @@ const PostHeader: React.FC<SinglePostProps> = ({
 	meta,
 	linkBackURL,
 	linkBackName,
+	prev,
+	next,
 }) => {
 	//TODO add in author
 	// TODO figure out width
 	return (
 		<div className={styles.postContainer}>
 			<article className={styles.singlePost}>
-				{linkBackURL && linkBackName && (
-					<Link to={linkBackURL} className={styles.linkBack}>
-						<MdArrowBack className={styles.arrowBack} />
-						Back to {linkBackName}
-					</Link>
-				)}
+				<nav className={styles.navLinks}>
+					{prev && prev.title && prev.slug && (
+						<Link to={prev.slug}>
+							<MdArrowBack className={styles.arrowBack} />
+							{prev.title}
+						</Link>
+					)}
+					{linkBackURL && linkBackName && (
+						<Link to={linkBackURL} className={styles.linkUp}>
+							Back to {linkBackName}
+						</Link>
+					)}
+					{next && next.title && next.slug && (
+						<Link to={next.slug} className={styles.linkNext}>
+							{next.title}
+							<MdArrowForward className={styles.arrowNext} />
+						</Link>
+					)}
+				</nav>
 				<div className={styles.headings}>
 					<h1
 						className={

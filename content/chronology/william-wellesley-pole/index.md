@@ -1,7 +1,7 @@
 ---
 title: William Wellesley-Pole
 featuredImage: William_Wellesley-Pole.jpg
-timelineDate: 1763-05-20T05:20:02.000Z
+date: 1763-05-20T05:20:02.000Z
 displayDate: May 20, 1763 - February 22, 1845
 category: colleagues
 card: Master of the Mint (in the Cabinet), 1814-23

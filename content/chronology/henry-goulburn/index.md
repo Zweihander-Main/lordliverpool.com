@@ -1,7 +1,7 @@
 ---
 title: Henry Goulburn
 featuredImage: Henry_Goulburn.jpg
-timelineDate: 1784-03-19T05:20:02.000Z
+date: 1784-03-19T05:20:02.000Z
 displayDate: March 19, 1784 – January 12, 1856
 category: colleagues
 card: Under Secretary for War and the Colonies 1812 - 1821

@@ -1,7 +1,7 @@
 ---
 title: Dudley Ryder, Second Baron Harrowby
 featuredImage: Dudley_Ryder_Second_Baron_Harrowby.jpg
-timelineDate: 1762-12-22T05:20:02.000Z
+date: 1762-12-22T05:20:02.000Z
 displayDate: 22 December 1762 – 26 December 1847
 category: colleagues
 card: Lord President of the Council, 1812-27

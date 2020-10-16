@@ -3,11 +3,14 @@ import { graphql, PageProps } from 'gatsby';
 import Layout from 'components/structure/layout';
 import SEO from 'components/structure/seo';
 import SinglePost from 'components/shared/singlePost';
+import { TemplatePageContext } from '../types';
 
 const ChronologyPostTemplate: React.FC<PageProps<
-	GatsbyTypes.ChronologyPostBySlugQuery
->> = ({ data }) => {
+	GatsbyTypes.ChronologyPostBySlugQuery,
+	TemplatePageContext
+>> = ({ data, pageContext }) => {
 	const post = data.markdownRemark;
+	const { prev, next } = pageContext;
 
 	return (
 		<Layout darkMenu={true}>
@@ -28,6 +31,8 @@ const ChronologyPostTemplate: React.FC<PageProps<
 				extraHeaderText={post?.frontmatter?.displayDate}
 				linkBackName={'Chronology'}
 				linkBackURL={'/chronology'}
+				next={next}
+				prev={prev}
 			/>
 		</Layout>
 	);

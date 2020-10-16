@@ -1,7 +1,7 @@
 ---
 title: Robert Peel
 featuredImage: Robert_Peel.jpg
-timelineDate: 1788-02-05T05:20:02.000Z
+date: 1788-02-05T05:20:02.000Z
 displayDate: February 5, 1788 - July 2, 1850
 category: colleagues
 card: Home Secretary 1822-27, 1828-30

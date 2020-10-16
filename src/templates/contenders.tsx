@@ -3,13 +3,14 @@ import { graphql, PageProps } from 'gatsby';
 import Layout from 'components/structure/layout';
 import SEO from 'components/structure/seo';
 import SinglePost from 'components/shared/singlePost';
+import { TemplatePageContext } from '../types';
 
 const ContenderPostTemplate: React.FC<PageProps<
-	GatsbyTypes.ContenderPostBySlugQuery
->> = ({ data }, ...ect) => {
-	console.log(data);
-	console.log(ect);
+	GatsbyTypes.ContenderPostBySlugQuery,
+	TemplatePageContext
+>> = ({ data, pageContext }) => {
 	const post = data.markdownRemark;
+	const { prev, next } = pageContext;
 
 	return (
 		<Layout darkMenu={true}>
@@ -29,6 +30,8 @@ const ContenderPostTemplate: React.FC<PageProps<
 				extraHeaderText={post?.frontmatter?.displayDate}
 				linkBackName={'Contenders'}
 				linkBackURL={'/contenders'}
+				next={next}
+				prev={prev}
 			/>
 		</Layout>
 	);
