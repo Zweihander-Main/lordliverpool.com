@@ -5,11 +5,6 @@ html {
 	background-color: v.$dark-bg;
 }
 
-body {
-	font-feature-settings: 'kern', 'liga', 'clig', 'calt';
-	font-kerning: normal;
-}
-
 .app-body {
 	overflow-x: hidden;
 	overflow-y: hidden;

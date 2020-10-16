@@ -33,13 +33,14 @@ $pic-bg: color.adjust(v.$light-bg, $lightness: -60%, $saturation: -10%);
 }
 
 .caption {
+	@include m.header-text-shadow;
+
 	align-self: end;
 	color: v.$white;
 	grid-column: 1;
 	grid-row: 1;
 	padding-left: 1rem;
 	padding-right: 1rem;
-	text-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
 	text-transform: uppercase;
 }
 
@@ -50,6 +51,7 @@ $pic-bg: color.adjust(v.$light-bg, $lightness: -60%, $saturation: -10%);
 
 .dates {
 	@include m.header-normal;
+
 	font-size: 1.6vw;
 	margin-bottom: 0.1rem;
 }

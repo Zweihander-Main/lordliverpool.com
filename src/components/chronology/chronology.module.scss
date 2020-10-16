@@ -8,14 +8,6 @@ $header-height: 4vh;
 $filter-menu-height: (100vh - $card-height)/2 - $header-height/2;
 $timeline-height: (100vh - $card-height)/2 - $header-height/2;
 
-%hide-scrollbars {
-	-ms-overflow-style: none;
-	scrollbar-width: none;
-	&::-webkit-scrollbar {
-		display: none;
-	}
-}
-
 // TODO -- JS for touch scrolling sideways
 
 .chronology {
@@ -73,14 +65,14 @@ $timeline-height: (100vh - $card-height)/2 - $header-height/2;
 }
 
 .card-container-wrapper {
-	@extend %hide-scrollbars;
+	@include m.hide-scrollbars;
 
 	grid-row: 3;
 	height: 100vw;
 	min-width: 100vh;
 	overflow-x: hidden;
 	overflow-y: scroll;
-	padding-right: 45px; // TODO box-shadow vars
+	padding-right: 45px;
 	position: absolute;
 	top: $header-height + $filter-menu-height;
 	transform: rotate(-90deg) translateX(-100vmin); // TODO verify vmin

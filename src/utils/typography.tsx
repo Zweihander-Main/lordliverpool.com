@@ -26,6 +26,10 @@ const typography = new Typography({
 		'h1,h2,h3,h4,h5,h6': {
 			letterSpacing: v.letterSpacing,
 		},
+		body: {
+			fontKerning: 'normal',
+			fontFeatureSettings: '"kern", "liga", "clig", "calt"',
+		},
 	}),
 });
 export default typography;

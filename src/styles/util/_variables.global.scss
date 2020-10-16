@@ -3,11 +3,13 @@ $hero-large-size: 4rem;
 $hero-sub-size: 1.5rem;
 $hero-tiny-size: 1.125rem;
 $chrono-year-size: 2.25rem;
-$header-font: 'Libre Baskerville', serif;
-$body-font: 'Cardo', serif;
+$header-font: 'Libre Baskerville', 'Georgia Pro', georgia, 'Times New Roman',
+	serif;
+$body-font: 'Cardo', Garamond, 'Times New Roman', serif;
 $letter-spacing: 0.05em;
 
 // colors
+$ultra-white: #fff;
 $white: #f7f7f7;
 $red: #550003;
 $dark-bg: #260101;
@@ -18,9 +20,14 @@ $pastel-bg: #bfaaaa;
 $black: #222;
 $subtle-gray: #aaa;
 $blue-card-bg: #030e15;
+$blue-card-dark-shadow: #01060a;
+$blue-card-light-shadow: #092435;
 
 // animation
 $timing-function: cubic-bezier(0.65, 0.05, 0.36, 1); //TODO make sure consistent
+
+//buttons
+$border-radius: 8px;
 
 /*stylelint-disable */
 // export for JS

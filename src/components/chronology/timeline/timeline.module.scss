@@ -1,6 +1,7 @@
 @use '~styles/util/variables.global' as v;
 
 $area-grabber-height: 50px;
+$area-grabber-opacity: 0.3;
 
 .timeline {
 	align-items: flex-end;
@@ -12,7 +13,7 @@ $area-grabber-height: 50px;
 } // TODO bug with scrollbar hiding last tick?
 
 .area-grabber {
-	background: rgba(v.$white, 0.3);
+	background: rgba(v.$white, $area-grabber-opacity);
 	cursor: grab;
 	height: $area-grabber-height;
 	position: absolute;

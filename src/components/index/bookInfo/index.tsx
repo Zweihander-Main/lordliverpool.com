@@ -46,6 +46,7 @@ const BookInfo: React.FC = () => {
 				</h3>
 				{bookInfoData?.markdownRemark?.html && (
 					<div
+						className={styles.text}
 						dangerouslySetInnerHTML={{
 							__html: bookInfoData.markdownRemark.html,
 						}}

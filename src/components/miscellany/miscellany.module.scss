@@ -3,7 +3,7 @@
 @use 'sass:color';
 
 $light-shadow-intensity: 2%;
-$dark-shadow-intensity: 12%;
+$dark-shadow-intensity: 13%;
 $drop-shadow-offset: 5px;
 $drop-shadow-blur: 20px;
 $masonry-margin: 5em;
@@ -41,11 +41,16 @@ $light-drop-shadow-color: color.adjust(
 }
 
 .item {
+	@include m.neumorphic-full(
+		$drop-shadow-offset,
+		$drop-shadow-blur,
+		$dark-drop-shadow-color,
+		$light-drop-shadow-color
+	);
+
+	//TODO could this look better and more neumorphic?
+
 	background-color: v.$red;
-	box-shadow: $drop-shadow-offset $drop-shadow-offset $drop-shadow-blur
-			$dark-drop-shadow-color,
-		(-$drop-shadow-offset) (-$drop-shadow-offset) $drop-shadow-blur
-			$light-drop-shadow-color;
 	position: relative;
 	width: 100%;
 }
@@ -73,7 +78,7 @@ $b: blue(v.$red);
 	filter: grayscale(100%);
 	opacity: 0.6;
 	position: initial;
-	transition: 0.1s;
+	transition: 0.1s v.$timing-function;
 
 	&:hover {
 		filter: grayscale(0%);
@@ -82,10 +87,12 @@ $b: blue(v.$red);
 }
 
 %headings {
+	@include m.header-text-shadow;
+
 	color: v.$white;
 	margin-left: 2rem;
 	margin-right: 2rem;
-	text-shadow: 0 1px 4px v.$black;
+	//TODO some kind of hover? make better
 }
 
 .title {

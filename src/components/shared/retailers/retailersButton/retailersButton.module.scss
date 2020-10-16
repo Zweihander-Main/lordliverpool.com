@@ -2,23 +2,21 @@
 @use '~styles/util/mixins.global' as m;
 
 .button {
-	background: #550003;
-	box-shadow: inset -1px -1px 3px #220001, inset 1px 1px 3px #880005,
-		0px 0px 2px #220001; //TODO mixin
+	@include m.neumorphic-button(1px, 3px, v.$red, 10%, 2px, v.$black);
+
+	background: v.$red;
+	border-radius: v.$border-radius;
 	color: v.$white;
 	padding: 0.6rem 1rem;
 	text-decoration: none;
-	transition: 75ms;
-	border-radius: 8px;
+	transition: 75ms v.$timing-function;
 
 	&:hover {
-		box-shadow: inset -2px -2px 5px #220001, inset 2px 2px 5px #880005,
-			0px 0px 5px #220001;
+		@include m.neumorphic-button(2px, 5px, v.$red, 10%, 5px, v.$black);
 	}
 
 	&:active {
-		box-shadow: inset 1px 1px 3px #220001, inset -1px -1px 3px #880005,
-			0px 0px 5px #220001;
+		@include m.neumorphic-button(-1px, 3px, v.$red, 10%, 5px, v.$black);
 	}
 }
 

@@ -1,11 +1,10 @@
 @use '~styles/util/variables.global' as v;
 @use '~styles/util/mixins.global' as m;
 
-$content-margin: 1rem;
 $bg-opacity: 0.7;
-$mobile-header: #27aae2;
 $retailer-gap: 1.5rem;
-$border-radius: 8px;
+$menu-label-opacity: 0.3;
+$radio-label-opacity: 0.7;
 
 .outer {
 	bottom: 0;
@@ -20,8 +19,7 @@ $border-radius: 8px;
 	top: 0;
 	transform: translate(0, 100%);
 	transform: translate3d(0, 100%, 0);
-	transition: 250ms;
-	transition-timing-function: v.$timing-function;
+	transition: 250ms v.$timing-function;
 	width: 0;
 	z-index: 999999;
 }
@@ -36,8 +34,8 @@ $border-radius: 8px;
 
 .inner {
 	background: v.$white;
-	border-radius: $border-radius;
-	box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+	border-radius: v.$border-radius;
+	box-shadow: 0 0 30px v.$black;
 	left: 50%;
 	max-height: calc(80vh - (3rem * 2));
 	max-width: 100%;
@@ -50,31 +48,9 @@ $border-radius: 8px;
 	position: relative;
 	top: 3rem;
 	transform: translateX(-50%);
-	transition: max-width 0.25s linear, margin-left 0.125s linear;
+	transition: max-width 0.25s v.$timing-function,
+		margin-left 0.125s v.$timing-function;
 	z-index: 20;
-
-	> img,
-	> video,
-	> iframe {
-		height: auto;
-		min-height: 300px;
-		width: 100%;
-	}
-
-	> img {
-		max-width: 100%;
-		width: auto;
-	}
-
-	iframe {
-		border: 0;
-		display: block;
-		width: 100%;
-	}
-
-	> * {
-		max-width: 100%;
-	}
 
 	@media (max-width: 1000px) {
 		//TODO vars and mixins and also for close
@@ -112,7 +88,9 @@ $border-radius: 8px;
 }
 
 .close::after {
-	color: #f7f7f7;
+	@include m.header-text-shadow;
+
+	color: v.$white;
 	content: '';
 	content: '\D7';
 	font-size: 2rem;
@@ -124,7 +102,6 @@ $border-radius: 8px;
 	text-align: center;
 	text-decoration: none;
 	text-indent: 0;
-	text-shadow: 0 1px 2px v.$black;
 	top: 0;
 	vertical-align: middle;
 	width: 2rem;
@@ -150,23 +127,23 @@ $border-radius: 8px;
 
 .retailer {
 	align-content: center;
-	background: #fff;
+	background: v.$ultra-white;
 	display: flex;
 	height: 100%;
 	justify-content: center;
 	opacity: 0.2;
 	padding: $retailer-gap;
 	position: relative;
-	transition: 200ms;
-	transition-timing-function: v.$timing-function;
+	transition: 200ms v.$timing-function;
 	width: 100%;
 }
 
 .show-retailer {
-	box-shadow: 4px 4px 8px #bdbdbd, -4px -4px 8px #fff;
+	@include m.neumorphic-intensity(4px, 8px, v.$ultra-white, 26%);
+
 	opacity: 1;
 	&:hover {
-		box-shadow: 6px 6px 12px #bdbdbd, -6px -6px 12px #fff;
+		@include m.neumorphic-intensity(6px, 12px, v.$ultra-white, 26%);
 	}
 }
 
@@ -203,17 +180,18 @@ $border-radius: 8px;
 }
 
 .menu-selection {
-	background: #f7f7f7;
-	border: 7px solid #f7f7f7;
-	border-radius: $border-radius;
-	box-shadow: 3px 3px 6px #bebebe, -3px -3px 6px #fff;
+	@include m.neumorphic-intensity(3px, 7px, v.$white, 22%);
+
+	background: v.$white;
+	border: 7px solid v.$white;
+	border-radius: v.$border-radius;
 	margin: 0 0 0.5rem;
 	padding: 0.2rem 0;
 	width: fit-content;
 }
 
 .menu-label {
-	color: rgba(34, 34, 34, 0.3);
+	color: rgba(v.$black, $menu-label-opacity);
 	display: inline-block;
 	font-weight: bold;
 	margin: 0 1rem 0 0.1rem;
@@ -227,29 +205,32 @@ $border-radius: 8px;
 }
 
 .radio-option:checked + label {
-	background: #f7f7f7;
-	box-shadow: inset 2px 2px 6px #afafaf, inset -2px -2px 6px #fff;
+	@include m.neumorphic-button(-2px, 6px, v.$white, 28%);
+
+	background: v.$white;
 	color: v.$black;
 }
 
 .radio-label {
-	background: linear-gradient(145deg, #fbfbfb, #f3f2f2);
-	border-radius: $border-radius/2;
-	box-shadow: 2px 2px 3px rgb(212 212 212), -2px -2px 3px #fff;
-	color: rgba(v.$black, 0.7);
+	@include m.neumorphic-intensity(2px, 3px, v.$white, 14%);
+	@include m.neumorphic-raised-button(v.$white, 1.5%);
+
+	border-radius: v.$border-radius/2;
+	color: rgba(v.$black, $radio-label-opacity);
 	cursor: pointer;
 	margin: 0 1rem 0 0;
 	padding: 0.2rem 1rem;
 	user-select: none;
 
 	&:hover {
-		background: linear-gradient(145deg, #fff, #eaeaea);
-		box-shadow: 3px 3px 6px #d4d4d4, -3px -3px 6px #fff;
+		@include m.neumorphic-intensity(3px, 6px, v.$white, 14%);
+		@include m.neumorphic-raised-button(v.$white, 5%);
+
 		color: v.$black;
 	}
 
 	&:active {
-		background: linear-gradient(145deg, #eaeaea, #fff);
+		@include m.neumorphic-raised-button(v.$white, 5%, true);
 	}
 }
 

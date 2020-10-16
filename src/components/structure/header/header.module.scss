@@ -20,7 +20,7 @@ $menu-transition: 0.2s;
 	margin: 1rem 0 0 1rem;
 	padding: 1rem;
 	position: absolute;
-	transition: $menu-transition;
+	transition: $menu-transition v.$timing-function;
 	z-index: 1001;
 
 	&:focus {
@@ -40,7 +40,7 @@ $menu-transition: 0.2s;
 	background-color: v.$white;
 	height: 2px;
 	margin: 9px 1.4rem 9px 9px;
-	transition: $menu-transition;
+	transition: $menu-transition v.$timing-function;
 	width: 30px;
 }
 

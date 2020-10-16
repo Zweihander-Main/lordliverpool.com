@@ -9,3 +9,4 @@ export const subHeader: string;
 export const authorHeader: string;
 export const authorLink: string;
 export const moreInfo: string;
+export const text: string;

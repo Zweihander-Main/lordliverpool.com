@@ -5,8 +5,14 @@
 $card-border: 35px;
 
 .card {
+	@include m.neumorphic-full(
+		15px,
+		31px,
+		v.$blue-card-dark-shadow,
+		v.$blue-card-light-shadow
+	);
+
 	background-color: v.$blue-card-bg;
-	box-shadow: 15px 15px 30px #01060a, -15px -15px 30px #092435; //TODO vars and mixins
 	box-sizing: border-box;
 	color: v.$white;
 	display: grid;
@@ -68,6 +74,8 @@ $card-border: 35px;
 	}
 }
 // TODO Zoom
+// TODO fix mixins and ect. for breakpoints
+
 .text {
 	white-space: break-spaces;
 }

@@ -1,3 +1,6 @@
+@use './variables.global' as v;
+@use 'sass:color';
+
 @mixin header-normal {
 	font-weight: normal;
 	letter-spacing: 0;
@@ -5,6 +8,10 @@
 
 @mixin successive-headings {
 	margin-bottom: 0.4rem;
+}
+
+@mixin header-text-shadow {
+	text-shadow: 0 1px 2px v.$black;
 }
 
 @mixin custom-scrollbar($scroll-bg, $thumb-bg) {
@@ -24,4 +31,71 @@
 		border: 3px solid $scroll-bg;
 		border-radius: 6px;
 	}
+}
+
+@mixin hide-scrollbars {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+@mixin neumorphic-full(
+	$shadow-size: 0,
+	$shadow-spread: $shadow-size * 2,
+	$bottom-color: v.$dark-bg,
+	$top-color: v.$dark-bg
+) {
+	box-shadow: $shadow-size $shadow-size $shadow-spread $bottom-color,
+		(-$shadow-size) (-$shadow-size) $shadow-spread $top-color;
+}
+
+@mixin neumorphic-intensity(
+	$shadow-size: 0,
+	$shadow-spread: $shadow-size * 2,
+	$base-color: v.$dark-bg,
+	$intensity: 50%
+) {
+	$top-color: color.adjust($base-color, $lightness: $intensity);
+	$bottom-color: color.adjust($base-color, $lightness: -$intensity);
+
+	@include neumorphic-full(
+		$shadow-size,
+		$shadow-spread,
+		$bottom-color,
+		$top-color
+	);
+}
+
+@mixin neumorphic-button(
+	$inset-shadow-size: 0,
+	$inset-shadow-spread: $inset-shadow-size * 2,
+	$base-color: v.$dark-bg,
+	$intensity: 50%,
+	$shadow-size: 0,
+	$shadow-color: v.$black
+) {
+	$top-inset-color: color.adjust($base-color, $lightness: $intensity);
+	$bottom-inset-color: color.adjust($base-color, $lightness: -$intensity);
+
+	box-shadow: inset (-$inset-shadow-size) (-$inset-shadow-size)
+			$inset-shadow-spread $bottom-inset-color,
+		inset $inset-shadow-size $inset-shadow-size $inset-shadow-spread
+			$top-inset-color,
+		0 0 $shadow-size $shadow-color;
+}
+
+@mixin neumorphic-raised-button(
+	$base-color: v.$dark-bg,
+	$intensity: 50%,
+	$reverse: false
+) {
+	@if $reverse {
+		$intensity: -$intensity;
+	}
+	$from: color.adjust($base-color, $lightness: $intensity);
+	$to: color.adjust($base-color, $lightness: -$intensity);
+
+	background: linear-gradient(145deg, $from, $to);
 }

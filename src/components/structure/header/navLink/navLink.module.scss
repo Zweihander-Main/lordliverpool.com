@@ -6,7 +6,7 @@
 	flex-direction: column;
 	height: 100%;
 	justify-content: center;
-	transition: 0.1s;
+	transition: 0.1s v.$timing-function;
 	width: 100%;
 	&::before,
 	&::after {
@@ -17,7 +17,6 @@
 	&:hover::after {
 		visibility: visible;
 	} // TODO order the image loading? -- loading eager
-	// TODO webp?
 	// TODO durationfadein for images?
 }
 
@@ -46,9 +45,10 @@
 	}
 
 	&:hover {
+		@include m.header-text-shadow;
+
 		background-color: v.$dark-bg;
 		color: v.$white;
-		text-shadow: 0 1px 1px rgba(0, 0, 0, 0.35);
 	}
 }
 

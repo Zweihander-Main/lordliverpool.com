@@ -10,12 +10,14 @@
 	min-height: 100vh;
 	text-align: center; //TODO figure out retina settings
 }
+
 .main-title {
+	@include m.header-text-shadow;
+
 	font-size: v.$hero-large-size;
 	font-weight: normal;
 	grid-row-start: 2;
 	line-height: 4.93rem; //TODO var
-	text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5); //TODO var
 	text-transform: uppercase;
 } // TODO make it so that it's always two lines
 
@@ -28,10 +30,10 @@
 }
 
 .retailers {
-	grid-row-start: 5;
-	padding-top: 1em;
 	align-self: center;
+	grid-row-start: 5;
 	padding-bottom: 3vh;
+	padding-top: 1em;
 
 	h4 {
 		@include m.header-normal;
