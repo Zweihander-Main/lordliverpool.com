@@ -134,31 +134,31 @@ const Header: React.FC<HeaderProps> = ({
 			<div className={styles.overlayNavigation}>
 				<nav className={styles.nav}>
 					<NavLink
-						linkTo={'/chronology/'}
+						linkTo={'/chronology'}
 						headerText={'Chronology'}
 						subHeaderText={'The Life and Colleagues'}
 						fluidData={chronologyBackgroundStack}
 					/>
 					<NavLink
-						linkTo={'/contenders/'}
+						linkTo={'/contenders'}
 						headerText={'Contenders'}
 						subHeaderText={'For Greatest Prime Minister'}
 						fluidData={contendersBackgroundStack}
 					/>
 					<NavLink
-						linkTo={'/miscellany/'}
+						linkTo={'/miscellany'}
 						headerText={'Miscellany'}
 						subHeaderText={'On All Things Liverpool'}
 						fluidData={miscellany}
 					/>
 					<NavLink
-						linkTo={'/author/'}
+						linkTo={'/author'}
 						headerText={'Author'}
 						subHeaderText={'About Martin Hutchinson'}
 						fluidData={authorBackgroundStack}
 					/>
 					<NavLink
-						linkTo={'/book/'}
+						linkTo={'/book'}
 						headerText={'Book'}
 						subHeaderText={'Reviews and Information'}
 						fluidData={book}

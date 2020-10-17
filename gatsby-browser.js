@@ -15,3 +15,10 @@ import { ModalProvider } from './src/contexts/ModalContext';
 export const wrapRootElement = ({ element }) => (
 	<ModalProvider>{element}</ModalProvider>
 );
+
+export const shouldUpdateScroll = (props) => {
+	if (props.routerProps.location.pathname.endsWith('/chronology/')) {
+		return false;
+	}
+	return true;
+};
