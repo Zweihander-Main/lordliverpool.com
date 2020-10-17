@@ -4,7 +4,7 @@ import { SessionStorage } from 'utils/session-storage';
 const defaultCategory = 'all';
 const categoryKey = 'SELECTED_CATEGORY';
 
-type ChronologyContextState = {
+export type ChronologyContextState = {
 	selectedCategory: string;
 	setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
 };

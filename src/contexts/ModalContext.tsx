@@ -1,6 +1,6 @@
 import React from 'react';
 
-type ModalContextState = {
+export type ModalContextState = {
 	open: boolean;
 	toggleModal: () => void;
 };

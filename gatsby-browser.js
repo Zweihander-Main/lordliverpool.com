@@ -10,13 +10,10 @@ import 'typeface-cardo';
 
 import React from 'react';
 
-import { ModalProvider } from './src/contexts/ModalContext';
-import { ChronologyProvider } from './src/contexts/ChronologyContext';
+import AppProvider from './src/contexts/AppContext';
 
 export const wrapRootElement = ({ element }) => (
-	<ChronologyProvider>
-		<ModalProvider>{element}</ModalProvider>
-	</ChronologyProvider>
+	<AppProvider>{element}</AppProvider>
 );
 
 /**
