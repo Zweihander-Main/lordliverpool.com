@@ -104,9 +104,13 @@ const Chronology: React.FC = () => {
 		.filter((year) => typeof year !== 'undefined') as Array<string>; //not cheating, TS won't filter out undefined types
 
 	const cardContainerRef = React.useRef<HTMLDivElement>(null);
+	type cardContainerScrollRestorationType = {
+		ref: React.MutableRefObject<HTMLDivElement>;
+		onScroll(): void;
+	};
 	const cardContainerScrollRestoration = useScrollRestoration(
 		`page-component-card-container`
-	);
+	) as cardContainerScrollRestorationType;
 	const cardContainerWrapperRef = cardContainerScrollRestoration.ref;
 	const [viewportWidth, containerWidth, startPos] = useTimelineWidth(
 		cardContainerRef,
