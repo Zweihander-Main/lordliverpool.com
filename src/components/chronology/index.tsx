@@ -115,6 +115,8 @@ const Chronology: React.FC = () => {
 		cardContainerRef.current.focus();
 	}
 
+	//TODO restore selected state with the same session storage trick as scroll restoration
+
 	const sectionClass = `${styles.chronology} `;
 
 	return (

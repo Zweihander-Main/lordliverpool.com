@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './contenders.module.scss';
-import { useStaticQuery, graphql, Link } from 'gatsby';
+import { useStaticQuery, graphql, Link, useScrollRestoration } from 'gatsby';
 import Img from 'gatsby-image';
 
 const Contenders: React.FC = () => {
@@ -36,6 +36,9 @@ const Contenders: React.FC = () => {
 	`);
 
 	const { edges: contenders } = blogRollData.allMarkdownRemark;
+	const contendersMenuScrollRestoration = useScrollRestoration(
+		`contenders-menu`
+	);
 
 	const [selected, setSelected] = React.useState(contenders[0].node.id || '');
 	const selectedContender = contenders.find((c) => c.node.id === selected);
@@ -48,6 +51,8 @@ const Contenders: React.FC = () => {
 	// }
 
 	//TODO Switch back
+
+	//TODO save selected contenders for scroll restoration/session storage
 
 	return (
 		<section className={styles.contenders}>
@@ -80,7 +85,7 @@ const Contenders: React.FC = () => {
 					</h1>
 				</figcaption>
 			</figure>
-			<div className={styles.menu}>
+			<div className={styles.menu} {...contendersMenuScrollRestoration}>
 				<h1>Contenders for Greatest</h1>
 				<ul className={styles.menuList}>
 					{contenders &&
