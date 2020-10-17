@@ -18,3 +18,9 @@
 // TODO https://www.gatsbyjs.com/plugins/gatsby-remark-external-links/?= and make sure all links not on markdown are right
 // TODO consistent prune length
 // TODO style prev/next links better
+// TODO more custom scrollbars?
+// TODO way to signify 'already on that page' when in men
+// TODO contenders save image object so it doesn't re-ask the server
+// TODO should pressing backto button on post scroll to position of particular person?
+// TODO test chronology as no-js in prod
+// TODO check chronology rendering performance

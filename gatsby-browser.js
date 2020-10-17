@@ -11,9 +11,12 @@ import 'typeface-cardo';
 import React from 'react';
 
 import { ModalProvider } from './src/contexts/ModalContext';
+import { ChronologyProvider } from './src/contexts/ChronologyContext';
 
 export const wrapRootElement = ({ element }) => (
-	<ModalProvider>{element}</ModalProvider>
+	<ChronologyProvider>
+		<ModalProvider>{element}</ModalProvider>
+	</ChronologyProvider>
 );
 
 /**

@@ -5,7 +5,7 @@ import useJS from 'hooks/useJS';
 import { useStaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 
-const RetailersModal: React.FC = ({}) => {
+const RetailersModal: React.FC = () => {
 	const retailersData = useStaticQuery<
 		GatsbyTypes.RetailersInfoQuery
 	>(graphql`

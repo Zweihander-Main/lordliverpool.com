@@ -4,6 +4,7 @@ import { useStaticQuery, graphql, useScrollRestoration } from 'gatsby';
 import useTimelineWidth from 'hooks/useTimelineWidth';
 import Timeline from './timeline';
 import Card from './card';
+import ChronologyContext from 'contexts/ChronologyContext';
 
 const Chronology: React.FC = () => {
 	const chronologyData = useStaticQuery<
@@ -87,9 +88,11 @@ const Chronology: React.FC = () => {
 		.filter((value) => value && value !== '');
 	const categories = ['all', ...pulledInCategories];
 
-	const [selectedCategory, setSelectedCategory] = React.useState<
-		typeof categories[number]
-	>(categories[0]);
+	const { selectedCategory, setSelectedCategory } = React.useContext(
+		ChronologyContext
+	);
+
+	console.log(selectedCategory);
 
 	const ticks = (selectedCategory !== categories[0]
 		? cards.filter(

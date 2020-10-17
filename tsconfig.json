@@ -33,7 +33,8 @@
 			"styles": ["src/styles"],
 			"pages": ["src/pages"],
 			"images": ["src/images"],
-			"contexts": ["src/contexts"]
+			"contexts": ["src/contexts"],
+			"utils": ["src/utils"]
 		},
 		"plugins": [
 			{
