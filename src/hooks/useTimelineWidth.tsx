@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 const useTimelineWidth = (
 	containerRef: React.RefObject<HTMLDivElement>,
-	containerWrapperRef: React.RefObject<HTMLDivElement>,
+	containerWrapperRef: React.RefObject<HTMLElement | undefined>,
 	selectedCategory: string
 ) => {
 	const [viewportWidth, setViewportWidth] = useState(0);

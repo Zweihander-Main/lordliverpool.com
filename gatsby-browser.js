@@ -16,8 +16,24 @@ export const wrapRootElement = ({ element }) => (
 	<ModalProvider>{element}</ModalProvider>
 );
 
+/**
+ *
+ * @param {*} props
+ * @param {string} location string without slashes of location
+ */
+const isLocation = (props, location) => {
+	const pathname = props.routerProps.location.pathname;
+	if (
+		pathname.endsWith(`/${location}`) ||
+		pathname.endsWith(`/${location}/`)
+	) {
+		return true;
+	}
+	return false;
+};
+
 export const shouldUpdateScroll = (props) => {
-	if (props.routerProps.location.pathname.endsWith('/chronology/')) {
+	if (isLocation(props, 'chronology') || isLocation(props, 'contenders')) {
 		return false;
 	}
 	return true;

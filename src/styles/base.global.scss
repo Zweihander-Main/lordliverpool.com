@@ -5,6 +5,11 @@ html {
 	background-color: v.$dark-bg;
 }
 
+::selection {
+	background: v.$red;
+	color: v.$white;
+}
+
 .app-body {
 	overflow-x: hidden;
 	overflow-y: hidden;

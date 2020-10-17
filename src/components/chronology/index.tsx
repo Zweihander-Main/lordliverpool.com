@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './chronology.module.scss';
-import { useStaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql, useScrollRestoration } from 'gatsby';
 import useTimelineWidth from 'hooks/useTimelineWidth';
 import Timeline from './timeline';
 import Card from './card';
@@ -101,7 +101,10 @@ const Chronology: React.FC = () => {
 		.filter((year) => typeof year !== 'undefined') as Array<string>; //not cheating, TS won't filter out undefined types
 
 	const cardContainerRef = React.useRef<HTMLDivElement>(null);
-	const cardContainerWrapperRef = React.useRef<HTMLDivElement>(null);
+	const cardContainerScrollRestoration = useScrollRestoration(
+		`page-component-card-container`
+	);
+	const cardContainerWrapperRef = cardContainerScrollRestoration.ref;
 	const [viewportWidth, containerWidth, startPos] = useTimelineWidth(
 		cardContainerRef,
 		cardContainerWrapperRef,
@@ -134,7 +137,7 @@ const Chronology: React.FC = () => {
 			</div>
 			<div
 				className={styles.cardContainerWrapper}
-				ref={cardContainerWrapperRef}
+				{...cardContainerScrollRestoration}
 			>
 				<div className={styles.cardContainer} ref={cardContainerRef}>
 					<div className={styles.buffer}>&nbsp;</div>
