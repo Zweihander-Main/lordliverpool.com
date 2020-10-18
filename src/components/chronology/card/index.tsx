@@ -16,10 +16,12 @@ type CardProps = {
 	slug?: string;
 	text?: string;
 	displayDate?: string;
+	selectedCategory: string;
 };
 
 const Card: React.FC<CardProps> = ({
 	show,
+	selectedCategory,
 	featuredImage,
 	title,
 	isFullArticle,
@@ -32,7 +34,11 @@ const Card: React.FC<CardProps> = ({
 			<div className={styles.inner}>
 				{featuredImage &&
 					(isFullArticle && slug ? (
-						<Link to={slug} className={styles.titleLink}>
+						<Link
+							to={slug}
+							className={styles.titleLink}
+							state={{ upperState: selectedCategory }}
+						>
 							<Img
 								className={styles.image}
 								imgStyle={{
@@ -59,7 +65,11 @@ const Card: React.FC<CardProps> = ({
 						}
 					>
 						{isFullArticle && slug ? (
-							<Link to={slug} className={styles.titleLink}>
+							<Link
+								to={slug}
+								className={styles.titleLink}
+								state={{ upperState: selectedCategory }}
+							>
 								{title}
 							</Link>
 						) : (
@@ -76,4 +86,13 @@ const Card: React.FC<CardProps> = ({
 	);
 };
 
-export default Card;
+// export default Card;
+
+const memoizedCard = React.memo(Card, (prevProps, nextProps) => {
+	if (prevProps.show !== nextProps.show) {
+		return false;
+	}
+	return true;
+});
+
+export default memoizedCard;
