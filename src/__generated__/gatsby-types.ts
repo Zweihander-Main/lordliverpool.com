@@ -694,6 +694,7 @@ enum FileFieldsEnum {
   childMarkdownRemark___id = 'childMarkdownRemark.id',
   childMarkdownRemark___frontmatter___title = 'childMarkdownRemark.frontmatter.title',
   childMarkdownRemark___frontmatter___subtitle = 'childMarkdownRemark.frontmatter.subtitle',
+  childMarkdownRemark___frontmatter___description = 'childMarkdownRemark.frontmatter.description',
   childMarkdownRemark___frontmatter___date = 'childMarkdownRemark.frontmatter.date',
   childMarkdownRemark___frontmatter___featuredImage___sourceInstanceName = 'childMarkdownRemark.frontmatter.featuredImage.sourceInstanceName',
   childMarkdownRemark___frontmatter___featuredImage___absolutePath = 'childMarkdownRemark.frontmatter.featuredImage.absolutePath',
@@ -731,7 +732,6 @@ enum FileFieldsEnum {
   childMarkdownRemark___frontmatter___featuredImage___publicURL = 'childMarkdownRemark.frontmatter.featuredImage.publicURL',
   childMarkdownRemark___frontmatter___featuredImage___id = 'childMarkdownRemark.frontmatter.featuredImage.id',
   childMarkdownRemark___frontmatter___featuredImage___children = 'childMarkdownRemark.frontmatter.featuredImage.children',
-  childMarkdownRemark___frontmatter___description = 'childMarkdownRemark.frontmatter.description',
   childMarkdownRemark___frontmatter___displayDate = 'childMarkdownRemark.frontmatter.displayDate',
   childMarkdownRemark___frontmatter___category = 'childMarkdownRemark.frontmatter.category',
   childMarkdownRemark___frontmatter___card = 'childMarkdownRemark.frontmatter.card',
@@ -1520,6 +1520,7 @@ enum MarkdownRemarkFieldsEnum {
   id = 'id',
   frontmatter___title = 'frontmatter.title',
   frontmatter___subtitle = 'frontmatter.subtitle',
+  frontmatter___description = 'frontmatter.description',
   frontmatter___date = 'frontmatter.date',
   frontmatter___featuredImage___sourceInstanceName = 'frontmatter.featuredImage.sourceInstanceName',
   frontmatter___featuredImage___absolutePath = 'frontmatter.featuredImage.absolutePath',
@@ -1582,7 +1583,6 @@ enum MarkdownRemarkFieldsEnum {
   frontmatter___featuredImage___childMarkdownRemark___timeToRead = 'frontmatter.featuredImage.childMarkdownRemark.timeToRead',
   frontmatter___featuredImage___childMarkdownRemark___tableOfContents = 'frontmatter.featuredImage.childMarkdownRemark.tableOfContents',
   frontmatter___featuredImage___childMarkdownRemark___children = 'frontmatter.featuredImage.childMarkdownRemark.children',
-  frontmatter___description = 'frontmatter.description',
   frontmatter___displayDate = 'frontmatter.displayDate',
   frontmatter___category = 'frontmatter.category',
   frontmatter___card = 'frontmatter.card',
@@ -1722,9 +1722,9 @@ type MarkdownRemarkFilterInput = {
 type MarkdownRemarkFrontmatter = {
   readonly title: Maybe<Scalars['String']>;
   readonly subtitle: Maybe<Scalars['String']>;
+  readonly description: Maybe<Scalars['String']>;
   readonly date: Maybe<Scalars['Date']>;
   readonly featuredImage: Maybe<File>;
-  readonly description: Maybe<Scalars['String']>;
   readonly displayDate: Maybe<Scalars['String']>;
   readonly category: Maybe<Scalars['String']>;
   readonly card: Maybe<Scalars['String']>;
@@ -1746,9 +1746,9 @@ type MarkdownRemarkFrontmatter_dateArgs = {
 type MarkdownRemarkFrontmatterFilterInput = {
   readonly title: Maybe<StringQueryOperatorInput>;
   readonly subtitle: Maybe<StringQueryOperatorInput>;
+  readonly description: Maybe<StringQueryOperatorInput>;
   readonly date: Maybe<DateQueryOperatorInput>;
   readonly featuredImage: Maybe<FileFilterInput>;
-  readonly description: Maybe<StringQueryOperatorInput>;
   readonly displayDate: Maybe<StringQueryOperatorInput>;
   readonly category: Maybe<StringQueryOperatorInput>;
   readonly card: Maybe<StringQueryOperatorInput>;
@@ -3151,15 +3151,15 @@ type ContendersQueryQuery = { readonly allMarkdownRemark: { readonly edges: Read
         )> }
       ) }> } };
 
-type HeroImageQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type HeroImageQuery = { readonly file: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }> };
-
 type BookInfoQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 type BookInfoQuery = { readonly file: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }>, readonly markdownRemark: Maybe<Pick<MarkdownRemark, 'html'>> };
+
+type HeroImageQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type HeroImageQuery = { readonly file: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }> };
 
 type BlogRollQueryQueryVariables = Exact<{ [key: string]: never; }>;
 

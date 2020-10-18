@@ -1,6 +1,9 @@
 @use './util/variables.global' as v;
 @use './util/mixins.global' as m;
 
+@import '~fontsource-libre-baskerville/latin.css';
+@import '~fontsource-cardo/latin.css';
+
 html {
 	background-color: v.$dark-bg;
 }

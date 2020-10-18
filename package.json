@@ -6,6 +6,8 @@
 	"author": "Zweihänder",
 	"license": "MIT",
 	"dependencies": {
+		"fontsource-cardo": "^3.0.10",
+		"fontsource-libre-baskerville": "^3.0.9",
 		"gatsby": "^2.24.47",
 		"gatsby-alias-imports": "^1.0.4",
 		"gatsby-background-image": "^1.1.1",
@@ -31,8 +33,6 @@
 		"react-icons": "^3.10.0",
 		"react-typography": "^0.16.19",
 		"sass": "^1.26.10",
-		"typeface-cardo": "0.0.72",
-		"typeface-libre-baskerville": "0.0.72",
 		"typography": "^0.16.19"
 	},
 	"devDependencies": {
