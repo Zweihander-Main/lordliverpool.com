@@ -16,6 +16,7 @@ type SinglePostProps = {
 	linkBackName?: string;
 	prev?: NextPrevInfo;
 	next?: NextPrevInfo;
+	upperState?: string;
 };
 
 //TODO attribution for lifted posts
@@ -32,6 +33,7 @@ const PostHeader: React.FC<SinglePostProps> = ({
 	linkBackName,
 	prev,
 	next,
+	upperState,
 }) => {
 	//TODO add in author
 	// TODO figure out width
@@ -46,7 +48,11 @@ const PostHeader: React.FC<SinglePostProps> = ({
 						</Link>
 					)}
 					{linkBackURL && linkBackName && (
-						<Link to={linkBackURL} className={styles.linkUp}>
+						<Link
+							to={linkBackURL}
+							className={styles.linkUp}
+							state={upperState ? { upperState } : null}
+						>
 							Back to {linkBackName}
 						</Link>
 					)}

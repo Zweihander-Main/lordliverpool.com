@@ -7,17 +7,18 @@ import styles from './layout.module.scss';
 type LayoutProps = {
 	isHome?: boolean;
 	darkMenu?: boolean;
+	showFooter?: boolean;
 };
 
 const Layout: React.FC<
 	LayoutProps & React.PropsWithChildren<Record<string, unknown>>
-> = ({ children, isHome, darkMenu }) => {
+> = ({ children, isHome, darkMenu, showFooter = true }) => {
 	return (
 		<React.Fragment>
 			<Header isHome={isHome} darkMenu={darkMenu} />
 			<div className={styles.content}>
 				<main>{children}</main>
-				<Footer />
+				{showFooter && <Footer />}
 			</div>
 		</React.Fragment>
 	);

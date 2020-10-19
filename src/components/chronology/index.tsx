@@ -1,12 +1,12 @@
 import React from 'react';
 import styles from './chronology.module.scss';
-import { useStaticQuery, graphql, useScrollRestoration } from 'gatsby';
+import { useStaticQuery, graphql } from 'gatsby';
 import useTimelineWidth from 'hooks/useTimelineWidth';
 import Timeline from './timeline';
 import Card from './card';
-import ChronologyContext from 'contexts/ChronologyContext';
+import useScrollAndStateRestore from 'hooks/useScrollAndStateRestore';
 
-const Chronology: React.FC = () => {
+const Chronology: React.FC = ({ upperState }) => {
 	const chronologyData = useStaticQuery<
 		GatsbyTypes.ChronologyQueryQuery
 	>(graphql`
@@ -88,11 +88,17 @@ const Chronology: React.FC = () => {
 		.filter((value) => value && value !== '');
 	const categories = ['all', ...pulledInCategories];
 
-	const { selectedCategory, setSelectedCategory } = React.useContext(
-		ChronologyContext
-	);
+	const {
+		state: selectedCategory,
+		setState: setSelectedCategory,
+		ref: cardContainerWrapperRef,
+		onScroll: cardContainerWrapperOnScroll,
+	} = useScrollAndStateRestore({
+		identifier: `card-container-wrapper`,
+		initialState: upperState || 'all',
+	});
 
-	console.log(selectedCategory);
+	console.log(`selectedCategory: ${selectedCategory}`);
 
 	const ticks = (selectedCategory !== categories[0]
 		? cards.filter(
@@ -104,19 +110,6 @@ const Chronology: React.FC = () => {
 		.filter((year) => typeof year !== 'undefined') as Array<string>; //not cheating, TS won't filter out undefined types
 
 	const cardContainerRef = React.useRef<HTMLDivElement>(null);
-	type cardContainerScrollRestorationType = {
-		ref: React.MutableRefObject<HTMLDivElement>;
-		onScroll(): void;
-	};
-	const cardContainerScrollRestoration = useScrollRestoration(
-		`page-component-card-container`
-	) as cardContainerScrollRestorationType;
-	const cardContainerWrapperRef = cardContainerScrollRestoration.ref;
-	const [viewportWidth, containerWidth, startPos] = useTimelineWidth(
-		cardContainerRef,
-		cardContainerWrapperRef,
-		selectedCategory
-	);
 
 	if (cardContainerRef.current) {
 		cardContainerRef.current.focus();
@@ -146,7 +139,8 @@ const Chronology: React.FC = () => {
 			</div>
 			<div
 				className={styles.cardContainerWrapper}
-				{...cardContainerScrollRestoration}
+				ref={cardContainerWrapperRef}
+				onScroll={cardContainerWrapperOnScroll}
 			>
 				<div className={styles.cardContainer} ref={cardContainerRef}>
 					<div className={styles.buffer}>&nbsp;</div>
@@ -169,6 +163,7 @@ const Chronology: React.FC = () => {
 									slug={card?.fields?.slug}
 									text={card?.frontmatter?.card}
 									displayDate={card?.frontmatter?.displayDate}
+									selectedCategory={selectedCategory}
 								/>
 							);
 						})}
@@ -178,10 +173,9 @@ const Chronology: React.FC = () => {
 			<Timeline
 				{...{
 					ticks,
-					viewportWidth,
-					containerWidth,
-					startPos,
 					cardContainerWrapperRef,
+					cardContainerRef,
+					selectedCategory,
 				}}
 			/>
 		</section>

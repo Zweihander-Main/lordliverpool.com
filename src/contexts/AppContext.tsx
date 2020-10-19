@@ -1,6 +1,6 @@
 import React from 'react';
 import { ModalProvider } from './ModalContext';
-import { ChronologyProvider } from './ChronologyContext';
+import { ScrollPlusStateProvider } from './ScrollPlusStateContext';
 
 type AppContextProps = {
 	children: React.ReactNode;
@@ -9,7 +9,7 @@ type AppContextProps = {
 const AppProvider: React.FC<AppContextProps> = ({ children }) => {
 	return (
 		<ModalProvider>
-			<ChronologyProvider>{children}</ChronologyProvider>
+			<ScrollPlusStateProvider>{children}</ScrollPlusStateProvider>
 		</ModalProvider>
 	);
 };

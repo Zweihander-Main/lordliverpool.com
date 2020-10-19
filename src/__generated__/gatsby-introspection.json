@@ -3580,16 +3580,6 @@
             "defaultValue": null
           },
           {
-            "name": "description",
-            "description": "",
-            "type": {
-              "kind": "INPUT_OBJECT",
-              "name": "StringQueryOperatorInput",
-              "ofType": null
-            },
-            "defaultValue": null
-          },
-          {
             "name": "date",
             "description": "",
             "type": {
@@ -3605,6 +3595,16 @@
             "type": {
               "kind": "INPUT_OBJECT",
               "name": "FileFilterInput",
+              "ofType": null
+            },
+            "defaultValue": null
+          },
+          {
+            "name": "description",
+            "description": "",
+            "type": {
+              "kind": "INPUT_OBJECT",
+              "name": "StringQueryOperatorInput",
               "ofType": null
             },
             "defaultValue": null
@@ -8160,18 +8160,6 @@
             "deprecationReason": null
           },
           {
-            "name": "description",
-            "description": null,
-            "args": [],
-            "type": {
-              "kind": "SCALAR",
-              "name": "String",
-              "ofType": null
-            },
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "date",
             "description": null,
             "args": [
@@ -8231,6 +8219,18 @@
             "type": {
               "kind": "OBJECT",
               "name": "File",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "description",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "SCALAR",
+              "name": "String",
               "ofType": null
             },
             "isDeprecated": false,
@@ -9883,12 +9883,6 @@
             "deprecationReason": null
           },
           {
-            "name": "childMarkdownRemark___frontmatter___description",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "childMarkdownRemark___frontmatter___date",
             "description": null,
             "isDeprecated": false,
@@ -10106,6 +10100,12 @@
           },
           {
             "name": "childMarkdownRemark___frontmatter___featuredImage___children",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
+            "name": "childMarkdownRemark___frontmatter___description",
             "description": null,
             "isDeprecated": false,
             "deprecationReason": null
@@ -19577,12 +19577,6 @@
             "deprecationReason": null
           },
           {
-            "name": "frontmatter___description",
-            "description": null,
-            "isDeprecated": false,
-            "deprecationReason": null
-          },
-          {
             "name": "frontmatter___date",
             "description": null,
             "isDeprecated": false,
@@ -19953,6 +19947,12 @@
             "description": null,
             "isDeprecated": true,
             "deprecationReason": "Sorting on fields that need arguments to resolve is deprecated."
+          },
+          {
+            "name": "frontmatter___description",
+            "description": null,
+            "isDeprecated": false,
+            "deprecationReason": null
           },
           {
             "name": "frontmatter___displayDate",

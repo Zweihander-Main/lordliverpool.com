@@ -8,9 +8,10 @@ import { TemplatePageContext } from '../types';
 const ChronologyPostTemplate: React.FC<PageProps<
 	GatsbyTypes.ChronologyPostBySlugQuery,
 	TemplatePageContext
->> = ({ data, pageContext }) => {
+>> = ({ data, pageContext, location }) => {
 	const post = data.markdownRemark;
 	const { prev, next } = pageContext;
+	const upperState = location?.state?.upperState;
 
 	return (
 		<Layout darkMenu={true}>
@@ -33,6 +34,7 @@ const ChronologyPostTemplate: React.FC<PageProps<
 				linkBackURL={'/chronology'}
 				next={next}
 				prev={prev}
+				upperState={upperState}
 			/>
 		</Layout>
 	);

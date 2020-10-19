@@ -1,25 +1,30 @@
 import React from 'react';
 import styles from './timeline.module.scss';
+import useTimelineWidth from 'hooks/useTimelineWidth';
 
 type TimelineProps = {
-	viewportWidth: number;
-	containerWidth: number;
-	startPos: number;
 	ticks: Array<string>;
 	cardContainerWrapperRef: React.RefObject<HTMLDivElement>;
+	cardContainerRef: React.RefObject<HTMLDivElement>;
+	selectedCategory: string;
 };
 
 const Timeline: React.FC<TimelineProps> = ({
 	ticks,
-	viewportWidth,
-	containerWidth,
-	startPos,
 	cardContainerWrapperRef,
+	cardContainerRef,
+	selectedCategory,
 }) => {
 	const tickContent = [];
 	for (let i = 0, len = ticks.length; i < len; i++) {
 		tickContent.push(<span key={i} className={styles.tick}></span>);
 	}
+
+	const [viewportWidth, containerWidth, startPos] = useTimelineWidth(
+		cardContainerRef,
+		cardContainerWrapperRef,
+		selectedCategory
+	);
 
 	let areaGrabberWidth = 0;
 	let areaGrabberLeftEdge = 0;
@@ -30,11 +35,12 @@ const Timeline: React.FC<TimelineProps> = ({
 	let year = ticks[0] || '1800';
 	let yearWidth = 0;
 	let yearOffset = 0;
+	let viewportOverContainer = 0;
 
 	if (containerWidth !== 0) {
-		areaGrabberLeftEdge = -(startPos / containerWidth) * viewportWidth || 0;
-		areaGrabberWidth =
-			(viewportWidth / containerWidth) * viewportWidth || 0;
+		viewportOverContainer = viewportWidth / containerWidth;
+		areaGrabberLeftEdge = -(startPos * viewportOverContainer) || 0;
+		areaGrabberWidth = viewportOverContainer * viewportWidth || 0;
 		if (areaGrabberLeftEdge + areaGrabberWidth > viewportWidth) {
 			areaGrabberLeftEdge = viewportWidth - areaGrabberWidth;
 		}
