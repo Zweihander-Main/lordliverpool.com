@@ -7,6 +7,7 @@ import {
 	useState,
 } from 'react';
 import { useLocation } from '@reach/router';
+import rafSchd from 'raf-schd';
 
 // Adapter from Gatsby's version with additional state handling
 // Usage note: do not spread on to JSX Element
@@ -31,7 +32,15 @@ const useScrollAndStateRestore = ({
 	const storage = useContext(ScrollPlusStateContext);
 	const ref = useRef<HTMLDivElement>(null);
 	const [state, setState] = useState(initialState);
-	const [savedPosition, setSavedPos] = useState(0);
+
+	const scrollToRefPos = (pos: number) => {
+		if (ref.current) {
+			console.log(`scroll`);
+			ref.current.scrollTop = pos || 0;
+		}
+	};
+
+	const rafScrollToRefPos = rafSchd(scrollToRefPos);
 
 	useLayoutEffect(() => {
 		if (ref.current) {
@@ -42,23 +51,14 @@ const useScrollAndStateRestore = ({
 					setState(savedState);
 				}
 				if (savedPos) {
-					// Wait a tick to allow re-render with new state
-					setTimeout(() => {
-						if (ref.current) {
-							console.log(`scroll`);
-							ref.current.scrollTop = savedPos || 0;
-						}
-					}, 0);
+					rafScrollToRefPos(savedPos);
 				}
 			}
 		}
+		return () => {
+			rafScrollToRefPos.cancel();
+		};
 	}, []);
-
-	useEffect(() => {
-		if (ref.current) {
-			ref.current.scrollTop = savedPosition || 0;
-		}
-	}, [savedPosition]);
 
 	const save = () => {
 		if (ref.current) {

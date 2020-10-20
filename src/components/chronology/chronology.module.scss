@@ -77,6 +77,7 @@ $timeline-height: (100vh - $card-height)/2 - $header-height/2;
 	top: $header-height + $filter-menu-height;
 	transform: rotate(-90deg) translateX(-100vmin); // TODO verify vmin
 	transform-origin: top left;
+	will-change: scroll-position;
 }
 
 .card-container {

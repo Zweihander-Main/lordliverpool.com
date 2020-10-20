@@ -3151,6 +3151,11 @@ type ContendersQueryQuery = { readonly allMarkdownRemark: { readonly edges: Read
         )> }
       ) }> } };
 
+type BookInfoQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type BookInfoQuery = { readonly file: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }>, readonly markdownRemark: Maybe<Pick<MarkdownRemark, 'html'>> };
+
 type HeroImageQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -3166,11 +3171,6 @@ type BlogRollQueryQuery = { readonly allMarkdownRemark: { readonly edges: Readon
           & { readonly featuredImage: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }> }
         )> }
       ) }> } };
-
-type BookInfoQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-type BookInfoQuery = { readonly file: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }>, readonly markdownRemark: Maybe<Pick<MarkdownRemark, 'html'>> };
 
 type GatsbyImageSharpFixedFragment = Pick<ImageSharpFixed, 'base64' | 'width' | 'height' | 'src' | 'srcSet'>;
 

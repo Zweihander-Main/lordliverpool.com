@@ -11,6 +11,7 @@ export const cardContainer: string;
 export const buffer: string;
 export const card: string;
 export const hidden: string;
+export const animate: string;
 export const inner: string;
 export const header: string;
 export const titleLink: string;

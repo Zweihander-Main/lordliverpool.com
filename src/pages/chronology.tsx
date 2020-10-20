@@ -4,12 +4,11 @@ import Layout from 'components/structure/layout';
 import SEO from 'components/structure/seo';
 import Chronology from 'components/chronology';
 
-const ChronologyPage: React.FC = ({ location }) => {
-	const upperState = location?.state?.upperState;
+const ChronologyPage: React.FC = () => {
 	return (
 		<Layout showFooter={false}>
 			<SEO title="Chronology" app={true} />
-			<Chronology upperState={upperState} />
+			<Chronology />
 		</Layout>
 	);
 };

@@ -1,12 +1,12 @@
 import React from 'react';
 import styles from './chronology.module.scss';
 import { useStaticQuery, graphql } from 'gatsby';
-import useTimelineWidth from 'hooks/useTimelineWidth';
 import Timeline from './timeline';
 import Card from './card';
 import useScrollAndStateRestore from 'hooks/useScrollAndStateRestore';
+import { useLocation } from '@reach/router';
 
-const Chronology: React.FC = ({ upperState }) => {
+const Chronology: React.FC = () => {
 	const chronologyData = useStaticQuery<
 		GatsbyTypes.ChronologyQueryQuery
 	>(graphql`
@@ -71,6 +71,11 @@ const Chronology: React.FC = ({ upperState }) => {
 		}
 	`);
 
+	const loc = useLocation();
+	const upperState = loc?.state?.upperState;
+	const scrollPos = loc?.state?.scrollPos;
+	console.log(upperState, scrollPos);
+
 	const { edges: cardsWithoutPost } = chronologyData.noPost;
 	const { edges: cardsWithPost } = chronologyData.withPost;
 	const cards = [
@@ -97,6 +102,19 @@ const Chronology: React.FC = ({ upperState }) => {
 		identifier: `card-container-wrapper`,
 		initialState: upperState || 'all',
 	});
+
+	// Don't animate cards until a bit of time has passed to allow session
+	// storage to be checked
+	const [animateCards, setAnimateCards] = React.useState(false);
+
+	React.useEffect(() => {
+		const animateTimeout = setTimeout(() => {
+			setAnimateCards(true);
+		}, 500);
+		return () => {
+			clearTimeout(animateTimeout);
+		};
+	}, []);
 
 	console.log(`selectedCategory: ${selectedCategory}`);
 
@@ -164,6 +182,11 @@ const Chronology: React.FC = ({ upperState }) => {
 									text={card?.frontmatter?.card}
 									displayDate={card?.frontmatter?.displayDate}
 									selectedCategory={selectedCategory}
+									containerScrollPos={
+										cardContainerWrapperRef?.current
+											?.scrollTop
+									}
+									animate={animateCards}
 								/>
 							);
 						})}
@@ -175,7 +198,6 @@ const Chronology: React.FC = ({ upperState }) => {
 					ticks,
 					cardContainerWrapperRef,
 					cardContainerRef,
-					selectedCategory,
 				}}
 			/>
 		</section>

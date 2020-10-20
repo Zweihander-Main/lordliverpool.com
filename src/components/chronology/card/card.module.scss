@@ -21,7 +21,6 @@ $card-border: 35px;
 	margin: 0 c.$card-margin 0 0;
 	max-height: c.$card-height;
 	overflow: hidden;
-	transition: 250ms v.$timing-function;
 	width: c.$card-width;
 	will-change: width, margin;
 }
@@ -29,6 +28,10 @@ $card-border: 35px;
 .hidden {
 	margin: 0;
 	width: 0;
+}
+
+.animate {
+	transition: 250ms v.$timing-function;
 }
 
 .inner {

@@ -4,6 +4,7 @@ import Link from 'gatsby-link';
 import styles from './singlePost.module.scss';
 import { MdArrowBack, MdArrowForward } from 'react-icons/md';
 import { NextPrevInfo } from '../../../types';
+import { useLocation } from '@reach/router';
 
 type SinglePostProps = {
 	headerImage?: FluidObject;
@@ -16,7 +17,6 @@ type SinglePostProps = {
 	linkBackName?: string;
 	prev?: NextPrevInfo;
 	next?: NextPrevInfo;
-	upperState?: string;
 };
 
 //TODO attribution for lifted posts
@@ -33,8 +33,13 @@ const PostHeader: React.FC<SinglePostProps> = ({
 	linkBackName,
 	prev,
 	next,
-	upperState,
 }) => {
+	const location = useLocation();
+	const { state: locState } = location;
+	const { upperState, scrollPos } = locState;
+	console.log(upperState, scrollPos);
+	const passingState =
+		upperState || scrollPos ? { upperState, scrollPos } : null;
 	//TODO add in author
 	// TODO figure out width
 	return (
@@ -51,7 +56,7 @@ const PostHeader: React.FC<SinglePostProps> = ({
 						<Link
 							to={linkBackURL}
 							className={styles.linkUp}
-							state={upperState ? { upperState } : null}
+							state={passingState ? passingState : null}
 						>
 							Back to {linkBackName}
 						</Link>

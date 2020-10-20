@@ -5,6 +5,7 @@ import { Link } from 'gatsby';
 
 type CardProps = {
 	show: boolean;
+	animate: boolean;
 	featuredImage?: GatsbyTypes.Maybe<
 		Pick<
 			GatsbyTypes.ImageSharpFluid,
@@ -17,10 +18,12 @@ type CardProps = {
 	text?: string;
 	displayDate?: string;
 	selectedCategory: string;
+	containerScrollPos?: number;
 };
 
 const Card: React.FC<CardProps> = ({
 	show,
+	animate,
 	selectedCategory,
 	featuredImage,
 	title,
@@ -28,16 +31,25 @@ const Card: React.FC<CardProps> = ({
 	slug,
 	text,
 	displayDate,
+	containerScrollPos,
 }) => {
+	// TODO now doesn't work - should pass in function to pull in or something else
 	return (
-		<article className={`${styles.card} ${show ? '' : styles.hidden}`}>
+		<article
+			className={`${styles.card} ${animate ? styles.animate : ''} ${
+				show ? '' : styles.hidden
+			}`}
+		>
 			<div className={styles.inner}>
 				{featuredImage &&
 					(isFullArticle && slug ? (
 						<Link
 							to={slug}
 							className={styles.titleLink}
-							state={{ upperState: selectedCategory }}
+							state={{
+								upperState: selectedCategory,
+								scrollPos: containerScrollPos,
+							}}
 						>
 							<Img
 								className={styles.image}
@@ -68,7 +80,10 @@ const Card: React.FC<CardProps> = ({
 							<Link
 								to={slug}
 								className={styles.titleLink}
-								state={{ upperState: selectedCategory }}
+								state={{
+									upperState: selectedCategory,
+									scrollPos: containerScrollPos,
+								}}
 							>
 								{title}
 							</Link>
@@ -89,7 +104,10 @@ const Card: React.FC<CardProps> = ({
 // export default Card;
 
 const memoizedCard = React.memo(Card, (prevProps, nextProps) => {
-	if (prevProps.show !== nextProps.show) {
+	if (
+		prevProps.show !== nextProps.show ||
+		prevProps.animate !== nextProps.animate
+	) {
 		return false;
 	}
 	return true;
