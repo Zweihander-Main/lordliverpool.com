@@ -71,7 +71,8 @@ const useTimeline = (
 	};
 
 	const containerResizeObserver = new ResizeObserver(([container]) => {
-		setContainerWidth(container.contentRect.width || 0);
+		containerRef.current &&
+			setContainerWidth(container.contentRect.width || 0);
 	});
 
 	useEffect(() => {
@@ -82,13 +83,13 @@ const useTimeline = (
 			containerResizeObserver.observe(containerRef.current);
 
 		return () => {
+			containerRef.current &&
+				containerResizeObserver.unobserve(containerRef.current);
 			window.removeEventListener('resize', handleWindowResize);
 			containerWrapperRef.current?.removeEventListener(
 				'scroll',
 				handleScroll
 			);
-			containerRef.current &&
-				containerResizeObserver.unobserve(containerRef.current);
 		};
 	}, [containerRef, containerWrapperRef]);
 
