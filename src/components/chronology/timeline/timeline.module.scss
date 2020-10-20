@@ -16,10 +16,11 @@ $area-grabber-opacity: 0.3;
 	background: rgba(v.$white, $area-grabber-opacity);
 	cursor: grab;
 	height: $area-grabber-height;
+	left: 0;
 	position: absolute;
-	transition: width 150ms v.$timing-function, left 5ms; //TODO test phone and check if 5ms left transition is good/bad
+	transition: width 100ms v.$timing-function; //TODO test phone and check if 5ms left transition is good/bad
 	user-select: none;
-	will-change: width, left;
+	will-change: width, transform;
 	z-index: 9999;
 }
 
@@ -28,14 +29,15 @@ $area-grabber-opacity: 0.3;
 }
 
 .year {
-	bottom: v.$chrono-year-size + 0.25rem;
 	color: v.$light-bg;
 	font-family: v.$header-font;
 	font-size: v.$chrono-year-size;
 	font-style: italic;
-	position: relative;
+	position: absolute;
 	user-select: none;
 	white-space: nowrap;
+	will-change: transform;
+	top: calc(-#{v.$chrono-year-size} - 4px);
 }
 
 .tick {

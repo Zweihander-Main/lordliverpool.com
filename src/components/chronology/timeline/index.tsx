@@ -1,152 +1,104 @@
 import React from 'react';
 import styles from './timeline.module.scss';
-import useTimelineWidth from 'hooks/useTimelineWidth';
+import useTimeline from 'hooks/useTimeline';
+import useGrabber from 'hooks/useGrabber';
+import rafSchd from 'raf-schd';
 
 type TimelineProps = {
 	ticks: Array<string>;
 	cardContainerWrapperRef: React.RefObject<HTMLDivElement>;
 	cardContainerRef: React.RefObject<HTMLDivElement>;
-	selectedCategory: string;
 };
 
 const Timeline: React.FC<TimelineProps> = ({
 	ticks,
 	cardContainerWrapperRef,
 	cardContainerRef,
-	selectedCategory,
 }) => {
 	const tickContent = [];
 	for (let i = 0, len = ticks.length; i < len; i++) {
 		tickContent.push(<span key={i} className={styles.tick}></span>);
 	}
 
-	const [viewportWidth, containerWidth, startPos] = useTimelineWidth(
-		cardContainerRef,
-		cardContainerWrapperRef,
-		selectedCategory
-	);
-
-	let areaGrabberWidth = 0;
-	let areaGrabberLeftEdge = 0;
 	let yearRef = React.useRef<HTMLTimeElement>(null);
 
-	let percentageAlong = 0;
-	let currentTick = 0;
-	let year = ticks[0] || '1800';
-	let yearWidth = 0;
-	let yearOffset = 0;
-	let viewportOverContainer = 0;
+	const {
+		percentageAlong,
+		yearOffset,
+		areaGrabberLeftEdge,
+		areaGrabberWidth,
+		containerOverViewport,
+	} = useTimeline(cardContainerRef, cardContainerWrapperRef, yearRef);
 
-	if (containerWidth !== 0) {
-		viewportOverContainer = viewportWidth / containerWidth;
-		areaGrabberLeftEdge = -(startPos * viewportOverContainer) || 0;
-		areaGrabberWidth = viewportOverContainer * viewportWidth || 0;
-		if (areaGrabberLeftEdge + areaGrabberWidth > viewportWidth) {
-			areaGrabberLeftEdge = viewportWidth - areaGrabberWidth;
-		}
+	const currentTick = Math.ceil(percentageAlong * ticks.length - 1);
+	const year = ticks[currentTick] || ticks[0] || '1800';
 
-		percentageAlong = Math.abs(startPos / (containerWidth - viewportWidth));
-		if (percentageAlong > 1) {
-			percentageAlong = 1;
-		}
-		currentTick = Math.ceil(percentageAlong * ticks.length - 1);
-		year = ticks[currentTick] || ticks[0] || '1800';
-		yearWidth = yearRef.current ? yearRef.current.offsetWidth : 0;
-		yearOffset = percentageAlong * (areaGrabberWidth - yearWidth);
-	}
+	const { onGrabberMouseDown, onGrabberTouchStart, isScrolling } = useGrabber(
+		cardContainerWrapperRef,
+		containerOverViewport
+	);
 
-	const [isScrolling, setIsScrolling] = React.useState(false);
-	const [containerX, setContainerX] = React.useState(0);
-	const [grabberX, setGrabberX] = React.useState(0);
+	const [rafYearOffset, setRafYearOffset] = React.useState(0);
+	const [rafAreaGrabberLeftEdge, setRafAreaGrabberLeftEdge] = React.useState(
+		0
+	);
+	const [rafAreaGrabberWidth, setRabAreaGrabberWidth] = React.useState(0);
+	const [rafYear, setRafYear] = React.useState('');
+	const [rafIsScrolling, setRafIsScrolling] = React.useState(false);
 
-	const handleGrabberMove = (clientX: number) => {
-		if (cardContainerWrapperRef.current) {
-			const scrollDistance = clientX - grabberX;
-			const toScroll = (scrollDistance / viewportWidth) * containerWidth;
-			cardContainerWrapperRef.current.scrollTop = containerX + toScroll;
-		}
-	};
-
-	const onGrabberMouseMove = (event: MouseEvent) => {
-		handleGrabberMove(event.clientX);
-	};
-
-	const onGrabberTouchMove = (event: TouchEvent) => {
-		handleGrabberMove(event.touches[0].clientX);
-	};
-
-	const onGrabberEnd = () => {
-		setIsScrolling(false);
-		setContainerX(0);
-		setGrabberX(0);
-	};
-
-	const handleGrabberStart = (clientX: number) => {
-		if (cardContainerWrapperRef.current) {
-			setContainerX(cardContainerWrapperRef.current.scrollTop);
-		}
-		setGrabberX(clientX);
-		setIsScrolling(true);
-	};
-
-	const onGrabberMouseDown = (
-		event: React.MouseEvent<HTMLDivElement, MouseEvent>
+	const setRafValues = (
+		offset: number,
+		leftEdge: number,
+		width: number,
+		yearString: string,
+		scrolling: boolean
 	) => {
-		handleGrabberStart(event.clientX);
+		setRafYearOffset(offset);
+		setRafAreaGrabberLeftEdge(leftEdge);
+		setRabAreaGrabberWidth(width);
+		setRafYear(yearString);
+		setRafIsScrolling(scrolling);
 	};
 
-	const onGrabberTouchStart = (event: React.TouchEvent<HTMLDivElement>) => {
-		handleGrabberStart(event.touches[0].clientX);
-	};
+	const scheduleAnimationUpdate = rafSchd(setRafValues);
 
 	React.useEffect(() => {
-		const removeListeners = () => {
-			window.removeEventListener('mouseup', onGrabberEnd);
-			window.removeEventListener('mousemove', onGrabberMouseMove);
-			window.removeEventListener('touchend', onGrabberEnd);
-			window.removeEventListener('touchcancel', onGrabberEnd);
-			window.removeEventListener('touchmove', onGrabberTouchMove);
-		};
-
-		if (isScrolling) {
-			window.addEventListener('mousemove', onGrabberMouseMove);
-			window.addEventListener('mouseup', onGrabberEnd);
-			window.addEventListener('touchend', onGrabberEnd);
-			window.addEventListener('touchcancel', onGrabberEnd);
-			window.addEventListener('touchmove', onGrabberTouchMove);
-		} else {
-			removeListeners();
-		}
-
+		scheduleAnimationUpdate(
+			yearOffset,
+			areaGrabberLeftEdge,
+			areaGrabberWidth,
+			year,
+			isScrolling
+		);
 		return () => {
-			removeListeners();
+			scheduleAnimationUpdate.cancel();
 		};
-	}, [isScrolling]);
+	}, [yearOffset, areaGrabberWidth, areaGrabberLeftEdge, year, isScrolling]);
 
 	return (
 		<div className={styles.timeline}>
 			<div
 				className={
-					isScrolling
+					rafIsScrolling
 						? `${styles.areaGrabber} ${styles.isScrolling}`
 						: styles.areaGrabber
 				}
 				onMouseDown={onGrabberMouseDown}
 				onTouchStart={onGrabberTouchStart}
 				style={{
-					left: areaGrabberLeftEdge,
-					width: areaGrabberWidth,
+					transform: `translateX(${rafAreaGrabberLeftEdge}px)`,
+					width: rafAreaGrabberWidth,
 				}}
 			>
 				<time
 					ref={yearRef}
 					className={styles.year}
-					dateTime={year}
+					dateTime={rafYear}
 					style={{
-						left: yearOffset,
+						transform: `translateX(${rafYearOffset}px)`,
 					}}
 				>
-					{year}
+					{rafYear}
 				</time>
 			</div>
 			{tickContent}
