@@ -1,5 +1,6 @@
 @use '~styles/util/variables.global' as v;
 @use '~styles/util/mixins.global' as m;
+@use '~styles/util/functions.global' as f;
 
 $card-height: 70vh;
 $card-margin: 100px;
@@ -91,4 +92,10 @@ $timeline-height: (100vh - $card-height)/2 - $header-height/2;
 .buffer {
 	height: $card-height;
 	width: $card-margin;
+}
+
+/*stylelint-disable */
+// export for JS
+:export {
+	cardWidth: f.strip-units($card-width) / 100;
 }

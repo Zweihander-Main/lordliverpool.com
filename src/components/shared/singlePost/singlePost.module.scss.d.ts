@@ -11,6 +11,7 @@ export const linkUp: string;
 export const linkNext: string;
 export const headings: string;
 export const successiveHeadings: string;
+export const title: string;
 export const subtitle: string;
 export const extraHeaderText: string;
 export const postImage: string;

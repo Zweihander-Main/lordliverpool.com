@@ -1,3 +1,5 @@
+import { WindowLocation } from '@reach/router';
+
 export type NextPrevInfo = {
 	slug: string;
 	title: string;
@@ -9,3 +11,11 @@ export interface TemplatePageContext {
 	prev: NextPrevInfo;
 	next: NextPrevInfo;
 }
+
+export type AppLocState = {
+	selectedCategory?: string;
+	id?: string;
+	initialPos?: number;
+};
+
+export type LocTyping = WindowLocation<AppLocState> & { action?: string };

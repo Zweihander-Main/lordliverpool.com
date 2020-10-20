@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './card.module.scss';
 import Img from 'gatsby-image';
 import { Link } from 'gatsby';
+import { AppLocState } from 'types';
 
 type CardProps = {
 	show: boolean;
@@ -17,28 +18,39 @@ type CardProps = {
 	slug?: string;
 	text?: string;
 	displayDate?: string;
+	id: string;
 	selectedCategory: string;
-	containerScrollPos?: number;
+	cardContainerWrapperRef?: React.RefObject<HTMLDivElement | undefined>;
 };
 
 const Card: React.FC<CardProps> = ({
 	show,
 	animate,
-	selectedCategory,
 	featuredImage,
 	title,
 	isFullArticle,
 	slug,
 	text,
 	displayDate,
-	containerScrollPos,
+	id,
+	selectedCategory,
+	cardContainerWrapperRef,
 }) => {
-	// TODO now doesn't work - should pass in function to pull in or something else
+	const passingState: AppLocState = {
+		get selectedCategory() {
+			return selectedCategory;
+		},
+		get initialPos() {
+			return cardContainerWrapperRef?.current?.scrollTop;
+		},
+	};
+
 	return (
 		<article
 			className={`${styles.card} ${animate ? styles.animate : ''} ${
 				show ? '' : styles.hidden
 			}`}
+			id={id}
 		>
 			<div className={styles.inner}>
 				{featuredImage &&
@@ -46,10 +58,7 @@ const Card: React.FC<CardProps> = ({
 						<Link
 							to={slug}
 							className={styles.titleLink}
-							state={{
-								upperState: selectedCategory,
-								scrollPos: containerScrollPos,
-							}}
+							state={passingState}
 						>
 							<Img
 								className={styles.image}
@@ -80,10 +89,7 @@ const Card: React.FC<CardProps> = ({
 							<Link
 								to={slug}
 								className={styles.titleLink}
-								state={{
-									upperState: selectedCategory,
-									scrollPos: containerScrollPos,
-								}}
+								state={passingState}
 							>
 								{title}
 							</Link>
@@ -106,7 +112,8 @@ const Card: React.FC<CardProps> = ({
 const memoizedCard = React.memo(Card, (prevProps, nextProps) => {
 	if (
 		prevProps.show !== nextProps.show ||
-		prevProps.animate !== nextProps.animate
+		prevProps.animate !== nextProps.animate ||
+		prevProps.selectedCategory !== nextProps.selectedCategory
 	) {
 		return false;
 	}

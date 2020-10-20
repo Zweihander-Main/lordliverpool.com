@@ -24,3 +24,4 @@
 // TODO should pressing backto button on post scroll to position of particular person?
 // TODO test chronology as no-js in prod
 // TODO check chronology rendering performance
+// TODO modal back button

@@ -3,8 +3,8 @@ import Img, { FluidObject } from 'gatsby-image';
 import Link from 'gatsby-link';
 import styles from './singlePost.module.scss';
 import { MdArrowBack, MdArrowForward } from 'react-icons/md';
-import { NextPrevInfo } from '../../../types';
-import { useLocation } from '@reach/router';
+import { AppLocState, LocTyping, NextPrevInfo } from 'types';
+import { useLocation, useNavigate } from '@reach/router';
 
 type SinglePostProps = {
 	headerImage?: FluidObject;
@@ -17,6 +17,7 @@ type SinglePostProps = {
 	linkBackName?: string;
 	prev?: NextPrevInfo;
 	next?: NextPrevInfo;
+	id?: string;
 };
 
 //TODO attribution for lifted posts
@@ -33,13 +34,24 @@ const PostHeader: React.FC<SinglePostProps> = ({
 	linkBackName,
 	prev,
 	next,
+	id,
 }) => {
-	const location = useLocation();
-	const { state: locState } = location;
-	const { upperState, scrollPos } = locState;
-	console.log(upperState, scrollPos);
-	const passingState =
-		upperState || scrollPos ? { upperState, scrollPos } : null;
+	const location = useLocation() as LocTyping;
+	const selectedCategory = location?.state?.selectedCategory;
+	const initialPos = location?.state?.initialPos;
+
+	const passingState: AppLocState | null = id
+		? initialPos
+			? {
+					selectedCategory,
+					initialPos,
+			  }
+			: {
+					id,
+					selectedCategory,
+			  }
+		: null;
+
 	//TODO add in author
 	// TODO figure out width
 	return (
@@ -56,7 +68,7 @@ const PostHeader: React.FC<SinglePostProps> = ({
 						<Link
 							to={linkBackURL}
 							className={styles.linkUp}
-							state={passingState ? passingState : null}
+							state={passingState}
 						>
 							Back to {linkBackName}
 						</Link>

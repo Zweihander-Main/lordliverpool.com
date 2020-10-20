@@ -33,6 +33,7 @@ const ChronologyPostTemplate: React.FC<PageProps<
 				linkBackURL={'/chronology'}
 				next={next}
 				prev={prev}
+				id={post?.id}
 			/>
 		</Layout>
 	);
@@ -50,6 +51,7 @@ export const pageQuery = graphql`
 		markdownRemark(fields: { slug: { eq: $path } }) {
 			excerpt(pruneLength: 160)
 			html
+			id
 			frontmatter {
 				title
 				card

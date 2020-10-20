@@ -35,7 +35,6 @@ const useScrollAndStateRestore = ({
 
 	const scrollToRefPos = (pos: number) => {
 		if (ref.current) {
-			console.log(`scroll`);
 			ref.current.scrollTop = pos || 0;
 		}
 	};

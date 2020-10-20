@@ -1,10 +1,12 @@
 import React from 'react';
-import styles from './chronology.module.scss';
+import styles, { cardWidth } from './chronology.module.scss';
 import { useStaticQuery, graphql } from 'gatsby';
 import Timeline from './timeline';
 import Card from './card';
 import useScrollAndStateRestore from 'hooks/useScrollAndStateRestore';
 import { useLocation } from '@reach/router';
+import { LocTyping } from 'types';
+import rafSchd from 'raf-schd';
 
 const Chronology: React.FC = () => {
 	const chronologyData = useStaticQuery<
@@ -71,11 +73,6 @@ const Chronology: React.FC = () => {
 		}
 	`);
 
-	const loc = useLocation();
-	const upperState = loc?.state?.upperState;
-	const scrollPos = loc?.state?.scrollPos;
-	console.log(upperState, scrollPos);
-
 	const { edges: cardsWithoutPost } = chronologyData.noPost;
 	const { edges: cardsWithPost } = chronologyData.withPost;
 	const cards = [
@@ -93,6 +90,13 @@ const Chronology: React.FC = () => {
 		.filter((value) => value && value !== '');
 	const categories = ['all', ...pulledInCategories];
 
+	const location = useLocation() as LocTyping;
+	// undocumented but it works to check for back button
+	const locSelectedCategory =
+		location?.action !== 'PUSH'
+			? 'all'
+			: location?.state?.selectedCategory || 'all';
+
 	const {
 		state: selectedCategory,
 		setState: setSelectedCategory,
@@ -100,7 +104,7 @@ const Chronology: React.FC = () => {
 		onScroll: cardContainerWrapperOnScroll,
 	} = useScrollAndStateRestore({
 		identifier: `card-container-wrapper`,
-		initialState: upperState || 'all',
+		initialState: locSelectedCategory,
 	});
 
 	// Don't animate cards until a bit of time has passed to allow session
@@ -115,8 +119,6 @@ const Chronology: React.FC = () => {
 			clearTimeout(animateTimeout);
 		};
 	}, []);
-
-	console.log(`selectedCategory: ${selectedCategory}`);
 
 	const ticks = (selectedCategory !== categories[0]
 		? cards.filter(
@@ -133,12 +135,43 @@ const Chronology: React.FC = () => {
 		cardContainerRef.current.focus();
 	}
 
-	//TODO restore selected state with the same session storage trick as scroll restoration
+	const scrollIntoView = () => {
+		const scrollToID = location?.state?.id;
+		const locInitialPos = location?.state?.initialPos;
+		// Undocumented but it works
+		const fromBackButton = location?.action !== 'PUSH';
+		if (!fromBackButton && cardContainerWrapperRef.current) {
+			if (locInitialPos) {
+				cardContainerWrapperRef.current.scrollTop = locInitialPos;
+			} else if (scrollToID && cardContainerWrapperRef.current) {
+				// Refactor: store ref matching id
+				const element = document.getElementById(scrollToID);
+				if (element) {
+					const {
+						innerWidth: viewportWidth,
+						innerHeight: viewportHeight,
+					} = window;
+					const cardAdjustment = viewportHeight * cardWidth;
+					const toScroll =
+						element.offsetLeft -
+						viewportWidth / 2 +
+						cardAdjustment / 2;
+					cardContainerWrapperRef.current.scrollTop = toScroll;
+				}
+			}
+		}
+	};
+	const rafScrollIntoView = rafSchd(scrollIntoView);
 
-	const sectionClass = `${styles.chronology} `;
+	React.useEffect(() => {
+		rafScrollIntoView();
+		return () => {
+			rafScrollIntoView.cancel();
+		};
+	}, []);
 
 	return (
-		<section className={sectionClass}>
+		<section className={styles.chronology}>
 			<h1 className={styles.chronologyTitle}>Chronology</h1>
 			<div className={styles.filterMenu}>
 				{categories.map((category) => (
@@ -181,12 +214,12 @@ const Chronology: React.FC = () => {
 									slug={card?.fields?.slug}
 									text={card?.frontmatter?.card}
 									displayDate={card?.frontmatter?.displayDate}
-									selectedCategory={selectedCategory}
-									containerScrollPos={
-										cardContainerWrapperRef?.current
-											?.scrollTop
-									}
 									animate={animateCards}
+									id={card.id}
+									selectedCategory={selectedCategory}
+									cardContainerWrapperRef={
+										cardContainerWrapperRef
+									}
 								/>
 							);
 						})}

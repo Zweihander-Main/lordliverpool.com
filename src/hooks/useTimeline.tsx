@@ -21,7 +21,10 @@ const useTimeline = (
 		const vOC = viewportWidth / containerWidth;
 		const cOV = containerWidth / viewportWidth;
 		const cMV = containerWidth - viewportWidth;
-		const width: number = vOC * viewportWidth || 0;
+		let width: number = vOC * viewportWidth;
+		if (!width || !isFinite(width)) {
+			width = 10;
+		}
 		return [vOC, cOV, cMV, width];
 	}, [containerWidth, viewportWidth]);
 
