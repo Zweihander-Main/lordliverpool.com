@@ -33,6 +33,7 @@
 	position: relative;
 	text-decoration: none;
 	width: 100%;
+	will-change: transform;
 
 	@for $i from 1 through 10 {
 		&:nth-child(#{$i}) {
@@ -54,10 +55,10 @@
 
 @keyframes menuup {
 	from {
-		bottom: -100vh;
+		transform: translateY(0);
 	}
 	to {
-		bottom: 0;
+		transform: translateY(-100vh);
 	}
 }
 
