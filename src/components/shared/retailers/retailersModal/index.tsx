@@ -51,38 +51,50 @@ const RetailersModal: React.FC = () => {
 		}
 	`);
 
-	const UK_pic = retailersData?.UK_pic?.childImageSharp?.fixed;
-	const USA_pic = retailersData?.USA_pic?.childImageSharp?.fixed;
-	const flagPics = {
-		UK_pic,
-		USA_pic,
-	};
+	const flagPics = React.useRef(
+		(() => {
+			const UK_pic = retailersData?.UK_pic?.childImageSharp?.fixed;
+			const USA_pic = retailersData?.USA_pic?.childImageSharp?.fixed;
+			const flagObj = {
+				UK_pic,
+				USA_pic,
+			};
 
-	if (!UK_pic || !USA_pic) {
-		throw new Error('Missing image for flags');
-	}
+			if (!UK_pic || !USA_pic) {
+				throw new Error('Missing image for flags');
+			}
+			return flagObj;
+		})()
+	);
 
 	const { edges: retailers } = retailersData.allMarkdownRemark;
 
-	const formatsGQL = retailers.map((edge) => edge.node.frontmatter?.format);
-	const currenciesGQL = retailers.map(
-		(edge) => edge.node.frontmatter?.currency
-	);
-	const convertGQLListToArray = (
-		gqlList: typeof formatsGQL | typeof currenciesGQL
-	) => {
-		const returnArr: Array<string> = [];
-		gqlList.forEach((listItem) => {
-			listItem?.forEach((item) => {
-				if (item && returnArr.indexOf(item) === -1) {
-					returnArr.push(item);
-				}
-			});
-		});
-		return returnArr;
-	};
-	const formats = convertGQLListToArray(formatsGQL);
-	const currencies = convertGQLListToArray(currenciesGQL);
+	const [formats, currencies] = React.useRef(
+		(() => {
+			const formatsGQL = retailers.map(
+				(edge) => edge.node.frontmatter?.format
+			);
+			const currenciesGQL = retailers.map(
+				(edge) => edge.node.frontmatter?.currency
+			);
+			const convertGQLListToArray = (
+				gqlList: typeof formatsGQL | typeof currenciesGQL
+			) => {
+				const returnArr: Array<string> = [];
+				gqlList.forEach((listItem) => {
+					listItem?.forEach((item) => {
+						if (item && returnArr.indexOf(item) === -1) {
+							returnArr.push(item);
+						}
+					});
+				});
+				return returnArr;
+			};
+			const formats = convertGQLListToArray(formatsGQL);
+			const currencies = convertGQLListToArray(currenciesGQL);
+			return [formats, currencies];
+		})()
+	).current;
 
 	const { open, toggleModal } = React.useContext(ModalContext);
 	const hasJS = useJS();

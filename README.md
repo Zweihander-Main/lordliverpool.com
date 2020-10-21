@@ -25,3 +25,5 @@
 // TODO test chronology as no-js in prod
 // TODO check chronology rendering performance
 // TODO modal back button
+// TODO check every prop -- in particular things like {pathContext}
+// TODO check bundle size using source-map-explorer
