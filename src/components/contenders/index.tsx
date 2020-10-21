@@ -47,6 +47,7 @@ const Contenders: React.FC = () => {
 	return (
 		<section className={styles.contenders}>
 			<ContendersImage
+				key={selectedContender?.id}
 				featuredImage={
 					selectedContender?.frontmatter?.featuredImage
 						?.childImageSharp?.fluid

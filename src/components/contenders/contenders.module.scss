@@ -2,38 +2,11 @@
 @use '~styles/util/mixins.global' as m;
 
 .contenders {
-	background-color: v.$light-bg;
+	background-color: v.$black;
 	color: v.$black;
 	display: grid;
 	grid-template-columns: 2fr 1fr;
 	grid-template-rows: 1fr;
 	height: 100vh;
 	width: 100vw;
-}
-
-.menu {
-	box-shadow: 0 0 15px v.$black;
-	grid-column: 2;
-	overflow-y: scroll;
-	padding: 1rem;
-}
-
-.menu-list {
-	list-style: none;
-	margin-left: 0;
-}
-
-.menu-list li {
-	font-size: 1.31951rem;
-	line-height: 1.1;
-	margin-bottom: 1.38rem;
-}
-
-.link {
-	color: v.$black;
-	text-decoration: none;
-}
-
-.selected {
-	text-decoration: underline;
 }

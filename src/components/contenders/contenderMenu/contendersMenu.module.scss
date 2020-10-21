@@ -2,6 +2,7 @@
 @use '~styles/util/mixins.global' as m;
 
 .menu {
+	background-color: v.$light-bg;
 	box-shadow: 0 0 15px v.$black;
 	grid-column: 2;
 	overflow-y: scroll;
