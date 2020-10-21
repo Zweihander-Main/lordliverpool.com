@@ -1,16 +1,6 @@
 @use '~styles/util/variables.global' as v;
 @use '~styles/util/mixins.global' as m;
 
-.contenders {
-	background-color: v.$light-bg;
-	color: v.$black;
-	display: grid;
-	grid-template-columns: 2fr 1fr;
-	grid-template-rows: 1fr;
-	height: 100vh;
-	width: 100vw;
-}
-
 .menu {
 	box-shadow: 0 0 15px v.$black;
 	grid-column: 2;
