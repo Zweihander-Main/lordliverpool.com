@@ -19,8 +19,8 @@ type CardProps = {
 	text?: string;
 	displayDate?: string;
 	selectedCategory: string;
-	cardContainerWrapperRef?: React.RefObject<HTMLDivElement | undefined>;
-	refToSet: ((node: HTMLElement) => void) | null;
+	cardContainerWrapperRef?: React.RefObject<HTMLElement>;
+	refToSet: ((node: HTMLElement | null) => void) | null;
 };
 
 const Card: React.FC<CardProps> = ({
@@ -37,7 +37,7 @@ const Card: React.FC<CardProps> = ({
 	refToSet,
 }) => {
 	const passingState: AppLocState = {
-		get selectedCategory() {
+		get upperState() {
 			return selectedCategory;
 		},
 		get initialPos() {

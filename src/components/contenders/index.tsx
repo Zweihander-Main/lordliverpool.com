@@ -3,6 +3,8 @@ import styles from './contenders.module.scss';
 import { useStaticQuery, graphql } from 'gatsby';
 import ContendersImage from './contendersImage';
 import ContendersMenu from './contenderMenu';
+import useScrollAndStateRestore from 'hooks/useScrollAndStateRestore';
+import useLocationState from 'hooks/useLocationState';
 
 const Contenders: React.FC = () => {
 	const blogRollData = useStaticQuery<
@@ -38,11 +40,41 @@ const Contenders: React.FC = () => {
 
 	const { edges: contenders } = blogRollData.allMarkdownRemark;
 
-	const [selected, setSelected] = React.useState(contenders[0].node.id || '');
+	const menuRef = React.useRef<HTMLElement>(null);
+
+	const calculateScrollDistance = (targetContender: HTMLElement) => {
+		const { innerHeight: viewportHeight } = window;
+		const toScroll = targetContender.offsetTop - viewportHeight / 2;
+		return toScroll;
+	};
+
+	const {
+		initialState,
+		itemToScrollToOnLoad: contenderToScrollToOnLoad,
+		scrolledToID: scrolledToContender,
+	} = useLocationState({
+		scrollContainer: menuRef,
+		calculateScrollDistance,
+	});
+
+	const {
+		onScroll: onMenuScroll,
+		setState: setSelected,
+		state: selected,
+	} = useScrollAndStateRestore({
+		identifier: `contenders-menu`,
+		initialState: initialState.current || contenders[0].node.id || '',
+		scrollContainer: menuRef,
+	});
+
+	React.useEffect(() => {
+		if (scrolledToContender) {
+			setSelected(scrolledToContender);
+		}
+	}, [scrolledToContender]);
+
 	const selectedContender = contenders.find((c) => c.node.id === selected)
 		?.node;
-
-	//TODO save selected contenders for scroll restoration/session storage
 
 	return (
 		<section className={styles.contenders}>
@@ -59,6 +91,10 @@ const Contenders: React.FC = () => {
 				selected={selected}
 				setSelected={setSelected}
 				contenders={contenders}
+				menuRef={menuRef}
+				onMenuScroll={onMenuScroll}
+				refToSet={contenderToScrollToOnLoad}
+				scrolledToContender={scrolledToContender}
 			/>
 		</section>
 	);

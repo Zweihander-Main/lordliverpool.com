@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 
 const useTimeline = (
-	containerRef: React.RefObject<HTMLDivElement>,
-	containerWrapperRef: React.RefObject<HTMLElement | undefined>,
+	containerRef: React.RefObject<HTMLElement>,
+	containerWrapperRef: React.RefObject<HTMLElement>,
 	yearRef: React.RefObject<HTMLTimeElement>
 ) => {
 	const [viewportWidth, setViewportWidth] = useState(0);

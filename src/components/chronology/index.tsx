@@ -5,9 +5,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 import Timeline from './timeline';
 import Card from './card';
 import useScrollAndStateRestore from 'hooks/useScrollAndStateRestore';
-import { useLocation } from '@reach/router';
-import { LocTyping } from 'types';
-import rafSchd from 'raf-schd';
+import useLocationState from 'hooks/useLocationState';
 
 const Chronology: React.FC = () => {
 	const chronologyData = useStaticQuery<
@@ -104,24 +102,37 @@ const Chronology: React.FC = () => {
 		})()
 	);
 
-	const location = useLocation() as LocTyping;
-	// undocumented but it works to check for back button
-	const fromBackButton = React.useRef(location?.action !== 'PUSH');
+	const cardContainerRef = React.useRef<HTMLDivElement>(null);
+	const cardContainerWrapperRef = React.useRef<HTMLElement>(null);
 
-	const initialState = React.useRef<string>(
-		fromBackButton.current
-			? 'all'
-			: location?.state?.selectedCategory || 'all'
-	);
+	const calculateScrollDistance = (targetCard: HTMLElement) => {
+		const {
+			innerWidth: viewportWidth,
+			innerHeight: viewportHeight,
+		} = window;
+		const cardAdjustment = viewportHeight * cardWidth;
+		const toScroll =
+			targetCard.offsetLeft - viewportWidth / 2 + cardAdjustment / 2;
+		return toScroll;
+	};
+
+	const {
+		initialState,
+		itemToScrollToOnLoad: cardToScrollToOnLoad,
+		scrolledToID: scrolledToCardID,
+	} = useLocationState({
+		scrollContainer: cardContainerWrapperRef,
+		calculateScrollDistance,
+	});
 
 	const {
 		state: selectedCategory,
 		setState: setSelectedCategory,
-		ref: cardContainerWrapperRef,
 		onScroll: cardContainerWrapperOnScroll,
 	} = useScrollAndStateRestore({
 		identifier: `card-container-wrapper`,
-		initialState: initialState.current,
+		initialState: initialState.current || 'all',
+		scrollContainer: cardContainerWrapperRef,
 	});
 
 	// Don't animate cards until a bit of time has passed to allow session
@@ -146,59 +157,6 @@ const Chronology: React.FC = () => {
 		.map((card) => card.frontmatter?.date)
 		.filter((year) => typeof year !== 'undefined') as Array<string>; //not cheating, TS won't filter out undefined types
 
-	const cardContainerRef = React.useRef<HTMLDivElement>(null);
-
-	const [scrolledToCardID, setScrolledToCardID] = React.useState<string>();
-
-	const scrollCardIntoView = (targetCard: HTMLElement) => {
-		if (cardContainerWrapperRef.current) {
-			const {
-				innerWidth: viewportWidth,
-				innerHeight: viewportHeight,
-			} = window;
-			const cardAdjustment = viewportHeight * cardWidth;
-			const toScroll =
-				targetCard.offsetLeft - viewportWidth / 2 + cardAdjustment / 2;
-			cardContainerWrapperRef.current.scrollTop = toScroll;
-		}
-	};
-
-	const rafScrollCardIntoView = rafSchd(scrollCardIntoView);
-
-	const cardToScrollToOnLoad = React.useCallback(
-		(node: HTMLElement) => {
-			if (node) {
-				rafScrollCardIntoView(node);
-			}
-		},
-		[scrolledToCardID]
-	);
-
-	const restoreScrollStateBasedOnLocationState = () => {
-		const locScrollToID = location?.state?.id;
-		const locInitialPos = location?.state?.initialPos;
-		if (!fromBackButton.current) {
-			if (locInitialPos) {
-				if (cardContainerWrapperRef.current) {
-					cardContainerWrapperRef.current.scrollTop = locInitialPos;
-				}
-			} else if (locScrollToID) {
-				setScrolledToCardID(locScrollToID);
-			}
-		}
-	};
-
-	const rafRestoreScrollStateBasedOnLocationState = rafSchd(
-		restoreScrollStateBasedOnLocationState
-	);
-
-	React.useEffect(() => {
-		rafRestoreScrollStateBasedOnLocationState();
-		return () => {
-			rafRestoreScrollStateBasedOnLocationState.cancel();
-		};
-	}, []);
-
 	return (
 		<section className={styles.chronology}>
 			<h1 className={styles.chronologyTitle}>Chronology</h1>
@@ -219,7 +177,7 @@ const Chronology: React.FC = () => {
 			</div>
 			<div
 				className={styles.cardContainerWrapper}
-				ref={cardContainerWrapperRef}
+				ref={cardContainerWrapperRef as React.RefObject<HTMLDivElement>}
 				onScroll={cardContainerWrapperOnScroll}
 			>
 				<div className={styles.cardContainer} ref={cardContainerRef}>

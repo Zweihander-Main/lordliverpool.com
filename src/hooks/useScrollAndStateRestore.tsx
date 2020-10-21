@@ -15,10 +15,10 @@ import rafSchd from 'raf-schd';
 interface useScrollAndStateRestoreProps {
 	initialState?: string;
 	identifier: string;
+	scrollContainer: React.RefObject<HTMLElement>;
 }
 
 interface ScrollRestorationProps {
-	ref: React.RefObject<HTMLDivElement>;
 	onScroll(): void;
 	state: string;
 	setState: React.Dispatch<React.SetStateAction<string>>;
@@ -27,22 +27,22 @@ interface ScrollRestorationProps {
 const useScrollAndStateRestore = ({
 	identifier,
 	initialState,
+	scrollContainer,
 }: useScrollAndStateRestoreProps): ScrollRestorationProps => {
 	const location = useLocation();
 	const storage = useContext(ScrollPlusStateContext);
-	const ref = useRef<HTMLDivElement>(null);
 	const [state, setState] = useState<string>(initialState || '');
 
 	const scrollToRefPos = (pos: number) => {
-		if (ref.current) {
-			ref.current.scrollTop = pos || 0;
+		if (scrollContainer.current) {
+			scrollContainer.current.scrollTop = pos || 0;
 		}
 	};
 
 	const rafScrollToRefPos = rafSchd(scrollToRefPos);
 
 	useLayoutEffect(() => {
-		if (ref.current) {
+		if (scrollContainer.current) {
 			const readState = storage.read(location, identifier);
 			if (readState) {
 				const { position: savedPos, state: savedState } = readState;
@@ -60,8 +60,13 @@ const useScrollAndStateRestore = ({
 	}, []);
 
 	const save = () => {
-		if (ref.current) {
-			storage.save(location, identifier, ref.current.scrollTop, state);
+		if (scrollContainer.current) {
+			storage.save(
+				location,
+				identifier,
+				scrollContainer.current.scrollTop,
+				state
+			);
 		}
 	};
 
@@ -70,7 +75,6 @@ const useScrollAndStateRestore = ({
 	}, [state]);
 
 	return {
-		ref,
 		onScroll: save,
 		state,
 		setState,

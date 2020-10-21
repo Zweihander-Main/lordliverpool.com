@@ -32,6 +32,7 @@ const ContenderPostTemplate: React.FC<PageProps<
 				linkBackURL={'/contenders'}
 				next={next}
 				prev={prev}
+				id={post?.id}
 			/>
 		</Layout>
 	);
@@ -49,6 +50,7 @@ export const pageQuery = graphql`
 		markdownRemark(fields: { slug: { eq: $path } }) {
 			excerpt(pruneLength: 160)
 			html
+			id
 			frontmatter {
 				title
 				displayDate

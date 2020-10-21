@@ -52,7 +52,6 @@ const useGrabber = (
 	};
 
 	React.useEffect(() => {
-		console.log('oh no');
 		const removeListeners = () => {
 			window.removeEventListener('mouseup', onGrabberEnd);
 			window.removeEventListener('mousemove', onGrabberMouseMove);

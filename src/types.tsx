@@ -12,10 +12,11 @@ export interface TemplatePageContext {
 	next: NextPrevInfo;
 }
 
+// Either upperState+initialPos OR id
 export type AppLocState = {
-	selectedCategory?: string;
-	id?: string;
+	upperState?: string;
 	initialPos?: number;
+	id?: string;
 };
 
 export type LocTyping = WindowLocation<AppLocState> & { action?: string };

@@ -6,8 +6,8 @@ import rafSchd from 'raf-schd';
 
 type TimelineProps = {
 	ticks: Array<string>;
-	cardContainerWrapperRef: React.RefObject<HTMLDivElement>;
-	cardContainerRef: React.RefObject<HTMLDivElement>;
+	cardContainerWrapperRef: React.RefObject<HTMLElement>;
+	cardContainerRef: React.RefObject<HTMLElement>;
 };
 
 const Timeline: React.FC<TimelineProps> = ({

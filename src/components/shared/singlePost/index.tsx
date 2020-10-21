@@ -37,14 +37,15 @@ const PostHeader: React.FC<SinglePostProps> = ({
 	id,
 }) => {
 	const location = useLocation() as LocTyping;
-	const selectedCategory = location?.state?.selectedCategory;
+	const upperState = location?.state?.upperState;
 	const initialPos = location?.state?.initialPos;
 
-	// TODO the hell
+	// If scroll position exists, restore it
+	// Otherwise, just tell the menu which item this is
 	const passingState: AppLocState | null = id
-		? initialPos
+		? typeof initialPos === 'number'
 			? {
-					selectedCategory,
+					upperState,
 					initialPos,
 			  }
 			: {
