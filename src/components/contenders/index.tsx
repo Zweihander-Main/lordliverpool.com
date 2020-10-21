@@ -47,13 +47,13 @@ const Contenders: React.FC = () => {
 	return (
 		<section className={styles.contenders}>
 			<ContendersImage
-				key={selectedContender?.id}
 				featuredImage={
 					selectedContender?.frontmatter?.featuredImage
 						?.childImageSharp?.fluid
 				}
 				displayDate={selectedContender?.frontmatter?.displayDate}
 				title={selectedContender?.frontmatter?.title}
+				selectedID={selectedContender?.id}
 			/>
 			<ContendersMenu
 				selected={selected}

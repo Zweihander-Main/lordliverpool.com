@@ -1,0 +1,17 @@
+@use '~styles/util/variables.global' as v;
+@use '~styles/util/mixins.global' as m;
+
+.item {
+	font-size: 1.31951rem;
+	line-height: 1.1;
+	margin-bottom: 1.38rem;
+}
+
+.link {
+	color: v.$black;
+	text-decoration: none;
+}
+
+.selected {
+	text-decoration: underline;
+}

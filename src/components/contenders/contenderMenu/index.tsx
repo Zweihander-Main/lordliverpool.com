@@ -1,6 +1,7 @@
-import { Link, useScrollRestoration } from 'gatsby';
+import { useScrollRestoration } from 'gatsby';
 import React from 'react';
 import styles from './contendersMenu.module.scss';
+import ContendersItem from './contenderItem';
 
 type ContendersMenuProps = {
 	contenders: GatsbyTypes.ContendersQueryQuery['allMarkdownRemark']['edges'];
@@ -17,6 +18,9 @@ const ContendersMenu: React.FC<ContendersMenuProps> = ({
 		`contenders-menu`
 	);
 
+	//TODO THIS
+	// TODO also -- caching may not be perfect, may have to write own caching system using memorized components
+
 	return (
 		<div
 			className={styles.menu}
@@ -28,21 +32,14 @@ const ContendersMenu: React.FC<ContendersMenuProps> = ({
 				{contenders &&
 					contenders.map(({ node: contender }) => {
 						return contender?.fields?.slug ? (
-							<li key={contender.id}>
-								<Link
-									onMouseEnter={() =>
-										setSelected(contender.id)
-									}
-									to={contender.fields.slug}
-									className={
-										contender.id === selected
-											? `${styles.link} ${styles.selected}`
-											: styles.link
-									}
-								>
-									{contender?.frontmatter?.title}
-								</Link>
-							</li>
+							<ContendersItem
+								id={contender.id}
+								isSelected={contender.id === selected}
+								setSelected={setSelected}
+								slug={contender?.fields?.slug}
+								title={contender?.frontmatter?.title}
+								key={contender.id}
+							/>
 						) : null;
 					})}
 			</ul>
@@ -50,14 +47,8 @@ const ContendersMenu: React.FC<ContendersMenuProps> = ({
 	);
 };
 
-const memoizedContendersMenu = React.memo(
-	ContendersMenu,
-	(prevProps, nextProps) => {
-		if (prevProps.selected !== nextProps.selected) {
-			return false;
-		}
-		return true;
-	}
-);
+const memoizedContendersMenu = React.memo(ContendersMenu, () => {
+	return true;
+});
 
 export default memoizedContendersMenu;
