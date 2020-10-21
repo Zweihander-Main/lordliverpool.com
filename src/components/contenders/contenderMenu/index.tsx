@@ -47,8 +47,4 @@ const ContendersMenu: React.FC<ContendersMenuProps> = ({
 	);
 };
 
-const memoizedContendersMenu = React.memo(ContendersMenu, () => {
-	return true;
-});
-
-export default memoizedContendersMenu;
+export default ContendersMenu;

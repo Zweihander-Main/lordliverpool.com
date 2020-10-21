@@ -20,6 +20,14 @@ const ContendersImage: React.FC<ContendersImageProps> = ({
 	title,
 	selectedID,
 }) => {
+	// Slight perf improvement for unreliable Gatsby-Image cache
+	const imgCache = React.useRef<{ [key: string]: boolean }>({});
+
+	const isInCache = selectedID && imgCache.current[selectedID];
+	if (!isInCache && selectedID) {
+		imgCache.current[selectedID] = true;
+	}
+
 	return (
 		<figure className={styles.pictureContainer}>
 			{featuredImage && (
@@ -30,7 +38,9 @@ const ContendersImage: React.FC<ContendersImageProps> = ({
 						objectPosition: 'center 25%',
 					}}
 					fluid={featuredImage}
-					durationFadeIn={100}
+					durationFadeIn={isInCache ? 0 : 100}
+					fadeIn={isInCache ? false : true}
+					loading={isInCache ? 'eager' : 'lazy'}
 				/>
 			)}
 			<figcaption className={styles.caption}>
