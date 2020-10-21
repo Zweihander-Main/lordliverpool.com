@@ -1,6 +1,7 @@
 export const headerFont: string;
 export const bodyFont: string;
 export const letterSpacing: string;
+export const cardWidth: string;
 export const postContainer: string;
 export const singlePost: string;
 export const navLinks: string;

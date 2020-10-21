@@ -4,7 +4,7 @@ import Link from 'gatsby-link';
 import styles from './singlePost.module.scss';
 import { MdArrowBack, MdArrowForward } from 'react-icons/md';
 import { AppLocState, LocTyping, NextPrevInfo } from 'types';
-import { useLocation, useNavigate } from '@reach/router';
+import { useLocation } from '@reach/router';
 
 type SinglePostProps = {
 	headerImage?: FluidObject;
@@ -40,6 +40,7 @@ const PostHeader: React.FC<SinglePostProps> = ({
 	const selectedCategory = location?.state?.selectedCategory;
 	const initialPos = location?.state?.initialPos;
 
+	// TODO the hell
 	const passingState: AppLocState | null = id
 		? initialPos
 			? {
@@ -48,7 +49,6 @@ const PostHeader: React.FC<SinglePostProps> = ({
 			  }
 			: {
 					id,
-					selectedCategory,
 			  }
 		: null;
 

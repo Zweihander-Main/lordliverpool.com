@@ -13,7 +13,7 @@ import rafSchd from 'raf-schd';
 // Usage note: do not spread on to JSX Element
 
 interface useScrollAndStateRestoreProps {
-	initialState: string;
+	initialState?: string;
 	identifier: string;
 }
 
@@ -31,7 +31,7 @@ const useScrollAndStateRestore = ({
 	const location = useLocation();
 	const storage = useContext(ScrollPlusStateContext);
 	const ref = useRef<HTMLDivElement>(null);
-	const [state, setState] = useState(initialState);
+	const [state, setState] = useState<string>(initialState || '');
 
 	const scrollToRefPos = (pos: number) => {
 		if (ref.current) {

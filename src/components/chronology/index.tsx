@@ -1,5 +1,6 @@
 import React from 'react';
-import styles, { cardWidth } from './chronology.module.scss';
+import styles from './chronology.module.scss';
+import { cardWidth } from 'styles/util/_variables.global.scss';
 import { useStaticQuery, graphql } from 'gatsby';
 import Timeline from './timeline';
 import Card from './card';
@@ -73,29 +74,45 @@ const Chronology: React.FC = () => {
 		}
 	`);
 
-	const { edges: cardsWithoutPost } = chronologyData.noPost;
-	const { edges: cardsWithPost } = chronologyData.withPost;
-	const cards = [
-		...cardsWithPost.map((card) => {
-			return { ...card.node, hasPost: true };
-		}),
-		...cardsWithoutPost.map((card) => {
-			return { ...card.node, fields: { slug: '' }, hasPost: false };
-		}),
-	];
+	const cards = React.useRef(
+		(() => {
+			const { edges: cardsWithoutPost } = chronologyData.noPost;
+			const { edges: cardsWithPost } = chronologyData.withPost;
+			return [
+				...cardsWithPost.map((card) => {
+					return { ...card.node, hasPost: true };
+				}),
+				...cardsWithoutPost.map((card) => {
+					return {
+						...card.node,
+						fields: { slug: '' },
+						hasPost: false,
+					};
+				}),
+			];
+		})()
+	);
 
-	const pulledInCategories = cards
-		.map((c) => c?.frontmatter?.category || '')
-		.filter((value, index, self) => self.indexOf(value) === index)
-		.filter((value) => value && value !== '');
-	const categories = ['all', ...pulledInCategories];
+	const categories = React.useRef(
+		(() => {
+			const pulledInCategories = cards.current
+				.map((c) => c?.frontmatter?.category || '')
+				.filter((value, index, self) => self.indexOf(value) === index)
+				.filter((value) => value && value !== '');
+
+			return ['all', ...pulledInCategories];
+		})()
+	);
 
 	const location = useLocation() as LocTyping;
 	// undocumented but it works to check for back button
-	const locSelectedCategory =
-		location?.action !== 'PUSH'
+	const fromBackButton = React.useRef(location?.action !== 'PUSH');
+
+	const initialState = React.useRef<string>(
+		fromBackButton.current
 			? 'all'
-			: location?.state?.selectedCategory || 'all';
+			: location?.state?.selectedCategory || 'all'
+	);
 
 	const {
 		state: selectedCategory,
@@ -104,7 +121,7 @@ const Chronology: React.FC = () => {
 		onScroll: cardContainerWrapperOnScroll,
 	} = useScrollAndStateRestore({
 		identifier: `card-container-wrapper`,
-		initialState: locSelectedCategory,
+		initialState: initialState.current,
 	});
 
 	// Don't animate cards until a bit of time has passed to allow session
@@ -120,53 +137,65 @@ const Chronology: React.FC = () => {
 		};
 	}, []);
 
-	const ticks = (selectedCategory !== categories[0]
-		? cards.filter(
+	const ticks = (selectedCategory !== categories.current[0]
+		? cards.current.filter(
 				(value) => value?.frontmatter?.category === selectedCategory
 		  )
-		: cards
+		: cards.current
 	)
 		.map((card) => card.frontmatter?.date)
 		.filter((year) => typeof year !== 'undefined') as Array<string>; //not cheating, TS won't filter out undefined types
 
 	const cardContainerRef = React.useRef<HTMLDivElement>(null);
 
-	if (cardContainerRef.current) {
-		cardContainerRef.current.focus();
-	}
+	const [scrolledToCardID, setScrolledToCardID] = React.useState<string>();
 
-	const scrollIntoView = () => {
-		const scrollToID = location?.state?.id;
+	const scrollCardIntoView = (targetCard: HTMLElement) => {
+		if (cardContainerWrapperRef.current) {
+			const {
+				innerWidth: viewportWidth,
+				innerHeight: viewportHeight,
+			} = window;
+			const cardAdjustment = viewportHeight * cardWidth;
+			const toScroll =
+				targetCard.offsetLeft - viewportWidth / 2 + cardAdjustment / 2;
+			cardContainerWrapperRef.current.scrollTop = toScroll;
+		}
+	};
+
+	const rafScrollCardIntoView = rafSchd(scrollCardIntoView);
+
+	const cardToScrollToOnLoad = React.useCallback(
+		(node: HTMLElement) => {
+			if (node) {
+				rafScrollCardIntoView(node);
+			}
+		},
+		[scrolledToCardID]
+	);
+
+	const restoreScrollStateBasedOnLocationState = () => {
+		const locScrollToID = location?.state?.id;
 		const locInitialPos = location?.state?.initialPos;
-		// Undocumented but it works
-		const fromBackButton = location?.action !== 'PUSH';
-		if (!fromBackButton && cardContainerWrapperRef.current) {
+		if (!fromBackButton.current) {
 			if (locInitialPos) {
-				cardContainerWrapperRef.current.scrollTop = locInitialPos;
-			} else if (scrollToID && cardContainerWrapperRef.current) {
-				// Refactor: store ref matching id
-				const element = document.getElementById(scrollToID);
-				if (element) {
-					const {
-						innerWidth: viewportWidth,
-						innerHeight: viewportHeight,
-					} = window;
-					const cardAdjustment = viewportHeight * cardWidth;
-					const toScroll =
-						element.offsetLeft -
-						viewportWidth / 2 +
-						cardAdjustment / 2;
-					cardContainerWrapperRef.current.scrollTop = toScroll;
+				if (cardContainerWrapperRef.current) {
+					cardContainerWrapperRef.current.scrollTop = locInitialPos;
 				}
+			} else if (locScrollToID) {
+				setScrolledToCardID(locScrollToID);
 			}
 		}
 	};
-	const rafScrollIntoView = rafSchd(scrollIntoView);
+
+	const rafRestoreScrollStateBasedOnLocationState = rafSchd(
+		restoreScrollStateBasedOnLocationState
+	);
 
 	React.useEffect(() => {
-		rafScrollIntoView();
+		rafRestoreScrollStateBasedOnLocationState();
 		return () => {
-			rafScrollIntoView.cancel();
+			rafRestoreScrollStateBasedOnLocationState.cancel();
 		};
 	}, []);
 
@@ -174,7 +203,7 @@ const Chronology: React.FC = () => {
 		<section className={styles.chronology}>
 			<h1 className={styles.chronologyTitle}>Chronology</h1>
 			<div className={styles.filterMenu}>
-				{categories.map((category) => (
+				{categories.current.map((category) => (
 					<h3
 						key={category}
 						onClick={() => setSelectedCategory(category)}
@@ -195,14 +224,19 @@ const Chronology: React.FC = () => {
 			>
 				<div className={styles.cardContainer} ref={cardContainerRef}>
 					<div className={styles.buffer}>&nbsp;</div>
-					{cards &&
-						cards.map((card) => {
+					{cards.current &&
+						cards.current.map((card) => {
 							const show =
-								selectedCategory === categories[0] ||
+								selectedCategory === categories.current[0] ||
 								card?.frontmatter?.category ===
 									selectedCategory;
 							return (
 								<Card
+									refToSet={
+										card.id === scrolledToCardID
+											? cardToScrollToOnLoad
+											: null
+									}
 									key={card.id}
 									show={show}
 									featuredImage={
@@ -215,7 +249,6 @@ const Chronology: React.FC = () => {
 									text={card?.frontmatter?.card}
 									displayDate={card?.frontmatter?.displayDate}
 									animate={animateCards}
-									id={card.id}
 									selectedCategory={selectedCategory}
 									cardContainerWrapperRef={
 										cardContainerWrapperRef

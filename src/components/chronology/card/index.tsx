@@ -18,9 +18,9 @@ type CardProps = {
 	slug?: string;
 	text?: string;
 	displayDate?: string;
-	id: string;
 	selectedCategory: string;
 	cardContainerWrapperRef?: React.RefObject<HTMLDivElement | undefined>;
+	refToSet: ((node: HTMLElement) => void) | null;
 };
 
 const Card: React.FC<CardProps> = ({
@@ -32,9 +32,9 @@ const Card: React.FC<CardProps> = ({
 	slug,
 	text,
 	displayDate,
-	id,
 	selectedCategory,
 	cardContainerWrapperRef,
+	refToSet,
 }) => {
 	const passingState: AppLocState = {
 		get selectedCategory() {
@@ -50,7 +50,7 @@ const Card: React.FC<CardProps> = ({
 			className={`${styles.card} ${animate ? styles.animate : ''} ${
 				show ? '' : styles.hidden
 			}`}
-			id={id}
+			ref={refToSet}
 		>
 			<div className={styles.inner}>
 				{featuredImage &&
@@ -107,13 +107,12 @@ const Card: React.FC<CardProps> = ({
 	);
 };
 
-// export default Card;
-
 const memoizedCard = React.memo(Card, (prevProps, nextProps) => {
 	if (
 		prevProps.show !== nextProps.show ||
 		prevProps.animate !== nextProps.animate ||
-		prevProps.selectedCategory !== nextProps.selectedCategory
+		prevProps.selectedCategory !== nextProps.selectedCategory ||
+		prevProps.refToSet !== nextProps.refToSet
 	) {
 		return false;
 	}

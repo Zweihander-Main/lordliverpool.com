@@ -28,8 +28,6 @@ const useTimeline = (
 		return [vOC, cOV, cMV, width];
 	}, [containerWidth, viewportWidth]);
 
-	// TODO bug which causes leftedge to be 0 on load
-
 	const calculateAreaGrabberLeftEdge = () => {
 		let leftEdge = -(startPos * viewportOverContainer) || 0;
 		if (leftEdge + areaGrabberWidth > viewportWidth) {

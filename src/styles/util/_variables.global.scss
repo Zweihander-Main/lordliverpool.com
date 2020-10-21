@@ -1,3 +1,5 @@
+@use './functions.global' as f;
+
 // typography related //TODO remove more of these or convert to vw
 $hero-large-size: 4rem;
 $hero-sub-size: 1.5rem;
@@ -29,10 +31,15 @@ $timing-function: cubic-bezier(0.65, 0.05, 0.36, 1); //TODO make sure consistent
 //buttons
 $border-radius: 8px;
 
+//chronology
+$card-height: 70vh;
+$card-width: $card-height/1.5;
+
 /*stylelint-disable */
 // export for JS
 :export {
 	headerFont: $header-font;
 	bodyFont: $body-font;
 	letterSpacing: $letter-spacing;
+	cardWidth: f.strip-units($card-width) / 100;
 }

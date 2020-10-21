@@ -1,22 +1,20 @@
 import Typography from 'typography';
 import * as v from 'styles/util/_variables.global.scss';
 
-const fonts: { [key: string]: Array<string> } = {};
-
-Object.keys(v).forEach((key) => {
-	fonts[key] = v[key]
+const formatFont = (font: string) => {
+	return font
 		.replace(/\"/g, '')
 		.split(',')
 		.map((font: string) => font.trim());
-});
+};
 
 const typography = new Typography({
 	baseFontSize: '18px',
 	baseLineHeight: 1.38,
 	scaleRatio: 2,
 	bodyColor: 'inherit',
-	headerFontFamily: fonts.headerFont,
-	bodyFontFamily: fonts.bodyFont,
+	headerFontFamily: formatFont(v.headerFont),
+	bodyFontFamily: formatFont(v.bodyFont),
 	headerWeight: 700,
 	bodyWeight: 400,
 	boldWeight: 700,

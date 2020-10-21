@@ -15,12 +15,15 @@ const Timeline: React.FC<TimelineProps> = ({
 	cardContainerWrapperRef,
 	cardContainerRef,
 }) => {
-	const tickContent = [];
-	for (let i = 0, len = ticks.length; i < len; i++) {
-		tickContent.push(<span key={i} className={styles.tick}></span>);
-	}
+	const tickContent = React.useMemo(() => {
+		const returnArray = [];
+		for (let i = 0, len = ticks.length; i < len; i++) {
+			returnArray.push(<span key={i} className={styles.tick}></span>);
+		}
+		return returnArray;
+	}, [ticks]);
 
-	let yearRef = React.useRef<HTMLTimeElement>(null);
+	const yearRef = React.useRef<HTMLTimeElement>(null);
 
 	const {
 		percentageAlong,

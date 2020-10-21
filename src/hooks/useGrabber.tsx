@@ -52,6 +52,7 @@ const useGrabber = (
 	};
 
 	React.useEffect(() => {
+		console.log('oh no');
 		const removeListeners = () => {
 			window.removeEventListener('mouseup', onGrabberEnd);
 			window.removeEventListener('mousemove', onGrabberMouseMove);
@@ -61,8 +62,8 @@ const useGrabber = (
 		};
 
 		if (isScrolling) {
-			window.addEventListener('mousemove', onGrabberMouseMove);
 			window.addEventListener('mouseup', onGrabberEnd);
+			window.addEventListener('mousemove', onGrabberMouseMove);
 			window.addEventListener('touchend', onGrabberEnd);
 			window.addEventListener('touchcancel', onGrabberEnd);
 			window.addEventListener('touchmove', onGrabberTouchMove);
