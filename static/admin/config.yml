@@ -2,7 +2,6 @@ backend:
     name: git-gateway
     branch: master
 
-# TODO set these options more carefully (uploads folder)
 media_folder: static/img
 public_folder: /img
 publish_mode: editorial_workflow

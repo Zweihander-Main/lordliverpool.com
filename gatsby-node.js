@@ -116,7 +116,6 @@ exports.createPages = ({ actions, graphql }) => {
 		});
 	});
 };
-// TODO do we need relative images thing?
 exports.onCreateNode = ({ node, actions, getNode }) => {
 	const { createNodeField } = actions;
 	if (node.internal.type === `MarkdownRemark`) {

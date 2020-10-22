@@ -92,14 +92,6 @@ const Header: React.FC<HeaderProps> = ({
 		contenders,
 	];
 
-	// TODO Add in home link when not home
-	// TODO Add in other images
-	// TODO Menu color based on section overlapping
-	// TODO Menu color based on navlink hover
-	// TODO Animation
-	// TODO Check menu lines on large font screen
-	// TODO viewport font size fallback
-
 	const menuBarLineClass = darkMenu
 		? `${styles.menuBarLine} ${styles.menuBarLineDark}`
 		: styles.menuBarLine;

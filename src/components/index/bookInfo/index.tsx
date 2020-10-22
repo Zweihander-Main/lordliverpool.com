@@ -5,9 +5,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 import Link from 'gatsby-link';
 import ModalButton from 'components/shared/retailers/retailersButton';
 
-// TODO Change placeholder text to include bullet points
 const BookInfo: React.FC = () => {
-	//TODO better naming for images and support for alt ect.
 	const bookInfoData = useStaticQuery<GatsbyTypes.BookInfoQuery>(graphql`
 		query BookInfo {
 			file(relativePath: { eq: "bookcover.png" }) {

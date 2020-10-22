@@ -23,5 +23,5 @@ const Layout: React.FC<
 		</React.Fragment>
 	);
 };
-// TODO make sure nojs works
+
 export default Layout;
