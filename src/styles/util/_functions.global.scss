@@ -1,3 +1,17 @@
+@use 'sass:math';
+
+$base-size: 18px;
+
 @function strip-units($number) {
 	@return $number / ($number * 0 + 1);
+}
+
+@function convert-to-vmin($original, $return-units: 1vmin) {
+	$to-convert: $original;
+	@if (math.unit($original) == 'rem') {
+		$stripped-original: strip-units($original);
+		$to-convert: $stripped-original * $base-size;
+	}
+	// Based on development monitor of vmin 1094px
+	@return ($to-convert/10.94px) * $return-units;
 }

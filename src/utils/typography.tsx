@@ -9,7 +9,7 @@ const formatFont = (font: string) => {
 };
 
 const typography = new Typography({
-	baseFontSize: '18px',
+	baseFontSize: v.baseSize,
 	baseLineHeight: 1.38,
 	scaleRatio: 2,
 	bodyColor: 'inherit',
