@@ -1,7 +1,5 @@
 import React from 'react';
 import styles from './retailersModal.module.scss';
-import ModalContext from 'contexts/ModalContext';
-import useJS from 'hooks/useJS';
 import { useStaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 
@@ -96,16 +94,6 @@ const RetailersModal: React.FC = () => {
 		})()
 	).current;
 
-	const { open, toggleModal } = React.useContext(ModalContext);
-	const hasJS = useJS();
-
-	const onCloseClick = (
-		e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
-	) => {
-		e.preventDefault();
-		toggleModal();
-	};
-
 	const [selectedFormat, setSelectedFormat] = React.useState<string | null>(
 		null
 	);
@@ -137,9 +125,7 @@ const RetailersModal: React.FC = () => {
 
 	return (
 		<section
-			className={
-				open ? `${styles.outer} ${styles.isActive}` : styles.outer
-			}
+			className={styles.outer}
 			id={'retailers'}
 			tabIndex={-1}
 			role={'dialog'}
@@ -291,8 +277,7 @@ const RetailersModal: React.FC = () => {
 			</div>
 
 			<a
-				href={hasJS ? '' : '#!'}
-				onClick={onCloseClick}
+				href={'#!'}
 				className={styles.close}
 				title="Close the list of retailers"
 			>

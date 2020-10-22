@@ -23,6 +23,7 @@ $radio-label-opacity: 0.7;
 	width: 0;
 	will-change: transform;
 	z-index: 999999;
+	outline: none;
 }
 
 .outer:target,
