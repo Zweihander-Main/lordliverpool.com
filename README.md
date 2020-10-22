@@ -12,7 +12,6 @@
 -   Better support for older browsers
 -   Add loading indicator on Chronology and Contenders when session storage is checked for saved positions (to counteract initial jank)
 -   Add in Critical FOFT font loading strategy
--   Refactor Chronology cards and Contenders items to use forwardRef
 
 ## License
 

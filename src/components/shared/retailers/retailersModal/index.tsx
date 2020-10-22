@@ -273,7 +273,11 @@ const RetailersModal: React.FC = () => {
 										)}
 										{flag && flag !== 'None' && (
 											<Img
-												fixed={flagPics[`${flag}_pic`]}
+												fixed={
+													flagPics.current[
+														`${flag}_pic`
+													]
+												}
 												alt={`${flag} flag`}
 												className={styles.flag}
 												style={{ position: 'absolute' }}

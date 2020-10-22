@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './chronology.module.scss';
+import styles, { cardContainer } from './chronology.module.scss';
 import { cardWidth } from 'styles/util/_variables.global.scss';
 import { useStaticQuery, graphql } from 'gatsby';
 import Timeline from './timeline';
@@ -143,6 +143,11 @@ const Chronology: React.FC = () => {
 		const animateTimeout = setTimeout(() => {
 			setAnimateCards(true);
 		}, 500);
+
+		// Set scrolling container to be focused on the getgo
+		if (cardContainerRef.current) {
+			cardContainerRef.current.focus();
+		}
 		return () => {
 			clearTimeout(animateTimeout);
 		};

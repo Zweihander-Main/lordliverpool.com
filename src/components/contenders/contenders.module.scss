@@ -1,12 +1,22 @@
 @use '~styles/util/variables.global' as v;
 @use '~styles/util/mixins.global' as m;
 
+$image-width: 100vw/3 * 2;
+
 .contenders {
 	background-color: v.$black;
 	color: v.$black;
-	display: grid;
-	grid-template-columns: 2fr 1fr;
-	grid-template-rows: 1fr;
-	height: 100vh;
-	width: 100vw;
+	margin-left: $image-width;
+}
+
+.menu {
+	background-color: v.$light-bg;
+	box-shadow: 0 0 15px v.$black;
+	padding: 1rem;
+	position: relative;
+}
+
+.menu-list {
+	list-style: none;
+	margin-left: 0;
 }

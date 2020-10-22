@@ -11,19 +11,12 @@ type ContendersMenuProps = {
 	setSelected: React.Dispatch<React.SetStateAction<string>>;
 	slug: string;
 	menuRef: React.RefObject<HTMLElement>;
-	refToSet: ((item: HTMLElement | null) => void) | null;
 };
 
-const ContendersItem: React.FC<ContendersMenuProps> = ({
-	id,
-	isSelected,
-	selected,
-	title,
-	setSelected,
-	slug,
-	refToSet,
-	menuRef,
-}) => {
+const ContendersItem = React.forwardRef<
+	HTMLElement | null,
+	ContendersMenuProps
+>(({ id, isSelected, selected, title, setSelected, slug, menuRef }, ref) => {
 	const passingState: AppLocState = {
 		get upperState() {
 			return selected;
@@ -34,7 +27,7 @@ const ContendersItem: React.FC<ContendersMenuProps> = ({
 	};
 
 	return (
-		<li className={styles.item} ref={refToSet}>
+		<li className={styles.item} ref={ref as React.RefObject<HTMLLIElement>}>
 			<Link
 				onMouseEnter={() => setSelected(id)}
 				to={slug}
@@ -49,14 +42,14 @@ const ContendersItem: React.FC<ContendersMenuProps> = ({
 			</Link>
 		</li>
 	);
-};
+});
 
 const memoizedContendersItem = React.memo(
 	ContendersItem,
 	(prevProps, nextProps) => {
 		if (
 			prevProps.isSelected !== nextProps.isSelected ||
-			prevProps.refToSet !== nextProps.refToSet
+			prevProps.ref !== nextProps.ref
 		) {
 			return false;
 		}

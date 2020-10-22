@@ -1,5 +1,6 @@
 @use '~styles/util/variables.global' as v;
 @use '~styles/util/mixins.global' as m;
+@use './../contenders.module.scss' as c;
 @use 'sass:color';
 
 $pic-bg: color.adjust(v.$light-bg, $lightness: -60%, $saturation: -10%);
@@ -9,9 +10,12 @@ $pic-bg: color.adjust(v.$light-bg, $lightness: -60%, $saturation: -10%);
 	display: grid;
 	grid-template-columns: 1fr;
 	grid-template-rows: 1fr;
-	height: 100%;
+	height: 100vh;
+	left: 0;
 	overflow: hidden;
-	width: 100%;
+	position: fixed;
+	top: 0;
+	width: c.$image-width;
 }
 
 .picture {

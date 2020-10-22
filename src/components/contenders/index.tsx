@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './contenders.module.scss';
 import { useStaticQuery, graphql } from 'gatsby';
 import ContendersImage from './contendersImage';
-import ContendersMenu from './contenderMenu';
+import ContendersItem from './contenderItem';
 import useScrollAndStateRestore from 'hooks/useScrollAndStateRestore';
 import useLocationState from 'hooks/useLocationState';
 
@@ -87,15 +87,35 @@ const Contenders: React.FC = () => {
 				title={selectedContender?.frontmatter?.title}
 				selectedID={selectedContender?.id}
 			/>
-			<ContendersMenu
-				selected={selected}
-				setSelected={setSelected}
-				contenders={contenders}
-				menuRef={menuRef}
-				onMenuScroll={onMenuScroll}
-				refToSet={contenderToScrollToOnLoad}
-				scrolledToContender={scrolledToContender}
-			/>
+			<div
+				className={styles.menu}
+				ref={menuRef as React.RefObject<HTMLDivElement>}
+				onScroll={onMenuScroll}
+			>
+				<h1>Contenders for Greatest</h1>
+				<ul className={styles.menuList}>
+					{contenders &&
+						contenders.map(({ node: contender }) => {
+							return contender?.fields?.slug ? (
+								<ContendersItem
+									id={contender.id}
+									isSelected={contender.id === selected}
+									setSelected={setSelected}
+									slug={contender?.fields?.slug}
+									title={contender?.frontmatter?.title}
+									key={contender.id}
+									ref={
+										contender.id === scrolledToContender
+											? contenderToScrollToOnLoad
+											: null
+									}
+									menuRef={menuRef}
+									selected={selected}
+								/>
+							) : null;
+						})}
+				</ul>
+			</div>
 		</section>
 	);
 };
