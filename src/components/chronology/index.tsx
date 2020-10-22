@@ -1,5 +1,5 @@
 import React from 'react';
-import styles, { cardContainer } from './chronology.module.scss';
+import styles from './chronology.module.scss';
 import { cardWidth } from 'styles/util/_variables.global.scss';
 import { useStaticQuery, graphql } from 'gatsby';
 import Timeline from './timeline';
@@ -195,7 +195,7 @@ const Chronology: React.FC = () => {
 									selectedCategory;
 							return (
 								<Card
-									refToSet={
+									ref={
 										card.id === scrolledToCardID
 											? cardToScrollToOnLoad
 											: null

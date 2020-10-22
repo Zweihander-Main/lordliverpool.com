@@ -20,46 +20,57 @@ type CardProps = {
 	displayDate?: string;
 	selectedCategory: string;
 	cardContainerWrapperRef?: React.RefObject<HTMLElement>;
-	refToSet: ((node: HTMLElement | null) => void) | null;
 };
 
-const Card: React.FC<CardProps> = ({
-	show,
-	animate,
-	featuredImage,
-	title,
-	isFullArticle,
-	slug,
-	text,
-	displayDate,
-	selectedCategory,
-	cardContainerWrapperRef,
-	refToSet,
-}) => {
-	const passingState: AppLocState = {
-		get upperState() {
-			return selectedCategory;
+const Card = React.forwardRef<HTMLElement | null, CardProps>(
+	(
+		{
+			show,
+			animate,
+			featuredImage,
+			title,
+			isFullArticle,
+			slug,
+			text,
+			displayDate,
+			selectedCategory,
+			cardContainerWrapperRef,
 		},
-		get initialPos() {
-			return cardContainerWrapperRef?.current?.scrollTop;
-		},
-	};
+		ref
+	) => {
+		const passingState: AppLocState = {
+			get upperState() {
+				return selectedCategory;
+			},
+			get initialPos() {
+				return cardContainerWrapperRef?.current?.scrollTop;
+			},
+		};
 
-	return (
-		<article
-			className={`${styles.card} ${animate ? styles.animate : ''} ${
-				show ? '' : styles.hidden
-			}`}
-			ref={refToSet}
-		>
-			<div className={styles.inner}>
-				{featuredImage &&
-					(isFullArticle && slug ? (
-						<Link
-							to={slug}
-							className={styles.titleLink}
-							state={passingState}
-						>
+		return (
+			<article
+				className={`${styles.card} ${animate ? styles.animate : ''} ${
+					show ? '' : styles.hidden
+				}`}
+				ref={ref}
+			>
+				<div className={styles.inner}>
+					{featuredImage &&
+						(isFullArticle && slug ? (
+							<Link
+								to={slug}
+								className={styles.titleLink}
+								state={passingState}
+							>
+								<Img
+									className={styles.image}
+									imgStyle={{
+										objectPosition: 'center 10%',
+									}}
+									fluid={featuredImage}
+								/>
+							</Link>
+						) : (
 							<Img
 								className={styles.image}
 								imgStyle={{
@@ -67,52 +78,44 @@ const Card: React.FC<CardProps> = ({
 								}}
 								fluid={featuredImage}
 							/>
-						</Link>
-					) : (
-						<Img
-							className={styles.image}
-							imgStyle={{
-								objectPosition: 'center 10%',
-							}}
-							fluid={featuredImage}
-						/>
-					))}
-				{title && (
-					<h2
-						className={
-							featuredImage
-								? styles.header
-								: `${styles.header} ${styles.headerNoImage}`
-						}
-					>
-						{isFullArticle && slug ? (
-							<Link
-								to={slug}
-								className={styles.titleLink}
-								state={passingState}
-							>
-								{title}
-							</Link>
-						) : (
-							title
-						)}
-					</h2>
+						))}
+					{title && (
+						<h2
+							className={
+								featuredImage
+									? styles.header
+									: `${styles.header} ${styles.headerNoImage}`
+							}
+						>
+							{isFullArticle && slug ? (
+								<Link
+									to={slug}
+									className={styles.titleLink}
+									state={passingState}
+								>
+									{title}
+								</Link>
+							) : (
+								title
+							)}
+						</h2>
+					)}
+					{text && <p className={styles.text}>{text}</p>}
+				</div>
+				{displayDate && (
+					<span className={styles.displayDate}>{displayDate}</span>
 				)}
-				{text && <p className={styles.text}>{text}</p>}
-			</div>
-			{displayDate && (
-				<span className={styles.displayDate}>{displayDate}</span>
-			)}
-		</article>
-	);
-};
+			</article>
+		);
+	}
+);
 
 const memoizedCard = React.memo(Card, (prevProps, nextProps) => {
 	if (
 		prevProps.show !== nextProps.show ||
 		prevProps.animate !== nextProps.animate ||
 		prevProps.selectedCategory !== nextProps.selectedCategory ||
-		prevProps.refToSet !== nextProps.refToSet
+		prevProps.ref !== nextProps.ref
 	) {
 		return false;
 	}

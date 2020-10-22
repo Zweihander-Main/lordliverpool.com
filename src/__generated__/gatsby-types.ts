@@ -3147,4 +3147,21 @@ type ContendersQueryQuery = { readonly allMarkdownRemark: { readonly edges: Read
         )> }
       ) }> } };
 
+type ChronologyQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+type ChronologyQueryQuery = { readonly noPost: { readonly edges: ReadonlyArray<{ readonly node: (
+        Pick<MarkdownRemark, 'id'>
+        & { readonly frontmatter: Maybe<(
+          Pick<MarkdownRemarkFrontmatter, 'title' | 'date' | 'displayDate' | 'category' | 'card'>
+          & { readonly featuredImage: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }> }
+        )> }
+      ) }> }, readonly withPost: { readonly edges: ReadonlyArray<{ readonly node: (
+        Pick<MarkdownRemark, 'id'>
+        & { readonly fields: Maybe<Pick<MarkdownRemarkFields, 'slug'>>, readonly frontmatter: Maybe<(
+          Pick<MarkdownRemarkFrontmatter, 'title' | 'date' | 'displayDate' | 'category' | 'card'>
+          & { readonly featuredImage: Maybe<{ readonly childImageSharp: Maybe<{ readonly fluid: Maybe<GatsbyImageSharpFluidFragment> }> }> }
+        )> }
+      ) }> } };
+
 }
