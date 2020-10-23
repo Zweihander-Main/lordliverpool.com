@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
-import BackgroundImage from 'gatsby-background-image';
+import Img from 'gatsby-image';
 import ModalButton from 'components/shared/retailers/retailersButton';
 
 import styles from './hero.module.scss';
@@ -8,7 +8,7 @@ import styles from './hero.module.scss';
 const Hero: React.FC = () => {
 	const heroImageData = useStaticQuery<GatsbyTypes.HeroImageQuery>(graphql`
 		query HeroImage {
-			file(relativePath: { eq: "liverpoolherobg.png" }) {
+			heroImage: file(relativePath: { eq: "liverpoolherobg.png" }) {
 				childImageSharp {
 					fluid(maxWidth: 800) {
 						...GatsbyImageSharpFluid
@@ -18,16 +18,23 @@ const Hero: React.FC = () => {
 		}
 	`);
 
-	if (!heroImageData.file?.childImageSharp?.fluid) {
+	if (!heroImageData.heroImage?.childImageSharp?.fluid) {
 		throw new Error('No file found for liverpoolherobg.png');
 	}
 
 	return (
-		<BackgroundImage
-			className={styles.hero}
-			fluid={heroImageData.file.childImageSharp.fluid}
-			Tag={'section'}
-		>
+		<section className={styles.hero}>
+			<Img
+				className={styles.heroImage}
+				fluid={heroImageData.heroImage.childImageSharp.fluid}
+				style={{
+					position: 'absolute',
+				}}
+				imgStyle={{
+					objectFit: 'contain',
+					objectPosition: 'center 40%',
+				}}
+			/>
 			<h1 className={styles.mainTitle}>
 				Britain’s Greatest
 				<br />
@@ -41,7 +48,7 @@ const Hero: React.FC = () => {
 				<h6 className={styles.availableText}>Available November 26</h6>
 				<ModalButton />
 			</div>
-		</BackgroundImage>
+		</section>
 	);
 };
 

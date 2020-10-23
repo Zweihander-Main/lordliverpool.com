@@ -1,25 +1,6 @@
 @use '~styles/util/variables.global' as v;
 @use '~styles/util/mixins.global' as m;
 
-.nav-link-container {
-	display: flex;
-	flex-direction: column;
-	height: 100%;
-	justify-content: center;
-	transition: 0.1s v.$timing-function;
-	width: 100%;
-	&::before,
-	&::after {
-		visibility: hidden;
-	}
-
-	&:hover::before,
-	&:hover::after {
-		visibility: visible;
-	} // TODO order the image loading? -- loading eager
-	// TODO durationfadein for images?
-}
-
 .nav-link {
 	animation: menuup 0.3s;
 	animation-fill-mode: both;
@@ -51,6 +32,14 @@
 		background-color: v.$dark-bg;
 		color: v.$white;
 	}
+
+	.nav-link-image {
+		visibility: hidden;
+	}
+
+	&:hover .nav-link-image {
+		visibility: visible;
+	}
 }
 
 @keyframes menuup {
@@ -60,6 +49,24 @@
 	to {
 		transform: translateY(-100vh);
 	}
+}
+
+.nav-link-container {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	justify-content: center;
+	transition: 0.1s v.$timing-function;
+	width: 100%;
+}
+
+.nav-link-image {
+	height: 100%;
+	width: 100%;
+	z-index: -1;
+	// TODO order the image loading? -- loading eager
+	// TODO durationfadein for images?
+	//TODO phone?
 }
 
 %nav-header {

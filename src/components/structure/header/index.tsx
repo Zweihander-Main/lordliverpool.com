@@ -79,19 +79,6 @@ const Header: React.FC<HeaderProps> = ({
 	);
 	const [chronology, contenders, miscellany, author, book] = imageDataArray;
 
-	const authorBackgroundStack = [
-		'linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3))',
-		author,
-	];
-	const chronologyBackgroundStack = [
-		'linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1))',
-		chronology,
-	];
-	const contendersBackgroundStack = [
-		'linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2))',
-		contenders,
-	];
-
 	const menuBarLineClass = darkMenu
 		? `${styles.menuBarLine} ${styles.menuBarLineDark}`
 		: styles.menuBarLine;
@@ -129,13 +116,15 @@ const Header: React.FC<HeaderProps> = ({
 						linkTo={'/chronology'}
 						headerText={'Chronology'}
 						subHeaderText={'The Life and Colleagues'}
-						fluidData={chronologyBackgroundStack}
+						fluidData={chronology}
+						brightness={90}
 					/>
 					<NavLink
 						linkTo={'/contenders'}
 						headerText={'Contenders'}
 						subHeaderText={'For Greatest Prime Minister'}
-						fluidData={contendersBackgroundStack}
+						fluidData={contenders}
+						brightness={80}
 					/>
 					<NavLink
 						linkTo={'/miscellany'}
@@ -147,7 +136,8 @@ const Header: React.FC<HeaderProps> = ({
 						linkTo={'/author'}
 						headerText={'Author'}
 						subHeaderText={'About Martin Hutchinson'}
-						fluidData={authorBackgroundStack}
+						fluidData={author}
+						brightness={70}
 					/>
 					<NavLink
 						linkTo={'/book'}

@@ -3,15 +3,19 @@
 @use '~styles/util/functions.global' as f;
 
 .hero {
-	background-position: center 40%;
-	background-size: contain;
 	color: v.$white;
 	display: grid;
 	grid-template-columns: 100%;
 	grid-template-rows: 46% 27% 8% 9% 10%;
 	min-height: 100vh;
-	text-align: center; //TODO figure out retina settings
+	text-align: center;
 }
+
+.hero-image {
+	height: 100%;
+	width: 100%;
+	z-index: -1;
+} // TODO figure out retina
 
 .main-title {
 	@include m.header-text-shadow;
