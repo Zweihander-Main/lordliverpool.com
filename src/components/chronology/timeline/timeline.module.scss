@@ -8,8 +8,12 @@ $area-grabber-opacity: 0.3;
 	color: v.$white;
 	display: flex;
 	flex-direction: row;
-	grid-row: 4;
+	grid-row: 3;
 	justify-content: space-around;
+
+	@media (orientation: portrait) {
+		display: none; // TODO build this out
+	}
 } // TODO bug with scrollbar hiding last tick?
 
 .area-grabber {
@@ -34,10 +38,10 @@ $area-grabber-opacity: 0.3;
 	font-size: v.$chrono-year-size;
 	font-style: italic;
 	position: absolute;
+	top: calc(-#{v.$chrono-year-size} - 4px);
 	user-select: none;
 	white-space: nowrap;
 	will-change: transform;
-	top: calc(-#{v.$chrono-year-size} - 4px);
 }
 
 .tick {

@@ -1,5 +1,6 @@
 @use '~styles/util/variables.global' as v;
 @use '~styles/util/mixins.global' as m;
+@use '~styles/util/functions.global' as f;
 @use '../chronology.module.scss' as c;
 
 $card-border: 35px;
@@ -16,18 +17,29 @@ $card-border: 35px;
 	box-sizing: border-box;
 	color: v.$white;
 	display: grid;
-	grid-template-columns: 1fr;
+	grid-template-columns: 100%;
 	grid-template-rows: 1fr $card-border;
 	margin: 0 c.$card-margin 0 0;
 	max-height: c.$card-height;
 	overflow: hidden;
 	width: c.$card-width;
 	will-change: width, margin;
+
+	@media (orientation: portrait) {
+		margin: 0 auto c.$card-margin auto;
+		width: 80vw; //TODO var
+		max-height: 100%;
+		will-change: height, margin;
+	}
 }
 
 .hidden {
 	margin: 0;
 	width: 0;
+	@media (orientation: portrait) {
+		width: initial;
+		height: 0;
+	}
 }
 
 .animate {

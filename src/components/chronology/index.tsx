@@ -164,7 +164,7 @@ const Chronology: React.FC = () => {
 
 	return (
 		<section className={styles.chronology}>
-			<h1 className={styles.chronologyTitle}>Chronology</h1>
+			{/* <h1 className={styles.chronologyTitle}>Chronology</h1> */}
 			<div className={styles.filterMenu}>
 				{categories.current.map((category) => (
 					<h3

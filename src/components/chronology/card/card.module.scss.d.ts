@@ -4,7 +4,6 @@ export const bodyFont: string;
 export const letterSpacing: string;
 export const cardWidth: string;
 export const chronology: string;
-export const chronologyTitle: string;
 export const filterMenu: string;
 export const filterMenuLink: string;
 export const selectedLink: string;

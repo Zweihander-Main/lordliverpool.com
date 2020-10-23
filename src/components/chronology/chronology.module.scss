@@ -1,40 +1,48 @@
 @use '~styles/util/variables.global' as v;
 @use '~styles/util/mixins.global' as m;
+@use '~styles/util/functions.global' as f;
 
 $card-height: v.$card-height;
 $card-width: v.$card-width;
 
 $card-margin: 100px;
-$header-height: 4vh;
-$filter-menu-height: (100vh - $card-height)/2 - $header-height/2;
-$timeline-height: (100vh - $card-height)/2 - $header-height/2;
+$filter-menu-height: (100vh - $card-height)/2;
+$timeline-height: (100vh - $card-height)/2;
 
 // TODO -- JS for touch scrolling sideways
 
 .chronology {
 	background-color: v.$blue-bg;
 	display: grid;
-	grid-template-columns: 1fr;
-	grid-template-rows: $header-height $filter-menu-height $card-height $timeline-height;
+	grid-template-columns: 100%;
+	grid-template-rows: $filter-menu-height $card-height $timeline-height;
 	height: 100vh;
-	width: 100vw;
+	position: fixed;
+	width: 100vw; // TODO check on mobile -- silly height overrun thing
+
+	@media (orientation: portrait) {
+		grid-template-rows: initial;
+		height: 100%;
+		min-height: 100vh;
+		position: static;
+	}
 }
 
-.chronology-title {
-	@include m.header-normal;
+// .chronology-title {
+// 	@include m.header-normal;
 
-	align-self: center;
-	color: v.$white;
-	font-size: v.$hero-tiny-size;
-	grid-column: 1;
-	grid-row: 1;
-	margin: 0;
-	margin-left: auto;
-	margin-right: auto;
-	padding: 0;
-	text-align: center;
-	text-transform: uppercase;
-}
+// 	align-self: center;
+// 	color: v.$white;
+// 	font-size: v.$hero-tiny-size;
+// 	grid-column: 1;
+// 	grid-row: 1;
+// 	margin: 0;
+// 	margin-left: auto;
+// 	margin-right: auto;
+// 	padding: 0;
+// 	text-align: center;
+// 	text-transform: uppercase;
+// }
 
 .filter-menu {
 	align-items: center;
@@ -42,8 +50,7 @@ $timeline-height: (100vh - $card-height)/2 - $header-height/2;
 	color: v.$white;
 	display: flex;
 	flex-direction: row;
-	grid-column: 1;
-	grid-row: 2;
+	grid-row: 1;
 	justify-content: space-around;
 	margin: 0 50px 50px;
 }
@@ -68,17 +75,31 @@ $timeline-height: (100vh - $card-height)/2 - $header-height/2;
 .card-container-wrapper {
 	@include m.hide-scrollbars;
 
-	grid-row: 3;
+	grid-row: 2;
 	height: 100vw;
 	min-width: 100vh;
 	overflow-x: hidden;
 	overflow-y: scroll;
 	padding-right: 45px;
 	position: absolute;
-	top: $header-height + $filter-menu-height;
-	transform: rotate(-90deg) translateX(-100vmin); // TODO verify vmin
+	top: $filter-menu-height;
+	transform: rotate(-90deg)
+		translateX(-100vmin + (f.strip-units($filter-menu-height) * 1vmin));
 	transform-origin: top left;
 	will-change: scroll-position;
+
+	@media (orientation: portrait) {
+		height: 100%;
+		min-height: 100%;
+		min-width: auto;
+		overflow-x: hidden;
+		overflow-y: scroll;
+		padding-right: 0;
+		position: relative;
+		top: 0;
+		transform: initial;
+		width: 100vw;
+	}
 }
 
 .card-container {
@@ -87,9 +108,20 @@ $timeline-height: (100vh - $card-height)/2 - $header-height/2;
 	flex-direction: row;
 	transform: rotate(90deg) translateY(-100vmin);
 	transform-origin: top left;
+
+	@media (orientation: portrait) {
+		align-items: initial;
+		flex-direction: column;
+		transform: initial;
+	}
 }
 
 .buffer {
 	height: $card-height;
 	width: $card-margin;
+
+	@media (orientation: portrait) {
+		height: 0;
+		width: 0;
+	}
 }
