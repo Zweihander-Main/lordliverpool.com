@@ -83,7 +83,7 @@
 
 	font-size: 1.7vw;
 	grid-row: 1;
-	letter-spacing: 0.15em; //TODO var
+	letter-spacing: v.$letter-spacing-wide;
 	margin-bottom: 0.3rem;
 	text-transform: uppercase;
 }

@@ -51,7 +51,7 @@ $menu-transition: 0.2s;
 %menu-button-text {
 	font-family: v.$header-font;
 	font-weight: bold;
-	letter-spacing: 0.15em; //TODO var
+	letter-spacing: v.$letter-spacing-wide;
 	text-decoration: none;
 	text-transform: uppercase;
 } // TODO combine with other menu button stuff

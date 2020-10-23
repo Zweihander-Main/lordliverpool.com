@@ -30,6 +30,12 @@ const BookInfo: React.FC = () => {
 			<Img
 				className={styles.bookDisplay}
 				fluid={bookInfoData.file.childImageSharp.fluid}
+				imgStyle={{
+					width: 'auto',
+					objectFit: 'contain',
+					margin: '0 auto',
+					right: '0',
+				}}
 			/>
 			<article className={styles.info}>
 				<h1 className={styles.header}>

@@ -5,18 +5,38 @@
 	background-color: v.$light-bg;
 	color: v.$black;
 	display: grid;
+	grid-auto-rows: 1fr;
 	grid-template-columns: 50% 40%;
 	grid-template-rows: 100%;
 	min-height: 100vh;
-} //TODO fix columns
+
+	@media (max-width: 1024px) {
+		grid-auto-rows: initial;
+		//TODO var
+		grid-template-columns: 100%;
+		grid-template-rows: 1fr;
+	}
+} //TODO fix columns -- padding/ect. on 1024
 
 .book-display {
-	grid-column: 1;
+	margin: 5rem;
+	max-height: 80vh;
+
+	@media (max-width: 1024px) {
+		align-self: center;
+		//TODO var
+		margin: 2rem 1rem 1rem;
+	}
 }
 
 .info {
 	align-self: center;
-	grid-column: 2;
+	padding: 1rem 0;
+	// TODO max-width same as post
+	@media (max-width: 1024px) {
+		//TODO var
+		padding: 1rem 2rem 3rem;
+	}
 }
 
 .header {
@@ -40,7 +60,7 @@
 	font-style: italic;
 	margin-left: 1rem;
 	padding: 1rem;
-}
+} // TODO break to next line at small sizes
 
 .text {
 	margin-bottom: 2rem;
