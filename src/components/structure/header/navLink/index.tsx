@@ -26,13 +26,12 @@ const NavLink: React.FC<NavLinkProps> = ({
 				style={{
 					position: 'absolute',
 				}}
-				imgStyle={
-					brightness
-						? {
-								filter: `brightness(${brightness}%)`,
-						  }
-						: undefined
-				}
+				imgStyle={{
+					filter: brightness
+						? `brightness(${brightness}%)`
+						: undefined,
+					objectPosition: 'center 23%',
+				}}
 			/>
 			<h3 className={styles.navHeader}>{headerText}</h3>
 			<h4 className={styles.navSubHeader}>{subHeaderText}</h4>

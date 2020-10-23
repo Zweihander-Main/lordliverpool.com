@@ -9,7 +9,6 @@
 	border-right: 1px solid v.$subtle-gray;
 	bottom: -100vh;
 	color: v.$black;
-	grid-row: 1;
 	height: 100%;
 	position: relative;
 	text-decoration: none;
@@ -40,6 +39,12 @@
 	&:hover .nav-link-image {
 		visibility: visible;
 	}
+
+	@media (max-width: 1024px) {
+		border-right: 0px;
+		border-bottom: 1px solid v.$subtle-gray; //TODO var
+		//TODO font size and center in the cell
+	}
 }
 
 @keyframes menuup {
@@ -66,7 +71,7 @@
 	z-index: -1;
 	// TODO order the image loading? -- loading eager
 	// TODO durationfadein for images?
-	//TODO phone?
+	//TODO phone/touchscreen?
 }
 
 %nav-header {
