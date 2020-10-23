@@ -103,7 +103,7 @@ const Chronology: React.FC = () => {
 	);
 
 	const cardContainerRef = React.useRef<HTMLDivElement>(null);
-	const cardContainerWrapperRef = React.useRef<HTMLElement>(null);
+	const cardContainerWrapperRef = React.useRef<HTMLDivElement>(null);
 
 	const calculateScrollDistance = (targetCard: HTMLElement) => {
 		const {
@@ -153,14 +153,14 @@ const Chronology: React.FC = () => {
 		};
 	}, []);
 
-	const ticks = (selectedCategory !== categories.current[0]
+	const ticks: Array<string> = (selectedCategory !== categories.current[0]
 		? cards.current.filter(
 				(value) => value?.frontmatter?.category === selectedCategory
 		  )
 		: cards.current
 	)
 		.map((card) => card.frontmatter?.date)
-		.filter((year) => typeof year !== 'undefined') as Array<string>; //not cheating, TS won't filter out undefined types
+		.filter((year): year is string => typeof year !== 'undefined');
 
 	return (
 		<section className={styles.chronology}>
@@ -182,7 +182,7 @@ const Chronology: React.FC = () => {
 			</div>
 			<div
 				className={styles.cardContainerWrapper}
-				ref={cardContainerWrapperRef as React.RefObject<HTMLDivElement>}
+				ref={cardContainerWrapperRef}
 				onScroll={cardContainerWrapperOnScroll}
 			>
 				<div className={styles.cardContainer} ref={cardContainerRef}>

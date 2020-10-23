@@ -10,11 +10,11 @@ type ContendersMenuProps = {
 	title?: string;
 	setSelected: React.Dispatch<React.SetStateAction<string>>;
 	slug: string;
-	menuRef: React.RefObject<HTMLElement>;
+	menuRef: React.RefObject<HTMLDivElement>;
 };
 
 const ContendersItem = React.forwardRef<
-	HTMLElement | null,
+	HTMLLIElement | null,
 	ContendersMenuProps
 >(({ id, isSelected, selected, title, setSelected, slug, menuRef }, ref) => {
 	const passingState: AppLocState = {
@@ -27,7 +27,7 @@ const ContendersItem = React.forwardRef<
 	};
 
 	return (
-		<li className={styles.item} ref={ref as React.RefObject<HTMLLIElement>}>
+		<li className={styles.item} ref={ref}>
 			<Link
 				onMouseEnter={() => setSelected(id)}
 				to={slug}

@@ -40,10 +40,8 @@ export class SessionStorage {
 		state: string
 	): void {
 		const stateKey = this.getStateKey(location, key);
-		const storedValue = JSON.stringify({
-			position,
-			state,
-		} as ReadState);
+		const toStoreObject: ReadState = { position, state };
+		const storedValue = JSON.stringify(toStoreObject);
 
 		try {
 			window.sessionStorage.setItem(stateKey, storedValue);

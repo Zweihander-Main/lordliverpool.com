@@ -40,7 +40,7 @@ const Contenders: React.FC = () => {
 
 	const { edges: contenders } = blogRollData.allMarkdownRemark;
 
-	const menuRef = React.useRef<HTMLElement>(null);
+	const menuRef = React.useRef<HTMLDivElement>(null);
 
 	const calculateScrollDistance = (targetContender: HTMLElement) => {
 		const { innerHeight: viewportHeight } = window;
@@ -87,11 +87,7 @@ const Contenders: React.FC = () => {
 				title={selectedContender?.frontmatter?.title}
 				selectedID={selectedContender?.id}
 			/>
-			<div
-				className={styles.menu}
-				ref={menuRef as React.RefObject<HTMLDivElement>}
-				onScroll={onMenuScroll}
-			>
+			<div className={styles.menu} ref={menuRef} onScroll={onMenuScroll}>
 				<h1>Contenders for Greatest</h1>
 				<ul className={styles.menuList}>
 					{contenders &&
