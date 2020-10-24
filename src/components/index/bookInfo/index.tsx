@@ -5,7 +5,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 import Link from 'gatsby-link';
 import ModalButton from 'components/shared/retailers/retailersButton';
 
-const BookInfo: React.FC = () => {
+function BookInfo() {
 	const bookInfoData = useStaticQuery<GatsbyTypes.BookInfoQuery>(graphql`
 		query BookInfo {
 			file(relativePath: { eq: "bookcover.png" }) {
@@ -64,6 +64,6 @@ const BookInfo: React.FC = () => {
 			</article>
 		</section>
 	);
-};
+}
 
 export default BookInfo;

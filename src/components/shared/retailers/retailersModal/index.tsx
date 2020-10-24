@@ -123,6 +123,23 @@ const RetailersModal: React.FC = () => {
 		}
 	};
 
+	const closeRef = React.useRef<HTMLAnchorElement>(null);
+
+	const escFunction = (event) => {
+		if (event.key === 'Escape' && closeRef.current) {
+			closeRef.current.click();
+		}
+	};
+
+	// Potential improvement: only add the event listener when the modal is
+	// actually open
+	React.useEffect(() => {
+		document.addEventListener('keydown', escFunction, false);
+		return () => {
+			document.removeEventListener('keydown', escFunction, false);
+		};
+	}, []);
+
 	return (
 		<section
 			className={styles.outer}
@@ -280,6 +297,7 @@ const RetailersModal: React.FC = () => {
 				href={'#!'}
 				className={styles.close}
 				title="Close the list of retailers"
+				ref={closeRef}
 			>
 				?
 			</a>
