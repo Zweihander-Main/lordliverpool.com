@@ -1,4 +1,5 @@
 @use 'sass:math';
+@use 'sass:color';
 
 $base-size: 18px;
 
@@ -14,4 +15,25 @@ $base-size: 18px;
 	}
 	// Based on development monitor of vmin 1094px
 	@return ($to-convert/10.94px) * $return-units;
+}
+
+@function color-difference-adjust($color: #000000, $difference: 0) {
+	$red: color.red($color);
+	$green: color.green($color);
+	$blue: color.blue($color);
+
+	$new-red: $red + ($red * $difference);
+	$new-green: $green + ($green * $difference);
+	$new-blue: $blue + ($blue * $difference);
+
+	$new-red: math.round(math.min(255, math.max(0, $new-red)));
+	$new-green: math.round(math.min(255, math.max(0, $new-green)));
+	$new-blue: math.round(math.min(255, math.max(0, $new-blue)));
+
+	@return color.change(
+		$color,
+		$red: $new-red,
+		$green: $new-green,
+		$blue: $new-blue
+	);
 }

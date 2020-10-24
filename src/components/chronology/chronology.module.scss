@@ -45,31 +45,60 @@ $timeline-height: (100vh - $card-height)/2;
 // }
 
 .filter-menu {
+	@include m.neumorphic-intensity(
+		7px,
+		14px,
+		v.$blue-bg,
+		60%
+	); // TODO consistency in terms of intensity, shadow spread, ect.
+
+	// TODO unsure left shadow
+	border-radius: 0 0 v.$border-radius * 2 v.$border-radius * 2; //TODO border radius in some other unit or proportional to the size?
+
 	align-items: center;
-	border-bottom: 1px solid v.$white;
+	// border-bottom: 1px solid v.$white;
 	color: v.$white;
 	display: flex;
 	flex-direction: row;
 	grid-row: 1;
 	justify-content: space-around;
-	margin: 0 50px 50px;
+	margin: 0 250px 95px; //TODO nope -- redo grid as well
+	// TODO adjust based on new menu size when you resize it
 }
 
 .filter-menu-link {
 	@include m.header-normal;
 
+	border-radius: v.$border-radius;
+	padding: 0.6rem 2rem;
+
 	cursor: pointer;
 	margin: 0;
-	padding: 1rem 0.5rem;
-	transition: 100ms v.$timing-function;
+	// padding: 1rem 0.5rem;
+	transition: 100ms v.$timing-function; // TODO consistency on button transition
 	z-index: 999;
+
+	&:hover {
+		@include m.neumorphic-button(
+			3px,
+			6px,
+			#051926,
+			55%
+		); // TODO shadow -- button consistency
+	}
 }
 
 .selected-link {
-	border-bottom: 2px solid v.$light-bg;
+	@include m.neumorphic-button(-3px, 6px, #051926, 60%);
+
+	// border-bottom: 2px solid v.$light-bg;
 	color: v.$light-bg;
-	padding-bottom: 0.2rem;
-	padding-top: 0.3rem;
+	// padding-bottom: 0.2rem;
+	// padding-top: 0.3rem;
+
+	&:hover {
+		@include m.neumorphic-button(-3px, 6px, #051926, 60%);
+	}
 }
 
 .card-container-wrapper {
@@ -118,7 +147,7 @@ $timeline-height: (100vh - $card-height)/2;
 
 .buffer {
 	height: $card-height;
-	width: $card-margin;
+	width: 10vw;
 
 	@media (orientation: portrait) {
 		height: 0;

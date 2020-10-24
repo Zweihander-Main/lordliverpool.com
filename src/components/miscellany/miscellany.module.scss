@@ -2,20 +2,9 @@
 @use '~styles/util/mixins.global' as m;
 @use 'sass:color';
 
-$light-shadow-intensity: 2%;
-$dark-shadow-intensity: 13%;
-$drop-shadow-offset: 5px;
-$drop-shadow-blur: 20px;
+$drop-shadow-offset: 4px;
+$drop-shadow-blur: 25px;
 $masonry-margin: 5em;
-
-$dark-drop-shadow-color: color.adjust(
-	v.$red,
-	$lightness: -$dark-shadow-intensity
-);
-$light-drop-shadow-color: color.adjust(
-	v.$red,
-	$lightness: $light-shadow-intensity
-);
 
 .masonry {
 	box-sizing: border-box;
@@ -41,18 +30,31 @@ $light-drop-shadow-color: color.adjust(
 }
 
 .item {
-	@include m.neumorphic-full(
+	@include m.neumorphic-intensity(
 		$drop-shadow-offset,
 		$drop-shadow-blur,
-		$dark-drop-shadow-color,
-		$light-drop-shadow-color
+		v.$dark-bg,
+		150%
 	);
+
+	border-radius: v.$border-radius;
+	overflow: hidden;
 
 	//TODO could this look better and more neumorphic?
 
 	background-color: v.$red;
 	position: relative;
 	width: 100%;
+	transition: 75ms v.$timing-function;
+
+	&:hover {
+		@include m.neumorphic-intensity(
+			$drop-shadow-offset + 4px,
+			$drop-shadow-blur + 8px,
+			v.$dark-bg,
+			150%
+		); // TODO look ma, a bug
+	}
 }
 
 $r: red(v.$red);
@@ -78,7 +80,6 @@ $b: blue(v.$red);
 	filter: grayscale(100%);
 	opacity: 0.6;
 	position: initial;
-	transition: 0.1s v.$timing-function;
 
 	&:hover {
 		filter: grayscale(0%);

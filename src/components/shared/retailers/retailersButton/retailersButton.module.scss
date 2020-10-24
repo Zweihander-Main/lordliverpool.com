@@ -2,7 +2,7 @@
 @use '~styles/util/mixins.global' as m;
 
 .button {
-	@include m.neumorphic-button(1px, 3px, v.$red, 10%, 2px, v.$black);
+	@include m.neumorphic-button(1px, 3px, v.$red, 120%, 2px, v.$black);
 
 	background: v.$red;
 	border-radius: v.$border-radius;
@@ -12,11 +12,11 @@
 	transition: 75ms v.$timing-function;
 
 	&:hover {
-		@include m.neumorphic-button(2px, 5px, v.$red, 10%, 5px, v.$black);
+		@include m.neumorphic-button(2px, 5px, v.$red, 120%, 5px, v.$black);
 	}
 
 	&:active {
-		@include m.neumorphic-button(-1px, 3px, v.$red, 10%, 5px, v.$black);
+		@include m.neumorphic-button(-1px, 3px, v.$red, 120%, 5px, v.$black);
 	}
 }
 

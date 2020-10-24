@@ -33,14 +33,13 @@ $pic-bg: color.adjust(v.$light-bg, $lightness: -60%, $saturation: -10%);
 	color: v.$white;
 	grid-column: 1;
 	grid-row: 1;
-	padding-left: 1rem;
-	padding-right: 1rem;
 	text-transform: uppercase;
+	padding: 0 2rem 1.3rem;
 }
 
 .name {
 	font-size: 3.5vw;
-	margin-bottom: 1rem;
+	margin-bottom: 0;
 }
 
 .dates {

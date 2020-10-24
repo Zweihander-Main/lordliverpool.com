@@ -35,6 +35,7 @@ const BookInfo: React.FC = () => {
 					objectFit: 'contain',
 					margin: '0 auto',
 					right: '0',
+					background: 'radial-gradient(#f5ece1 0%, transparent 72%)',
 				}}
 			/>
 			<article className={styles.info}>

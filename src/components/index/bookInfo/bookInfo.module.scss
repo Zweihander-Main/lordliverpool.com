@@ -1,14 +1,16 @@
 @use '~styles/util/variables.global' as v;
 @use '~styles/util/mixins.global' as m;
+@use 'sass:color';
 
 .book-info {
 	background-color: v.$light-bg;
 	color: v.$black;
 	display: grid;
 	grid-auto-rows: 1fr;
-	grid-template-columns: 50% 40%;
+	grid-template-columns: 45% 55%;
 	grid-template-rows: 100%;
 	min-height: 100vh;
+	align-items: center;
 
 	@media (max-width: 1024px) {
 		grid-auto-rows: initial;
@@ -30,12 +32,20 @@
 }
 
 .info {
+	@include m.neumorphic-intensity(17px, 55px, v.$light-bg, 11%);
+	padding: 4rem; // TODO fix on mobile
+	border-radius: v.$border-radius * 2; //TODO figure out
+	margin: 2rem 2rem 2rem 0;
+
 	align-self: center;
-	padding: 1rem 0;
+	// padding: 1rem 0;
 	// TODO max-width same as post
+	max-width: 47rem;
 	@media (max-width: 1024px) {
+		// TODO this should prolly be 1200
+		place-self: center;
 		//TODO var
-		padding: 1rem 2rem 3rem;
+		margin: 1rem 2rem 2rem;
 	}
 }
 

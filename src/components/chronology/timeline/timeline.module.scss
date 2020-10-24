@@ -1,4 +1,5 @@
 @use '~styles/util/variables.global' as v;
+@use '~styles/util/mixins.global' as m;
 
 $area-grabber-height: 50px;
 $area-grabber-opacity: 0.3;
@@ -17,6 +18,15 @@ $area-grabber-opacity: 0.3;
 } // TODO bug with scrollbar hiding last tick?
 
 .area-grabber {
+	@include m.neumorphic-button(
+		4px,
+		8px,
+		rgba(v.$white, $area-grabber-opacity + 0.1),
+		20%
+	);
+
+	// border-radius: v.$border-radius v.$border-radius 0 0;
+
 	background: rgba(v.$white, $area-grabber-opacity);
 	cursor: grab;
 	height: $area-grabber-height;
@@ -45,7 +55,12 @@ $area-grabber-opacity: 0.3;
 }
 
 .tick {
-	background: v.$white;
-	height: 35px;
+	@include m.neumorphic-intensity(1px, 2px, v.$blue-bg, 250%); //TODO nope
+	background: v.$blue-bg;
+	height: $area-grabber-height - 15;
 	width: 3px;
+}
+
+.tick:nth-of-type(2n) {
+	height: $area-grabber-height - 25;
 }

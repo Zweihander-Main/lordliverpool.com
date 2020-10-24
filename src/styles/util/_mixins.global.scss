@@ -1,4 +1,5 @@
 @use './variables.global' as v;
+@use './functions.global' as f;
 @use 'sass:color';
 
 @mixin header-normal {
@@ -57,8 +58,8 @@
 	$base-color: v.$dark-bg,
 	$intensity: 50%
 ) {
-	$top-color: color.adjust($base-color, $lightness: $intensity);
-	$bottom-color: color.adjust($base-color, $lightness: -$intensity);
+	$top-color: f.color-difference-adjust($base-color, ($intensity/100));
+	$bottom-color: f.color-difference-adjust($base-color, (-$intensity/100));
 
 	@include neumorphic-full(
 		$shadow-size,
@@ -76,8 +77,11 @@
 	$shadow-size: 0,
 	$shadow-color: v.$black
 ) {
-	$top-inset-color: color.adjust($base-color, $lightness: $intensity);
-	$bottom-inset-color: color.adjust($base-color, $lightness: -$intensity);
+	$top-inset-color: f.color-difference-adjust($base-color, ($intensity/100));
+	$bottom-inset-color: f.color-difference-adjust(
+		$base-color,
+		(-$intensity/100)
+	);
 
 	box-shadow: inset (-$inset-shadow-size) (-$inset-shadow-size)
 			$inset-shadow-spread $bottom-inset-color,
@@ -94,8 +98,9 @@
 	@if $reverse {
 		$intensity: -$intensity;
 	}
-	$from: color.adjust($base-color, $lightness: $intensity);
-	$to: color.adjust($base-color, $lightness: -$intensity);
+
+	$from: f.color-difference-adjust($base-color, ($intensity/100));
+	$to: f.color-difference-adjust($base-color, (-$intensity/100));
 
 	background: linear-gradient(145deg, $from, $to);
 }

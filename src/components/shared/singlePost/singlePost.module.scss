@@ -7,17 +7,29 @@
 .post-container {
 	background-color: v.$light-bg;
 	min-height: 95vh;
+	padding-top: 5rem;
+	padding-bottom: 5rem;
 }
 
 .single-post {
+	@include m.neumorphic-intensity(
+		6px,
+		20px,
+		v.$light-bg,
+		$intensity: 15%
+	); //TODO match front
+	//TODO spacing around header seems weird now
 	align-items: center;
 	color: v.$black;
 	display: flex;
 	flex-direction: column;
 	margin-left: auto;
 	margin-right: auto;
-	max-width: 47rem; //TODO set to variable
-	padding: 1rem;
+	// max-width: 47rem; //TODO set to variable
+	// padding: 1rem;
+	max-width: 51rem;
+	padding: 5rem;
+	border-radius: v.$border-radius * 2; //TODO consistency
 }
 
 .nav-links {
@@ -26,7 +38,11 @@
 	grid-template-rows: 1fr;
 	justify-items: center;
 	width: 100%;
-}
+	position: absolute;
+	top: 0px; //TODO is this the best way?
+	max-width: 51rem;
+	padding: 1.5rem; //TODO double height screws up -- flex?
+} //TODO neumorphic pics
 
 .nav-links a {
 	color: v.$black;

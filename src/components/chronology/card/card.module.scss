@@ -6,12 +6,20 @@
 $card-border: 35px;
 
 .card {
-	@include m.neumorphic-full(
-		15px,
-		31px,
-		v.$blue-card-dark-shadow,
-		v.$blue-card-light-shadow
-	);
+	// @include m.neumorphic-full(
+	// 	15px,
+	// 	31px,
+	// 	v.$blue-card-dark-shadow,
+	// 	v.$blue-card-light-shadow
+	// ); //TODO remove color vars
+	@include m.neumorphic-intensity(
+		12px,
+		25px,
+		v.$blue-bg,
+		80%
+	); // TODO consistency with rest of site
+
+	border-radius: v.$border-radius;
 
 	background-color: v.$blue-card-bg;
 	box-sizing: border-box;
@@ -56,6 +64,10 @@ $card-border: 35px;
 	grid-row-start: 1;
 	overflow-y: auto;
 	width: c.$card-width;
+
+	@media (orientation: portrait) {
+		width: 80vw; //TODO var
+	}
 }
 
 .header {
@@ -86,6 +98,10 @@ $card-border: 35px;
 	}
 	@media screen and (max-height: 750px) {
 		max-height: c.$card-height * 0.4;
+	} //TODO allow all in portrait
+
+	@media (orientation: portrait) {
+		max-height: 80vh;
 	}
 }
 // TODO Zoom
