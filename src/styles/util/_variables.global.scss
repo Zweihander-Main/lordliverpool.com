@@ -37,6 +37,19 @@ $border-radius: 8px;
 $card-height: 70vh;
 $card-width: $card-height/1.5;
 
+// @media -- imported in mixins file
+$breakpoints: (
+	'tiny': 320px,
+	'phone': 576px,
+	'tablet': 768px,
+	'desktop': 1024px,
+	'wide': 1200px,
+	'ultrawide': 1550px,
+	'HEIGHT_short': 750px,
+	'HEIGHT_med': 850px,
+	'HEIGHT_tall': 1000px,
+); //TODO cleanup height
+
 /*stylelint-disable */
 // export for JS
 :export {

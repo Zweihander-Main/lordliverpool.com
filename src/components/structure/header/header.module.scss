@@ -126,7 +126,7 @@ $menu-transition: 0.2s;
 	width: 100%;
 	z-index: 1000;
 
-	@media (max-width: 1024px) {
+	@include m.media('<=desktop') {
 		//TODO var,
 		grid-template-columns: 100%;
 		grid-template-rows: repeat(5, minmax(0, 1fr)); //TODO var

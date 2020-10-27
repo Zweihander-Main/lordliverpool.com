@@ -54,12 +54,12 @@ $radio-label-opacity: 0.7;
 		margin-left 0.125s v.$timing-function;
 	z-index: 20;
 
-	@media (max-width: 1000px) {
+	@include m.media('<=desktop') {
 		//TODO vars and mixins and also for close
 		max-width: 75vw;
 	}
 
-	@media (max-width: 600px) {
+	@include m.media('<=phone') {
 		max-width: 90vw;
 	}
 }
@@ -109,12 +109,13 @@ $radio-label-opacity: 0.7;
 	width: 2rem;
 	z-index: 20;
 
-	@media (max-width: 1000px) {
+	@include m.media('<=desktop') {
 		right: 7vw;
 	}
 
-	@media (max-width: 600px) {
+	@include m.media('<=phone') {
 		right: 0; //TODO doesn't look right
+		// TODO buttons break to next line
 	}
 }
 

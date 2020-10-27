@@ -13,11 +13,11 @@ $masonry-margin: 5em;
 	column-gap: $masonry-margin;
 	margin: $masonry-margin;
 
-	@media (max-width: 1550px) {
+	@include m.media('<=ultrawide') {
 		column-count: 2;
 	} //TODO vars and mixins
 
-	@media (max-width: 1200px) {
+	@include m.media('<=wide') {
 		column-count: 1;
 	} //TODO can do better
 }
@@ -37,15 +37,14 @@ $masonry-margin: 5em;
 		150%
 	);
 
-	border-radius: v.$border-radius;
-	overflow: hidden;
-
 	//TODO could this look better and more neumorphic?
 
 	background-color: v.$red;
+	border-radius: v.$border-radius;
+	overflow: hidden;
 	position: relative;
-	width: 100%;
 	transition: 75ms v.$timing-function;
+	width: 100%;
 
 	&:hover {
 		@include m.neumorphic-intensity(
@@ -56,10 +55,6 @@ $masonry-margin: 5em;
 		); // TODO look ma, a bug
 	}
 }
-
-$r: red(v.$red);
-$g: green(v.$red);
-$b: blue(v.$red);
 
 .header {
 	align-items: end;

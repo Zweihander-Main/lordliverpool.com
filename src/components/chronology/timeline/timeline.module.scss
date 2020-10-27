@@ -12,7 +12,7 @@ $area-grabber-opacity: 0.3;
 	grid-row: 3;
 	justify-content: space-around;
 
-	@media (orientation: portrait) {
+	@include m.media('portrait') {
 		display: none; // TODO build this out
 	}
 } // TODO bug with scrollbar hiding last tick?
@@ -24,8 +24,6 @@ $area-grabber-opacity: 0.3;
 		rgba(v.$white, $area-grabber-opacity + 0.1),
 		20%
 	);
-
-	// border-radius: v.$border-radius v.$border-radius 0 0;
 
 	background: rgba(v.$white, $area-grabber-opacity);
 	cursor: grab;
@@ -56,6 +54,7 @@ $area-grabber-opacity: 0.3;
 
 .tick {
 	@include m.neumorphic-intensity(1px, 2px, v.$blue-bg, 250%); //TODO nope
+
 	background: v.$blue-bg;
 	height: $area-grabber-height - 15;
 	width: 3px;

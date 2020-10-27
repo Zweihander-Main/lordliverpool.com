@@ -10,7 +10,7 @@
 	min-height: 100vh;
 	text-align: center;
 
-	@media (max-width: 576px) {
+	@include m.media('<=phone') {
 		//TODO var
 		grid-template-rows: 46% 19% 7% 11% 17%;
 	}
@@ -75,7 +75,7 @@
 		transform: rotate(-45deg);
 		width: 24px;
 
-		@media (max-height: 700px) {
+		@include m.media('height<=HEIGHT_short') {
 			//TODO var -- notice height
 			height: 12px;
 			margin-left: -6px;
@@ -95,7 +95,7 @@
 	100% {
 		opacity: 0;
 		transform: rotate(-45deg) translate(-20px, 20px);
-		@media (max-height: 700px) {
+		@include m.media('height<=HEIGHT_short') {
 			//TODO var
 			transform: rotate(-45deg) translate(-10px, 10px);
 		}

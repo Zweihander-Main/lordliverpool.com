@@ -6,12 +6,7 @@
 $card-border: 35px;
 
 .card {
-	// @include m.neumorphic-full(
-	// 	15px,
-	// 	31px,
-	// 	v.$blue-card-dark-shadow,
-	// 	v.$blue-card-light-shadow
-	// ); //TODO remove color vars
+	//TODO remove color vars
 	@include m.neumorphic-intensity(
 		12px,
 		25px,
@@ -19,9 +14,8 @@ $card-border: 35px;
 		80%
 	); // TODO consistency with rest of site
 
-	border-radius: v.$border-radius;
-
 	background-color: v.$blue-card-bg;
+	border-radius: v.$border-radius;
 	box-sizing: border-box;
 	color: v.$white;
 	display: grid;
@@ -33,10 +27,10 @@ $card-border: 35px;
 	width: c.$card-width;
 	will-change: width, margin;
 
-	@media (orientation: portrait) {
+	@include m.media('portrait') {
 		margin: 0 auto c.$card-margin auto;
-		width: 80vw; //TODO var
 		max-height: 100%;
+		width: 80vw; //TODO var
 		will-change: height, margin;
 	}
 }
@@ -44,9 +38,9 @@ $card-border: 35px;
 .hidden {
 	margin: 0;
 	width: 0;
-	@media (orientation: portrait) {
-		width: initial;
+	@include m.media('portrait') {
 		height: 0;
+		width: initial;
 	}
 }
 
@@ -65,7 +59,7 @@ $card-border: 35px;
 	overflow-y: auto;
 	width: c.$card-width;
 
-	@media (orientation: portrait) {
+	@include m.media('portrait') {
 		width: 80vw; //TODO var
 	}
 }
@@ -90,17 +84,17 @@ $card-border: 35px;
 	outline: none;
 	width: 100%;
 
-	@media screen and (min-height: 851px) and (max-height: 1000px) {
+	@include m.media('height>HEIGHT_med', 'height<=HEIGHT_tall') {
 		max-height: c.$card-height * 0.6;
 	}
-	@media screen and (min-height: 751px) and (max-height: 850px) {
+	@include m.media('height>HEIGHT_short', 'height<=HEIGHT_med') {
 		max-height: c.$card-height * 0.5;
 	}
-	@media screen and (max-height: 750px) {
+	@include m.media('height<=HEIGHT_short') {
 		max-height: c.$card-height * 0.4;
 	} //TODO allow all in portrait
 
-	@media (orientation: portrait) {
+	@include m.media('portrait') {
 		max-height: 80vh;
 	}
 }

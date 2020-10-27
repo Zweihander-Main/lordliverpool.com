@@ -2,6 +2,9 @@
 @use './functions.global' as f;
 @use 'sass:color';
 
+@import 'node_modules/include-media/dist/include-media';
+$breakpoints: v.$breakpoints;
+
 @mixin header-normal {
 	font-weight: normal;
 	letter-spacing: 0;

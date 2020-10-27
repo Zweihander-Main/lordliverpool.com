@@ -20,29 +20,14 @@ $timeline-height: (100vh - $card-height)/2;
 	position: fixed;
 	width: 100vw; // TODO check on mobile -- silly height overrun thing
 
-	@media (orientation: portrait) {
+	@include m.media('portrait') {
 		grid-template-rows: initial;
 		height: 100%;
 		min-height: 100vh;
 		position: static;
 	}
+	// TODO -- initial scroll trouble
 }
-
-// .chronology-title {
-// 	@include m.header-normal;
-
-// 	align-self: center;
-// 	color: v.$white;
-// 	font-size: v.$hero-tiny-size;
-// 	grid-column: 1;
-// 	grid-row: 1;
-// 	margin: 0;
-// 	margin-left: auto;
-// 	margin-right: auto;
-// 	padding: 0;
-// 	text-align: center;
-// 	text-transform: uppercase;
-// }
 
 .filter-menu {
 	@include m.neumorphic-intensity(
@@ -52,11 +37,10 @@ $timeline-height: (100vh - $card-height)/2;
 		60%
 	); // TODO consistency in terms of intensity, shadow spread, ect.
 
+	align-items: center;
+
 	// TODO unsure left shadow
 	border-radius: 0 0 v.$border-radius * 2 v.$border-radius * 2; //TODO border radius in some other unit or proportional to the size?
-
-	align-items: center;
-	// border-bottom: 1px solid v.$white;
 	color: v.$white;
 	display: flex;
 	flex-direction: row;
@@ -70,11 +54,10 @@ $timeline-height: (100vh - $card-height)/2;
 	@include m.header-normal;
 
 	border-radius: v.$border-radius;
-	padding: 0.6rem 2rem;
 
 	cursor: pointer;
 	margin: 0;
-	// padding: 1rem 0.5rem;
+	padding: 0.6rem 2rem;
 	transition: 100ms v.$timing-function; // TODO consistency on button transition
 	z-index: 999;
 
@@ -91,10 +74,7 @@ $timeline-height: (100vh - $card-height)/2;
 .selected-link {
 	@include m.neumorphic-button(-3px, 6px, #051926, 60%);
 
-	// border-bottom: 2px solid v.$light-bg;
 	color: v.$light-bg;
-	// padding-bottom: 0.2rem;
-	// padding-top: 0.3rem;
 
 	&:hover {
 		@include m.neumorphic-button(-3px, 6px, #051926, 60%);
@@ -117,7 +97,7 @@ $timeline-height: (100vh - $card-height)/2;
 	transform-origin: top left;
 	will-change: scroll-position;
 
-	@media (orientation: portrait) {
+	@include m.media('portrait') {
 		height: 100%;
 		min-height: 100%;
 		min-width: auto;
@@ -138,7 +118,7 @@ $timeline-height: (100vh - $card-height)/2;
 	transform: rotate(90deg) translateY(-100vmin);
 	transform-origin: top left;
 
-	@media (orientation: portrait) {
+	@include m.media('portrait') {
 		align-items: initial;
 		flex-direction: column;
 		transform: initial;
@@ -149,7 +129,7 @@ $timeline-height: (100vh - $card-height)/2;
 	height: $card-height;
 	width: 10vw;
 
-	@media (orientation: portrait) {
+	@include m.media('portrait') {
 		height: 0;
 		width: 0;
 	}
