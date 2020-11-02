@@ -22,10 +22,13 @@ $card-border: 35px;
 	grid-template-columns: 100%;
 	grid-template-rows: 1fr $card-border;
 	margin: 0 c.$card-margin 0 0;
-	max-height: c.$card-height;
+	max-height: calc(100vh - #{c.$filter-menu-height} - #{c.$timeline-height});
 	overflow: hidden;
-	width: c.$card-width;
-	will-change: width, margin;
+	width: c.$card-width; //TODO right?
+	will-change: transform, width, margin;
+	transition: none;
+	animation: slidein 250ms v.$timing-function;
+	animation-fill-mode: both;
 
 	@include m.media('portrait') {
 		margin: 0 auto c.$card-margin auto;
@@ -35,9 +38,35 @@ $card-border: 35px;
 	}
 }
 
+@keyframes slideout {
+	0% {
+		transform: scaleX(1);
+	}
+	99.9% {
+		transform: scaleX(0);
+	}
+	100% {
+		margin: 0;
+		width: 0;
+	}
+}
+
+@keyframes slidein {
+	0% {
+		// width: c.$card-width;
+		// margin: 0 c.$card-margin 0 0;
+		transform: scaleX(0);
+	}
+	100% {
+		transform: scaleX(1);
+	}
+}
+
 .hidden {
-	margin: 0;
-	width: 0;
+	animation: slideout 250ms v.$timing-function;
+	animation-fill-mode: both;
+	// margin: 0;
+	// width: 0;
 	@include m.media('portrait') {
 		height: 0;
 		width: initial;
@@ -45,7 +74,7 @@ $card-border: 35px;
 }
 
 .animate {
-	transition: 250ms v.$timing-function;
+	// transition: 250ms v.$timing-function;
 }
 
 .inner {
@@ -58,6 +87,14 @@ $card-border: 35px;
 	grid-row-start: 1;
 	overflow-y: auto;
 	width: c.$card-width;
+	display: grid;
+	grid-template-rows: minmax(0, max-content) minmax(0, min-content) minmax(
+			0,
+			max-content
+		); //TODO massacre of tranent and perfect spacing
+	grid-template-columns: 1fr;
+	//TODO name grids everywhere
+	// TODO remove image named grid
 
 	@include m.media('portrait') {
 		width: 80vw; //TODO var
@@ -70,6 +107,11 @@ $card-border: 35px;
 
 .title-link {
 	color: v.$white;
+	margin-bottom: 1rem;
+
+	.image {
+		margin-bottom: 0;
+	}
 }
 
 .header-no-image {
@@ -77,22 +119,23 @@ $card-border: 35px;
 }
 
 .image {
-	margin-bottom: 1rem;
-	max-height: c.$card-height * 0.7; // TODO do something better than this
+	// max-height: c.$card-height * 0.7; // TODO do something better than this //TODO figure out how new system should work
 	object-fit: contain;
 	object-position: center 35%;
 	outline: none;
 	width: 100%;
+	max-height: 100%;
+	margin-bottom: 1rem;
 
-	@include m.media('height>HEIGHT_med', 'height<=HEIGHT_tall') {
-		max-height: c.$card-height * 0.6;
-	}
-	@include m.media('height>HEIGHT_short', 'height<=HEIGHT_med') {
-		max-height: c.$card-height * 0.5;
-	}
-	@include m.media('height<=HEIGHT_short') {
-		max-height: c.$card-height * 0.4;
-	} //TODO allow all in portrait
+	// @include m.media('height>HEIGHT_med', 'height<=HEIGHT_tall') {
+	// 	max-height: c.$card-height * 0.6;
+	// }
+	// @include m.media('height>HEIGHT_short', 'height<=HEIGHT_med') {
+	// 	max-height: c.$card-height * 0.5;
+	// }
+	// @include m.media('height<=HEIGHT_short') {
+	// 	max-height: c.$card-height * 0.4;
+	// } //TODO allow all in portrait
 
 	@include m.media('portrait') {
 		max-height: 80vh;
@@ -100,6 +143,7 @@ $card-border: 35px;
 }
 // TODO Zoom
 // TODO fix mixins and ect. for breakpoints
+// TODO border on bottom of menu
 
 .text {
 	white-space: break-spaces;
