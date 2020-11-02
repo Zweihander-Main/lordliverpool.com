@@ -105,6 +105,10 @@ $card-border: 35px;
 
 .header {
 	outline: none;
+
+	.title-link {
+		@include m.fancy-hover-link($color: v.$white, $bottom: 2px);
+	}
 }
 
 .title-link {

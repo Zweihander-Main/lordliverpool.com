@@ -59,6 +59,9 @@
 
 .author-header {
 	@include m.header-normal;
+	a {
+		@include m.fancy-hover-link($bottom: 1px);
+	}
 }
 
 .author-link {
@@ -70,8 +73,12 @@
 	font-style: italic;
 	margin-left: 1rem;
 	padding: 1rem;
+	@include m.fancy-hover-link($margin: 0 -1rem 1rem);
 } // TODO break to next line at small sizes
 
 .text {
 	margin-bottom: 2rem;
+	a {
+		@include m.fancy-hover-link;
+	}
 }

@@ -115,6 +115,8 @@
 	text-align: left;
 
 	a {
+		@include m.fancy-hover-link();
+
 		color: v.$black;
 		font-style: italic;
 	}
