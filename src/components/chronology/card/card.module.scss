@@ -22,14 +22,16 @@ $card-border: 35px;
 	grid-template-columns: 100%;
 	grid-template-rows: 1fr $card-border;
 	margin: 0 c.$card-margin 0 0;
-	max-height: calc(100vh - #{c.$filter-menu-height} - #{c.$timeline-height});
+	max-height: calc(
+		100vh - #{c.$filter-menu-height} - #{c.$timeline-height} - 45px
+	);
 	overflow: hidden;
 	width: c.$card-width; //TODO right?
 	will-change: transform, width, margin;
 	transition: none;
-	animation: slidein 250ms v.$timing-function;
-	animation-fill-mode: both;
 
+	animation: slidein 0ms v.$timing-function;
+	animation-fill-mode: both;
 	@include m.media('portrait') {
 		margin: 0 auto c.$card-margin auto;
 		max-height: 100%;
@@ -63,7 +65,7 @@ $card-border: 35px;
 }
 
 .hidden {
-	animation: slideout 250ms v.$timing-function;
+	animation: slideout 0ms v.$timing-function;
 	animation-fill-mode: both;
 	// margin: 0;
 	// width: 0;
@@ -74,7 +76,7 @@ $card-border: 35px;
 }
 
 .animate {
-	// transition: 250ms v.$timing-function;
+	animation-duration: 250ms;
 }
 
 .inner {

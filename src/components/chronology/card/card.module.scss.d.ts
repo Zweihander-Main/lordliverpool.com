@@ -14,6 +14,7 @@ export const card: string;
 export const slidein: string;
 export const hidden: string;
 export const slideout: string;
+export const animate: string;
 export const inner: string;
 export const header: string;
 export const titleLink: string;
