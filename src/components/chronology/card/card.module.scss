@@ -14,6 +14,8 @@ $card-border: 35px;
 		80%
 	); // TODO consistency with rest of site
 
+	animation: card-scale-to-show 0ms;
+	animation-fill-mode: both;
 	background-color: v.$blue-card-bg;
 	border-radius: v.$border-radius;
 	box-sizing: border-box;
@@ -24,14 +26,11 @@ $card-border: 35px;
 	margin: 0 c.$card-margin 0 0;
 	max-height: calc(
 		100vh - #{c.$filter-menu-height} - #{c.$timeline-height} - 45px
-	);
+	); //TODO clean up
 	overflow: hidden;
+	transition: none;
 	width: c.$card-width; //TODO right?
 	will-change: transform, width, margin;
-	transition: none;
-
-	animation: slidein 0ms v.$timing-function;
-	animation-fill-mode: both;
 	@include m.media('portrait') {
 		margin: 0 auto c.$card-margin auto;
 		max-height: 100%;
@@ -40,12 +39,24 @@ $card-border: 35px;
 	}
 }
 
-@keyframes slideout {
+@keyframes card-scale-to-hide {
 	0% {
+		margin: 0 c.$card-margin 0 0;
 		transform: scaleX(1);
+		width: c.$card-width;
+	}
+	49.9% {
+		margin: 0 c.$card-margin 0 0;
+		width: c.$card-width;
+	}
+	50% {
+		margin: 0 c.$card-margin/2 0 0;
+		width: c.$card-width/2;
 	}
 	99.9% {
+		margin: 0 c.$card-margin/2 0 0;
 		transform: scaleX(0);
+		width: c.$card-width/2;
 	}
 	100% {
 		margin: 0;
@@ -53,22 +64,33 @@ $card-border: 35px;
 	}
 }
 
-@keyframes slidein {
+@keyframes card-scale-to-show {
 	0% {
-		// width: c.$card-width;
-		// margin: 0 c.$card-margin 0 0;
+		margin: 0;
 		transform: scaleX(0);
+		width: 0;
+	}
+	49.9% {
+		margin: 0;
+		width: 0;
+	}
+	50% {
+		margin: 0 c.$card-margin/2 0 0;
+		width: c.$card-width/2;
+	}
+	99.9% {
+		margin: 0 c.$card-margin/2 0 0;
+		transform: scaleX(1);
+		width: c.$card-width/2;
 	}
 	100% {
-		transform: scaleX(1);
+		margin: 0 c.$card-margin 0 0;
+		width: c.$card-width;
 	}
 }
 
 .hidden {
-	animation: slideout 0ms v.$timing-function;
-	animation-fill-mode: both;
-	// margin: 0;
-	// width: 0;
+	animation: card-scale-to-hide 0ms;
 	@include m.media('portrait') {
 		height: 0;
 		width: initial;
@@ -77,6 +99,8 @@ $card-border: 35px;
 
 .animate {
 	animation-duration: 250ms;
+	animation-fill-mode: both;
+	animation-timing-function: v.$timing-function;
 }
 
 .inner {
@@ -84,17 +108,18 @@ $card-border: 35px;
 
 	border: $card-border solid transparent;
 	box-sizing: border-box;
+	display: grid;
 	grid-column: 1;
 	grid-row-end: 3;
 	grid-row-start: 1;
-	overflow-y: auto;
-	width: c.$card-width;
-	display: grid;
+	grid-template-columns: 1fr;
 	grid-template-rows: minmax(0, max-content) minmax(0, min-content) minmax(
 			0,
 			max-content
 		); //TODO massacre of tranent and perfect spacing
-	grid-template-columns: 1fr;
+
+	overflow-y: auto;
+	width: c.$card-width;
 	//TODO name grids everywhere
 	// TODO remove image named grid
 
@@ -125,13 +150,13 @@ $card-border: 35px;
 }
 
 .image {
+	margin-bottom: 1rem;
+	max-height: 100%;
 	// max-height: c.$card-height * 0.7; // TODO do something better than this //TODO figure out how new system should work
 	object-fit: contain;
 	object-position: center 35%;
 	outline: none;
 	width: 100%;
-	max-height: 100%;
-	margin-bottom: 1rem;
 
 	// @include m.media('height>HEIGHT_med', 'height<=HEIGHT_tall') {
 	// 	max-height: c.$card-height * 0.6;
