@@ -4,6 +4,10 @@
 @use '../chronology.module.scss' as c;
 
 $card-border: 35px;
+$card-total-margin: c.$filter-menu-height + c.$timeline-height +
+	c.$card-top-margin + c.$card-bottom-margin;
+$card-portrait-max-height: 80vh;
+$card-portrait-width: 80vw;
 
 .card {
 	//TODO remove color vars
@@ -14,7 +18,7 @@ $card-border: 35px;
 		80%
 	); // TODO consistency with rest of site
 
-	animation: card-scale-to-show 0ms;
+	animation: card-scaleX-to-show 0ms;
 	animation-fill-mode: both;
 	background-color: v.$blue-card-bg;
 	border-radius: v.$border-radius;
@@ -24,22 +28,21 @@ $card-border: 35px;
 	grid-template-columns: 100%;
 	grid-template-rows: 1fr $card-border;
 	margin: 0 c.$card-margin 0 0;
-	max-height: calc(
-		100vh - #{c.$filter-menu-height} - #{c.$timeline-height} - 45px
-	); //TODO clean up
+	max-height: calc(100vh - #{$card-total-margin});
 	overflow: hidden;
 	transition: none;
 	width: c.$card-width; //TODO right?
 	will-change: transform, width, margin;
 	@include m.media('portrait') {
+		animation: card-scaleY-to-show 0ms;
 		margin: 0 auto c.$card-margin auto;
-		max-height: 100%;
-		width: 80vw; //TODO var
-		will-change: height, margin;
+		max-height: $card-portrait-max-height;
+		width: $card-portrait-width;
+		will-change: transform, height, margin;
 	}
 }
 
-@keyframes card-scale-to-hide {
+@keyframes card-scaleX-to-hide {
 	0% {
 		margin: 0 c.$card-margin 0 0;
 		transform: scaleX(1);
@@ -64,7 +67,7 @@ $card-border: 35px;
 	}
 }
 
-@keyframes card-scale-to-show {
+@keyframes card-scaleX-to-show {
 	0% {
 		margin: 0;
 		transform: scaleX(0);
@@ -86,19 +89,68 @@ $card-border: 35px;
 	100% {
 		margin: 0 c.$card-margin 0 0;
 		width: c.$card-width;
+	}
+}
+
+@keyframes card-scaleY-to-hide {
+	0% {
+		margin: 0 auto c.$card-margin auto;
+		max-height: $card-portrait-max-height;
+		transform: scaleY(1);
+	}
+	49.9% {
+		margin: 0 auto c.$card-margin auto;
+		max-height: $card-portrait-max-height;
+	}
+	50% {
+		margin: 0 auto c.$card-margin/2 auto;
+		max-height: $card-portrait-max-height/2;
+	}
+	99.9% {
+		margin: 0 auto c.$card-margin/2 auto;
+		max-height: $card-portrait-max-height/2;
+		transform: scaleY(0);
+	}
+	100% {
+		margin: 0;
+		max-height: 0;
+	}
+}
+
+@keyframes card-scaleY-to-show {
+	0% {
+		margin: 0;
+		max-height: 0;
+		transform: scaleY(0);
+	}
+	49.9% {
+		margin: 0;
+		max-height: 0;
+	}
+	50% {
+		margin: 0 auto c.$card-margin/2 auto;
+		max-height: $card-portrait-max-height/2;
+	}
+	99.9% {
+		margin: 0 auto c.$card-margin/2 auto;
+		max-height: $card-portrait-max-height/2;
+		transform: scaleY(1);
+	}
+	100% {
+		margin: 0 auto c.$card-margin auto;
+		max-height: $card-portrait-max-height;
 	}
 }
 
 .hidden {
-	animation: card-scale-to-hide 0ms;
+	animation: card-scaleX-to-hide 0ms;
 	@include m.media('portrait') {
-		height: 0;
-		width: initial;
+		animation: card-scaleY-to-hide 0ms;
 	}
 }
 
 .animate {
-	animation-duration: 250ms;
+	animation-duration: 200ms;
 	animation-fill-mode: both;
 	animation-timing-function: v.$timing-function;
 }
@@ -129,7 +181,9 @@ $card-border: 35px;
 }
 
 .header {
+	grid-row: 2;
 	outline: none;
+	word-break: break-word;
 
 	.title-link {
 		@include m.fancy-hover-link($color: v.$white, $bottom: 2px);
@@ -150,33 +204,20 @@ $card-border: 35px;
 }
 
 .image {
+	grid-row: 1;
 	margin-bottom: 1rem;
 	max-height: 100%;
-	// max-height: c.$card-height * 0.7; // TODO do something better than this //TODO figure out how new system should work
 	object-fit: contain;
 	object-position: center 35%;
 	outline: none;
 	width: 100%;
-
-	// @include m.media('height>HEIGHT_med', 'height<=HEIGHT_tall') {
-	// 	max-height: c.$card-height * 0.6;
-	// }
-	// @include m.media('height>HEIGHT_short', 'height<=HEIGHT_med') {
-	// 	max-height: c.$card-height * 0.5;
-	// }
-	// @include m.media('height<=HEIGHT_short') {
-	// 	max-height: c.$card-height * 0.4;
-	// } //TODO allow all in portrait
-
-	@include m.media('portrait') {
-		max-height: 80vh;
-	}
 }
 // TODO Zoom
 // TODO fix mixins and ect. for breakpoints
 // TODO border on bottom of menu
 
 .text {
+	grid-row: 3;
 	white-space: break-spaces;
 }
 

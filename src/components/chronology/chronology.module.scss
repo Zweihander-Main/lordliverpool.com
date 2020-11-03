@@ -5,20 +5,13 @@
 
 $card-height: v.$card-height;
 $card-width: v.$card-width;
-
-// TODO
-
 $card-margin: 100px;
 $filter-menu-height: 60px;
 $timeline-height: 90px;
+$card-top-margin: 40px;
+$card-bottom-margin: 25px;
 
 // TODO -- JS for touch scrolling sideways
-
-// Should top/bottom be based on px values? That would break the card height --
-// is that alright? Will have to redo all the image height things but that might
-// be ok.
-
-// Could take out bottom, then do calc(200px) or something simila
 
 .chronology {
 	background-color: v.$blue-bg;
@@ -30,7 +23,7 @@ $timeline-height: 90px;
 	width: 100vw; // TODO check on mobile -- silly height overrun thing
 
 	@include m.media('portrait') {
-		grid-template-rows: initial;
+		grid-template-rows: $filter-menu-height 1fr;
 		height: 100%;
 		min-height: 100vh;
 		position: static;
@@ -47,17 +40,26 @@ $timeline-height: 90px;
 	); // TODO consistency in terms of intensity, shadow spread, ect.
 
 	align-items: center;
+	border-bottom: 1px solid color.adjust(v.$blue-bg, $lightness: 8%);
 
-	// TODO unsure left shadow
 	border-radius: 0 0 v.$border-radius * 2 v.$border-radius * 2; //TODO border radius in some other unit or proportional to the size?
 	color: v.$white;
 	display: flex;
 	flex-direction: row;
 	grid-row: 1;
 	justify-content: space-around;
+	z-index: 9;
 	margin: 0 250px; //TODO nope -- redo grid as well
-	border-bottom: 1px solid color.adjust(v.$blue-bg, $lightness: 8%);
 	// TODO adjust based on new menu size when you resize it
+
+	@include m.media('<=ultrawide') {
+		margin: 0 200px;
+	}
+
+	@include m.media('<=wide') {
+		margin: 0 0 0 200px;
+		border-bottom-right-radius: 0;
+	}
 }
 
 .filter-menu-link {
@@ -101,13 +103,12 @@ $timeline-height: 90px;
 	overflow-y: scroll;
 	padding-right: 45px;
 	position: absolute;
+	top: $card-top-margin;
 	transform: rotate(-90deg) translateX(-100vh);
 	transform-origin: top left;
 	will-change: scroll-position;
-	top: 45px; //TODO set out as vars -- and apply to cards
 
 	@include m.media('portrait') {
-		height: 100%;
 		min-height: 100%;
 		min-width: auto;
 		overflow-x: hidden;
@@ -139,8 +140,8 @@ $timeline-height: 90px;
 	width: 10vw; //TODO is this right?
 
 	@include m.media('portrait') {
-		height: 0; //TODO keep?:w
+		height: 45px; //TODO keep?:w
 
-		width: 0;
+		width: 80vw; //TODO var
 	}
 }
