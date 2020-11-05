@@ -32,12 +32,16 @@
 }
 
 .info {
-	@include m.neumorphic-intensity(17px, 55px, v.$light-bg, 11%);
+	@include m.neumorphic-intensity(
+		17px,
+		55px,
+		v.$light-bg,
+		11%
+	); //TODO consistent with single post
 
 	align-self: center;
 	border-radius: v.$border-radius * 2; //TODO figure out
 	margin: 2rem 2rem 2rem 0;
-	// padding: 1rem 0;
 	// TODO max-width same as post
 	max-width: 47rem;
 	padding: 4rem; // TODO fix on mobile
@@ -46,6 +50,15 @@
 		margin: 1rem 2rem 2rem;
 		// TODO this should prolly be 1200
 		place-self: center;
+	}
+	@include m.media('<=tablet') {
+		margin: 1rem 1rem 2rem;
+		padding: 3rem 2rem;
+	}
+	@include m.media('<=phone') {
+		margin: 1rem 0 2rem;
+		padding: 2rem 1rem;
+		border-radius: 0;
 	}
 }
 
@@ -74,6 +87,10 @@
 	margin-left: 1rem;
 	padding: 1rem;
 	@include m.fancy-hover-link($margin: 0 -1rem 1rem);
+	@include m.media('<=phone') {
+		text-align: center;
+		display: block;
+	}
 } // TODO break to next line at small sizes
 
 .text {

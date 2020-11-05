@@ -5,14 +5,21 @@
 .hero {
 	color: v.$white;
 	display: grid;
+	grid-template-areas:
+		'Hero-Image'
+		'Main-Title'
+		'Sub-Title'
+		'Scroll-Arrow'
+		'Retailers-Button';
 	grid-template-columns: 100%;
 	grid-template-rows: 46% 24% 8% 7% 15%;
 	min-height: 100vh;
 	text-align: center;
-
-	@include m.media('<=phone') {
-		//TODO var
+	@include m.media('height>HEIGHT_ultratiny', 'height<=HEIGHT_short') {
 		grid-template-rows: 46% 19% 7% 11% 17%;
+	}
+	@include m.media('height<=HEIGHT_ultratiny') {
+		grid-template-rows: 46% 18% 5% 13% 18%;
 	}
 }
 
@@ -20,45 +27,29 @@
 	height: 100%;
 	width: 100%;
 	z-index: -1;
-} // TODO figure out retina
+}
 
 .main-title {
 	@include m.header-text-shadow;
 
 	font-size: f.convert-to-vmin(v.$hero-large-size);
-	// font-size: v.$hero-large-size;
 	font-weight: normal;
-	grid-row-start: 2;
+	grid-area: Main-Title;
 	line-height: f.convert-to-vmin(4.93rem);
-	// line-height: 4.93rem; //TODO var
+	//TODO var
 	text-transform: uppercase;
-} // TODO make it so that it's always two lines
+}
 
 .sub-title {
 	font-size: f.convert-to-vmin(v.$hero-sub-size, 1vh);
 	font-style: italic;
 	font-weight: normal;
-	grid-row-start: 3;
+	grid-area: Sub-Title;
 	letter-spacing: v.$letter-spacing-wide;
 }
 
-.retailers {
-	align-self: center;
-	grid-row-start: 5;
-	padding-bottom: 3vh;
-	padding-top: 1em;
-
-	h4 {
-		@include m.header-normal;
-	}
-}
-
-.available-text {
-	font-weight: normal;
-}
-
 .arrow {
-	grid-row-start: 4;
+	grid-area: Scroll-Arrow;
 	padding-top: 70px;
 	position: relative;
 
@@ -76,10 +67,15 @@
 		width: 24px;
 
 		@include m.media('height<=HEIGHT_short') {
-			//TODO var -- notice height
 			height: 12px;
 			margin-left: -6px;
 			width: 12px;
+		}
+
+		@include m.media('height<=HEIGHT_tiny') {
+			height: 8px;
+			margin-left: -4px;
+			width: 8px;
 		}
 	}
 }
@@ -96,8 +92,40 @@
 		opacity: 0;
 		transform: rotate(-45deg) translate(-20px, 20px);
 		@include m.media('height<=HEIGHT_short') {
-			//TODO var
 			transform: rotate(-45deg) translate(-10px, 10px);
 		}
+	}
+}
+
+.retailers {
+	align-self: center;
+	grid-area: Retailers-Button;
+	padding-bottom: 3vh;
+	padding-top: 1em;
+
+	@include m.media('height<=HEIGHT_short') {
+		align-self: start;
+	}
+	@include m.media('height<=HEIGHT_tiny') {
+		padding-top: 2px;
+	}
+
+	h4 {
+		@include m.header-normal;
+	}
+}
+
+.available-text {
+	font-weight: normal;
+	@include m.media('height>HEIGHT_tiny', 'height<=HEIGHT_short') {
+		font-size: f.convert-to-vmin(1.25rem, 1vh); //TODO var
+		margin-bottom: 1.1rem;
+	}
+	@include m.media('height<=HEIGHT_tiny') {
+		font-size: f.convert-to-vmin(1.5rem, 1vh); //TODO var
+		margin-bottom: 1rem;
+	}
+	@include m.media('height<=HEIGHT_ultratiny') {
+		margin-bottom: 0.4rem;
 	}
 }
