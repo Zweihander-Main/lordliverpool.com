@@ -119,7 +119,7 @@
 	font-weight: normal;
 	@include m.media('height>HEIGHT_tiny', 'height<=HEIGHT_short') {
 		font-size: f.convert-to-vmin(1.25rem, 1vh); //TODO var
-		margin-bottom: 1.1rem;
+		margin-bottom: 1rem;
 	}
 	@include m.media('height<=HEIGHT_tiny') {
 		font-size: f.convert-to-vmin(1.5rem, 1vh); //TODO var

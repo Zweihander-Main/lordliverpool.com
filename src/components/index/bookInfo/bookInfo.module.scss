@@ -59,6 +59,10 @@
 		margin: 1rem 0 2rem;
 		padding: 2rem 1rem;
 		border-radius: 0;
+
+		> h1 {
+			font-size: 90%; //TODO not working on headings
+		}
 	}
 }
 
