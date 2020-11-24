@@ -8,19 +8,23 @@
 	color: v.$black;
 	display: grid;
 	grid-auto-rows: 1fr;
+	grid-template-areas: 'BookDisplay Info';
 	grid-template-columns: 45% 55%;
 	grid-template-rows: 100%;
 	min-height: 100vh;
 
 	@include m.media('<=wide') {
 		grid-auto-rows: initial;
-		//TODO var
+		grid-template-areas:
+			'BookDisplay'
+			'Info';
 		grid-template-columns: 100%;
 		grid-template-rows: 1fr;
 	}
-} //TODO fix columns -- padding/ect. on 1024
+}
 
 .book-display {
+	grid-area: BookDisplay;
 	margin: 5rem;
 	max-height: 80vh;
 
@@ -41,28 +45,30 @@
 
 	align-self: center;
 	border-radius: v.$border-radius * 2; //TODO figure out
-	margin: 2rem 2rem 2rem 0;
-	// TODO max-width same as post
-	max-width: 47rem;
-	padding: 4rem; // TODO fix on mobile
+	grid-area: Info;
+	margin: 3rem 2rem 3rem 0;
+	max-width: 47rem; // TODO max-width same as post -- var
+	padding: 4rem;
+
+	// TODO share some consistency with single post
 	@include m.media('<=wide') {
-		//TODO var
-		margin: 1rem 2rem 2rem;
-		// TODO this should prolly be 1200
+		margin: 2rem 2rem 3rem;
 		place-self: center;
 	}
+
 	@include m.media('<=tablet') {
 		margin: 1rem 1rem 2rem;
 		padding: 3rem 2rem;
 	}
+
 	@include m.media('<=phone') {
+		border-radius: 0;
 		margin: 1rem 0 2rem;
 		padding: 2rem 1rem;
-		border-radius: 0;
+	}
 
-		> h1 {
-			font-size: 90%; //TODO not working on headings
-		}
+	@include m.media('<=tiny') {
+		padding: 2rem 0.5rem;
 	}
 }
 
@@ -76,6 +82,7 @@
 
 .author-header {
 	@include m.header-normal;
+
 	a {
 		@include m.fancy-hover-link($bottom: 1px);
 	}
@@ -90,15 +97,20 @@
 	font-style: italic;
 	margin-left: 1rem;
 	padding: 1rem;
-	@include m.fancy-hover-link($margin: 0 -1rem 1rem);
+
 	@include m.media('<=phone') {
-		text-align: center;
 		display: block;
+		text-align: center;
 	}
-} // TODO break to next line at small sizes
+
+	@include m.media('>phone') {
+		@include m.fancy-hover-link($margin: 0 -1rem 1rem);
+	}
+}
 
 .text {
 	margin-bottom: 2rem;
+
 	a {
 		@include m.fancy-hover-link;
 	}

@@ -15,9 +15,11 @@
 	grid-template-rows: 46% 24% 8% 7% 15%;
 	min-height: 100vh;
 	text-align: center;
+
 	@include m.media('height>HEIGHT_ultratiny', 'height<=HEIGHT_short') {
 		grid-template-rows: 46% 19% 7% 11% 17%;
 	}
+
 	@include m.media('height<=HEIGHT_ultratiny') {
 		grid-template-rows: 46% 18% 5% 13% 18%;
 	}
@@ -32,16 +34,16 @@
 .main-title {
 	@include m.header-text-shadow;
 
-	font-size: f.convert-to-vmin(v.$hero-large-size);
+	font-size: f.convert-to-viewport(v.$hero-large-size);
 	font-weight: normal;
 	grid-area: Main-Title;
-	line-height: f.convert-to-vmin(4.93rem);
+	line-height: f.convert-to-viewport(4.93rem);
 	//TODO var
 	text-transform: uppercase;
 }
 
 .sub-title {
-	font-size: f.convert-to-vmin(v.$hero-sub-size, 1vh);
+	font-size: f.convert-to-viewport(v.$hero-sub-size, 1vh);
 	font-style: italic;
 	font-weight: normal;
 	grid-area: Sub-Title;
@@ -106,6 +108,7 @@
 	@include m.media('height<=HEIGHT_short') {
 		align-self: start;
 	}
+
 	@include m.media('height<=HEIGHT_tiny') {
 		padding-top: 2px;
 	}
@@ -117,14 +120,17 @@
 
 .available-text {
 	font-weight: normal;
+
 	@include m.media('height>HEIGHT_tiny', 'height<=HEIGHT_short') {
-		font-size: f.convert-to-vmin(1.25rem, 1vh); //TODO var
+		font-size: f.convert-to-viewport(1.25rem, 1vh); //TODO var
 		margin-bottom: 1rem;
 	}
+
 	@include m.media('height<=HEIGHT_tiny') {
-		font-size: f.convert-to-vmin(1.5rem, 1vh); //TODO var
+		font-size: f.convert-to-viewport(1.5rem, 1vh); //TODO var
 		margin-bottom: 1rem;
 	}
+
 	@include m.media('height<=HEIGHT_ultratiny') {
 		margin-bottom: 0.4rem;
 	}

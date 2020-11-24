@@ -6,8 +6,8 @@ $base-size: 18px;
 @function strip-units($number) {
 	@return $number / ($number * 0 + 1);
 }
-// TODO change name
-@function convert-to-vmin($original, $return-units: 1vmin) {
+
+@function convert-to-viewport($original, $return-units: 1vmin) {
 	$to-convert: $original;
 	@if (math.unit($original) == 'rem') {
 		$stripped-original: strip-units($original);
