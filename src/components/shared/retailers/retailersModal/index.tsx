@@ -152,75 +152,80 @@ const RetailersModal: React.FC = () => {
 				<div className={styles.menu}>
 					<div className={styles.menuSelection}>
 						<span className={styles.menuLabel}>Format:</span>
-						{formats.map((format) => (
-							<React.Fragment key={format}>
-								<input
-									className={styles.radioOption}
-									type="radio"
-									id={format.toLowerCase()}
-									name="format-radio"
-									value={format}
-									checked={selectedFormat === format}
-									onChange={(e) =>
-										handleOptionChange(e, 'format')
-									}
-								/>
-								<label
-									className={styles.radioLabel}
-									htmlFor={format.toLowerCase()}
-								>
-									{format}
-								</label>
-							</React.Fragment>
-						))}
-						<span
-							className={`${styles.radioLabel} ${
-								styles.unselect
-							} ${
-								selectedFormat !== null
-									? styles.showUnselect
-									: ''
-							}`}
-							onClick={() => clearOptions('format')}
-						>
-							X
-						</span>
+						<div className={styles.radioOptionsContainer}>
+							{' '}
+							{formats.map((format) => (
+								<React.Fragment key={format}>
+									<input
+										className={styles.radioOption}
+										type="radio"
+										id={format.toLowerCase()}
+										name="format-radio"
+										value={format}
+										checked={selectedFormat === format}
+										onChange={(e) =>
+											handleOptionChange(e, 'format')
+										}
+									/>
+									<label
+										className={styles.radioLabel}
+										htmlFor={format.toLowerCase()}
+									>
+										{format}
+									</label>
+								</React.Fragment>
+							))}
+							<span
+								className={`${styles.radioLabel} ${
+									styles.unselect
+								} ${
+									selectedFormat !== null
+										? styles.showUnselect
+										: ''
+								}`}
+								onClick={() => clearOptions('format')}
+							>
+								X
+							</span>
+						</div>
 					</div>
 					<div className={styles.menuSelection}>
 						<span className={styles.menuLabel}>Currency:</span>
-						{currencies.map((currency) => (
-							<React.Fragment key={currency}>
-								<input
-									className={styles.radioOption}
-									type="radio"
-									id={currency.toLowerCase()}
-									name="currency-radio"
-									value={currency}
-									checked={selectedCurrency === currency}
-									onChange={(e) =>
-										handleOptionChange(e, 'currency')
-									}
-								/>
-								<label
-									className={styles.radioLabel}
-									htmlFor={currency.toLowerCase()}
-								>
-									{currency}
-								</label>
-							</React.Fragment>
-						))}
-						<span
-							className={`${styles.radioLabel} ${
-								styles.unselect
-							} ${
-								selectedCurrency !== null
-									? styles.showUnselect
-									: ''
-							}`}
-							onClick={() => clearOptions('currency')}
-						>
-							X
-						</span>
+						<div className={styles.radioOptionsContainer}>
+							{currencies.map((currency) => (
+								<React.Fragment key={currency}>
+									<input
+										className={styles.radioOption}
+										type="radio"
+										id={currency.toLowerCase()}
+										name="currency-radio"
+										value={currency}
+										checked={selectedCurrency === currency}
+										onChange={(e) =>
+											handleOptionChange(e, 'currency')
+										}
+									/>
+									<label
+										className={styles.radioLabel}
+										htmlFor={currency.toLowerCase()}
+									>
+										{currency}
+									</label>
+								</React.Fragment>
+							))}
+							<span
+								className={`${styles.radioLabel} ${
+									styles.unselect
+								} ${
+									selectedCurrency !== null
+										? styles.showUnselect
+										: ''
+								}`}
+								onClick={() => clearOptions('currency')}
+							>
+								X
+							</span>
+						</div>
 					</div>
 				</div>
 				<div className={styles.retailersList}>

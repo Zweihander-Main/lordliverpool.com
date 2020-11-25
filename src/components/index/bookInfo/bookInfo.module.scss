@@ -67,7 +67,7 @@
 		padding: 2rem 1rem;
 	}
 
-	@include m.media('<=tiny') {
+	@include m.media('<=ultratiny') {
 		padding: 2rem 0.5rem;
 	}
 }

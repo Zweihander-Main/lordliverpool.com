@@ -16,6 +16,7 @@ export const flag: string;
 export const menu: string;
 export const menuSelection: string;
 export const menuLabel: string;
+export const radioOptionsContainer: string;
 export const radioOption: string;
 export const radioLabel: string;
 export const unselect: string;
