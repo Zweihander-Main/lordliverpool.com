@@ -140,3 +140,15 @@ $breakpoints: v.$breakpoints;
 
 	background: linear-gradient(145deg, $from, $to);
 }
+
+@mixin screen-reader-disappear {
+	left: 0;
+	padding: 8px;
+	position: absolute;
+	top: -100vh;
+	z-index: 100;
+
+	&:focus {
+		top: 0;
+	}
+}

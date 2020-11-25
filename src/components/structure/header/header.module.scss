@@ -77,7 +77,7 @@ $menu-transition: 0.2s;
 	}
 
 	@include m.media('<=phone') {
-		display: none;
+		@include m.screen-reader-disappear;
 	}
 } // TODO combine with other menu button stuff
 
