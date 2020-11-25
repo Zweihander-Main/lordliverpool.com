@@ -87,12 +87,33 @@
 	letter-spacing: v.$letter-spacing-wide;
 	margin-bottom: 0.3rem;
 	text-transform: uppercase;
+
+	@include m.media('<=desktop') {
+		font-size: 3vh;
+	}
+
+	@include m.media('<=ultratiny') {
+		font-size: 2.4vh;
+	}
 }
 
 .nav-sub-header {
 	@extend %nav-header;
 
-	font-size: 0.8vw;
+	font-size: 0.9vw;
+	font-weight: 400;
 	grid-row: 1;
-	margin-top: 0;
+	margin: 0;
+
+	@include m.media('<=desktop') {
+		font-size: 1.6vh;
+	}
+
+	@include m.media('<=phone') {
+		font-size: 1.7vh;
+	}
+
+	@include m.media('<=ultratiny') {
+		font-size: 1.6vh;
+	}
 }

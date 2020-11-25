@@ -164,11 +164,27 @@ $menu-transition: 0.2s;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
-	padding: 2rem;
 	position: absolute;
 	right: 0;
 	text-decoration: none;
 	top: 0;
+	margin: 1rem 1rem 0 0;
+	padding: 1rem;
+	transition: $menu-transition v.$timing-function;
+	z-index: 1001;
+
+	@include m.media('<=desktop') {
+		margin: 0.5rem 0.5rem 0 0;
+	}
+
+	@include m.media('<=tablet') {
+		margin: 0;
+		padding: 1rem 1rem 0.5rem 0.5rem;
+	}
+
+	@include m.media('<=tiny') {
+		padding: 0.5rem;
+	}
 }
 // TODO fix animation of home button appearing
 
