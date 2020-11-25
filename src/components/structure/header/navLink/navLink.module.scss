@@ -63,6 +63,7 @@
 	justify-content: center;
 	transition: 0.1s v.$timing-function;
 	width: 100%;
+	user-select: none;
 }
 
 .nav-link-image {

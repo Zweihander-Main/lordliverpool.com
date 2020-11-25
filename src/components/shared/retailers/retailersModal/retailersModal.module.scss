@@ -265,7 +265,7 @@ $options-top-padding: 0.2rem;
 	user-select: none;
 
 	@include m.media('<=tiny') {
-		margin: 0 0.1rem 0 0;
+		margin-right: 0.1rem;
 	}
 
 	@include m.media('<=ultratiny') {

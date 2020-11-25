@@ -23,6 +23,19 @@ $menu-transition: 0.2s;
 	transition: $menu-transition v.$timing-function;
 	z-index: 1001;
 
+	@include m.media('<=desktop') {
+		margin: 0.5rem 0 0 0.5rem;
+	}
+
+	@include m.media('<=tablet') {
+		margin: 0;
+		padding: 1rem 0.5rem 0.5rem 1rem;
+	}
+
+	@include m.media('<=tiny') {
+		padding: 0.5rem;
+	}
+
 	&:focus {
 		outline: 0;
 	}
@@ -42,6 +55,10 @@ $menu-transition: 0.2s;
 	margin: 9px 1.4rem 9px 9px;
 	transition: $menu-transition v.$timing-function;
 	width: 30px;
+
+	@include m.media('<=tablet') {
+		margin-right: 0.7rem;
+	}
 }
 
 .menu-bar-line-dark {
@@ -54,6 +71,14 @@ $menu-transition: 0.2s;
 	letter-spacing: v.$letter-spacing-wide;
 	text-decoration: none;
 	text-transform: uppercase;
+
+	@include m.media('<=tablet') {
+		font-size: 90%;
+	}
+
+	@include m.media('<=phone') {
+		display: none;
+	}
 } // TODO combine with other menu button stuff
 
 .menu-text {

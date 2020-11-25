@@ -184,10 +184,6 @@ $card-portrait-width: 80vw;
 	grid-row: 2;
 	outline: none;
 	word-break: break-word;
-
-	.title-link {
-		@include m.fancy-hover-link($color: v.$white, $bottom: 2px);
-	}
 }
 
 .title-link {
