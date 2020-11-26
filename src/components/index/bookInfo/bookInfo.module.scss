@@ -82,10 +82,6 @@
 
 .author-header {
 	@include m.header-normal;
-
-	a {
-		@include m.fancy-hover-link($bottom: 1px);
-	}
 }
 
 .author-link {

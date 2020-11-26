@@ -59,6 +59,12 @@ $menu-transition: 0.2s;
 	@include m.media('<=tablet') {
 		margin-right: 0.7rem;
 	}
+
+	@include m.media('<=tiny') {
+		height: 1px;
+		margin: 7px 1.4rem 7px 7px;
+		width: 23px;
+	}
 }
 
 .menu-bar-line-dark {
@@ -125,6 +131,10 @@ $menu-transition: 0.2s;
 
 	.menu-bar-line:first-child {
 		transform: rotate(-45deg) translate(-6px, 9px);
+
+		@include m.media('<=tiny') {
+			transform: rotate(-45deg) translate(-4px, 7px);
+		}
 	}
 
 	.menu-bar-line:nth-child(2) {
@@ -133,6 +143,10 @@ $menu-transition: 0.2s;
 
 	.menu-bar-line:last-child {
 		transform: rotate(45deg) translate(-6px, -9px);
+
+		@include m.media('<=tiny') {
+			transform: rotate(45deg) translate(-4px, -8px);
+		}
 	}
 }
 
@@ -164,12 +178,12 @@ $menu-transition: 0.2s;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
+	margin: 1rem 1rem 0 0;
+	padding: 1rem;
 	position: absolute;
 	right: 0;
 	text-decoration: none;
 	top: 0;
-	margin: 1rem 1rem 0 0;
-	padding: 1rem;
 	transition: $menu-transition v.$timing-function;
 	z-index: 1001;
 
@@ -195,4 +209,9 @@ $menu-transition: 0.2s;
 .home-button-icon {
 	font-size: 40px;
 	margin: 4px 9px 6px 1.1rem;
+
+	@include m.media('<=tiny') {
+		font-size: 30px;
+		margin: 1px 7px 5px 1.1rem;
+	}
 }
