@@ -186,7 +186,7 @@ collections:
           - label: flag
             name: flag
             widget: select
-            options: ['None', 'UK', 'USA']
+            options: ['None', 'UK', 'USA', 'JP']
             multiple: false
             required: true
             default: ['None']

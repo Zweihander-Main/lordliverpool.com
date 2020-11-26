@@ -46,6 +46,13 @@ const RetailersModal: React.FC = () => {
 					}
 				}
 			}
+			JP_pic: file(relativePath: { eq: "japan.png" }) {
+				childImageSharp {
+					fixed(width: 40) {
+						...GatsbyImageSharpFixed
+					}
+				}
+			}
 		}
 	`);
 
@@ -53,12 +60,14 @@ const RetailersModal: React.FC = () => {
 		(() => {
 			const UK_pic = retailersData?.UK_pic?.childImageSharp?.fixed;
 			const USA_pic = retailersData?.USA_pic?.childImageSharp?.fixed;
+			const JP_pic = retailersData?.JP_pic?.childImageSharp?.fixed;
 			const flagObj = {
 				UK_pic,
 				USA_pic,
+				JP_pic,
 			};
 
-			if (!UK_pic || !USA_pic) {
+			if (!UK_pic || !USA_pic || !JP_pic) {
 				throw new Error('Missing image for flags');
 			}
 			return flagObj;
@@ -125,7 +134,7 @@ const RetailersModal: React.FC = () => {
 
 	const closeRef = React.useRef<HTMLAnchorElement>(null);
 
-	const escFunction = (event) => {
+	const escFunction = (event: KeyboardEvent) => {
 		if (event.key === 'Escape' && closeRef.current) {
 			closeRef.current.click();
 		}
