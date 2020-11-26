@@ -10,6 +10,18 @@
 	min-height: 95vh;
 	padding-bottom: 5rem;
 	padding-top: 5rem;
+
+	@include m.media('<=desktop') {
+		padding-top: 6rem;
+	}
+
+	@include m.media('<=tablet') {
+		padding-top: 8rem;
+	}
+
+	@include m.media('<=phone') {
+		padding-top: 1rem;
+	}
 }
 
 .single-post {
@@ -47,11 +59,15 @@
 	@include m.media('<=phone') {
 		border-radius: 0;
 		margin: 10vh 0 0;
-		padding: 4rem 1rem 2rem;
+		padding: 3rem 1rem 2rem;
 	}
 
 	@include m.media('<=ultratiny') {
 		padding: 4rem 0.5rem 2rem;
+	}
+
+	@include m.media('height<=HEIGHT_tiny') {
+		margin-top: 15vh;
 	}
 }
 
@@ -59,12 +75,27 @@
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-template-rows: 1fr;
+	grid-template-areas: 'Left Middle Right';
 	justify-items: center;
 	max-width: v.$post-max-width;
 	padding: 1.5rem; //TODO double height screws up -- flex?
 	position: absolute;
 	top: 0; //TODO is this the best way?
 	width: 100%;
+
+	@include m.media('<=ultrawide') {
+		top: 4rem;
+	}
+
+	@include m.media('<=phone') {
+		position: relative;
+		top: -2rem;
+		grid-template-rows: 1fr 1fr 1fr;
+		grid-template-columns: 1fr;
+		grid-template-areas: 'Middle' 'Left' 'Right';
+		align-items: center;
+		row-gap: 1rem;
+	}
 } //TODO neumorphic pics
 
 .nav-links a {
@@ -92,16 +123,16 @@
 }
 
 .link-prev {
-	grid-column: 1;
+	grid-area: Left;
 }
 
 .link-up {
-	grid-column: 2;
+	grid-area: Middle;
 	text-align: center;
 }
 
 .link-next {
-	grid-column: 3;
+	grid-area: Right;
 	text-align: right;
 }
 

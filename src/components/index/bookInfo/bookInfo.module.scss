@@ -47,7 +47,7 @@
 	border-radius: v.$post-border-radius;
 	grid-area: Info;
 	margin: 3rem 2rem 3rem 0;
-	max-width: v.$post-max-width;
+	max-width: v.$post-max-width - 2rem;
 	padding: 4rem;
 
 	@include m.media('<=wide') {
