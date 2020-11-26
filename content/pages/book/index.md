@@ -19,7 +19,11 @@ _Coming soon!_
 
 ## Related Articles
 
-_Coming soon!_
+[Author interview with Martin Hutchinson](https://lutterworthpress.wordpress.com/2020/10/23/author-interview-with-martin-hutchinson/)
+
+[Lord Liverpool | Historic UK](https://www.historic-uk.com/HistoryUK/HistoryofBritain/Lord-Liverpool/)
+
+[How previous PM strategies could help fight debt today | FTAdviser](https://www.ftadviser.com/investments/2020/11/19/how-previous-pm-strategies-could-help-fight-debt-today/)
 
 ## Editions
 

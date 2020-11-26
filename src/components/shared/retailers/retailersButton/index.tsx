@@ -16,7 +16,7 @@ const RetailersButton: React.FC = ({}) => {
 			onClick={onButtonClick}
 		>
 			<MdShoppingCart className={styles.icon} />
-			<h6 className={styles.text}>Pre-order now!</h6>
+			<h6 className={styles.text}>Order now!</h6>
 		</a>
 	);
 };

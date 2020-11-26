@@ -45,7 +45,7 @@ const Hero: React.FC = () => {
 				<span></span>
 			</span>
 			<div className={styles.retailers}>
-				<h6 className={styles.availableText}>Available November 26</h6>
+				<h6 className={styles.availableText}>Hardback Available Now</h6>
 				<ModalButton />
 			</div>
 		</section>
