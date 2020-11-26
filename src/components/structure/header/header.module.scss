@@ -39,7 +39,7 @@ $menu-transition: 0.2s;
 	&:focus {
 		outline: 0;
 	}
-} // TODO more reset
+}
 
 .menu-button-dark {
 	color: v.$black;
@@ -85,7 +85,7 @@ $menu-transition: 0.2s;
 	@include m.media('<=phone') {
 		@include m.screen-reader-disappear;
 	}
-} // TODO combine with other menu button stuff
+}
 
 .menu-text {
 	@extend %menu-button-text;

@@ -16,9 +16,8 @@
 	will-change: transform;
 
 	@include m.media('<=desktop') {
-		border-bottom: 1px solid v.$subtle-gray; //TODO var
-		border-right: 0px;
-		//TODO font size and center in the cell
+		border-bottom: 1px solid v.$subtle-gray;
+		border-right: 0;
 	}
 
 	@for $i from 1 through 10 {
@@ -62,8 +61,8 @@
 	height: 100%;
 	justify-content: center;
 	transition: 0.1s v.$timing-function;
-	width: 100%;
 	user-select: none;
+	width: 100%;
 }
 
 .nav-link-image {
@@ -76,6 +75,7 @@
 }
 
 %nav-header {
+	backface-visibility: hidden;
 	text-align: center;
 }
 
@@ -104,6 +104,10 @@
 	font-weight: 400;
 	grid-row: 1;
 	margin: 0;
+
+	@include m.media('<=wide') {
+		font-size: 1vw;
+	}
 
 	@include m.media('<=desktop') {
 		font-size: 1.6vh;
