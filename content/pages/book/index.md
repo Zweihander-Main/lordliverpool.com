@@ -7,11 +7,11 @@ featuredImage: Britains_Greatest_Prime_Minister.png
 
 > ‘Meticulously researched, beautifully written and enlivened by the author’s mischievous wit, Britain’s Greatest Prime Minister is a tour de force in political biography and provides a deep sense of the tumultuous and challenging times in which Lord Liverpool lived. An added bonus is Hutchinson’s unconventional assessment of the good, the bad, the mediocre and the dregs among UK prime ministers.’
 
-**Kevin Dowd**, Durham University<br><br>
+**[Kevin Dowd](https://www.kevindowd.org/)**, Durham University<br><br>
 
 > ‘Martin Hutchinson, one of the rarest of Wall Street’s birds of plumage — a true original thinker — here makes the persuasive case that the greatest of Britain’s prime ministers is a man whose name perhaps few Americans have ever heard. This splendid, erudite, fast-moving biography assures Lord Liverpool of the recognition he so richly deserves.’
 
-**James Grant**, Founder and Editor, Grant’s Interest Rate Observer<br><br>
+**James Grant**, Founder and Editor, [Grant’s Interest Rate Observer](https://www.grantspub.com/)<br><br>
 
 ## Reviews
 
@@ -68,3 +68,5 @@ Index
 ## Media info
 
 [Advance Information Sheet](/docs/Advance_Information_Sheet.pdf)
+
+[Publisher Info](https://www.lutterworth.com/title-info.php/title/britains-greatest-prime-minister/)

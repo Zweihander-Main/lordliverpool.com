@@ -37,20 +37,19 @@
 
 .info {
 	@include m.neumorphic-intensity(
-		17px,
-		55px,
+		v.$post-border-shadow-size,
+		v.$post-border-shadow-spread,
 		v.$light-bg,
-		11%
+		v.$post-border-shadow-intensity
 	); //TODO consistent with single post
 
 	align-self: center;
-	border-radius: v.$border-radius * 2; //TODO figure out
+	border-radius: v.$post-border-radius;
 	grid-area: Info;
 	margin: 3rem 2rem 3rem 0;
-	max-width: 47rem; // TODO max-width same as post -- var
+	max-width: v.$post-max-width;
 	padding: 4rem;
 
-	// TODO share some consistency with single post
 	@include m.media('<=wide') {
 		margin: 2rem 2rem 3rem;
 		place-self: center;

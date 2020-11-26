@@ -2,34 +2,57 @@
 @use '~styles/util/mixins.global' as m;
 
 //TODO print styles
-//TODO links wrong color
-//TODO highlight color
 .post-container {
+	align-items: center;
 	background-color: v.$light-bg;
+	display: flex;
+	flex-direction: column;
 	min-height: 95vh;
-	padding-top: 5rem;
 	padding-bottom: 5rem;
+	padding-top: 5rem;
 }
 
 .single-post {
 	@include m.neumorphic-intensity(
-		6px,
-		20px,
+		v.$post-border-shadow-size,
+		v.$post-border-shadow-spread,
 		v.$light-bg,
-		$intensity: 15%
-	); //TODO match front
-	//TODO spacing around header seems weird now
+		$intensity: v.$post-border-shadow-intensity
+	);
+
 	align-items: center;
+	border-radius: v.$post-border-radius;
 	color: v.$black;
 	display: flex;
 	flex-direction: column;
-	margin-left: auto;
-	margin-right: auto;
-	// max-width: 47rem; //TODO set to variable
-	// padding: 1rem;
+	margin: 10vh 2rem 0;
 	max-width: 51rem;
 	padding: 5rem;
-	border-radius: v.$border-radius * 2; //TODO consistency
+	// TODO share some consistency with single post
+
+	@include m.media('<=ultrawide') {
+		padding: 5rem 4rem;
+	}
+
+	@include m.media('<=wide') {
+		margin: 10vh 2rem 0;
+		place-self: center;
+	}
+
+	@include m.media('<=tablet') {
+		margin: 10vh 1rem 0;
+		padding: 4rem 2rem 3rem;
+	}
+
+	@include m.media('<=phone') {
+		border-radius: 0;
+		margin: 10vh 0 0;
+		padding: 4rem 1rem 2rem;
+	}
+
+	@include m.media('<=ultratiny') {
+		padding: 4rem 0.5rem 2rem;
+	}
 }
 
 .nav-links {
@@ -37,11 +60,11 @@
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-template-rows: 1fr;
 	justify-items: center;
-	width: 100%;
-	position: absolute;
-	top: 0px; //TODO is this the best way?
-	max-width: 51rem;
+	max-width: v.$post-max-width;
 	padding: 1.5rem; //TODO double height screws up -- flex?
+	position: absolute;
+	top: 0; //TODO is this the best way?
+	width: 100%;
 } //TODO neumorphic pics
 
 .nav-links a {
@@ -84,7 +107,6 @@
 
 .headings {
 	margin-bottom: 1rem;
-	margin-top: 10vh;
 	text-align: center;
 }
 
@@ -108,7 +130,8 @@
 
 .post-image {
 	margin-bottom: 2.38rem;
-	width: 30rem;
+	max-width: 30rem;
+	width: 100%;
 } //TODO var?
 
 .post-content {
