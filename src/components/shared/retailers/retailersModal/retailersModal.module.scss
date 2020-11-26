@@ -128,8 +128,8 @@ $options-top-padding: 0.2rem;
 	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 	justify-items: center;
 
-	@include m.media('<=tiny') {
-		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	@include m.media('<=tablet') {
+		grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
 	}
 
 	@include m.media('<=ultratiny') {
