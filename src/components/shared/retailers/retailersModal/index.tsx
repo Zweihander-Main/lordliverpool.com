@@ -53,6 +53,27 @@ const RetailersModal: React.FC = () => {
 					}
 				}
 			}
+			ES_pic: file(relativePath: { eq: "spain.png" }) {
+				childImageSharp {
+					fixed(width: 40) {
+						...GatsbyImageSharpFixed
+					}
+				}
+			}
+			FR_pic: file(relativePath: { eq: "france.png" }) {
+				childImageSharp {
+					fixed(width: 40) {
+						...GatsbyImageSharpFixed
+					}
+				}
+			}
+			IT_pic: file(relativePath: { eq: "italy.png" }) {
+				childImageSharp {
+					fixed(width: 40) {
+						...GatsbyImageSharpFixed
+					}
+				}
+			}
 		}
 	`);
 
@@ -61,13 +82,26 @@ const RetailersModal: React.FC = () => {
 			const UK_pic = retailersData?.UK_pic?.childImageSharp?.fixed;
 			const USA_pic = retailersData?.USA_pic?.childImageSharp?.fixed;
 			const JP_pic = retailersData?.JP_pic?.childImageSharp?.fixed;
+			const ES_pic = retailersData?.ES_pic?.childImageSharp?.fixed;
+			const FR_pic = retailersData?.FR_pic?.childImageSharp?.fixed;
+			const IT_pic = retailersData?.IT_pic?.childImageSharp?.fixed;
 			const flagObj = {
 				UK_pic,
 				USA_pic,
 				JP_pic,
+				ES_pic,
+				FR_pic,
+				IT_pic,
 			};
 
-			if (!UK_pic || !USA_pic || !JP_pic) {
+			if (
+				!UK_pic ||
+				!USA_pic ||
+				!JP_pic ||
+				!ES_pic ||
+				!FR_pic ||
+				!IT_pic
+			) {
 				throw new Error('Missing image for flags');
 			}
 			return flagObj;

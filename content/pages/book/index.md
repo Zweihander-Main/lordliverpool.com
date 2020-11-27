@@ -25,6 +25,8 @@ _Coming soon!_
 
 [How previous PM strategies could help fight debt today | FTAdviser](https://www.ftadviser.com/investments/2020/11/19/how-previous-pm-strategies-could-help-fight-debt-today/)
 
+[Lord Liverpool and the Return To Gold | The Cobden Centre](https://www.cobdencentre.org/2017/08/lord-liverpool-and-the-return-to-gold/)
+
 ## Editions
 
 #### Print Hardback
