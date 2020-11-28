@@ -13,6 +13,10 @@ featuredImage: Britains_Greatest_Prime_Minister.png
 
 **James Grant**, Founder and Editor, [Grant’s Interest Rate Observer](https://www.grantspub.com/)<br><br>
 
+> ‘Martin Hutchinson has written a masterly biography rooted in political economy that promotes the once-despised Lord Liverpool to the first rank of prime ministers. He demonstrates how Liverpool's shrewd financial policy laid the foundations for defeating Napoleon, restoring post-war stability at home and in Europe, and strengthening Britain's economic and strategic world dominance. It's an impressive story, still largely unknown, and Hutchinson's telling is powerful and readable in equal measure.’
+
+**John O'Sullivan**, Editor-at-large of [National Review](https://www.nationalreview.com/) and author of [The President, the Pope and the Prime Minister](https://www.amazon.com/gp/product/1596980168/ref=x_gr_w_bb_glide_sin)<br><br>
+
 ## Reviews
 
 _Coming soon!_
