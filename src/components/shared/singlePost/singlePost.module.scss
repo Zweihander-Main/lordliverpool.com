@@ -73,9 +73,9 @@
 
 .nav-links {
 	display: grid;
+	grid-template-areas: 'Left Middle Right';
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-template-rows: 1fr;
-	grid-template-areas: 'Left Middle Right';
 	justify-items: center;
 	max-width: v.$post-max-width;
 	padding: 1.5rem; //TODO double height screws up -- flex?
@@ -88,13 +88,12 @@
 	}
 
 	@include m.media('<=phone') {
-		position: relative;
-		top: -2rem;
-		grid-template-rows: 1fr 1fr 1fr;
-		grid-template-columns: 1fr;
-		grid-template-areas: 'Middle' 'Left' 'Right';
 		align-items: center;
+		grid-template-areas: 'Middle' 'Left' 'Right';
+		grid-template-columns: 1fr;
+		position: relative;
 		row-gap: 1rem;
+		top: -2rem;
 	}
 } //TODO neumorphic pics
 
