@@ -7,11 +7,13 @@ import { MdHome } from 'react-icons/md';
 type HeaderProps = {
 	isHome?: boolean;
 	darkMenu?: boolean;
+	miniMenu?: boolean;
 };
 
 const Header: React.FC<HeaderProps> = ({
 	isHome = false,
 	darkMenu = false,
+	miniMenu = false,
 }) => {
 	const imageData = useStaticQuery<GatsbyTypes.MenuImagesQuery>(graphql`
 		query MenuImages {
@@ -83,6 +85,14 @@ const Header: React.FC<HeaderProps> = ({
 		? `${styles.menuBarLine} ${styles.menuBarLineDark}`
 		: styles.menuBarLine;
 
+	let menuClass = styles.menuButton;
+	if (darkMenu) {
+		menuClass += ` ${styles.menuButtonDark}`;
+	}
+	if (miniMenu) {
+		menuClass += ` ${styles.menuButtonMini}`;
+	}
+
 	return (
 		<header className={styles.header}>
 			<input
@@ -91,14 +101,7 @@ const Header: React.FC<HeaderProps> = ({
 				id="menu"
 				className={styles.menuInput}
 			/>
-			<label
-				htmlFor="menu"
-				className={
-					darkMenu
-						? `${styles.menuButton} ${styles.menuButtonDark}`
-						: styles.menuButton
-				}
-			>
+			<label htmlFor="menu" className={menuClass}>
 				<div className={styles.menuBars}>
 					<div className={menuBarLineClass}></div>
 					<div className={menuBarLineClass}></div>

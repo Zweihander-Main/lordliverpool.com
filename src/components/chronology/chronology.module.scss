@@ -56,8 +56,11 @@ $card-bottom-margin: 25px;
 	}
 
 	@include m.media('<=wide') {
-		border-bottom-right-radius: 0;
-		margin: 0 0 0 200px;
+		margin: 0 100px;
+	}
+
+	@include m.media('<=desktop') {
+		margin: 0 4.5rem;
 	}
 }
 

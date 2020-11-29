@@ -45,6 +45,24 @@ $menu-transition: 0.2s;
 	color: v.$black;
 }
 
+.menu-button-mini {
+	@include m.media('<=ultrawide') {
+		margin: 0.5rem 0 0 0.5rem;
+	}
+
+	@include m.media('<=wide') {
+		margin: 0;
+		padding: 1rem 0.5rem 0.5rem 1rem;
+		.menu-text {
+			display: none;
+		}
+	}
+
+	@include m.media('<=tablet') {
+		padding: 0.5rem;
+	}
+}
+
 .menu-bars {
 	display: inline-block;
 }

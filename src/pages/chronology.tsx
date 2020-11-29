@@ -6,7 +6,7 @@ import Chronology from 'components/chronology';
 
 const ChronologyPage: React.FC = () => {
 	return (
-		<Layout showFooter={false}>
+		<Layout showFooter={false} miniMenu={true}>
 			<SEO title="Chronology" app={true} />
 			<Chronology />
 		</Layout>

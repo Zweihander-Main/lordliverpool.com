@@ -8,14 +8,15 @@ type LayoutProps = {
 	isHome?: boolean;
 	darkMenu?: boolean;
 	showFooter?: boolean;
+	miniMenu?: boolean;
 };
 
 const Layout: React.FC<
 	LayoutProps & React.PropsWithChildren<Record<string, unknown>>
-> = ({ children, isHome, darkMenu, showFooter = true }) => {
+> = ({ children, isHome, darkMenu, showFooter = true, miniMenu }) => {
 	return (
 		<React.Fragment>
-			<Header isHome={isHome} darkMenu={darkMenu} />
+			<Header isHome={isHome} darkMenu={darkMenu} miniMenu={miniMenu} />
 			<div className={styles.content}>
 				<main>{children}</main>
 				{showFooter && <Footer />}
