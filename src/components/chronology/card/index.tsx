@@ -79,28 +79,30 @@ const Card = React.forwardRef<HTMLElement | null, CardProps>(
 								fluid={featuredImage}
 							/>
 						))}
-					{title && (
-						<h2
-							className={
-								featuredImage
-									? styles.header
-									: `${styles.header} ${styles.headerNoImage}`
-							}
-						>
-							{isFullArticle && slug ? (
-								<Link
-									to={slug}
-									className={styles.titleLink}
-									state={passingState}
-								>
-									{title}
-								</Link>
-							) : (
-								title
-							)}
-						</h2>
-					)}
-					{text && <p className={styles.text}>{text}</p>}
+					<div>
+						{title && (
+							<h2
+								className={
+									featuredImage
+										? styles.header
+										: `${styles.header} ${styles.headerNoImage}`
+								}
+							>
+								{isFullArticle && slug ? (
+									<Link
+										to={slug}
+										className={styles.titleLink}
+										state={passingState}
+									>
+										{title}
+									</Link>
+								) : (
+									title
+								)}
+							</h2>
+						)}
+						{text && <p className={styles.text}>{text}</p>}
+					</div>
 				</div>
 				{displayDate && (
 					<span className={styles.displayDate}>{displayDate}</span>

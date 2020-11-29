@@ -165,11 +165,7 @@ $card-portrait-width: 80vw;
 	grid-row-end: 3;
 	grid-row-start: 1;
 	grid-template-columns: 1fr;
-	grid-template-rows: minmax(0, max-content) minmax(0, min-content) minmax(
-			0,
-			max-content
-		); //TODO massacre of tranent and perfect spacing
-
+	grid-template-rows: minmax(0, max-content) minmax(0, min-content); //TODO massacre of tranent and perfect spacing
 	overflow-y: auto;
 	width: c.$card-width;
 	//TODO name grids everywhere
