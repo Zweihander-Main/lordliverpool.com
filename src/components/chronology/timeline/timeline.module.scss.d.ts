@@ -5,6 +5,6 @@ export const letterSpacing: string;
 export const cardWidth: string;
 export const timeline: string;
 export const areaGrabber: string;
-export const isScrolling: string;
+export const isUserDragging: string;
 export const year: string;
 export const tick: string;

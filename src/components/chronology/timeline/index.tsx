@@ -36,10 +36,11 @@ const Timeline: React.FC<TimelineProps> = ({
 	const currentTick = Math.ceil(percentageAlong * ticks.length - 1);
 	const year = ticks[currentTick] || ticks[0] || '1800';
 
-	const { onGrabberMouseDown, onGrabberTouchStart, isScrolling } = useGrabber(
-		cardContainerWrapperRef,
-		containerOverViewport
-	);
+	const {
+		onGrabberMouseDown,
+		onGrabberTouchStart,
+		isUserDragging,
+	} = useGrabber(cardContainerWrapperRef, containerOverViewport);
 
 	const [rafYearOffset, setRafYearOffset] = React.useState(0);
 	const [rafAreaGrabberLeftEdge, setRafAreaGrabberLeftEdge] = React.useState(
@@ -47,20 +48,48 @@ const Timeline: React.FC<TimelineProps> = ({
 	);
 	const [rafAreaGrabberWidth, setRabAreaGrabberWidth] = React.useState(0);
 	const [rafYear, setRafYear] = React.useState('');
+	const [rafIsUserDragging, setRafIsUserDragging] = React.useState(false);
+
+	const [isScrolling, setIsScrolling] = React.useState(false);
 	const [rafIsScrolling, setRafIsScrolling] = React.useState(false);
+	const scrollingLatch = React.useRef<number | undefined>();
+
+	React.useEffect(() => {
+		const cancelLatch = () => {
+			if (scrollingLatch) {
+				window.clearTimeout(scrollingLatch.current);
+				scrollingLatch.current = undefined;
+			}
+		};
+		cancelLatch();
+		if (!isScrolling) {
+			setIsScrolling(true);
+		}
+		if (!isUserDragging) {
+			scrollingLatch.current = window.setTimeout(() => {
+				setIsScrolling(false);
+			}, 1000);
+		}
+
+		return () => {
+			cancelLatch();
+		};
+	}, [isUserDragging, areaGrabberLeftEdge]);
 
 	const setRafValues = (
 		offset: number,
 		leftEdge: number,
 		width: number,
 		yearString: string,
-		scrolling: boolean
+		scrolling: boolean,
+		dragging: boolean
 	) => {
 		setRafYearOffset(offset);
 		setRafAreaGrabberLeftEdge(leftEdge);
 		setRabAreaGrabberWidth(width);
 		setRafYear(yearString);
 		setRafIsScrolling(scrolling);
+		setRafIsUserDragging(dragging);
 	};
 
 	const scheduleAnimationUpdate = rafSchd(setRafValues);
@@ -71,19 +100,35 @@ const Timeline: React.FC<TimelineProps> = ({
 			areaGrabberLeftEdge,
 			areaGrabberWidth,
 			year,
-			isScrolling
+			isScrolling,
+			isUserDragging
 		);
 		return () => {
 			scheduleAnimationUpdate.cancel();
 		};
-	}, [yearOffset, areaGrabberWidth, areaGrabberLeftEdge, year, isScrolling]);
+	}, [
+		yearOffset,
+		areaGrabberWidth,
+		areaGrabberLeftEdge,
+		year,
+		isScrolling,
+		isUserDragging,
+	]);
+
+	console.log(scrollingLatch);
 
 	return (
-		<div className={styles.timeline}>
+		<div
+			className={
+				rafIsScrolling
+					? `${styles.timeline} ${styles.isScrolling}`
+					: styles.timeline
+			}
+		>
 			<div
 				className={
-					rafIsScrolling
-						? `${styles.areaGrabber} ${styles.isScrolling}`
+					rafIsUserDragging
+						? `${styles.areaGrabber} ${styles.isUserDragging}`
 						: styles.areaGrabber
 				}
 				onMouseDown={onGrabberMouseDown}

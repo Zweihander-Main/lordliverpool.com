@@ -5,7 +5,7 @@ const useGrabber = (
 	cardContainerWrapperRef: React.RefObject<HTMLElement | undefined>,
 	containerOverViewport: number
 ) => {
-	const [isScrolling, setIsScrolling] = React.useState(false);
+	const [isUserDragging, setIsUserDragging] = React.useState(false);
 	const [containerX, setContainerX] = React.useState(0);
 	const [grabberX, setGrabberX] = React.useState(0);
 
@@ -28,7 +28,7 @@ const useGrabber = (
 	};
 
 	const onGrabberEnd = () => {
-		setIsScrolling(false);
+		setIsUserDragging(false);
 		setContainerX(0);
 		setGrabberX(0);
 	};
@@ -38,7 +38,7 @@ const useGrabber = (
 			setContainerX(cardContainerWrapperRef.current.scrollTop);
 		}
 		setGrabberX(clientX);
-		setIsScrolling(true);
+		setIsUserDragging(true);
 	};
 
 	const onGrabberMouseDown = (
@@ -60,7 +60,7 @@ const useGrabber = (
 			window.removeEventListener('touchmove', onGrabberTouchMove);
 		};
 
-		if (isScrolling) {
+		if (isUserDragging) {
 			window.addEventListener('mouseup', onGrabberEnd);
 			window.addEventListener('mousemove', onGrabberMouseMove);
 			window.addEventListener('touchend', onGrabberEnd);
@@ -74,9 +74,9 @@ const useGrabber = (
 			scheduledHandleGrabberMove.cancel();
 			removeListeners();
 		};
-	}, [isScrolling]);
+	}, [isUserDragging]);
 
-	return { onGrabberMouseDown, onGrabberTouchStart, isScrolling };
+	return { onGrabberMouseDown, onGrabberTouchStart, isUserDragging };
 };
 
 export default useGrabber;

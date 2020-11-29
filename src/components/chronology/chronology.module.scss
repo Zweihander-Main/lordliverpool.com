@@ -41,15 +41,14 @@ $card-bottom-margin: 25px;
 
 	align-items: center;
 	border-bottom: 1px solid color.adjust(v.$blue-bg, $lightness: 8%);
-
 	border-radius: 0 0 v.$border-radius * 2 v.$border-radius * 2; //TODO border radius in some other unit or proportional to the size?
 	color: v.$white;
 	display: flex;
 	flex-direction: row;
 	grid-row: 1;
 	justify-content: space-around;
-	z-index: 9;
 	margin: 0 250px; //TODO nope -- redo grid as well
+	z-index: 9;
 	// TODO adjust based on new menu size when you resize it
 
 	@include m.media('<=ultrawide') {
@@ -57,8 +56,8 @@ $card-bottom-margin: 25px;
 	}
 
 	@include m.media('<=wide') {
-		margin: 0 0 0 200px;
 		border-bottom-right-radius: 0;
+		margin: 0 0 0 200px;
 	}
 }
 
@@ -66,7 +65,6 @@ $card-bottom-margin: 25px;
 	@include m.header-normal;
 
 	border-radius: v.$border-radius;
-
 	cursor: pointer;
 	margin: 0;
 	padding: 0.6rem 2rem;
@@ -141,7 +139,6 @@ $card-bottom-margin: 25px;
 
 	@include m.media('portrait') {
 		height: 45px; //TODO keep?:w
-
 		width: 80vw; //TODO var
 	}
 }

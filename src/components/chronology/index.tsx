@@ -140,7 +140,7 @@ const Chronology: React.FC = () => {
 	const [animateCards, setAnimateCards] = React.useState(false);
 
 	React.useEffect(() => {
-		const animateTimeout = setTimeout(() => {
+		const animateTimeout = window.setTimeout(() => {
 			setAnimateCards(true);
 		}, 500);
 
@@ -149,7 +149,7 @@ const Chronology: React.FC = () => {
 			cardContainerRef.current.focus();
 		}
 		return () => {
-			clearTimeout(animateTimeout);
+			window.clearTimeout(animateTimeout);
 		};
 	}, []);
 
@@ -164,7 +164,6 @@ const Chronology: React.FC = () => {
 
 	return (
 		<section className={styles.chronology}>
-			{/* <h1 className={styles.chronologyTitle}>Chronology</h1> */}
 			<div className={styles.filterMenu}>
 				{categories.current.map((category) => (
 					<h3
