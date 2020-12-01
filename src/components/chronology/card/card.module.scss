@@ -6,6 +6,8 @@
 $card-border: 35px;
 $card-total-margin: c.$filter-menu-height + c.$timeline-height +
 	c.$card-top-margin + c.$card-bottom-margin;
+$card-total-margin-mobile: c.$filter-menu-height-small + c.$timeline-height +
+	c.$card-top-margin + c.$card-bottom-margin;
 $card-portrait-max-height: 80vh;
 $card-portrait-width: 80vw;
 
@@ -33,6 +35,11 @@ $card-portrait-width: 80vw;
 	transition: none;
 	width: c.$card-width; //TODO right?
 	will-change: transform, width, margin;
+
+	@include m.media('<=desktop') {
+		max-height: calc(100vh - #{$card-total-margin-mobile});
+	}
+
 	@include m.media('portrait') {
 		animation: card-scaleY-to-show 0ms;
 		margin: 0 auto c.$card-margin auto;

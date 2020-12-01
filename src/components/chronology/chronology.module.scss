@@ -7,6 +7,7 @@ $card-height: v.$card-height;
 $card-width: v.$card-width;
 $card-margin: 100px;
 $filter-menu-height: 60px;
+$filter-menu-height-small: 45px;
 $timeline-height: 90px;
 $card-top-margin: 40px;
 $card-bottom-margin: 25px;
@@ -26,8 +27,17 @@ $card-bottom-margin: 25px;
 		grid-template-rows: $filter-menu-height 1fr;
 		height: 100%;
 		min-height: 100vh;
-		position: static;
+		// position: static; //TODO confirm
+
+		@include m.media('<=desktop') {
+			grid-template-rows: $filter-menu-height-small 1fr;
+		}
 	}
+
+	@include m.media('landscape', '<=desktop') {
+		grid-template-rows: $filter-menu-height-small 1fr $timeline-height;
+	}
+
 	// TODO -- initial scroll trouble
 }
 
@@ -48,6 +58,7 @@ $card-bottom-margin: 25px;
 	grid-row: 1;
 	justify-content: space-around;
 	margin: 0 250px; //TODO nope -- redo grid as well
+	transition: 100ms v.$timing-function;
 	z-index: 9;
 	// TODO adjust based on new menu size when you resize it
 
@@ -62,6 +73,43 @@ $card-bottom-margin: 25px;
 	@include m.media('<=desktop') {
 		margin: 0 4.5rem;
 	}
+
+	@include m.media('<=tablet') {
+		background: #051926;
+		display: flex;
+		flex-direction: column;
+		height: max-content;
+		min-height: 100%;
+		overflow-y: hidden;
+		position: relative;
+		top: 0;
+		z-index: 99999;
+	}
+}
+
+.filter-menu-mobile {
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	transition: 100ms v.$timing-function; //TODO -- logic to 150ms?
+	width: 100%;
+
+	@include m.media('<=tablet') {
+		box-sizing: content-box;
+		display: block;
+		height: 0;
+		margin: 0 auto;
+		padding: 0;
+		text-align: center;
+		transform: translateY(-100vh);
+		width: max-content;
+		will-change: transform;
+
+		.filter-menu-link {
+			margin-top: 0.5rem;
+		}
+	}
 }
 
 .filter-menu-link {
@@ -74,6 +122,17 @@ $card-bottom-margin: 25px;
 	transition: 100ms v.$timing-function; // TODO consistency on button transition
 	z-index: 999;
 
+	@include m.media('<=desktop') {
+		//TODO this should apply below a certain height as well, possibly under wide
+		font-size: 1.05rem; //TODO var
+		padding: 0.5rem 1rem;
+	}
+
+	@include m.media('<=tablet') {
+		margin: 0 auto;
+		width: max-content;
+	}
+
 	&:hover {
 		@include m.neumorphic-button(
 			3px,
@@ -84,13 +143,34 @@ $card-bottom-margin: 25px;
 	}
 }
 
-.selected-link {
+.selected-link,
+.filter-menu-input:checked ~ .filter-menu-button-container > .filter-menu-link {
 	@include m.neumorphic-button(-3px, 6px, #051926, 60%);
 
 	color: v.$light-bg;
 
 	&:hover {
 		@include m.neumorphic-button(-3px, 6px, #051926, 60%);
+	}
+}
+
+.filter-menu-input {
+	display: none;
+
+	@include m.media('<=tablet') {
+		&:checked ~ .filter-menu-mobile {
+			height: 100%;
+			padding: 0 0 1rem;
+			transform: translateY(0);
+		}
+	}
+}
+
+.filter-menu-button-container {
+	display: none;
+
+	@include m.media('<=tablet') {
+		display: block;
 	}
 }
 
@@ -108,6 +188,7 @@ $card-bottom-margin: 25px;
 	transform: rotate(-90deg) translateX(-100vh);
 	transform-origin: top left;
 	will-change: scroll-position;
+	z-index: -1;
 
 	@include m.media('portrait') {
 		min-height: 100%;

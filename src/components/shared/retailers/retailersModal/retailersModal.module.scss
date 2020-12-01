@@ -151,12 +151,14 @@ $options-top-padding: 0.2rem;
 }
 
 .show-retailer {
-	will-change: transform;
 	@include m.neumorphic-intensity(3px, 10px, v.$white, 27%);
 
 	opacity: 1;
+	will-change: transform;
+
 	&:hover {
 		@include m.neumorphic-intensity(4px, 19px, v.$white, 27%);
+
 		transform: scale(1.05);
 	}
 }
