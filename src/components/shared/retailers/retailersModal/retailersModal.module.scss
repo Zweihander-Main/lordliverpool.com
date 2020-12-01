@@ -41,7 +41,7 @@ $options-top-padding: 0.2rem;
 	border-radius: v.$border-radius;
 	box-shadow: 0 0 30px v.$black;
 	left: 50%;
-	max-height: calc(80vh - (3rem * 2));
+	max-height: calc(90vh - 6rem);
 	max-width: 100%;
 	max-width: 58vw;
 	-webkit-overflow-scrolling: touch;
@@ -55,6 +55,14 @@ $options-top-padding: 0.2rem;
 	transition: max-width 0.25s v.$timing-function,
 		margin-left 0.125s v.$timing-function;
 	z-index: 20;
+
+	@include m.media('height<=HEIGHT_short') {
+		max-height: calc(95vh - 6rem);
+	}
+
+	@include m.media('height<=HEIGHT_tiny') {
+		max-height: calc(100vh - 6rem);
+	}
 
 	@include m.media('<=desktop') {
 		max-width: 75vw;
@@ -101,7 +109,7 @@ $options-top-padding: 0.2rem;
 	left: auto;
 	margin: 1rem 0 1rem 1rem;
 	position: absolute;
-	right: calc(20vw - 1rem);
+	right: calc(20vw - 2rem);
 	text-align: center;
 	text-decoration: none;
 	text-indent: 0;
@@ -111,7 +119,7 @@ $options-top-padding: 0.2rem;
 	z-index: 20;
 
 	@include m.media('<=desktop') {
-		right: calc(10vw - 1rem);
+		right: calc(10vw - 1.5rem);
 	}
 
 	@include m.media('<=phone') {
@@ -125,7 +133,7 @@ $options-top-padding: 0.2rem;
 	display: grid;
 	grid-auto-rows: 1fr;
 	grid-gap: $retailer-gap;
-	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+	grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
 	justify-items: center;
 
 	@include m.media('<=tablet') {
