@@ -68,7 +68,7 @@ const Timeline: React.FC<TimelineProps> = ({
 		if (!isUserDragging) {
 			scrollingLatch.current = window.setTimeout(() => {
 				setIsScrolling(false);
-			}, 1000);
+			}, 250);
 		}
 
 		return () => {

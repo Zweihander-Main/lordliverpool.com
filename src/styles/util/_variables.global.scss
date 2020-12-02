@@ -33,7 +33,8 @@ $border-radius: 8px; //TODO break out into multiple styles
 
 // chronology
 $card-height: 70vh;
-$card-width: $card-height/1.5;
+$card-width: $card-height/1.4;
+$card-width-shorter: $card-height/1.2;
 
 // singleposts
 $post-max-width: 51rem;
@@ -53,6 +54,7 @@ $breakpoints: (
 	'ultrawide': 1550px,
 	'HEIGHT_ultratiny': 400px,
 	'HEIGHT_tiny': 550px,
+	'HEIGHT_shorter': 650px,
 	'HEIGHT_short': 750px,
 	'HEIGHT_med': 850px,
 	'HEIGHT_tall': 1000px,

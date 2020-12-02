@@ -231,5 +231,5 @@ $menu-transition: 0.2s;
 	@include m.media('<=tiny') {
 		font-size: 30px;
 		margin: 1px 7px 5px 1.1rem;
-	}
+	} //TODO top for shorter
 }

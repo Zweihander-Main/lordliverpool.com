@@ -3,14 +3,23 @@
 @use '~styles/util/functions.global' as f;
 @use 'sass:color';
 
+//TODO organize variables
 $card-height: v.$card-height;
 $card-width: v.$card-width;
+$card-width-shorter: v.$card-width-shorter;
 $card-margin: 100px;
+$card-margin-shorter: 75px;
 $filter-menu-height: 60px;
-$filter-menu-height-small: 45px;
+$filter-menu-height-short: 45px;
 $timeline-height: 90px;
+$timeline-height-short: 50px;
+$timeline-height-shorter: 30px;
 $card-top-margin: 40px;
+$card-top-margin-short: 30px;
+$card-top-margin-shorter: 20px;
 $card-bottom-margin: 25px;
+$card-bottom-margin-short: 20px;
+$card-bottom-margin-shorter: 13px;
 
 // TODO -- JS for touch scrolling sideways
 
@@ -18,8 +27,6 @@ $card-bottom-margin: 25px;
 	background-color: v.$blue-bg;
 	display: grid;
 	grid-template-columns: 100%;
-	grid-template-rows: $filter-menu-height 1fr $timeline-height;
-	height: 100vh;
 	position: fixed;
 	width: 100vw; // TODO check on mobile -- silly height overrun thing
 
@@ -29,13 +36,17 @@ $card-bottom-margin: 25px;
 		min-height: 100vh;
 		// position: static; //TODO confirm
 
-		@include m.media('<=desktop') {
-			grid-template-rows: $filter-menu-height-small 1fr;
+		@include m.media('height<=HEIGHT_short') {
+			grid-template-rows: $filter-menu-height-short 1fr;
 		}
 	}
 
-	@include m.media('landscape', '<=desktop') {
-		grid-template-rows: $filter-menu-height-small 1fr $timeline-height;
+	@include m.media('landscape') {
+		grid-template-rows: $filter-menu-height 1fr $timeline-height;
+		height: 100vh;
+		@include m.media('height<=HEIGHT_short') {
+			grid-template-rows: $filter-menu-height-short 1fr $timeline-height-short;
+		}
 	}
 
 	// TODO -- initial scroll trouble
@@ -122,10 +133,13 @@ $card-bottom-margin: 25px;
 	transition: 100ms v.$timing-function; // TODO consistency on button transition
 	z-index: 999;
 
-	@include m.media('<=desktop') {
-		//TODO this should apply below a certain height as well, possibly under wide
+	@include m.media('height<=HEIGHT_short') {
 		font-size: 1.05rem; //TODO var
 		padding: 0.5rem 1rem;
+	}
+
+	@include m.media('<=desktop') {
+		font-size: 1.05rem; // TODO var
 	}
 
 	@include m.media('<=tablet') {
@@ -190,16 +204,27 @@ $card-bottom-margin: 25px;
 	will-change: scroll-position;
 	z-index: -1;
 
+	@include m.media('height<=HEIGHT_short') {
+		top: $card-top-margin-short;
+	}
+	@include m.media('height<=HEIGHT_shorter') {
+		top: $card-top-margin-shorter;
+	}
+
 	@include m.media('portrait') {
-		min-height: 100%;
+		min-height: 100vh;
 		min-width: auto;
 		overflow-x: hidden;
 		overflow-y: scroll;
 		padding-right: 0;
 		position: relative;
-		top: 0;
+		top: -$filter-menu-height;
 		transform: initial;
 		width: 100vw;
+
+		@include m.media('height<=HEIGHT_short') {
+			top: -$filter-menu-height-short;
+		}
 	}
 }
 
@@ -222,7 +247,10 @@ $card-bottom-margin: 25px;
 	width: 10vw; //TODO is this right?
 
 	@include m.media('portrait') {
-		height: 45px; //TODO keep?:w
+		height: $filter-menu-height * 2; //TODO keep?:w
 		width: 80vw; //TODO var
+		@include m.media('height<=HEIGHT_short') {
+			height: $filter-menu-height-short * 2;
+		}
 	}
 }

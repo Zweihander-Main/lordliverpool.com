@@ -4,10 +4,14 @@
 @use '../chronology.module.scss' as c;
 
 $card-border: 35px;
+$card-border-shorter: 15px;
 $card-total-margin: c.$filter-menu-height + c.$timeline-height +
 	c.$card-top-margin + c.$card-bottom-margin;
-$card-total-margin-mobile: c.$filter-menu-height-small + c.$timeline-height +
-	c.$card-top-margin + c.$card-bottom-margin;
+$card-total-margin-short: c.$filter-menu-height-short + c.$timeline-height-short +
+	c.$card-top-margin-short + c.$card-bottom-margin-short;
+$card-total-margin-shorter: c.$filter-menu-height-short +
+	c.$timeline-height-shorter + c.$card-top-margin-shorter +
+	c.$card-bottom-margin-shorter;
 $card-portrait-max-height: 80vh;
 $card-portrait-width: 80vw;
 
@@ -20,7 +24,6 @@ $card-portrait-width: 80vw;
 		80%
 	); // TODO consistency with rest of site
 
-	animation: card-scaleX-to-show 0ms;
 	animation-fill-mode: both;
 	background-color: v.$blue-card-bg;
 	border-radius: v.$border-radius;
@@ -29,15 +32,41 @@ $card-portrait-width: 80vw;
 	display: grid;
 	grid-template-columns: 100%;
 	grid-template-rows: 1fr $card-border;
-	margin: 0 c.$card-margin 0 0;
-	max-height: calc(100vh - #{$card-total-margin});
 	overflow: hidden;
 	transition: none;
-	width: c.$card-width; //TODO right?
-	will-change: transform, width, margin;
 
-	@include m.media('<=desktop') {
-		max-height: calc(100vh - #{$card-total-margin-mobile});
+	@include m.media('landscape') {
+		animation: card-scaleX-to-show 0ms;
+		margin: 0 c.$card-margin 0 0;
+		max-height: calc(100vh - #{$card-total-margin});
+		width: c.$card-width; //TODO right?
+		will-change: transform, width, margin;
+		@include m.media('height<=HEIGHT_short') {
+			max-height: calc(100vh - #{$card-total-margin-short});
+		}
+		@include m.media('height<=HEIGHT_shorter') {
+			@include m.neumorphic-intensity(
+				10px,
+				15px,
+				v.$blue-bg,
+				80%
+			); // TODO consistency with rest of site
+
+			animation: card-scaleX-to-show-shorter 0ms;
+			margin: 0 c.$card-margin-shorter 0 0;
+			max-height: calc(100vh - #{$card-total-margin-shorter});
+			width: c.$card-width-shorter;
+			grid-template-rows: 1fr $card-border-shorter;
+		}
+
+		@include m.media('height<=HEIGHT_ultratiny') {
+			@include m.neumorphic-intensity(
+				8px,
+				12px,
+				v.$blue-bg,
+				80%
+			); // TODO consistency with rest of site
+		}
 	}
 
 	@include m.media('portrait') {
@@ -47,6 +76,119 @@ $card-portrait-width: 80vw;
 		width: $card-portrait-width;
 		will-change: transform, height, margin;
 	}
+}
+
+.hidden {
+	@include m.media('landscape') {
+		animation: card-scaleX-to-hide 0ms;
+		@include m.media('height<=HEIGHT_shorter') {
+			//TODO make sure everything is landscape
+			animation: card-scaleX-to-hide-shorter 0ms;
+		}
+	}
+	@include m.media('portrait') {
+		animation: card-scaleY-to-hide 0ms;
+	}
+}
+
+.animate {
+	animation-duration: 200ms;
+	animation-fill-mode: both;
+	animation-timing-function: v.$timing-function;
+}
+
+.inner {
+	@include m.custom-scrollbar(v.$blue-card-bg, v.$white);
+
+	border: $card-border solid transparent;
+	box-sizing: border-box;
+	display: grid;
+	grid-column: 1;
+	grid-row-end: 3;
+	grid-row-start: 1;
+	grid-template-columns: 1fr;
+	grid-template-rows: minmax(0, max-content) minmax(0, min-content); //TODO massacre of tranent and perfect spacing
+	overflow-y: auto;
+	width: c.$card-width;
+	//TODO name grids everywhere
+	// TODO remove image named grid
+
+	@include m.media('landscape', 'height<=HEIGHT_shorter') {
+		width: c.$card-width-shorter;
+		border: $card-border-shorter solid transparent;
+	}
+
+	@include m.media('portrait') {
+		width: 80vw; //TODO var
+	}
+}
+
+.header {
+	grid-row: 2;
+	outline: none;
+	word-break: break-word;
+	// TODO margin and for text
+	@include m.media('landscape', 'height<=HEIGHT_tiny') {
+		font-size: 1.2rem; //TODO rem;
+	}
+	@include m.media('landscape', 'height<=HEIGHT_ultratiny') {
+		font-size: 1rem; //TODO rem;
+	}
+}
+
+.title-link {
+	color: v.$white;
+	margin-bottom: 1rem;
+
+	.image {
+		margin-bottom: 0;
+	}
+}
+
+.header-no-image {
+	margin-top: 0;
+}
+
+.image {
+	grid-row: 1;
+	margin-bottom: 1rem;
+	max-height: 100%;
+	object-fit: contain;
+	object-position: center 35%;
+	outline: none;
+	width: 100%;
+}
+// TODO Zoom
+// TODO fix mixins and ect. for breakpoints
+// TODO border on bottom of menu
+
+.text {
+	grid-row: 3;
+	white-space: break-spaces;
+	@include m.media('landscape', 'height<=HEIGHT_ultratiny') {
+		font-size: 0.85rem; //TODO rem;
+	}
+}
+
+.display-date {
+	align-self: center;
+	font-size: 0.85rem; //TODO var
+	grid-column: 1;
+	grid-row: 2;
+	overflow: hidden;
+	text-align: center;
+	text-transform: uppercase;
+	width: c.$card-width; // TODO portrait
+
+	@include m.media('landscape', 'height<=HEIGHT_shorter') {
+		width: c.$card-width-shorter;
+	}
+	@include m.media('landscape', 'height<=HEIGHT_tiny') {
+		font-size: 2.9vh; //TODO rem;
+	}
+	// @include m.media('landscape', 'height<=HEIGHT_ultratiny') {
+	// 	font-size: 0.65rem; //TODO rem;
+	// }
 }
 
 @keyframes card-scaleX-to-hide {
@@ -149,83 +291,52 @@ $card-portrait-width: 80vw;
 	}
 }
 
-.hidden {
-	animation: card-scaleX-to-hide 0ms;
-	@include m.media('portrait') {
-		animation: card-scaleY-to-hide 0ms;
+@keyframes card-scaleX-to-hide-shorter {
+	0% {
+		margin: 0 c.$card-margin-shorter 0 0;
+		transform: scaleX(1);
+		width: c.$card-width-shorter;
+	}
+	49.9% {
+		margin: 0 c.$card-margin-shorter 0 0;
+		width: c.$card-width-shorter;
+	}
+	50% {
+		margin: 0 c.$card-margin-shorter/2 0 0;
+		width: c.$card-width-shorter/2;
+	}
+	99.9% {
+		margin: 0 c.$card-margin-shorter/2 0 0;
+		transform: scaleX(0);
+		width: c.$card-width-shorter/2;
+	}
+	100% {
+		margin: 0;
+		width: 0;
 	}
 }
 
-.animate {
-	animation-duration: 200ms;
-	animation-fill-mode: both;
-	animation-timing-function: v.$timing-function;
-}
-
-.inner {
-	@include m.custom-scrollbar(v.$blue-card-bg, v.$white);
-
-	border: $card-border solid transparent;
-	box-sizing: border-box;
-	display: grid;
-	grid-column: 1;
-	grid-row-end: 3;
-	grid-row-start: 1;
-	grid-template-columns: 1fr;
-	grid-template-rows: minmax(0, max-content) minmax(0, min-content); //TODO massacre of tranent and perfect spacing
-	overflow-y: auto;
-	width: c.$card-width;
-	//TODO name grids everywhere
-	// TODO remove image named grid
-
-	@include m.media('portrait') {
-		width: 80vw; //TODO var
+@keyframes card-scaleX-to-show-shorter {
+	0% {
+		margin: 0;
+		transform: scaleX(0);
+		width: 0;
 	}
-}
-
-.header {
-	grid-row: 2;
-	outline: none;
-	word-break: break-word;
-}
-
-.title-link {
-	color: v.$white;
-	margin-bottom: 1rem;
-
-	.image {
-		margin-bottom: 0;
+	49.9% {
+		margin: 0;
+		width: 0;
 	}
-}
-
-.header-no-image {
-	margin-top: 0;
-}
-
-.image {
-	grid-row: 1;
-	margin-bottom: 1rem;
-	max-height: 100%;
-	object-fit: contain;
-	object-position: center 35%;
-	outline: none;
-	width: 100%;
-}
-// TODO Zoom
-// TODO fix mixins and ect. for breakpoints
-// TODO border on bottom of menu
-
-.text {
-	grid-row: 3;
-	white-space: break-spaces;
-}
-
-.display-date {
-	align-self: center;
-	grid-column: 1;
-	grid-row: 2;
-	overflow: hidden;
-	text-align: center;
-	text-transform: uppercase;
-	width: c.$card-width;
+	50% {
+		margin: 0 c.$card-margin-shorter/2 0 0;
+		width: c.$card-width-shorter/2;
+	}
+	99.9% {
+		margin: 0 c.$card-margin-shorter/2 0 0;
+		transform: scaleX(1);
+		width: c.$card-width-shorter/2;
+	}
+	100% {
+		margin: 0 c.$card-margin-shorter 0 0;
+		width: c.$card-width-shorter;
+	}
 }

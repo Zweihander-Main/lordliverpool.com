@@ -1,7 +1,9 @@
 @use '~styles/util/variables.global' as v;
 @use '~styles/util/mixins.global' as m;
+@use '../chronology.module.scss' as c;
 
-$area-grabber-height: 50px;
+$area-grabber-height: c.$timeline-height-short;
+$area-grabber-height-shorter: c.$timeline-height-shorter;
 $area-grabber-opacity: 0.3;
 
 .timeline {
@@ -34,9 +36,18 @@ $area-grabber-opacity: 0.3;
 	user-select: none;
 	will-change: width, transform;
 	z-index: 9999;
+
+	@include m.media('height<=HEIGHT_shorter') {
+		height: $area-grabber-height-shorter;
+	}
+
+	&:hover {
+		@extend %active-timeline;
+	}
 }
 
 .is-scrolling {
+	@extend %active-timeline;
 }
 
 .is-user-dragging {
@@ -53,6 +64,26 @@ $area-grabber-opacity: 0.3;
 	user-select: none;
 	white-space: nowrap;
 	will-change: transform;
+	transition: opacity 200ms v.$timing-function;
+
+	@include m.media('height<=HEIGHT_short') {
+		opacity: 0.3;
+		font-size: 1.75rem; //TODO var
+		top: calc(-1.75rem - 3px);
+	}
+
+	@include m.media('height<=HEIGHT_shorter') {
+		font-size: 1.5rem; //TODO var
+		top: calc(-1.5rem - 2px);
+	}
+}
+
+%active-timeline {
+	@include m.media('height<=HEIGHT_short') {
+		.year {
+			opacity: 1;
+		}
+	}
 }
 
 .tick {
@@ -61,8 +92,15 @@ $area-grabber-opacity: 0.3;
 	background: v.$blue-bg;
 	height: $area-grabber-height - 15;
 	width: 3px;
+
+	@include m.media('height<=HEIGHT_shorter') {
+		height: $area-grabber-height-shorter - 15;
+	}
 }
 
 .tick:nth-of-type(2n) {
 	height: $area-grabber-height - 25;
+	@include m.media('height<=HEIGHT_shorter') {
+		height: $area-grabber-height-shorter - 25;
+	}
 }
