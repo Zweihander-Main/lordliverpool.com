@@ -32,9 +32,35 @@ $timing-function: cubic-bezier(0.65, 0.05, 0.36, 1); //TODO make sure consistent
 $border-radius: 8px; //TODO break out into multiple styles
 
 // chronology
+$filter-menu-height: 60px;
+$filter-menu-height-short: 45px;
+$timeline-height: 90px;
+$timeline-height-short: 50px;
+$timeline-height-shorter: 30px;
+$timeline-area-grabber-height: $timeline-height-short;
+$timeline-area-grabber-height-shorter: $timeline-height-shorter;
+$timeline-area-grabber-opacity: 0.3;
 $card-height: 70vh;
 $card-width: $card-height/1.4;
 $card-width-shorter: $card-height/1.2;
+$card-margin: 100px;
+$card-margin-shorter: 75px;
+$card-top-margin: 40px;
+$card-top-margin-short: 30px;
+$card-top-margin-shorter: 20px;
+$card-bottom-margin: 25px;
+$card-bottom-margin-short: 20px;
+$card-bottom-margin-shorter: 13px;
+$card-border: 35px;
+$card-border-shorter: 15px;
+$card-total-margin: $filter-menu-height + $timeline-height + $card-top-margin +
+	$card-bottom-margin;
+$card-total-margin-short: $filter-menu-height-short + $timeline-height-short +
+	$card-top-margin-short + $card-bottom-margin-short;
+$card-total-margin-shorter: $filter-menu-height-short + $timeline-height-shorter +
+	$card-top-margin-shorter + $card-bottom-margin-shorter;
+$card-portrait-max-height: 80vh;
+$card-portrait-width: 80vw;
 
 // singleposts
 $post-max-width: 51rem;

@@ -1,19 +1,6 @@
 @use '~styles/util/variables.global' as v;
 @use '~styles/util/mixins.global' as m;
 @use '~styles/util/functions.global' as f;
-@use '../chronology.module.scss' as c;
-
-$card-border: 35px;
-$card-border-shorter: 15px;
-$card-total-margin: c.$filter-menu-height + c.$timeline-height +
-	c.$card-top-margin + c.$card-bottom-margin;
-$card-total-margin-short: c.$filter-menu-height-short + c.$timeline-height-short +
-	c.$card-top-margin-short + c.$card-bottom-margin-short;
-$card-total-margin-shorter: c.$filter-menu-height-short +
-	c.$timeline-height-shorter + c.$card-top-margin-shorter +
-	c.$card-bottom-margin-shorter;
-$card-portrait-max-height: 80vh;
-$card-portrait-width: 80vw;
 
 .card {
 	//TODO remove color vars
@@ -31,18 +18,18 @@ $card-portrait-width: 80vw;
 	color: v.$white;
 	display: grid;
 	grid-template-columns: 100%;
-	grid-template-rows: 1fr $card-border;
+	grid-template-rows: 1fr v.$card-border;
 	overflow: hidden;
 	transition: none;
 
 	@include m.media('landscape') {
 		animation: card-scaleX-to-show 0ms;
-		margin: 0 c.$card-margin 0 0;
-		max-height: calc(100vh - #{$card-total-margin});
-		width: c.$card-width; //TODO right?
+		margin: 0 v.$card-margin 0 0;
+		max-height: calc(100vh - #{v.$card-total-margin});
+		width: v.$card-width; //TODO right?
 		will-change: transform, width, margin;
 		@include m.media('height<=HEIGHT_short') {
-			max-height: calc(100vh - #{$card-total-margin-short});
+			max-height: calc(100vh - #{v.$card-total-margin-short});
 		}
 		@include m.media('height<=HEIGHT_shorter') {
 			@include m.neumorphic-intensity(
@@ -53,10 +40,10 @@ $card-portrait-width: 80vw;
 			); // TODO consistency with rest of site
 
 			animation: card-scaleX-to-show-shorter 0ms;
-			margin: 0 c.$card-margin-shorter 0 0;
-			max-height: calc(100vh - #{$card-total-margin-shorter});
-			width: c.$card-width-shorter;
-			grid-template-rows: 1fr $card-border-shorter;
+			grid-template-rows: 1fr v.$card-border-shorter;
+			margin: 0 v.$card-margin-shorter 0 0;
+			max-height: calc(100vh - #{v.$card-total-margin-shorter});
+			width: v.$card-width-shorter;
 		}
 
 		@include m.media('height<=HEIGHT_ultratiny') {
@@ -71,10 +58,12 @@ $card-portrait-width: 80vw;
 
 	@include m.media('portrait') {
 		animation: card-scaleY-to-show 0ms;
-		margin: 0 auto c.$card-margin auto;
-		max-height: $card-portrait-max-height;
-		width: $card-portrait-width;
+		margin: 0 auto v.$card-margin auto;
+		max-height: v.$card-portrait-max-height;
+		width: v.$card-portrait-width;
 		will-change: transform, height, margin;
+
+		// TODO tiny intensity
 	}
 }
 
@@ -82,10 +71,10 @@ $card-portrait-width: 80vw;
 	@include m.media('landscape') {
 		animation: card-scaleX-to-hide 0ms;
 		@include m.media('height<=HEIGHT_shorter') {
-			//TODO make sure everything is landscape
 			animation: card-scaleX-to-hide-shorter 0ms;
 		}
 	}
+
 	@include m.media('portrait') {
 		animation: card-scaleY-to-hide 0ms;
 	}
@@ -100,7 +89,7 @@ $card-portrait-width: 80vw;
 .inner {
 	@include m.custom-scrollbar(v.$blue-card-bg, v.$white);
 
-	border: $card-border solid transparent;
+	border: v.$card-border solid transparent;
 	box-sizing: border-box;
 	display: grid;
 	grid-column: 1;
@@ -109,15 +98,15 @@ $card-portrait-width: 80vw;
 	grid-template-columns: 1fr;
 	grid-template-rows: minmax(0, max-content) minmax(0, min-content); //TODO massacre of tranent and perfect spacing
 	overflow-y: auto;
-	width: c.$card-width;
 	//TODO name grids everywhere
 	// TODO remove image named grid
-
-	@include m.media('landscape', 'height<=HEIGHT_shorter') {
-		width: c.$card-width-shorter;
-		border: $card-border-shorter solid transparent;
+	@include m.media('landscape') {
+		width: v.$card-width;
+		@include m.media('height<=HEIGHT_shorter') {
+			border: v.$card-border-shorter solid transparent;
+			width: v.$card-width-shorter;
+		}
 	}
-
 	@include m.media('portrait') {
 		width: 80vw; //TODO var
 	}
@@ -128,11 +117,13 @@ $card-portrait-width: 80vw;
 	outline: none;
 	word-break: break-word;
 	// TODO margin and for text
-	@include m.media('landscape', 'height<=HEIGHT_tiny') {
-		font-size: 1.2rem; //TODO rem;
-	}
-	@include m.media('landscape', 'height<=HEIGHT_ultratiny') {
-		font-size: 1rem; //TODO rem;
+	@include m.media('landscape') {
+		@include m.media('height<=HEIGHT_tiny') {
+			font-size: 1.2rem; //TODO rem;
+		}
+		@include m.media('height<=HEIGHT_ultratiny') {
+			font-size: 1rem; //TODO rem;
+		}
 	}
 }
 
@@ -165,8 +156,10 @@ $card-portrait-width: 80vw;
 .text {
 	grid-row: 3;
 	white-space: break-spaces;
-	@include m.media('landscape', 'height<=HEIGHT_ultratiny') {
-		font-size: 0.85rem; //TODO rem;
+	@include m.media('landscape') {
+		@include m.media('height<=HEIGHT_ultratiny') {
+			font-size: 0.85rem; //TODO rem;
+		}
 	}
 }
 
@@ -178,37 +171,36 @@ $card-portrait-width: 80vw;
 	overflow: hidden;
 	text-align: center;
 	text-transform: uppercase;
-	width: c.$card-width; // TODO portrait
+	width: v.$card-width; // TODO portrait
 
-	@include m.media('landscape', 'height<=HEIGHT_shorter') {
-		width: c.$card-width-shorter;
+	@include m.media('landscape') {
+		@include m.media('height<=HEIGHT_shorter') {
+			width: v.$card-width-shorter;
+		}
+		@include m.media('height<=HEIGHT_tiny') {
+			font-size: 2.9vh; //TODO rem;
+		}
 	}
-	@include m.media('landscape', 'height<=HEIGHT_tiny') {
-		font-size: 2.9vh; //TODO rem;
-	}
-	// @include m.media('landscape', 'height<=HEIGHT_ultratiny') {
-	// 	font-size: 0.65rem; //TODO rem;
-	// }
 }
 
 @keyframes card-scaleX-to-hide {
 	0% {
-		margin: 0 c.$card-margin 0 0;
+		margin: 0 v.$card-margin 0 0;
 		transform: scaleX(1);
-		width: c.$card-width;
+		width: v.$card-width;
 	}
 	49.9% {
-		margin: 0 c.$card-margin 0 0;
-		width: c.$card-width;
+		margin: 0 v.$card-margin 0 0;
+		width: v.$card-width;
 	}
 	50% {
-		margin: 0 c.$card-margin/2 0 0;
-		width: c.$card-width/2;
+		margin: 0 v.$card-margin/2 0 0;
+		width: v.$card-width/2;
 	}
 	99.9% {
-		margin: 0 c.$card-margin/2 0 0;
+		margin: 0 v.$card-margin/2 0 0;
 		transform: scaleX(0);
-		width: c.$card-width/2;
+		width: v.$card-width/2;
 	}
 	100% {
 		margin: 0;
@@ -227,37 +219,37 @@ $card-portrait-width: 80vw;
 		width: 0;
 	}
 	50% {
-		margin: 0 c.$card-margin/2 0 0;
-		width: c.$card-width/2;
+		margin: 0 v.$card-margin/2 0 0;
+		width: v.$card-width/2;
 	}
 	99.9% {
-		margin: 0 c.$card-margin/2 0 0;
+		margin: 0 v.$card-margin/2 0 0;
 		transform: scaleX(1);
-		width: c.$card-width/2;
+		width: v.$card-width/2;
 	}
 	100% {
-		margin: 0 c.$card-margin 0 0;
-		width: c.$card-width;
+		margin: 0 v.$card-margin 0 0;
+		width: v.$card-width;
 	}
 }
 
 @keyframes card-scaleY-to-hide {
 	0% {
-		margin: 0 auto c.$card-margin auto;
-		max-height: $card-portrait-max-height;
+		margin: 0 auto v.$card-margin auto;
+		max-height: v.$card-portrait-max-height;
 		transform: scaleY(1);
 	}
 	49.9% {
-		margin: 0 auto c.$card-margin auto;
-		max-height: $card-portrait-max-height;
+		margin: 0 auto v.$card-margin auto;
+		max-height: v.$card-portrait-max-height;
 	}
 	50% {
-		margin: 0 auto c.$card-margin/2 auto;
-		max-height: $card-portrait-max-height/2;
+		margin: 0 auto v.$card-margin/2 auto;
+		max-height: v.$card-portrait-max-height/2;
 	}
 	99.9% {
-		margin: 0 auto c.$card-margin/2 auto;
-		max-height: $card-portrait-max-height/2;
+		margin: 0 auto v.$card-margin/2 auto;
+		max-height: v.$card-portrait-max-height/2;
 		transform: scaleY(0);
 	}
 	100% {
@@ -277,38 +269,38 @@ $card-portrait-width: 80vw;
 		max-height: 0;
 	}
 	50% {
-		margin: 0 auto c.$card-margin/2 auto;
-		max-height: $card-portrait-max-height/2;
+		margin: 0 auto v.$card-margin/2 auto;
+		max-height: v.$card-portrait-max-height/2;
 	}
 	99.9% {
-		margin: 0 auto c.$card-margin/2 auto;
-		max-height: $card-portrait-max-height/2;
+		margin: 0 auto v.$card-margin/2 auto;
+		max-height: v.$card-portrait-max-height/2;
 		transform: scaleY(1);
 	}
 	100% {
-		margin: 0 auto c.$card-margin auto;
-		max-height: $card-portrait-max-height;
+		margin: 0 auto v.$card-margin auto;
+		max-height: v.$card-portrait-max-height;
 	}
 }
 
 @keyframes card-scaleX-to-hide-shorter {
 	0% {
-		margin: 0 c.$card-margin-shorter 0 0;
+		margin: 0 v.$card-margin-shorter 0 0;
 		transform: scaleX(1);
-		width: c.$card-width-shorter;
+		width: v.$card-width-shorter;
 	}
 	49.9% {
-		margin: 0 c.$card-margin-shorter 0 0;
-		width: c.$card-width-shorter;
+		margin: 0 v.$card-margin-shorter 0 0;
+		width: v.$card-width-shorter;
 	}
 	50% {
-		margin: 0 c.$card-margin-shorter/2 0 0;
-		width: c.$card-width-shorter/2;
+		margin: 0 v.$card-margin-shorter/2 0 0;
+		width: v.$card-width-shorter/2;
 	}
 	99.9% {
-		margin: 0 c.$card-margin-shorter/2 0 0;
+		margin: 0 v.$card-margin-shorter/2 0 0;
 		transform: scaleX(0);
-		width: c.$card-width-shorter/2;
+		width: v.$card-width-shorter/2;
 	}
 	100% {
 		margin: 0;
@@ -327,16 +319,16 @@ $card-portrait-width: 80vw;
 		width: 0;
 	}
 	50% {
-		margin: 0 c.$card-margin-shorter/2 0 0;
-		width: c.$card-width-shorter/2;
+		margin: 0 v.$card-margin-shorter/2 0 0;
+		width: v.$card-width-shorter/2;
 	}
 	99.9% {
-		margin: 0 c.$card-margin-shorter/2 0 0;
+		margin: 0 v.$card-margin-shorter/2 0 0;
 		transform: scaleX(1);
-		width: c.$card-width-shorter/2;
+		width: v.$card-width-shorter/2;
 	}
 	100% {
-		margin: 0 c.$card-margin-shorter 0 0;
-		width: c.$card-width-shorter;
+		margin: 0 v.$card-margin-shorter 0 0;
+		width: v.$card-width-shorter;
 	}
 }

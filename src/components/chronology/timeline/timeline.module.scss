@@ -2,10 +2,6 @@
 @use '~styles/util/mixins.global' as m;
 @use '../chronology.module.scss' as c;
 
-$area-grabber-height: c.$timeline-height-short;
-$area-grabber-height-shorter: c.$timeline-height-shorter;
-$area-grabber-opacity: 0.3;
-
 .timeline {
 	align-items: flex-end;
 	color: v.$white;
@@ -23,13 +19,13 @@ $area-grabber-opacity: 0.3;
 	@include m.neumorphic-button(
 		4px,
 		8px,
-		rgba(v.$white, $area-grabber-opacity + 0.1),
+		rgba(v.$white, v.$timeline-area-grabber-opacity + 0.1),
 		20%
 	);
 
-	background: rgba(v.$white, $area-grabber-opacity);
+	background: rgba(v.$white, v.$timeline-area-grabber-opacity);
 	cursor: grab;
-	height: $area-grabber-height;
+	height: v.$timeline-area-grabber-height;
 	left: 0;
 	position: absolute;
 	transition: width 100ms v.$timing-function; //TODO test phone and check if 5ms left transition is good/bad
@@ -37,8 +33,10 @@ $area-grabber-opacity: 0.3;
 	will-change: width, transform;
 	z-index: 9999;
 
-	@include m.media('height<=HEIGHT_shorter') {
-		height: $area-grabber-height-shorter;
+	@include m.media('landscape') {
+		@include m.media('height<=HEIGHT_shorter') {
+			height: v.$timeline-area-grabber-height-shorter;
+		}
 	}
 
 	&:hover {
@@ -61,27 +59,30 @@ $area-grabber-opacity: 0.3;
 	font-style: italic;
 	position: absolute;
 	top: calc(-#{v.$chrono-year-size} - 4px);
+	transition: opacity 200ms v.$timing-function;
 	user-select: none;
 	white-space: nowrap;
 	will-change: transform;
-	transition: opacity 200ms v.$timing-function;
+	@include m.media('landscape') {
+		@include m.media('height<=HEIGHT_short') {
+			font-size: 1.75rem; //TODO var
+			opacity: 0.3;
+			top: calc(-1.75rem - 3px);
+		}
 
-	@include m.media('height<=HEIGHT_short') {
-		opacity: 0.3;
-		font-size: 1.75rem; //TODO var
-		top: calc(-1.75rem - 3px);
-	}
-
-	@include m.media('height<=HEIGHT_shorter') {
-		font-size: 1.5rem; //TODO var
-		top: calc(-1.5rem - 2px);
+		@include m.media('height<=HEIGHT_shorter') {
+			font-size: 1.5rem; //TODO var
+			top: calc(-1.5rem - 2px);
+		}
 	}
 }
 
 %active-timeline {
-	@include m.media('height<=HEIGHT_short') {
-		.year {
-			opacity: 1;
+	@include m.media('landscape') {
+		@include m.media('height<=HEIGHT_short') {
+			.year {
+				opacity: 1;
+			}
 		}
 	}
 }
@@ -90,17 +91,21 @@ $area-grabber-opacity: 0.3;
 	@include m.neumorphic-intensity(1px, 2px, v.$blue-bg, 250%); //TODO nope
 
 	background: v.$blue-bg;
-	height: $area-grabber-height - 15;
+	height: v.$timeline-area-grabber-height - 15;
 	width: 3px;
 
-	@include m.media('height<=HEIGHT_shorter') {
-		height: $area-grabber-height-shorter - 15;
+	@include m.media('landscape') {
+		@include m.media('height<=HEIGHT_shorter') {
+			height: v.$timeline-area-grabber-height-shorter - 15;
+		}
 	}
 }
 
 .tick:nth-of-type(2n) {
-	height: $area-grabber-height - 25;
-	@include m.media('height<=HEIGHT_shorter') {
-		height: $area-grabber-height-shorter - 25;
+	height: v.$timeline-area-grabber-height - 25;
+	@include m.media('landscape') {
+		@include m.media('height<=HEIGHT_shorter') {
+			height: v.$timeline-area-grabber-height-shorter - 25;
+		}
 	}
 }
