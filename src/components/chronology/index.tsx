@@ -2,9 +2,9 @@ import React from 'react';
 import styles from './chronology.module.scss';
 import { cardWidth } from 'styles/util/_variables.global.scss';
 import { useStaticQuery, graphql } from 'gatsby';
+import FilterMenu from './filterMenu';
 import Timeline from './timeline';
 import Card from './card';
-import { MdFilterList } from 'react-icons/md';
 import useScrollAndStateRestore from 'hooks/useScrollAndStateRestore';
 import useLocationState from 'hooks/useLocationState';
 
@@ -163,50 +163,15 @@ const Chronology: React.FC = () => {
 		.map((card) => card.frontmatter?.date)
 		.filter((year): year is string => typeof year !== 'undefined');
 
-	const filterMenuButtonRef = React.useRef<HTMLInputElement>(null);
-
-	const changeSelectedCategory = (category: string) => {
-		setSelectedCategory(category);
-		if (filterMenuButtonRef.current?.checked) {
-			filterMenuButtonRef.current.checked = false;
-		}
-	};
-
 	return (
 		<section className={styles.chronology}>
-			<div className={styles.filterMenu}>
-				<input
-					type="checkbox"
-					name="filter"
-					id="filter"
-					ref={filterMenuButtonRef}
-					className={styles.filterMenuInput}
-				/>
-				<label
-					htmlFor="filter"
-					className={styles.filterMenuButtonContainer}
-				>
-					<h3 className={styles.filterMenuLink}>
-						<MdFilterList className={styles.filterIcon} />
-					</h3>
-				</label>
-				<div className={styles.filterMenuMobile}>
-					{categories.current.map((category) => (
-						<h3
-							key={category}
-							onClick={() => changeSelectedCategory(category)}
-							className={
-								category === selectedCategory
-									? `${styles.filterMenuLink} ${styles.selectedLink}`
-									: styles.filterMenuLink
-							}
-						>
-							{category.charAt(0).toUpperCase() +
-								category.slice(1)}
-						</h3>
-					))}
-				</div>
-			</div>
+			<FilterMenu
+				{...{
+					categories,
+					setSelectedCategory,
+					selectedCategory,
+				}}
+			/>
 			<div
 				className={styles.cardContainerWrapper}
 				ref={cardContainerWrapperRef}
