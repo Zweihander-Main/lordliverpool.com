@@ -13,6 +13,7 @@ export const cardScaleXToHideShorter: string;
 export const cardScaleYToHide: string;
 export const animate: string;
 export const inner: string;
+export const textContainer: string;
 export const header: string;
 export const titleLink: string;
 export const image: string;

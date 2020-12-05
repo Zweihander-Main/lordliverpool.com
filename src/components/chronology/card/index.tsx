@@ -79,7 +79,7 @@ const Card = React.forwardRef<HTMLElement | null, CardProps>(
 								fluid={featuredImage}
 							/>
 						))}
-					<div>
+					<div className={styles.textContainer}>
 						{title && (
 							<h2
 								className={

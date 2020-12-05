@@ -1,6 +1,7 @@
 @use '~styles/util/variables.global' as v;
 @use '~styles/util/mixins.global' as m;
 @use '~styles/util/functions.global' as f;
+@use 'sass:color';
 
 .card {
 	//TODO remove color vars
@@ -19,7 +20,6 @@
 	display: grid;
 	grid-template-columns: 100%;
 	grid-template-rows: 1fr v.$card-border;
-	grid-template-areas: 'InnerCard' 'Date';
 	overflow: hidden;
 	transition: none;
 
@@ -93,13 +93,10 @@
 	border: v.$card-border solid transparent;
 	box-sizing: border-box;
 	display: grid;
-	grid-area: InnerCard;
+	grid-area: 1 / 1 / 3 / 2;
 	grid-template-columns: 1fr;
-	grid-template-rows: minmax(0, max-content) minmax(0, min-content) minmax(
-			0,
-			min-content
-		); //TODO massacre of tranent and perfect spacing
-	grid-template-areas: 'Image' 'Header' 'Text';
+	grid-template-rows: minmax(0, max-content) minmax(0, min-content); //TODO massacre of tranent and perfect spacing
+	grid-template-areas: 'Image' 'TextContainer';
 	overflow-y: auto;
 	//TODO name grids everywhere
 	// TODO remove image named grid
@@ -115,10 +112,15 @@
 	}
 }
 
+.text-container {
+	grid-area: TextContainer;
+}
+
 .header {
-	grid-area: Header;
+	text-align: center;
 	outline: none;
 	word-break: break-word;
+
 	// TODO margin and for text
 	@include m.media('landscape') {
 		@include m.media('height<=HEIGHT_tiny') {
@@ -157,7 +159,8 @@
 // TODO border on bottom of menu
 
 .text {
-	grid-area: Text;
+	text-align: justify;
+	color: color.adjust(v.$white, $lightness: -7%); //TODO var
 	white-space: break-spaces;
 	@include m.media('landscape') {
 		@include m.media('height<=HEIGHT_ultratiny') {
@@ -169,7 +172,7 @@
 .display-date {
 	align-self: center;
 	font-size: 0.85rem; //TODO var
-	grid-area: Date;
+	grid-area: 2 / 1 / 3 / 2;
 	overflow: hidden;
 	text-align: center;
 	text-transform: uppercase;
