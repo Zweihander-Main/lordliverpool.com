@@ -134,7 +134,7 @@
 
 .title-link {
 	color: v.$white;
-	margin-bottom: 1rem;
+	margin-bottom: 1.38rem; //TODO Var with bottom
 
 	.image {
 		margin-bottom: 0;
@@ -147,7 +147,7 @@
 
 .image {
 	grid-area: Image;
-	margin-bottom: 1rem;
+	margin-bottom: 1.38rem; // TODO var
 	max-height: 100%;
 	object-fit: contain;
 	object-position: center 35%;
