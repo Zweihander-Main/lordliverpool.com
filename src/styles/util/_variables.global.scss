@@ -41,6 +41,8 @@ $timeline-area-grabber-height: $timeline-height-short;
 $timeline-area-grabber-height-shorter: $timeline-height-shorter;
 $timeline-area-grabber-opacity: 0.3;
 $card-height: 70vh;
+$card-portrait-max-height: 80vh; // TODO this should probably be 100%
+$card-portrait-width: 80vw; //TODO wider for tiny width
 $card-width: $card-height/1.4;
 $card-width-shorter: $card-height/1.2;
 $card-margin: 100px;
@@ -59,8 +61,6 @@ $card-total-margin-short: $filter-menu-height-short + $timeline-height-short +
 	$card-top-margin-short + $card-bottom-margin-short;
 $card-total-margin-shorter: $filter-menu-height-short + $timeline-height-shorter +
 	$card-top-margin-shorter + $card-bottom-margin-shorter;
-$card-portrait-max-height: 80vh;
-$card-portrait-width: 80vw;
 
 // singleposts
 $post-max-width: 51rem;

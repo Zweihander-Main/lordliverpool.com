@@ -17,7 +17,7 @@
 	color: v.$white;
 	display: flex;
 	flex-direction: row;
-	grid-row: 1;
+	grid-area: FilterMenu;
 	justify-content: space-around;
 	margin: 0 250px; //TODO nope -- redo grid as well
 	transition: 100ms v.$timing-function;

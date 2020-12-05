@@ -8,6 +8,7 @@
 .chronology {
 	background-color: v.$blue-bg;
 	display: grid;
+	grid-template-areas: 'FilterMenu' 'Cards' 'Timeline';
 	grid-template-columns: 100%;
 	position: fixed;
 	width: 100vw; // TODO check on mobile -- silly height overrun thing
@@ -37,7 +38,7 @@
 .card-container-wrapper {
 	@include m.hide-scrollbars;
 
-	grid-row: 2;
+	grid-area: Cards;
 	height: 100vw;
 	transform-origin: top left;
 	will-change: scroll-position;

@@ -19,6 +19,7 @@
 	display: grid;
 	grid-template-columns: 100%;
 	grid-template-rows: 1fr v.$card-border;
+	grid-template-areas: 'InnerCard' 'Date';
 	overflow: hidden;
 	transition: none;
 
@@ -92,11 +93,13 @@
 	border: v.$card-border solid transparent;
 	box-sizing: border-box;
 	display: grid;
-	grid-column: 1;
-	grid-row-end: 3;
-	grid-row-start: 1;
+	grid-area: InnerCard;
 	grid-template-columns: 1fr;
-	grid-template-rows: minmax(0, max-content) minmax(0, min-content); //TODO massacre of tranent and perfect spacing
+	grid-template-rows: minmax(0, max-content) minmax(0, min-content) minmax(
+			0,
+			min-content
+		); //TODO massacre of tranent and perfect spacing
+	grid-template-areas: 'Image' 'Header' 'Text';
 	overflow-y: auto;
 	//TODO name grids everywhere
 	// TODO remove image named grid
@@ -113,7 +116,7 @@
 }
 
 .header {
-	grid-row: 2;
+	grid-area: Header;
 	outline: none;
 	word-break: break-word;
 	// TODO margin and for text
@@ -141,7 +144,7 @@
 }
 
 .image {
-	grid-row: 1;
+	grid-area: Image;
 	margin-bottom: 1rem;
 	max-height: 100%;
 	object-fit: contain;
@@ -154,7 +157,7 @@
 // TODO border on bottom of menu
 
 .text {
-	grid-row: 3;
+	grid-area: Text;
 	white-space: break-spaces;
 	@include m.media('landscape') {
 		@include m.media('height<=HEIGHT_ultratiny') {
@@ -166,8 +169,7 @@
 .display-date {
 	align-self: center;
 	font-size: 0.85rem; //TODO var
-	grid-column: 1;
-	grid-row: 2;
+	grid-area: Date;
 	overflow: hidden;
 	text-align: center;
 	text-transform: uppercase;

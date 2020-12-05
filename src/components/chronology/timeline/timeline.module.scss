@@ -6,7 +6,7 @@
 	color: v.$white;
 	display: flex;
 	flex-direction: row;
-	grid-row: 3;
+	grid-area: Timeline;
 	justify-content: space-around;
 
 	@include m.media('portrait') {

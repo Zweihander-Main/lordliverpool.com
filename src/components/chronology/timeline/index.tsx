@@ -115,8 +115,6 @@ const Timeline: React.FC<TimelineProps> = ({
 		isUserDragging,
 	]);
 
-	console.log(scrollingLatch);
-
 	return (
 		<div
 			className={
