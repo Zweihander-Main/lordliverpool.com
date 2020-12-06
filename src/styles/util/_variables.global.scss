@@ -44,8 +44,12 @@ $timeline-area-grabber-height: $timeline-height-short;
 $timeline-area-grabber-height-shorter: $timeline-height-shorter;
 $timeline-area-grabber-opacity: 0.3;
 $card-height: 70vh;
-$card-portrait-max-height: 80vh; // TODO this should probably be 100%
-$card-portrait-width: 80vw; //TODO wider for tiny width
+$card-portrait-max-height: 100%;
+$card-portrait-animation-height: 50vh;
+$card-portrait-width-phone: 90vw;
+$card-portrait-width-tablet: 85vw;
+$card-portrait-width-desktop: 80vw;
+$card-portrait-width: 75vw;
 $card-width: $card-height/1.3;
 $card-width-shorter: $card-height/1.2;
 $card-margin: 100px;

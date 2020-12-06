@@ -63,7 +63,15 @@
 		max-height: v.$card-portrait-max-height;
 		width: v.$card-portrait-width;
 		will-change: transform, height, margin;
-
+		@include m.media('<=desktop') {
+			width: v.$card-portrait-width-desktop;
+		}
+		@include m.media('<=tablet') {
+			width: v.$card-portrait-width-tablet;
+		}
+		@include m.media('<=phone') {
+			width: v.$card-portrait-width-phone;
+		}
 		// TODO tiny intensity
 	}
 }
@@ -108,7 +116,7 @@
 		}
 	}
 	@include m.media('portrait') {
-		width: 80vw; //TODO var
+		width: 100%;
 	}
 }
 
@@ -250,11 +258,11 @@
 	}
 	50% {
 		margin: 0 auto v.$card-margin/2 auto;
-		max-height: v.$card-portrait-max-height/2;
+		max-height: v.$card-portrait-animation-height;
 	}
 	99.9% {
 		margin: 0 auto v.$card-margin/2 auto;
-		max-height: v.$card-portrait-max-height/2;
+		max-height: v.$card-portrait-animation-height;
 		transform: scaleY(0);
 	}
 	100% {
@@ -275,11 +283,11 @@
 	}
 	50% {
 		margin: 0 auto v.$card-margin/2 auto;
-		max-height: v.$card-portrait-max-height/2;
+		max-height: v.$card-portrait-animation-height;
 	}
 	99.9% {
 		margin: 0 auto v.$card-margin/2 auto;
-		max-height: v.$card-portrait-max-height/2;
+		max-height: v.$card-portrait-animation-height;
 		transform: scaleY(1);
 	}
 	100% {
