@@ -38,7 +38,7 @@ $options-top-padding: 0.2rem;
 
 .inner {
 	background: v.$white;
-	border-radius: v.$border-radius;
+	border-radius: v.$border-radius-normal;
 	box-shadow: 0 0 30px v.$black;
 	left: 50%;
 	max-height: calc(90vh - 6rem);
@@ -209,7 +209,7 @@ $options-top-padding: 0.2rem;
 	align-items: center;
 	background: v.$white;
 	border: 7px solid v.$white;
-	border-radius: v.$border-radius;
+	border-radius: v.$border-radius-normal;
 	display: grid;
 	grid-template-columns: minmax(6rem, max-content) 1fr;
 	margin: 0 0 0.5rem;
@@ -269,7 +269,7 @@ $options-top-padding: 0.2rem;
 	@include m.neumorphic-intensity(2px, 9px, v.$white, 18%);
 	@include m.neumorphic-raised-button(v.$white, 7%);
 
-	border-radius: v.$border-radius/2;
+	border-radius: v.$border-radius-normal/2;
 	color: rgba(v.$black, $radio-label-opacity);
 	cursor: pointer;
 	margin: calc(#{$options-top-padding} + #{$options-border}) 1rem 0 0;

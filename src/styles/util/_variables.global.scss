@@ -28,8 +28,11 @@ $blue-card-bg: #030e15;
 // animation
 $timing-function: cubic-bezier(0.65, 0.05, 0.36, 1); //TODO make sure consistent
 
-// buttons
-$border-radius: 8px; //TODO break out into multiple styles
+// border-radius
+$border-radius-large: 16px;
+$border-radius-normal: 8px;
+$border-radius-small: 4px;
+$border-radius-tiny: 2px;
 
 // chronology
 $filter-menu-height: 60px;
@@ -43,7 +46,7 @@ $timeline-area-grabber-opacity: 0.3;
 $card-height: 70vh;
 $card-portrait-max-height: 80vh; // TODO this should probably be 100%
 $card-portrait-width: 80vw; //TODO wider for tiny width
-$card-width: $card-height/1.4;
+$card-width: $card-height/1.3;
 $card-width-shorter: $card-height/1.2;
 $card-margin: 100px;
 $card-margin-shorter: 75px;
@@ -64,7 +67,6 @@ $card-total-margin-shorter: $filter-menu-height-short + $timeline-height-shorter
 
 // singleposts
 $post-max-width: 51rem;
-$post-border-radius: $border-radius * 2;
 $post-border-shadow-size: 17px;
 $post-border-shadow-spread: 45px;
 $post-border-shadow-intensity: 14%;

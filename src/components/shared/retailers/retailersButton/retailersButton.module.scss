@@ -5,7 +5,7 @@
 	@include m.neumorphic-button(1px, 3px, v.$red, 120%, 2px, v.$black);
 
 	background: v.$red;
-	border-radius: v.$border-radius;
+	border-radius: v.$border-radius-normal;
 	color: v.$white;
 	padding: 0.6rem 1rem;
 	text-decoration: none;

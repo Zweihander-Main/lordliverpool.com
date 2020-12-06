@@ -44,7 +44,7 @@
 	); //TODO consistent with single post
 
 	align-self: center;
-	border-radius: v.$post-border-radius;
+	border-radius: v.$border-radius-large;
 	grid-area: Info;
 	margin: 3rem 2rem 3rem 0;
 	max-width: v.$post-max-width - 2rem;

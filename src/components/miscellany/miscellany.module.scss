@@ -40,7 +40,7 @@ $masonry-margin: 5em;
 	//TODO could this look better and more neumorphic?
 
 	background-color: v.$red;
-	border-radius: v.$border-radius;
+	border-radius: v.$border-radius-normal;
 	overflow: hidden;
 	position: relative;
 	transition: 75ms v.$timing-function;

@@ -13,7 +13,7 @@
 	align-items: center;
 	background: #051926;
 	border-bottom: 1px solid color.adjust(v.$blue-bg, $lightness: 8%);
-	border-radius: 0 0 v.$border-radius * 2 v.$border-radius * 2; //TODO border radius in some other unit or proportional to the size?
+	border-radius: 0 0 v.$border-radius-normal * 2 v.$border-radius-normal * 2; //TODO border radius in some other unit or proportional to the size?
 	color: v.$white;
 	display: flex;
 	flex-direction: row;
@@ -76,7 +76,7 @@
 .filter-menu-link {
 	@include m.header-normal;
 
-	border-radius: v.$border-radius;
+	border-radius: v.$border-radius-normal;
 	cursor: pointer;
 	margin: 0;
 	padding: 0.6rem 2rem;
