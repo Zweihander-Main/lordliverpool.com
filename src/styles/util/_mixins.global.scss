@@ -1,10 +1,12 @@
 @use './variables.global' as v;
 @use './functions.global' as f;
 @use 'sass:color';
+@use 'sass:map';
 
 @import 'node_modules/include-media/dist/include-media';
 $breakpoints: v.$breakpoints;
 
+/* stylelint-disable max-nesting-depth */
 @mixin header-normal {
 	font-weight: normal;
 	letter-spacing: 0;
@@ -150,5 +152,75 @@ $breakpoints: v.$breakpoints;
 
 	&:focus {
 		top: 0;
+	}
+}
+
+@mixin filter-menu-link-small {
+	font-size: 1.05rem; //TODO var
+	padding: 0.5rem 1rem;
+}
+
+// Use 'default' for blank default size
+@mixin card-scalex-keyframe-generate($margin-map, $width-map, $sizes...) {
+	@for $i from 0 to length($sizes) {
+		$size: nth($sizes, $i + 1);
+		$margin: map.get($margin-map, $size);
+		$width: map.get($width-map, $size);
+		$animation-hide-name: 'card-scaleX-to-hide';
+		$animation-show-name: 'card-scaleX-to-show';
+		@if $size != 'default' {
+			$animation-hide-name: 'card-scaleX-to-hide-#{$size}';
+			$animation-show-name: 'card-scaleX-to-show-#{$size}';
+		}
+
+		@keyframes #{$animation-hide-name} {
+			0% {
+				margin: 0 $margin 0 0;
+				transform: scaleX(1);
+				width: $width;
+			}
+			49.9% {
+				margin: 0 $margin 0 0;
+				width: $width;
+			}
+			50% {
+				margin: 0 $margin/2 0 0;
+				width: $width/2;
+			}
+			99.9% {
+				margin: 0 $margin/2 0 0;
+				transform: scaleX(0);
+				width: $width/2;
+			}
+			100% {
+				margin: 0;
+				width: 0;
+			}
+		}
+
+		@keyframes #{$animation-show-name} {
+			0% {
+				margin: 0;
+				transform: scaleX(0);
+				width: 0;
+			}
+			49.9% {
+				margin: 0;
+				width: 0;
+			}
+			50% {
+				margin: 0 $margin/2 0 0;
+				width: $width/2;
+			}
+			99.9% {
+				margin: 0 $margin/2 0 0;
+				transform: scaleX(1);
+				width: $width/2;
+			}
+			100% {
+				margin: 0 $margin 0 0;
+				width: $width;
+			}
+		}
 	}
 }

@@ -2,6 +2,7 @@
 @use '~styles/util/mixins.global' as m;
 @use '~styles/util/functions.global' as f;
 @use 'sass:color';
+@use 'sass:map';
 
 .card {
 	//TODO remove color vars
@@ -54,6 +55,11 @@
 				v.$blue-bg,
 				80%
 			); // TODO consistency with rest of site
+
+			max-height: calc(100vh - #{v.$card-total-margin-ultratiny});
+			width: v.$card-width-ultratiny;
+			margin: 0 v.$card-margin-ultratiny 0 0;
+			animation: card-scaleX-to-show-ultratiny 0ms;
 		}
 	}
 
@@ -81,6 +87,9 @@
 		animation: card-scaleX-to-hide 0ms;
 		@include m.media('height<=HEIGHT_shorter') {
 			animation: card-scaleX-to-hide-shorter 0ms;
+		}
+		@include m.media('height<=HEIGHT_shorter') {
+			animation: card-scaleX-to-hide-ultratiny 0ms;
 		}
 	}
 
@@ -113,6 +122,9 @@
 		@include m.media('height<=HEIGHT_shorter') {
 			border: v.$card-border-shorter solid transparent;
 			width: v.$card-width-shorter;
+		}
+		@include m.media('height<=HEIGHT_ultratiny') {
+			width: v.$card-width-ultratiny;
 		}
 	}
 	@include m.media('portrait') {
@@ -147,6 +159,12 @@
 	.image {
 		margin-bottom: 0;
 	}
+	@include m.media('height<=HEIGHT_tiny') {
+		margin-bottom: 1.2rem; //TODO rem;
+	}
+	@include m.media('height<=HEIGHT_ultratiny') {
+		margin-bottom: 1rem; //TODO rem;
+	}
 }
 
 .header-no-image {
@@ -161,6 +179,12 @@
 	object-position: center 35%;
 	outline: none;
 	width: 100%;
+	@include m.media('height<=HEIGHT_tiny') {
+		margin-bottom: 1.2rem; //TODO rem;
+	}
+	@include m.media('height<=HEIGHT_ultratiny') {
+		margin-bottom: 1rem; //TODO rem;
+	}
 }
 // TODO Zoom
 // TODO fix mixins and ect. for breakpoints
@@ -172,7 +196,8 @@
 	white-space: break-spaces;
 	@include m.media('landscape') {
 		@include m.media('height<=HEIGHT_ultratiny') {
-			font-size: 0.85rem; //TODO rem;
+			font-size: 0.8rem; //TODO rem;
+			margin-bottom: 1rem;
 		}
 	}
 }
@@ -193,58 +218,30 @@
 		@include m.media('height<=HEIGHT_tiny') {
 			font-size: 2.9vh; //TODO rem;
 		}
+		@include m.media('height<=HEIGHT_ultratiny') {
+			width: v.$card-width-ultratiny;
+		}
 	}
 }
 
-@keyframes card-scaleX-to-hide {
-	0% {
-		margin: 0 v.$card-margin 0 0;
-		transform: scaleX(1);
-		width: v.$card-width;
-	}
-	49.9% {
-		margin: 0 v.$card-margin 0 0;
-		width: v.$card-width;
-	}
-	50% {
-		margin: 0 v.$card-margin/2 0 0;
-		width: v.$card-width/2;
-	}
-	99.9% {
-		margin: 0 v.$card-margin/2 0 0;
-		transform: scaleX(0);
-		width: v.$card-width/2;
-	}
-	100% {
-		margin: 0;
-		width: 0;
-	}
-}
+$margins: (
+	'default': v.$card-margin,
+	'shorter': v.$card-margin-shorter,
+	'ultratiny': v.$card-margin-ultratiny,
+);
+$widths: (
+	'default': v.$card-width,
+	'shorter': v.$card-width-shorter,
+	'ultratiny': v.$card-width-ultratiny,
+);
 
-@keyframes card-scaleX-to-show {
-	0% {
-		margin: 0;
-		transform: scaleX(0);
-		width: 0;
-	}
-	49.9% {
-		margin: 0;
-		width: 0;
-	}
-	50% {
-		margin: 0 v.$card-margin/2 0 0;
-		width: v.$card-width/2;
-	}
-	99.9% {
-		margin: 0 v.$card-margin/2 0 0;
-		transform: scaleX(1);
-		width: v.$card-width/2;
-	}
-	100% {
-		margin: 0 v.$card-margin 0 0;
-		width: v.$card-width;
-	}
-}
+@include m.card-scalex-keyframe-generate(
+	$margins,
+	$widths,
+	'default',
+	'shorter',
+	'ultratiny'
+);
 
 @keyframes card-scaleY-to-hide {
 	0% {
@@ -293,55 +290,5 @@
 	100% {
 		margin: 0 auto v.$card-margin auto;
 		max-height: v.$card-portrait-max-height;
-	}
-}
-
-@keyframes card-scaleX-to-hide-shorter {
-	0% {
-		margin: 0 v.$card-margin-shorter 0 0;
-		transform: scaleX(1);
-		width: v.$card-width-shorter;
-	}
-	49.9% {
-		margin: 0 v.$card-margin-shorter 0 0;
-		width: v.$card-width-shorter;
-	}
-	50% {
-		margin: 0 v.$card-margin-shorter/2 0 0;
-		width: v.$card-width-shorter/2;
-	}
-	99.9% {
-		margin: 0 v.$card-margin-shorter/2 0 0;
-		transform: scaleX(0);
-		width: v.$card-width-shorter/2;
-	}
-	100% {
-		margin: 0;
-		width: 0;
-	}
-}
-
-@keyframes card-scaleX-to-show-shorter {
-	0% {
-		margin: 0;
-		transform: scaleX(0);
-		width: 0;
-	}
-	49.9% {
-		margin: 0;
-		width: 0;
-	}
-	50% {
-		margin: 0 v.$card-margin-shorter/2 0 0;
-		width: v.$card-width-shorter/2;
-	}
-	99.9% {
-		margin: 0 v.$card-margin-shorter/2 0 0;
-		transform: scaleX(1);
-		width: v.$card-width-shorter/2;
-	}
-	100% {
-		margin: 0 v.$card-margin-shorter 0 0;
-		width: v.$card-width-shorter;
 	}
 }

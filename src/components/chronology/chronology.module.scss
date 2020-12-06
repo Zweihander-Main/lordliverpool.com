@@ -59,6 +59,9 @@
 		@include m.media('height<=HEIGHT_shorter') {
 			top: v.$card-top-margin-shorter;
 		}
+		@include m.media('height<=HEIGHT_ultratiny') {
+			top: v.$card-top-margin-ultratiny;
+		}
 	}
 
 	@include m.media('portrait') {

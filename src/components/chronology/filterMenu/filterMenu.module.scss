@@ -83,17 +83,12 @@
 	transition: 100ms v.$timing-function; // TODO consistency on button transition
 	z-index: 999;
 
-	@mixin filter-menu-link-small {
-		font-size: 1.05rem; //TODO var
-		padding: 0.5rem 1rem;
-	}
-
 	@include m.media('height<=HEIGHT_short') {
-		@include filter-menu-link-small;
+		@include m.filter-menu-link-small;
 	}
 
 	@include m.media('<=desktop') {
-		@include filter-menu-link-small;
+		@include m.filter-menu-link-small;
 	}
 
 	@include m.media('<=tablet') {

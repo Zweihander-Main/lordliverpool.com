@@ -51,24 +51,31 @@ $card-portrait-width-tablet: 85vw;
 $card-portrait-width-desktop: 80vw;
 $card-portrait-width: 75vw;
 $card-width: $card-height/1.3;
-$card-width-shorter: $card-height/1.2;
+$card-width-shorter: $card-height/1.1;
+$card-width-ultratiny: $card-height/0.9;
 $card-margin: 100px;
 $card-margin-shorter: 75px;
+$card-margin-ultratiny: 60px;
 $card-top-margin: 40px;
 $card-top-margin-short: 30px;
 $card-top-margin-shorter: 20px;
+$card-top-margin-ultratiny: 10px;
 $card-bottom-margin: 25px;
 $card-bottom-margin-short: 20px;
 $card-bottom-margin-shorter: 13px;
+$card-bottom-margin-ultratiny: 10px;
 $card-border: 35px;
-$card-border-shorter: 15px;
+$card-border-shorter: 17px;
 $card-total-margin: $filter-menu-height + $timeline-height + $card-top-margin +
 	$card-bottom-margin;
 $card-total-margin-short: $filter-menu-height-short + $timeline-height-short +
 	$card-top-margin-short + $card-bottom-margin-short;
 $card-total-margin-shorter: $filter-menu-height-short + $timeline-height-shorter +
 	$card-top-margin-shorter + $card-bottom-margin-shorter;
-
+$card-total-margin-shorter: $filter-menu-height-short + $timeline-height-shorter +
+	$card-top-margin-shorter + $card-bottom-margin-shorter;
+$card-total-margin-ultratiny: $filter-menu-height-short +
+	$card-top-margin-ultratiny + $card-bottom-margin-ultratiny;
 // singleposts
 $post-max-width: 51rem;
 $post-border-shadow-size: 17px;
