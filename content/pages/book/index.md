@@ -19,7 +19,7 @@ featuredImage: Britains_Greatest_Prime_Minister.png
 
 ## Reviews
 
-_Coming soon!_
+[Britain's Greatest Prime Minister by Prof Kevin Dowd | The Cobden Centre](https://www.cobdencentre.org/2020/12/britains-greatest-prime-minister/)
 
 ## Related Articles
 
