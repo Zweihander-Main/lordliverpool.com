@@ -21,6 +21,8 @@ featuredImage: Britains_Greatest_Prime_Minister.png
 
 [Britain's Greatest Prime Minister by Prof Kevin Dowd | The Cobden Centre](https://www.cobdencentre.org/2020/12/britains-greatest-prime-minister/)
 
+[Britain’s Greatest Prime Minister: Lord Liverpool by Michael Arnold | Historical Association](https://www.history.org.uk/historian/resource/10008/britains-greatest-prime-minister-lord-liverpool)
+
 ## Related Articles
 
 [Author interview with Martin Hutchinson](https://lutterworthpress.wordpress.com/2020/10/23/author-interview-with-martin-hutchinson/)
