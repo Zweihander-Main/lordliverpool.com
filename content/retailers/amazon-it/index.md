@@ -5,6 +5,8 @@ currency:
     - EUR
 format:
     - Hardback
+    - Softcover
+    - Ebook
 link: https://www.amazon.it/Britains-Greatest-Prime-Minister-Liverpool/dp/0718895630
 flag: IT
 order: 104

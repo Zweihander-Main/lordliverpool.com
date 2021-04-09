@@ -175,7 +175,7 @@ collections:
           - label: Format
             name: format
             widget: select
-            options: ['Paperback', 'Hardback', 'Ebook']
+            options: ['Softcover', 'Hardback', 'Ebook']
             min: 1
             multiple: true
             required: true

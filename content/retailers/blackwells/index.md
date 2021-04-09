@@ -6,6 +6,7 @@ currency:
     - USD
 format:
     - Hardback
+    - Softcover
 link: https://blackwells.co.uk/bookshop/product/Britains-Greatest-Prime-Minister-by-Martin-Hutchinson-author/9780718895631
 order: 2
 ---
