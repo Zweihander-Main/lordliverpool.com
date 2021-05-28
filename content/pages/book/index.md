@@ -77,4 +77,4 @@ Index
 
 [Advance Information Sheet](/docs/Advance_Information_Sheet.pdf)
 
-[Publisher Info](https://www.lutterworth.com/title-info.php/title/britains-greatest-prime-minister/)
+[Publisher Info](https://www.lutterworth.com/product/britains-greatest-prime-minister-lord-liverpool/)
