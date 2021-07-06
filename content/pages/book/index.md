@@ -33,6 +33,8 @@ featuredImage: Britains_Greatest_Prime_Minister.png
 
 [Lord Liverpool and the Return To Gold | The Cobden Centre](https://www.cobdencentre.org/2017/08/lord-liverpool-and-the-return-to-gold/)
 
+[The best books on Regency politics | Shepherd](https://shepherd.com/best-books/regency-politics)
+
 ## Editions
 
 #### Print Hardback
