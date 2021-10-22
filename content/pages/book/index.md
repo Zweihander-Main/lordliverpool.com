@@ -35,6 +35,8 @@ featuredImage: Britains_Greatest_Prime_Minister.png
 
 [The best books on Regency politics | Shepherd](https://shepherd.com/best-books/regency-politics)
 
+[The Economic Policies of Lord Liverpool | Cato Journal](https://www.cato.org/cato-journal/fall-2021/economic-policies-lord-liverpool)
+
 ## Editions
 
 #### Print Hardback
