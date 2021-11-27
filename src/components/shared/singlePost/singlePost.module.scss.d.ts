@@ -18,3 +18,4 @@ export const subtitle: string;
 export const extraHeaderText: string;
 export const postImage: string;
 export const postContent: string;
+export const postMeta: string;

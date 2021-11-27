@@ -1,8 +1,9 @@
 import { Location } from 'history';
-const STATE_KEY_PREFIX = `@@bgpm_appstate|`;
-const BGPM_APP_STATE = `___BGPM_APP_STATE`;
+const STATE_KEY_PREFIX = '@@bgpm_appstate|';
+const BGPM_APP_STATE = '___BGPM_APP_STATE';
 
-const unavailbleMessage = `[BGPM--AppState] Unable to access sessionStorage; sessionStorage is not available.`;
+const unavailbleMessage =
+	'[BGPM--AppState] Unable to access sessionStorage; sessionStorage is not available.';
 
 interface ReadState {
 	position: number | undefined;
