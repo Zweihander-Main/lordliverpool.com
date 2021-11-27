@@ -33,6 +33,10 @@ featuredImage: Britains_Greatest_Prime_Minister.png
 
 [Lord Liverpool and the Return To Gold | The Cobden Centre](https://www.cobdencentre.org/2017/08/lord-liverpool-and-the-return-to-gold/)
 
+[The best books on Regency politics | Shepherd](https://shepherd.com/best-books/regency-politics)
+
+[The Economic Policies of Lord Liverpool | Cato Journal](https://www.cato.org/cato-journal/fall-2021/economic-policies-lord-liverpool)
+
 ## Editions
 
 #### Print Hardback
@@ -77,4 +81,4 @@ Index
 
 [Advance Information Sheet](/docs/Advance_Information_Sheet.pdf)
 
-[Publisher Info](https://www.lutterworth.com/title-info.php/title/britains-greatest-prime-minister/)
+[Publisher Info](https://www.lutterworth.com/product/britains-greatest-prime-minister-lord-liverpool/)

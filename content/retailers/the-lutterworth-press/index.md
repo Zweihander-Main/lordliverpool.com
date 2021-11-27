@@ -7,7 +7,8 @@ currency:
 format:
     - Hardback
     - Softcover
-link: https://www.lutterworth.com/title-info.php/title/britains-greatest-prime-minister/
+    - Ebook
+link: https://www.lutterworth.com/product/britains-greatest-prime-minister-lord-liverpool/
 flag: None
 order: 1
 ---
