@@ -56,10 +56,10 @@
 				80%
 			); // TODO consistency with rest of site
 
+			animation: card-scaleX-to-show-ultratiny 0ms;
+			margin: 0 v.$card-margin-ultratiny 0 0;
 			max-height: calc(100vh - #{v.$card-total-margin-ultratiny});
 			width: v.$card-width-ultratiny;
-			margin: 0 v.$card-margin-ultratiny 0 0;
-			animation: card-scaleX-to-show-ultratiny 0ms;
 		}
 	}
 
@@ -111,9 +111,9 @@
 	box-sizing: border-box;
 	display: grid;
 	grid-area: 1 / 1 / 3 / 2;
+	grid-template-areas: 'Image' 'TextContainer';
 	grid-template-columns: 1fr;
 	grid-template-rows: minmax(0, max-content) minmax(0, min-content); //TODO massacre of tranent and perfect spacing
-	grid-template-areas: 'Image' 'TextContainer';
 	overflow-y: auto;
 	//TODO name grids everywhere
 	// TODO remove image named grid
@@ -137,8 +137,8 @@
 }
 
 .header {
-	text-align: center;
 	outline: none;
+	text-align: center;
 	word-break: break-word;
 
 	// TODO margin and for text
@@ -156,14 +156,14 @@
 	color: v.$white;
 	margin-bottom: 1.38rem; //TODO Var with bottom
 
-	.image {
-		margin-bottom: 0;
-	}
 	@include m.media('height<=HEIGHT_tiny') {
 		margin-bottom: 1.2rem; //TODO rem;
 	}
 	@include m.media('height<=HEIGHT_ultratiny') {
 		margin-bottom: 1rem; //TODO rem;
+	}
+	.image {
+		margin-bottom: 0;
 	}
 }
 
@@ -191,8 +191,8 @@
 // TODO border on bottom of menu
 
 .text {
-	text-align: justify;
 	color: color.adjust(v.$white, $lightness: -7%); //TODO var
+	text-align: justify;
 	white-space: break-spaces;
 	@include m.media('landscape') {
 		@include m.media('height<=HEIGHT_ultratiny') {

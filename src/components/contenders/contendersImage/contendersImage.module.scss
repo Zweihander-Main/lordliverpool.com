@@ -33,8 +33,8 @@ $pic-bg: color.adjust(v.$light-bg, $lightness: -60%, $saturation: -10%);
 	color: v.$white;
 	grid-column: 1;
 	grid-row: 1;
-	text-transform: uppercase;
 	padding: 0 2rem 1.3rem;
+	text-transform: uppercase;
 }
 
 .name {
