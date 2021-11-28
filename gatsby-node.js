@@ -203,7 +203,6 @@ exports.onCreateWebpackConfig = (
 				importLoaders: 2,
 				modules: {
 					exportLocalsConvention: 'camelCaseOnly',
-					localIdentName: '[local]',
 				},
 			}),
 			loaders.postcss({ plugins: postCssPlugins }),

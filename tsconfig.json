@@ -22,7 +22,7 @@
 		"strict": true,
 		"suppressImplicitAnyIndexErrors": true,
 		"target": "es5",
-		"typeRoots": ["./typings", "./node_modules/@types"],
+		"typeRoots": ["./.typings", "./node_modules/@types"],
 		"types": ["jest", "@testing-library/react"],
 		"skipLibCheck": true,
 		"resolveJsonModule": true,
