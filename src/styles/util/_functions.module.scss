@@ -4,7 +4,7 @@
 $base-size: 18px;
 
 @function strip-units($number) {
-	@return $number / ($number * 0 + 1);
+	@return math.div($number, ($number * 0 + 1));
 }
 
 @function convert-to-viewport($original, $return-units: 1vmin) {
@@ -14,7 +14,7 @@ $base-size: 18px;
 		$to-convert: $stripped-original * $base-size;
 	}
 	// Based on development monitor of vmin 1094px
-	@return ($to-convert/10.94px) * $return-units;
+	@return math.div($to-convert, 10.94px) * $return-units;
 }
 
 @function color-difference-adjust($color: #000000, $difference: 0) {
