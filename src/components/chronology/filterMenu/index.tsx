@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './filterMenu.module.scss';
+import * as styles from './filterMenu.module.scss';
 import { MdFilterList } from 'react-icons/md';
 
 type FilterMenuProps = {

@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './contenders.module.scss';
+import * as styles from './contenders.module.scss';
 import { useStaticQuery, graphql } from 'gatsby';
 import ContendersImage from './contendersImage';
 import ContendersItem from './contenderItem';

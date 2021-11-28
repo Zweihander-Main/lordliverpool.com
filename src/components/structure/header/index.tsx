@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
-import styles from './header.module.scss';
+import * as styles from './header.module.scss';
 import NavLink from './navLink';
 import { MdHome } from 'react-icons/md';
 

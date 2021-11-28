@@ -3,7 +3,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import ModalButton from 'components/shared/retailers/retailersButton';
 
-import styles from './hero.module.scss';
+import * as styles from './hero.module.scss';
 
 const Hero: React.FC = () => {
 	const heroImageData = useStaticQuery<GatsbyTypes.HeroImageQuery>(graphql`

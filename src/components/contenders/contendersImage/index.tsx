@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './contendersImage.module.scss';
+import * as styles from './contendersImage.module.scss';
 import Img from 'gatsby-image';
 
 type ContendersImageProps = {

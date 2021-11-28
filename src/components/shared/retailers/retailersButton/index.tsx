@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './retailersButton.module.scss';
+import * as styles from './retailersButton.module.scss';
 import { MdShoppingCart } from 'react-icons/md';
 
 const RetailersButton: React.FC = ({}) => {

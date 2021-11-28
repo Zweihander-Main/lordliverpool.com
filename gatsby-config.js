@@ -13,7 +13,6 @@ module.exports = {
 				allExtensions: true,
 			},
 		},
-		`gatsby-plugin-scss-typescript`,
 		{
 			resolve: `gatsby-plugin-typography`,
 			options: {

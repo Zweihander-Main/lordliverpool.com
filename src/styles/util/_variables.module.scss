@@ -1,4 +1,4 @@
-@use './functions.global' as f;
+@use './functions.module' as f;
 
 // typography related //TODO remove more of these or convert to vw
 $base-size: f.$base-size; // To avoid circular reference

@@ -1,5 +1,5 @@
-@use '~styles/util/variables.global' as v;
-@use '~styles/util/mixins.global' as m;
+@use '~styles/util/variables.module' as v;
+@use '~styles/util/mixins.module' as m;
 @use 'sass:color';
 
 .book-info {

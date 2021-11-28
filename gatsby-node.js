@@ -137,3 +137,108 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 		});
 	}
 };
+
+exports.onCreateWebpackConfig = (
+	{ stage, actions, loaders },
+	{ postCssPlugins, useResolveUrlLoader }
+) => {
+	const { setWebpackConfig } = actions;
+	const isSSR = ['develop-html', 'build-html'].includes(stage);
+
+	const sassLoader = {
+		loader: 'sass-loader',
+		options: {
+			sourceMap: useResolveUrlLoader ? true : undefined,
+		},
+	};
+
+	const typeLoader = {
+		loader: 'dts-css-modules-loader',
+		options: {
+			namedExport: true,
+		},
+	};
+
+	const sassRule = {
+		test: /\.s(a|c)ss$/,
+		use: isSSR
+			? [loaders.null()]
+			: [
+					loaders.miniCssExtract(),
+					loaders.css({
+						importLoaders: 2,
+						modules: false,
+					}),
+					loaders.postcss({ plugins: postCssPlugins }),
+			  ],
+	};
+
+	const sassRuleGlobals = {
+		test: /\.global\.s(a|c)ss$/,
+		use: isSSR
+			? [loaders.null()]
+			: [
+					loaders.miniCssExtract(),
+					loaders.css({
+						importLoaders: 2,
+						modules: {
+							mode: 'global',
+						},
+					}),
+					loaders.postcss({ plugins: postCssPlugins }),
+			  ],
+	};
+
+	const sassRuleModules = {
+		test: /\.module\.s(a|c)ss$/,
+		use: [
+			!isSSR &&
+				loaders.miniCssExtract({
+					modules: {
+						namedExport: true,
+					},
+				}),
+			typeLoader,
+			loaders.css({
+				importLoaders: 2,
+				modules: {
+					exportLocalsConvention: 'camelCaseOnly',
+					localIdentName: '[local]',
+				},
+			}),
+			loaders.postcss({ plugins: postCssPlugins }),
+		].filter(Boolean),
+	};
+
+	if (useResolveUrlLoader && !isSSR) {
+		sassRule.use.push({
+			loader: `resolve-url-loader`,
+			options: useResolveUrlLoader.options
+				? useResolveUrlLoader.options
+				: {},
+		});
+		sassRuleModules.use.push({
+			loader: `resolve-url-loader`,
+			options: useResolveUrlLoader.options
+				? useResolveUrlLoader.options
+				: {},
+		});
+	}
+
+	// add sass loaders
+	sassRule.use.push(sassLoader);
+	sassRuleGlobals.use.push(sassLoader);
+	sassRuleModules.use.push(sassLoader);
+
+	const configRules = [
+		{
+			oneOf: [sassRuleModules, sassRuleGlobals, sassRule],
+		},
+	];
+
+	setWebpackConfig({
+		module: {
+			rules: configRules,
+		},
+	});
+};

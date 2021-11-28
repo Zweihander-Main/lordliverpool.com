@@ -2,7 +2,7 @@ import React from 'react';
 import Header from 'components/structure/header';
 import Footer from 'components/structure/footer';
 import 'styles/base.global.scss';
-import styles from './layout.module.scss';
+import * as styles from './layout.module.scss';
 
 type LayoutProps = {
 	isHome?: boolean;

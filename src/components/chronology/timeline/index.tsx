@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './timeline.module.scss';
+import * as styles from './timeline.module.scss';
 import useTimeline from 'hooks/useTimeline';
 import useGrabber from 'hooks/useGrabber';
 import rafSchd from 'raf-schd';

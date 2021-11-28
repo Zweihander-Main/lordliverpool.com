@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import Img, { FluidObject } from 'gatsby-image';
-import styles from './navLink.module.scss';
+import * as styles from './navLink.module.scss';
 
 type NavLinkProps = {
 	linkTo: string;

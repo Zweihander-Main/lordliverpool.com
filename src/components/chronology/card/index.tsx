@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './card.module.scss';
+import * as styles from './card.module.scss';
 import Img from 'gatsby-image';
 import { Link } from 'gatsby';
 import { AppLocState } from 'types';

@@ -1,5 +1,5 @@
-@use './variables.global' as v;
-@use './functions.global' as f;
+@use './variables.module' as v;
+@use './functions.module' as f;
 @use 'sass:color';
 @use 'sass:map';
 

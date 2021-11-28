@@ -1,6 +1,6 @@
 import React from 'react';
-import styles from './chronology.module.scss';
-import { cardWidth } from 'styles/util/_variables.global.scss';
+import * as styles from './chronology.module.scss';
+import { cardWidth } from 'styles/util/_variables.module.scss';
 import { useStaticQuery, graphql } from 'gatsby';
 import FilterMenu from './filterMenu';
 import Timeline from './timeline';

@@ -1,6 +1,6 @@
 import { Link } from 'gatsby';
 import React from 'react';
-import styles from './contendersItem.module.scss';
+import * as styles from './contendersItem.module.scss';
 import { AppLocState } from 'types';
 
 type ContendersMenuProps = {

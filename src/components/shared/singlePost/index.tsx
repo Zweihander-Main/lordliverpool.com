@@ -1,7 +1,7 @@
 import React from 'react';
 import Img, { FluidObject } from 'gatsby-image';
 import Link from 'gatsby-link';
-import styles from './singlePost.module.scss';
+import * as styles from './singlePost.module.scss';
 import { MdArrowBack, MdArrowForward } from 'react-icons/md';
 import { AppLocState, LocTyping, NextPrevInfo } from 'types';
 import { useLocation } from '@reach/router';

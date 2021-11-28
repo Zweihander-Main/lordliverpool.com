@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './retailersModal.module.scss';
+import * as styles from './retailersModal.module.scss';
 import { useStaticQuery, graphql } from 'gatsby';
 import Img from 'gatsby-image';
 

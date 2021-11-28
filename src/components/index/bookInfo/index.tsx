@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './bookInfo.module.scss';
+import * as styles from './bookInfo.module.scss';
 import Img from 'gatsby-image';
 import { useStaticQuery, graphql } from 'gatsby';
 import Link from 'gatsby-link';
