@@ -107,11 +107,9 @@ const Chronology: React.FC = () => {
 	const cardContainerWrapperRef = React.useRef<HTMLDivElement>(null);
 
 	const calculateScrollDistance = (targetCard: HTMLElement) => {
-		const {
-			innerWidth: viewportWidth,
-			innerHeight: viewportHeight,
-		} = window;
-		const cardAdjustment = viewportHeight * cardWidth;
+		const { innerWidth: viewportWidth, innerHeight: viewportHeight } =
+			window;
+		const cardAdjustment = viewportHeight * parseInt(cardWidth, 10);
 		const toScroll =
 			targetCard.offsetLeft - viewportWidth / 2 + cardAdjustment / 2;
 		return toScroll;
