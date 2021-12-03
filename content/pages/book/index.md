@@ -55,7 +55,10 @@ Released: May 2021<br>
 
 #### Ebook
 
-_Coming soon!_
+ASIN: B08QDVQ9N4<br>
+Formats: ePub, Mobi, Kindle<br>
+Illustrations: b&w<br>
+Released: November, 2020<br>
 
 ## Contents
 
