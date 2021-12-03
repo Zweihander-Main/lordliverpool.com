@@ -1,14 +1,9 @@
 import React from 'react';
 import * as styles from './contendersImage.module.scss';
-import Img from 'gatsby-image';
+import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
 
 type ContendersImageProps = {
-	featuredImage?: GatsbyTypes.Maybe<
-		Pick<
-			GatsbyTypes.ImageSharpFluid,
-			'sizes' | 'base64' | 'aspectRatio' | 'src' | 'srcSet'
-		>
-	>;
+	featuredImage?: IGatsbyImageData;
 	displayDate?: string;
 	title?: string;
 	selectedID?: string;
@@ -20,27 +15,17 @@ const ContendersImage: React.FC<ContendersImageProps> = ({
 	title,
 	selectedID,
 }) => {
-	// Slight perf improvement for unreliable Gatsby-Image cache
-	const imgCache = React.useRef<{ [key: string]: boolean }>({});
-
-	const isInCache = selectedID && imgCache.current[selectedID];
-	if (!isInCache && selectedID) {
-		imgCache.current[selectedID] = true;
-	}
-
 	return (
 		<figure className={styles.pictureContainer}>
 			{featuredImage && (
-				<Img
+				<GatsbyImage
+					alt={title || 'Contender Image'}
+					image={featuredImage}
 					key={selectedID}
 					className={styles.picture}
 					imgStyle={{
 						objectPosition: 'center 25%',
 					}}
-					fluid={featuredImage}
-					durationFadeIn={isInCache ? 0 : 100}
-					fadeIn={isInCache ? false : true}
-					loading={isInCache ? 'eager' : 'lazy'}
 				/>
 			)}
 			<figcaption className={styles.caption}>

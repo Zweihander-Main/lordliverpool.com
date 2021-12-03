@@ -7,27 +7,33 @@ import useScrollAndStateRestore from 'hooks/useScrollAndStateRestore';
 import useLocationState from 'hooks/useLocationState';
 
 const Contenders: React.FC = () => {
-	const blogRollData = useStaticQuery<
-		GatsbyTypes.ContendersQueryQuery
-	>(graphql`
-		query ContendersQuery {
-			allMarkdownRemark(
-				sort: { order: ASC, fields: [frontmatter___date] }
-				filter: { fields: { sourceInstanceName: { eq: "contenders" } } }
-			) {
-				edges {
-					node {
-						id
-						fields {
-							slug
-						}
-						frontmatter {
-							title
-							displayDate
-							featuredImage {
-								childImageSharp {
-									fluid(maxWidth: 800, grayscale: true) {
-										...GatsbyImageSharpFluid
+	const blogRollData =
+		useStaticQuery<GatsbyTypes.ContendersQueryQuery>(graphql`
+			query ContendersQuery {
+				allMarkdownRemark(
+					sort: { order: ASC, fields: [frontmatter___date] }
+					filter: {
+						fields: { sourceInstanceName: { eq: "contenders" } }
+					}
+				) {
+					edges {
+						node {
+							id
+							fields {
+								slug
+							}
+							frontmatter {
+								title
+								displayDate
+								featuredImage {
+									childImageSharp {
+										gatsbyImageData(
+											width: 800
+											transformOptions: {
+												grayscale: true
+											}
+											layout: CONSTRAINED
+										)
 									}
 								}
 							}
@@ -35,8 +41,7 @@ const Contenders: React.FC = () => {
 					}
 				}
 			}
-		}
-	`);
+		`);
 
 	const { edges: contenders } = blogRollData.allMarkdownRemark;
 
@@ -73,15 +78,16 @@ const Contenders: React.FC = () => {
 		}
 	}, [scrolledToContender]);
 
-	const selectedContender = contenders.find((c) => c.node.id === selected)
-		?.node;
+	const selectedContender = contenders.find(
+		(c) => c.node.id === selected
+	)?.node;
 
 	return (
 		<section className={styles.contenders}>
 			<ContendersImage
 				featuredImage={
 					selectedContender?.frontmatter?.featuredImage
-						?.childImageSharp?.fluid
+						?.childImageSharp?.gatsbyImageData
 				}
 				displayDate={selectedContender?.frontmatter?.displayDate}
 				title={selectedContender?.frontmatter?.title}
