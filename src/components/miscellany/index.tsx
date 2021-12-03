@@ -1,7 +1,7 @@
 import React from 'react';
 import * as styles from './miscellany.module.scss';
 import { useStaticQuery, graphql, Link } from 'gatsby';
-import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 
 const Miscellany: React.FC = () => {
 	const blogRollData = useStaticQuery<GatsbyTypes.BlogRollQueryQuery>(graphql`
@@ -21,9 +21,16 @@ const Miscellany: React.FC = () => {
 							subtitle
 							featuredImage {
 								childImageSharp {
-									fluid(maxWidth: 550) {
-										...GatsbyImageSharpFluid
-									}
+									gatsbyImageData(
+										width: 550
+										layout: CONSTRAINED
+										transformOptions: {
+											duotone: {
+												highlight: "#bfaaaa"
+												shadow: "#260101"
+											}
+										}
+									)
 								}
 							}
 						}
@@ -47,13 +54,21 @@ const Miscellany: React.FC = () => {
 						>
 							<article className={styles.item}>
 								{post?.frontmatter?.featuredImage
-									?.childImageSharp?.fluid && (
-									<Img
-										className={styles.itemImage}
-										fluid={
-											post.frontmatter.featuredImage
-												.childImageSharp.fluid
+									?.childImageSharp?.gatsbyImageData && (
+									<GatsbyImage
+										alt={
+											post.frontmatter.title ||
+											'Post Image'
 										}
+										image={
+											post.frontmatter.featuredImage
+												.childImageSharp.gatsbyImageData
+										}
+										objectFit={'cover'}
+										className={styles.itemImage}
+										imgStyle={{
+											objectPosition: 'center 25%',
+										}}
 									/>
 								)}
 								{post?.frontmatter && (

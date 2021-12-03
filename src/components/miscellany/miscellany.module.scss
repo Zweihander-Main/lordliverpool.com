@@ -72,12 +72,10 @@ $masonry-margin: 5em;
 // TODO: font size and text shadow
 
 .item-image {
-	filter: grayscale(100%);
-	opacity: 0.6;
 	position: initial;
+	opacity: 0.7;
 
 	&:hover {
-		filter: grayscale(0%);
 		opacity: 1;
 	}
 }
