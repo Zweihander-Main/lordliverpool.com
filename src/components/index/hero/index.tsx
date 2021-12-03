@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
-import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import ModalButton from 'components/shared/retailers/retailersButton';
 
 import * as styles from './hero.module.scss';
@@ -10,23 +10,22 @@ const Hero: React.FC = () => {
 		query HeroImage {
 			heroImage: file(relativePath: { eq: "liverpoolherobg.png" }) {
 				childImageSharp {
-					fluid(maxWidth: 800) {
-						...GatsbyImageSharpFluid
-					}
+					gatsbyImageData(layout: FULL_WIDTH, quality: 90)
 				}
 			}
 		}
 	`);
 
-	if (!heroImageData.heroImage?.childImageSharp?.fluid) {
+	if (!heroImageData.heroImage?.childImageSharp?.gatsbyImageData) {
 		throw new Error('No file found for liverpoolherobg.png');
 	}
 
 	return (
 		<section className={styles.hero}>
-			<Img
+			<GatsbyImage
+				alt="Britain's Greatest Prime Minister: Lord Liverpool"
+				image={heroImageData.heroImage.childImageSharp.gatsbyImageData}
 				className={styles.heroImage}
-				fluid={heroImageData.heroImage.childImageSharp.fluid}
 				style={{
 					position: 'absolute',
 				}}
