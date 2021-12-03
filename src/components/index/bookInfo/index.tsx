@@ -1,18 +1,16 @@
 import React from 'react';
 import * as styles from './bookInfo.module.scss';
-import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import { useStaticQuery, graphql } from 'gatsby';
 import Link from 'gatsby-link';
 import ModalButton from 'components/shared/retailers/retailersButton';
 
-function BookInfo() {
+const BookInfo: React.FC = () => {
 	const bookInfoData = useStaticQuery<GatsbyTypes.BookInfoQuery>(graphql`
 		query BookInfo {
 			file(relativePath: { eq: "bookcover.png" }) {
 				childImageSharp {
-					fluid(maxWidth: 950) {
-						...GatsbyImageSharpFluid
-					}
+					gatsbyImageData(width: 950, layout: CONSTRAINED)
 				}
 			}
 			markdownRemark(fields: { slug: { eq: "/pages/home__bookInfo" } }) {
@@ -21,15 +19,16 @@ function BookInfo() {
 		}
 	`);
 
-	if (!bookInfoData.file?.childImageSharp?.fluid) {
+	if (!bookInfoData.file?.childImageSharp?.gatsbyImageData) {
 		throw new Error('There is no file match for bookcover.png');
 	}
 
 	return (
 		<section className={styles.bookInfo}>
-			<Img
+			<GatsbyImage
+				alt="Book cover for Britain's Greatest Prime Minister"
+				image={bookInfoData.file.childImageSharp.gatsbyImageData}
 				className={styles.bookDisplay}
-				fluid={bookInfoData.file.childImageSharp.fluid}
 				imgStyle={{
 					width: 'auto',
 					objectFit: 'contain',
@@ -41,6 +40,7 @@ function BookInfo() {
 			<article className={styles.info}>
 				<h1 className={styles.header}>
 					Britain’s Greatest Prime Minister
+					{/* TODO Break out strings */}
 				</h1>
 				<h2 className={styles.subHeader}>Lord Liverpool</h2>
 				<h3 className={styles.authorHeader}>
@@ -64,6 +64,6 @@ function BookInfo() {
 			</article>
 		</section>
 	);
-}
+};
 
 export default BookInfo;
