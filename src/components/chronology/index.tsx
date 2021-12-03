@@ -9,30 +9,62 @@ import useScrollAndStateRestore from 'hooks/useScrollAndStateRestore';
 import useLocationState from 'hooks/useLocationState';
 
 const Chronology: React.FC = () => {
-	const chronologyData = useStaticQuery<
-		GatsbyTypes.ChronologyQueryQuery
-	>(graphql`
-		query ChronologyQuery {
-			noPost: allMarkdownRemark(
-				sort: { order: ASC, fields: [frontmatter___date] }
-				filter: {
-					fields: { sourceInstanceName: { eq: "chronology" } }
-					rawMarkdownBody: { eq: "" }
+	const chronologyData =
+		useStaticQuery<GatsbyTypes.ChronologyQueryQuery>(graphql`
+			query ChronologyQuery {
+				noPost: allMarkdownRemark(
+					sort: { order: ASC, fields: [frontmatter___date] }
+					filter: {
+						fields: { sourceInstanceName: { eq: "chronology" } }
+						rawMarkdownBody: { eq: "" }
+					}
+				) {
+					edges {
+						node {
+							id
+							frontmatter {
+								title
+								date(formatString: "y")
+								displayDate
+								category
+								card
+								featuredImage {
+									childImageSharp {
+										gatsbyImageData(
+											width: 600
+											layout: CONSTRAINED
+										)
+									}
+								}
+							}
+						}
+					}
 				}
-			) {
-				edges {
-					node {
-						id
-						frontmatter {
-							title
-							date(formatString: "y")
-							displayDate
-							category
-							card
-							featuredImage {
-								childImageSharp {
-									fluid(maxWidth: 500) {
-										...GatsbyImageSharpFluid
+				withPost: allMarkdownRemark(
+					sort: { order: ASC, fields: [frontmatter___date] }
+					filter: {
+						fields: { sourceInstanceName: { eq: "chronology" } }
+						rawMarkdownBody: { ne: "" }
+					}
+				) {
+					edges {
+						node {
+							id
+							fields {
+								slug
+							}
+							frontmatter {
+								title
+								date(formatString: "y")
+								displayDate
+								category
+								card
+								featuredImage {
+									childImageSharp {
+										gatsbyImageData(
+											width: 600
+											layout: CONSTRAINED
+										)
 									}
 								}
 							}
@@ -40,38 +72,7 @@ const Chronology: React.FC = () => {
 					}
 				}
 			}
-			withPost: allMarkdownRemark(
-				sort: { order: ASC, fields: [frontmatter___date] }
-				filter: {
-					fields: { sourceInstanceName: { eq: "chronology" } }
-					rawMarkdownBody: { ne: "" }
-				}
-			) {
-				edges {
-					node {
-						id
-						fields {
-							slug
-						}
-						frontmatter {
-							title
-							date(formatString: "y")
-							displayDate
-							category
-							card
-							featuredImage {
-								childImageSharp {
-									fluid(maxWidth: 500) {
-										...GatsbyImageSharpFluid
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		}
-	`);
+		`);
 
 	const cards = React.useRef(
 		(() => {
@@ -109,6 +110,7 @@ const Chronology: React.FC = () => {
 	const calculateScrollDistance = (targetCard: HTMLElement) => {
 		const { innerWidth: viewportWidth, innerHeight: viewportHeight } =
 			window;
+		console.log({ cardWidth });
 		const cardAdjustment = viewportHeight * parseInt(cardWidth, 10);
 		const toScroll =
 			targetCard.offsetLeft - viewportWidth / 2 + cardAdjustment / 2;
@@ -152,11 +154,12 @@ const Chronology: React.FC = () => {
 		};
 	}, []);
 
-	const ticks: Array<string> = (selectedCategory !== categories.current[0]
-		? cards.current.filter(
-				(value) => value?.frontmatter?.category === selectedCategory
-		  )
-		: cards.current
+	const ticks: Array<string> = (
+		selectedCategory !== categories.current[0]
+			? cards.current.filter(
+					(value) => value?.frontmatter?.category === selectedCategory
+			  )
+			: cards.current
 	)
 		.map((card) => card.frontmatter?.date)
 		.filter((year): year is string => typeof year !== 'undefined');
@@ -194,7 +197,7 @@ const Chronology: React.FC = () => {
 									show={show}
 									featuredImage={
 										card?.frontmatter?.featuredImage
-											?.childImageSharp?.fluid
+											?.childImageSharp?.gatsbyImageData
 									}
 									title={card?.frontmatter?.title}
 									isFullArticle={card.hasPost}

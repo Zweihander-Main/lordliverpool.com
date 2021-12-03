@@ -1,18 +1,13 @@
-import React from 'react';
+import React, { forwardRef, memo, useCallback } from 'react';
 import * as styles from './card.module.scss';
-import Img from 'gatsby-image';
+import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
 import { Link } from 'gatsby';
 import { AppLocState } from 'types';
 
 type CardProps = {
 	show: boolean;
 	animate: boolean;
-	featuredImage?: GatsbyTypes.Maybe<
-		Pick<
-			GatsbyTypes.ImageSharpFluid,
-			'sizes' | 'base64' | 'aspectRatio' | 'src' | 'srcSet'
-		>
-	>;
+	featuredImage?: IGatsbyImageData;
 	title?: string;
 	isFullArticle: boolean;
 	slug?: string;
@@ -22,7 +17,7 @@ type CardProps = {
 	cardContainerWrapperRef?: React.RefObject<HTMLElement>;
 };
 
-const Card = React.forwardRef<HTMLElement | null, CardProps>(
+const Card = forwardRef<HTMLElement | null, CardProps>(
 	(
 		{
 			show,
@@ -47,6 +42,21 @@ const Card = React.forwardRef<HTMLElement | null, CardProps>(
 			},
 		};
 
+		const cardImage = useCallback(
+			(image: IGatsbyImageData) => (
+				<GatsbyImage
+					alt={title || 'Image for Card'}
+					image={image}
+					className={styles.image}
+					objectFit={'contain'}
+					imgStyle={{
+						objectPosition: 'center 10%',
+					}}
+				/>
+			),
+			[]
+		);
+
 		return (
 			<article
 				className={`${styles.card} ${animate ? styles.animate : ''} ${
@@ -62,22 +72,10 @@ const Card = React.forwardRef<HTMLElement | null, CardProps>(
 								className={styles.titleLink}
 								state={passingState}
 							>
-								<Img
-									className={styles.image}
-									imgStyle={{
-										objectPosition: 'center 10%',
-									}}
-									fluid={featuredImage}
-								/>
+								{cardImage(featuredImage)}
 							</Link>
 						) : (
-							<Img
-								className={styles.image}
-								imgStyle={{
-									objectPosition: 'center 10%',
-								}}
-								fluid={featuredImage}
-							/>
+							cardImage(featuredImage)
 						))}
 					<div className={styles.textContainer}>
 						{title && (
@@ -112,7 +110,9 @@ const Card = React.forwardRef<HTMLElement | null, CardProps>(
 	}
 );
 
-const memoizedCard = React.memo(Card, (prevProps, nextProps) => {
+Card.displayName = 'Card';
+
+const memoizedCard = memo(Card, (prevProps, nextProps) => {
 	if (
 		prevProps.show !== nextProps.show ||
 		prevProps.animate !== nextProps.animate ||
