@@ -2,7 +2,7 @@ import React from 'react';
 import * as styles from './retailersButton.module.scss';
 import { MdShoppingCart } from 'react-icons/md';
 
-const RetailersButton: React.FC = ({}) => {
+const RetailersButton: React.FC = () => {
 	// Stop the page from jumping. e.preventDefault stops the modal from opening
 	// at all
 	const onButtonClick = () => {

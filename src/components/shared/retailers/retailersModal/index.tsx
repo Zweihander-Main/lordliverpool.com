@@ -303,6 +303,7 @@ const RetailersModal: React.FC = () => {
 								>
 									<a
 										target={'_blank'}
+										rel={'noreferrer'}
 										href={retailer?.frontmatter?.link || ''}
 										className={styles.retailerLink}
 									>
