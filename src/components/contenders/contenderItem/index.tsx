@@ -44,6 +44,8 @@ const ContendersItem = React.forwardRef<
 	);
 });
 
+ContendersItem.displayName = 'ContendersItem';
+
 const memoizedContendersItem = React.memo(
 	ContendersItem,
 	(prevProps, nextProps) => {
