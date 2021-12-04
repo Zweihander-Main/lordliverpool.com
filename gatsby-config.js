@@ -4,6 +4,10 @@ module.exports = {
 		description: `Britain’s Greatest Prime Minister: Lord Liverpool unpicks two centuries of Whig history to redeem Lord Liverpool (1770-1828) from ‘arch-mediocrity’ and establish him as the greatest political leader the country has ever seen.`,
 		author: `Martin Hutchinson`,
 	},
+	flags: {
+		FAST_DEV: true,
+		PARALLEL_SOURCING: true,
+	},
 	plugins: [
 		`gatsby-alias-imports`,
 		{
