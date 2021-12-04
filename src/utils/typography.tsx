@@ -4,7 +4,7 @@ import * as v from 'styles/util/_variables.module.scss';
 const formatFont = (font: string) => {
 	if (!font) return [''];
 	return font
-		.replace(/\"/g, '') //TODO removing the escape didn't break fonts
+		.replace(/"/g, '') //TODO removing the escape didn't break fonts
 		.split(',')
 		.map((font: string) => font.trim());
 };
