@@ -4,25 +4,47 @@ import Layout from 'components/structure/layout';
 import SEO from 'components/structure/seo';
 import SinglePost from 'components/shared/singlePost';
 
+// Workaround for inconsistent generated types
+type AuthorQuery = {
+	readonly markdownRemark: GatsbyTypes.Maybe<
+		Pick<GatsbyTypes.MarkdownRemark, 'html' | 'excerpt'> & {
+			readonly frontmatter: GatsbyTypes.Maybe<
+				Pick<
+					GatsbyTypes.MarkdownRemarkFrontmatter,
+					'title' | 'description'
+				> & {
+					readonly featuredImage: GatsbyTypes.Maybe<{
+						readonly childImageSharp: GatsbyTypes.Maybe<
+							Pick<GatsbyTypes.ImageSharp, 'gatsbyImageData'>
+						>;
+					}>;
+				}
+			>;
+		}
+	>;
+};
+
 const Author: React.FC = () => {
-	const authorData = useStaticQuery<GatsbyTypes.AuthorQuery>(graphql`
-		query Author {
-			markdownRemark(fields: { slug: { eq: "/pages/author" } }) {
-				html
-				id
-				excerpt(pruneLength: 160)
-				frontmatter {
-					title
-					description
-					featuredImage {
-						childImageSharp {
-							gatsbyImageData(width: 550, layout: CONSTRAINED)
+	/* eslint-disable  @typescript-eslint/no-unsafe-assignment */
+	const authorData: AuthorQuery =
+		useStaticQuery<GatsbyTypes.AuthorQuery>(graphql`
+			query Author {
+				markdownRemark(fields: { slug: { eq: "/pages/author" } }) {
+					html
+					excerpt(pruneLength: 160)
+					frontmatter {
+						title
+						description
+						featuredImage {
+							childImageSharp {
+								gatsbyImageData(width: 550, layout: CONSTRAINED)
+							}
 						}
 					}
 				}
 			}
-		}
-	`);
+		`);
+	/* eslint-enable  @typescript-eslint/no-unsafe-assignment */
 
 	const page = authorData.markdownRemark;
 

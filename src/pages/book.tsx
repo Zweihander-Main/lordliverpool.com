@@ -4,12 +4,31 @@ import Layout from 'components/structure/layout';
 import SEO from 'components/structure/seo';
 import SinglePost from 'components/shared/singlePost';
 
+type BookQuery = {
+	readonly markdownRemark: GatsbyTypes.Maybe<
+		Pick<GatsbyTypes.MarkdownRemark, 'html' | 'excerpt'> & {
+			readonly frontmatter: GatsbyTypes.Maybe<
+				Pick<
+					GatsbyTypes.MarkdownRemarkFrontmatter,
+					'title' | 'description'
+				> & {
+					readonly featuredImage: GatsbyTypes.Maybe<{
+						readonly childImageSharp: GatsbyTypes.Maybe<
+							Pick<GatsbyTypes.ImageSharp, 'gatsbyImageData'>
+						>;
+					}>;
+				}
+			>;
+		}
+	>;
+};
+
 const Book: React.FC = () => {
-	const bookData = useStaticQuery<GatsbyTypes.BookQuery>(graphql`
+	/* eslint-disable  @typescript-eslint/no-unsafe-assignment */
+	const bookData: BookQuery = useStaticQuery<GatsbyTypes.BookQuery>(graphql`
 		query Book {
 			markdownRemark(fields: { slug: { eq: "/pages/book" } }) {
 				html
-				id
 				excerpt(pruneLength: 160)
 				frontmatter {
 					title
@@ -23,6 +42,7 @@ const Book: React.FC = () => {
 			}
 		}
 	`);
+	/* eslint-enable  @typescript-eslint/no-unsafe-assignment */
 
 	const page = bookData.markdownRemark;
 
