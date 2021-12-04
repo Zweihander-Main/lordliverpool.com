@@ -9,14 +9,14 @@ const Author: React.FC = () => {
 		query Author {
 			markdownRemark(fields: { slug: { eq: "/pages/author" } }) {
 				html
+				id
+				excerpt(pruneLength: 160)
 				frontmatter {
 					title
 					description
 					featuredImage {
 						childImageSharp {
-							fluid(maxWidth: 550) {
-								...GatsbyImageSharpFluid
-							}
+							gatsbyImageData(width: 550, layout: CONSTRAINED)
 						}
 					}
 				}
@@ -37,7 +37,8 @@ const Author: React.FC = () => {
 
 			<SinglePost
 				headerImage={
-					page?.frontmatter?.featuredImage?.childImageSharp?.fluid
+					page?.frontmatter?.featuredImage?.childImageSharp
+						?.gatsbyImageData
 				}
 				title={page?.frontmatter?.title || ''}
 				content={page?.html || ''}
