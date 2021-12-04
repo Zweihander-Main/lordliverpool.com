@@ -75,9 +75,16 @@
 
 .filter-menu-link {
 	@include m.header-normal;
-
+	appearance: initial;
+	background-color: transparent;
+	border: 0;
 	border-radius: v.$border-radius-normal;
+	color: v.$white;
 	cursor: pointer;
+	display: block;
+	font-family: v.$header-font;
+	font-size: 1.31951rem; //TODO get from typography
+	line-height: 1.1;
 	margin: 0;
 	padding: 0.6rem 2rem;
 	transition: 100ms v.$timing-function; // TODO consistency on button transition

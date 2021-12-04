@@ -3,7 +3,7 @@ import * as styles from './filterMenu.module.scss';
 import { MdFilterList } from 'react-icons/md';
 
 type FilterMenuProps = {
-	categories: React.MutableRefObject<any[]>;
+	categories: React.MutableRefObject<string[]>;
 	setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
 	selectedCategory: string;
 };
@@ -40,7 +40,7 @@ const FilterMenu: React.FC<FilterMenuProps> = ({
 			</label>
 			<div className={styles.filterMenuMobile}>
 				{categories.current.map((category) => (
-					<h3
+					<button
 						key={category}
 						onClick={() => changeSelectedCategory(category)}
 						className={
@@ -50,7 +50,7 @@ const FilterMenu: React.FC<FilterMenuProps> = ({
 						}
 					>
 						{category.charAt(0).toUpperCase() + category.slice(1)}
-					</h3>
+					</button>
 				))}
 			</div>
 		</div>
