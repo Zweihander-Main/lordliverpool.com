@@ -10,6 +10,7 @@ type HeaderProps = {
 	miniMenu?: boolean;
 };
 
+// TODO: Explore staticimage for this or putting it in the CMS
 const Header: React.FC<HeaderProps> = ({
 	isHome = false,
 	darkMenu = false,
@@ -23,18 +24,14 @@ const Header: React.FC<HeaderProps> = ({
 				}
 			) {
 				childImageSharp {
-					fluid(maxWidth: 800) {
-						...GatsbyImageSharpFluid
-					}
+					gatsbyImageData(width: 800, layout: CONSTRAINED)
 				}
 			}
 			contenders: file(
 				relativePath: { eq: "William_Pitt_the_Younger.jpg" }
 			) {
 				childImageSharp {
-					fluid(maxWidth: 800) {
-						...GatsbyImageSharpFluid
-					}
+					gatsbyImageData(width: 800, layout: CONSTRAINED)
 				}
 			}
 			miscellany: file(
@@ -43,41 +40,41 @@ const Header: React.FC<HeaderProps> = ({
 				}
 			) {
 				childImageSharp {
-					fluid(maxWidth: 800) {
-						...GatsbyImageSharpFluid
-					}
+					gatsbyImageData(width: 800, layout: CONSTRAINED)
 				}
 			}
 			author: file(relativePath: { eq: "Martin Hutchinson.jpg" }) {
 				childImageSharp {
-					fluid(maxWidth: 800) {
-						...GatsbyImageSharpFluid
-					}
+					gatsbyImageData(width: 800, layout: CONSTRAINED)
 				}
 			}
 			book: file(relativePath: { eq: "Robert Banks Jenkinson.jpg" }) {
 				childImageSharp {
-					fluid(maxWidth: 800) {
-						...GatsbyImageSharpFluid
-					}
+					gatsbyImageData(width: 800, layout: CONSTRAINED)
 				}
 			}
 		}
 	`);
 
-	const images = Object.keys(imageData);
+	const images = Object.keys(imageData) as [
+		'chronology',
+		'contenders',
+		'miscellany',
+		'author',
+		'book'
+	];
 	images.forEach((imageKey) => {
 		if (
 			!(
 				imageData[imageKey] &&
-				imageData[imageKey]?.childImageSharp?.fluid
+				imageData[imageKey]?.childImageSharp?.gatsbyImageData
 			)
 		) {
 			throw new Error(`${imageKey} menu item background image not found`);
 		}
 	});
 	const imageDataArray = images.map(
-		(imageKey) => imageData[imageKey].childImageSharp.fluid
+		(imageKey) => imageData[imageKey]?.childImageSharp?.gatsbyImageData
 	);
 	const [chronology, contenders, miscellany, author, book] = imageDataArray;
 
@@ -119,34 +116,34 @@ const Header: React.FC<HeaderProps> = ({
 						linkTo={'/chronology'}
 						headerText={'Chronology'}
 						subHeaderText={'The Life and Colleagues'}
-						fluidData={chronology}
+						image={chronology}
 						brightness={90}
 					/>
 					<NavLink
 						linkTo={'/contenders'}
 						headerText={'Contenders'}
 						subHeaderText={'For Greatest Prime Minister'}
-						fluidData={contenders}
+						image={contenders}
 						brightness={80}
 					/>
 					<NavLink
 						linkTo={'/miscellany'}
 						headerText={'Miscellany'}
 						subHeaderText={'On All Things Liverpool'}
-						fluidData={miscellany}
+						image={miscellany}
 					/>
 					<NavLink
 						linkTo={'/author'}
 						headerText={'Author'}
 						subHeaderText={'About Martin Hutchinson'}
-						fluidData={author}
+						image={author}
 						brightness={70}
 					/>
 					<NavLink
 						linkTo={'/book'}
 						headerText={'Book'}
 						subHeaderText={'Reviews and Information'}
-						fluidData={book}
+						image={book}
 					/>
 					{!isHome && (
 						<Link to="/" className={styles.homeButtonLink}>
