@@ -36,16 +36,12 @@ const Timeline: React.FC<TimelineProps> = ({
 	const currentTick = Math.ceil(percentageAlong * ticks.length - 1);
 	const year = ticks[currentTick] || ticks[0] || '1800';
 
-	const {
-		onGrabberMouseDown,
-		onGrabberTouchStart,
-		isUserDragging,
-	} = useGrabber(cardContainerWrapperRef, containerOverViewport);
+	const { onGrabberMouseDown, onGrabberTouchStart, isUserDragging } =
+		useGrabber(cardContainerWrapperRef, containerOverViewport);
 
 	const [rafYearOffset, setRafYearOffset] = React.useState(0);
-	const [rafAreaGrabberLeftEdge, setRafAreaGrabberLeftEdge] = React.useState(
-		0
-	);
+	const [rafAreaGrabberLeftEdge, setRafAreaGrabberLeftEdge] =
+		React.useState(0);
 	const [rafAreaGrabberWidth, setRabAreaGrabberWidth] = React.useState(0);
 	const [rafYear, setRafYear] = React.useState('');
 	const [rafIsUserDragging, setRafIsUserDragging] = React.useState(false);
@@ -131,6 +127,11 @@ const Timeline: React.FC<TimelineProps> = ({
 				}
 				onMouseDown={onGrabberMouseDown}
 				onTouchStart={onGrabberTouchStart}
+				role={'scrollbar'}
+				aria-controls={'chronology-scrolling-container'}
+				aria-valuenow={areaGrabberLeftEdge}
+				aria-valuetext={year}
+				tabIndex={0}
 				style={{
 					transform: `translateX(${rafAreaGrabberLeftEdge}px)`,
 					width: rafAreaGrabberWidth,

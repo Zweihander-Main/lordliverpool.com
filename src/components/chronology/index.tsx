@@ -110,7 +110,7 @@ const Chronology: React.FC = () => {
 	const calculateScrollDistance = (targetCard: HTMLElement) => {
 		const { innerWidth: viewportWidth, innerHeight: viewportHeight } =
 			window;
-		console.log({ cardWidth });
+		console.warn({ cardWidth });
 		const cardAdjustment = viewportHeight * parseInt(cardWidth, 10);
 		const toScroll =
 			targetCard.offsetLeft - viewportWidth / 2 + cardAdjustment / 2;
@@ -177,6 +177,7 @@ const Chronology: React.FC = () => {
 				className={styles.cardContainerWrapper}
 				ref={cardContainerWrapperRef}
 				onScroll={cardContainerWrapperOnScroll}
+				id={'chronology-scrolling-container'}
 			>
 				<div className={styles.cardContainer} ref={cardContainerRef}>
 					<div className={styles.buffer}>&nbsp;</div>
