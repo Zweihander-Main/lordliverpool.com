@@ -1,5 +1,5 @@
 import React from 'react';
-import Img, { FluidObject } from 'gatsby-image';
+import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
 import Link from 'gatsby-link';
 import * as styles from './singlePost.module.scss';
 import { MdArrowBack, MdArrowForward } from 'react-icons/md';
@@ -7,7 +7,7 @@ import { AppLocState, LocTyping, NextPrevInfo } from 'types';
 import { useLocation } from '@reach/router';
 
 type SinglePostProps = {
-	headerImage?: FluidObject;
+	headerImage?: IGatsbyImageData;
 	title: string;
 	subtitle?: string;
 	extraHeaderText?: string;
@@ -101,7 +101,11 @@ const PostHeader: React.FC<SinglePostProps> = ({
 					)}
 				</div>
 				{headerImage && (
-					<Img className={styles.postImage} fluid={headerImage} />
+					<GatsbyImage
+						alt={title}
+						image={headerImage}
+						className={styles.postImage}
+					/>
 				)}
 				<section className={styles.postContent}>
 					<div dangerouslySetInnerHTML={{ __html: content }} />

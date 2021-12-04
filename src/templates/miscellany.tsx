@@ -5,14 +5,13 @@ import SEO from 'components/structure/seo';
 import SinglePost from 'components/shared/singlePost';
 import { TemplatePageContext } from '../types';
 
-const MiscellanyPostTemplate: React.FC<PageProps<
-	GatsbyTypes.BlogPostBySlugQuery,
-	TemplatePageContext
->> = ({ data, pageContext }) => {
+const MiscellanyPostTemplate: React.FC<
+	PageProps<GatsbyTypes.BlogPostBySlugQuery, TemplatePageContext>
+> = ({ data, pageContext }) => {
 	const post = data.markdownRemark;
 	const { next, prev } = pageContext;
 
-	if (!post?.frontmatter?.featuredImage?.childImageSharp?.fluid) {
+	if (!post?.frontmatter?.featuredImage?.childImageSharp?.gatsbyImageData) {
 		throw new Error(
 			`Image for post ${JSON.stringify(
 				post?.frontmatter?.title
@@ -31,7 +30,8 @@ const MiscellanyPostTemplate: React.FC<PageProps<
 
 			<SinglePost
 				headerImage={
-					post.frontmatter.featuredImage.childImageSharp.fluid
+					post.frontmatter.featuredImage.childImageSharp
+						.gatsbyImageData
 				}
 				title={post?.frontmatter?.title || ''}
 				subtitle={post?.frontmatter?.subtitle}
@@ -60,9 +60,11 @@ export const pageQuery = graphql`
 				subtitle
 				featuredImage {
 					childImageSharp {
-						fluid(maxWidth: 540) {
-							...GatsbyImageSharpFluid
-						}
+						gatsbyImageData(
+							width: 540
+							layout: CONSTRAINED
+							quality: 70
+						)
 					}
 				}
 			}

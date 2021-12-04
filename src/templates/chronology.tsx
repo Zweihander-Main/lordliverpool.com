@@ -5,10 +5,9 @@ import SEO from 'components/structure/seo';
 import SinglePost from 'components/shared/singlePost';
 import { TemplatePageContext } from '../types';
 
-const ChronologyPostTemplate: React.FC<PageProps<
-	GatsbyTypes.ChronologyPostBySlugQuery,
-	TemplatePageContext
->> = ({ data, pageContext }) => {
+const ChronologyPostTemplate: React.FC<
+	PageProps<GatsbyTypes.ChronologyPostBySlugQuery, TemplatePageContext>
+> = ({ data, pageContext }) => {
 	const post = data.markdownRemark;
 	const { prev, next } = pageContext;
 
@@ -23,7 +22,8 @@ const ChronologyPostTemplate: React.FC<PageProps<
 
 			<SinglePost
 				headerImage={
-					post?.frontmatter?.featuredImage?.childImageSharp?.fluid
+					post?.frontmatter?.featuredImage?.childImageSharp
+						?.gatsbyImageData
 				}
 				title={post?.frontmatter?.title || ''}
 				content={post?.html || ''}
@@ -59,9 +59,11 @@ export const pageQuery = graphql`
 				description
 				featuredImage {
 					childImageSharp {
-						fluid(maxWidth: 540) {
-							...GatsbyImageSharpFluid
-						}
+						gatsbyImageData(
+							width: 540
+							layout: CONSTRAINED
+							quality: 70
+						)
 					}
 				}
 			}
