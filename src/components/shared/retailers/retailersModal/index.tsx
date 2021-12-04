@@ -218,7 +218,7 @@ const RetailersModal: React.FC = () => {
 									</label>
 								</React.Fragment>
 							))}
-							<span
+							<button
 								className={`${styles.radioLabel} ${
 									styles.unselect
 								} ${
@@ -229,7 +229,7 @@ const RetailersModal: React.FC = () => {
 								onClick={() => clearOptions('format')}
 							>
 								X
-							</span>
+							</button>
 						</div>
 					</div>
 					<div className={styles.menuSelection}>
@@ -256,7 +256,7 @@ const RetailersModal: React.FC = () => {
 									</label>
 								</React.Fragment>
 							))}
-							<span
+							<button
 								className={`${styles.radioLabel} ${
 									styles.unselect
 								} ${
@@ -267,7 +267,7 @@ const RetailersModal: React.FC = () => {
 								onClick={() => clearOptions('currency')}
 							>
 								X
-							</span>
+							</button>
 						</div>
 					</div>
 				</div>
