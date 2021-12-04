@@ -1,90 +1,90 @@
 import React from 'react';
 import * as styles from './retailersModal.module.scss';
 import { useStaticQuery, graphql } from 'gatsby';
-import Img from 'gatsby-image';
+import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
+
+interface IFlagPics {
+	[index: `${string}_pic`]: IGatsbyImageData | undefined;
+}
 
 const RetailersModal: React.FC = () => {
-	const retailersData = useStaticQuery<
-		GatsbyTypes.RetailersInfoQuery
-	>(graphql`
-		query RetailersInfo {
-			allMarkdownRemark(
-				sort: { order: ASC, fields: [frontmatter___order] }
-				filter: { fields: { sourceInstanceName: { eq: "retailers" } } }
-			) {
-				edges {
-					node {
-						id
-						frontmatter {
-							title
-							currency
-							format
-							link
-							flag
-							featuredImage {
-								childImageSharp {
-									fluid(maxWidth: 400) {
-										...GatsbyImageSharpFluid
+	const retailersData =
+		useStaticQuery<GatsbyTypes.RetailersInfoQuery>(graphql`
+			query RetailersInfo {
+				allMarkdownRemark(
+					sort: { order: ASC, fields: [frontmatter___order] }
+					filter: {
+						fields: { sourceInstanceName: { eq: "retailers" } }
+					}
+				) {
+					edges {
+						node {
+							id
+							frontmatter {
+								title
+								currency
+								format
+								link
+								flag
+								featuredImage {
+									childImageSharp {
+										gatsbyImageData(
+											width: 400
+											layout: CONSTRAINED
+										)
 									}
 								}
 							}
 						}
 					}
 				}
-			}
-			UK_pic: file(relativePath: { eq: "uk.png" }) {
-				childImageSharp {
-					fixed(width: 40) {
-						...GatsbyImageSharpFixed
+				UK_pic: file(relativePath: { eq: "uk.png" }) {
+					childImageSharp {
+						gatsbyImageData(width: 40, layout: FIXED)
+					}
+				}
+				USA_pic: file(relativePath: { eq: "usa.png" }) {
+					childImageSharp {
+						gatsbyImageData(width: 40, layout: FIXED)
+					}
+				}
+				JP_pic: file(relativePath: { eq: "japan.png" }) {
+					childImageSharp {
+						gatsbyImageData(width: 40, layout: FIXED)
+					}
+				}
+				ES_pic: file(relativePath: { eq: "spain.png" }) {
+					childImageSharp {
+						gatsbyImageData(width: 40, layout: FIXED)
+					}
+				}
+				FR_pic: file(relativePath: { eq: "france.png" }) {
+					childImageSharp {
+						gatsbyImageData(width: 40, layout: FIXED)
+					}
+				}
+				IT_pic: file(relativePath: { eq: "italy.png" }) {
+					childImageSharp {
+						gatsbyImageData(width: 40, layout: FIXED)
 					}
 				}
 			}
-			USA_pic: file(relativePath: { eq: "usa.png" }) {
-				childImageSharp {
-					fixed(width: 40) {
-						...GatsbyImageSharpFixed
-					}
-				}
-			}
-			JP_pic: file(relativePath: { eq: "japan.png" }) {
-				childImageSharp {
-					fixed(width: 40) {
-						...GatsbyImageSharpFixed
-					}
-				}
-			}
-			ES_pic: file(relativePath: { eq: "spain.png" }) {
-				childImageSharp {
-					fixed(width: 40) {
-						...GatsbyImageSharpFixed
-					}
-				}
-			}
-			FR_pic: file(relativePath: { eq: "france.png" }) {
-				childImageSharp {
-					fixed(width: 40) {
-						...GatsbyImageSharpFixed
-					}
-				}
-			}
-			IT_pic: file(relativePath: { eq: "italy.png" }) {
-				childImageSharp {
-					fixed(width: 40) {
-						...GatsbyImageSharpFixed
-					}
-				}
-			}
-		}
-	`);
+		`);
 
-	const flagPics = React.useRef(
+	const flagPics = React.useRef<IFlagPics>(
 		(() => {
-			const UK_pic = retailersData?.UK_pic?.childImageSharp?.fixed;
-			const USA_pic = retailersData?.USA_pic?.childImageSharp?.fixed;
-			const JP_pic = retailersData?.JP_pic?.childImageSharp?.fixed;
-			const ES_pic = retailersData?.ES_pic?.childImageSharp?.fixed;
-			const FR_pic = retailersData?.FR_pic?.childImageSharp?.fixed;
-			const IT_pic = retailersData?.IT_pic?.childImageSharp?.fixed;
+			const UK_pic =
+				retailersData?.UK_pic?.childImageSharp?.gatsbyImageData;
+			const USA_pic =
+				retailersData?.USA_pic?.childImageSharp?.gatsbyImageData;
+			const JP_pic =
+				retailersData?.JP_pic?.childImageSharp?.gatsbyImageData;
+			const ES_pic =
+				retailersData?.ES_pic?.childImageSharp?.gatsbyImageData;
+			const FR_pic =
+				retailersData?.FR_pic?.childImageSharp?.gatsbyImageData;
+			const IT_pic =
+				retailersData?.IT_pic?.childImageSharp?.gatsbyImageData;
 			const flagObj = {
 				UK_pic,
 				USA_pic,
@@ -275,6 +275,10 @@ const RetailersModal: React.FC = () => {
 					{retailers &&
 						retailers.map(({ node: retailer }) => {
 							const flag = retailer?.frontmatter?.flag;
+							const flagImage =
+								flag && flag !== 'None'
+									? flagPics.current[`${flag}_pic`]
+									: undefined;
 							let shouldDisplay = true;
 							if (
 								selectedCurrency !== null &&
@@ -308,14 +312,20 @@ const RetailersModal: React.FC = () => {
 										className={styles.retailerLink}
 									>
 										{retailer?.frontmatter?.featuredImage
-											?.childImageSharp?.fluid && (
-											<Img
-												fluid={
+											?.childImageSharp
+											?.gatsbyImageData && (
+											<GatsbyImage
+												image={
 													retailer.frontmatter
 														.featuredImage
-														.childImageSharp.fluid
+														.childImageSharp
+														.gatsbyImageData
 												}
-												alt={retailer.frontmatter.title}
+												alt={
+													retailer.frontmatter
+														.title ||
+													'Retailer Image'
+												}
 												className={styles.logo}
 												imgStyle={{
 													margin: 0,
@@ -323,14 +333,12 @@ const RetailersModal: React.FC = () => {
 												}}
 											/>
 										)}
-										{flag && flag !== 'None' && (
-											<Img
-												fixed={
-													flagPics.current[
-														`${flag}_pic`
-													]
-												}
-												alt={`${flag} flag`}
+										{flagImage && (
+											<GatsbyImage
+												image={flagImage}
+												alt={`${
+													flag || 'Image of'
+												} flag`}
 												className={styles.flag}
 												style={{ position: 'absolute' }}
 											/>
