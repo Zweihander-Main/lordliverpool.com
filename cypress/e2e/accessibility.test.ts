@@ -1,6 +1,6 @@
 describe('Accessibility tests', () => {
 	beforeEach(() => {
-		cy.visit('/').injectAxe();
+		cy.visit('/').get('main').injectAxe();
 	});
 	it('Has no detectable accessibility violations on load', () => {
 		cy.checkA11yWithLog();
