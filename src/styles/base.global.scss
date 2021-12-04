@@ -1,8 +1,8 @@
 @use './util/variables.module' as v;
 @use './util/mixins.module' as m;
 
-@import '~fontsource-libre-baskerville/latin.css';
-@import '~fontsource-cardo/latin.css';
+@import '~@fontsource/libre-baskerville/latin.css';
+@import '~@fontsource/cardo/latin.css';
 
 html {
 	background-color: v.$dark-bg;
