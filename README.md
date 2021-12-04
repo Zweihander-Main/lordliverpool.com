@@ -4,18 +4,19 @@
 
 ## Technologies used:
 
--   GatsbyJS
+-   GatsbyJS (v4)
 -   TypeScript
 -   GraphQL + Typegen
 -   SCSS + Modules
--   NetlifyCMS
+-   Jest + Linting Runners
+-   Cypress + Axe
+-   NetlifyCMS + Netlify
 
 ## Dev notes
 
 -   Deployed on Netlify
     -   Netlify experimental cache enabled
     -   Gatsby fingerprinting disabled
--   Move to Gatsby3 coming soon
 
 ## Possible improvements
 
