@@ -1,11 +1,5 @@
 import ScrollPlusStateContext from 'contexts/ScrollPlusStateContext';
-import {
-	useRef,
-	useContext,
-	useLayoutEffect,
-	useEffect,
-	useState,
-} from 'react';
+import { useContext, useLayoutEffect, useEffect, useState } from 'react';
 import { useLocation } from '@reach/router';
 import rafSchd from 'raf-schd';
 

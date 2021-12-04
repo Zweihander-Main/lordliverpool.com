@@ -131,13 +131,14 @@ const Chronology: React.FC = () => {
 		setState: setSelectedCategory,
 		onScroll: cardContainerWrapperOnScroll,
 	} = useScrollAndStateRestore({
-		identifier: `card-container-wrapper`,
+		identifier: 'card-container-wrapper',
 		initialState: initialState.current || 'all',
 		scrollContainer: cardContainerWrapperRef,
 	});
 
 	// Don't animate cards until a bit of time has passed to allow session
 	// storage to be checked
+	// TODO: checking session storage being checked can be done programmtically
 	const [animateCards, setAnimateCards] = React.useState(false);
 
 	React.useEffect(() => {

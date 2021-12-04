@@ -67,7 +67,7 @@ const Contenders: React.FC = () => {
 		setState: setSelected,
 		state: selected,
 	} = useScrollAndStateRestore({
-		identifier: `contenders-menu`,
+		identifier: 'contenders-menu',
 		initialState: initialState.current || contenders[0].node.id || '',
 		scrollContainer: menuRef,
 	});
