@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import rafSchd from 'raf-schd';
 
 const useGrabber = (
@@ -19,13 +19,19 @@ const useGrabber = (
 
 	const scheduledHandleGrabberMove = rafSchd(handleGrabberMove);
 
-	const onGrabberMouseMove = (event: MouseEvent) => {
-		scheduledHandleGrabberMove(event.clientX);
-	};
+	const onGrabberMouseMove = useCallback(
+		(event: MouseEvent) => {
+			scheduledHandleGrabberMove(event.clientX);
+		},
+		[scheduledHandleGrabberMove]
+	);
 
-	const onGrabberTouchMove = (event: TouchEvent) => {
-		scheduledHandleGrabberMove(event.touches[0].clientX);
-	};
+	const onGrabberTouchMove = useCallback(
+		(event: TouchEvent) => {
+			scheduledHandleGrabberMove(event.touches[0].clientX);
+		},
+		[scheduledHandleGrabberMove]
+	);
 
 	const onGrabberEnd = () => {
 		setIsUserDragging(false);
@@ -74,7 +80,12 @@ const useGrabber = (
 			scheduledHandleGrabberMove.cancel();
 			removeListeners();
 		};
-	}, [isUserDragging]);
+	}, [
+		isUserDragging,
+		onGrabberTouchMove,
+		onGrabberMouseMove,
+		scheduledHandleGrabberMove,
+	]);
 
 	return { onGrabberMouseDown, onGrabberTouchStart, isUserDragging };
 };
