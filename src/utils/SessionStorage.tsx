@@ -4,12 +4,21 @@ import { STATE_KEY_PREFIX, BGPM_APP_STATE, DELIM } from './constants';
 const unavailbleMessage =
 	'[BGPM--AppState] Unable to access sessionStorage; sessionStorage is not available.';
 
-interface ReadState {
-	position: number | undefined;
-	state: string | undefined;
-}
+export type ReadState = {
+	position: number;
+	state: string;
+};
 
 export class SessionStorage {
+	private static instance: SessionStorage;
+
+	static getInstance(): SessionStorage {
+		if (!SessionStorage.instance) {
+			SessionStorage.instance = new SessionStorage();
+		}
+		return SessionStorage.instance;
+	}
+
 	read(location: Location, key: string): ReadState | undefined {
 		const stateKey = this.getStateKey(location, key);
 

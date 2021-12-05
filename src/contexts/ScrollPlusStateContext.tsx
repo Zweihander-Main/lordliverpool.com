@@ -11,10 +11,11 @@ type ScrollPlusStateProviderProps = {
 	children: React.ReactNode;
 };
 
-export const ScrollPlusStateProvider: React.FC<ScrollPlusStateProviderProps> = ({
-	children,
-}) => {
-	const _stateStorage = new SessionStorage();
+export const ScrollPlusStateProvider: React.FC<
+	ScrollPlusStateProviderProps
+> = ({ children }) => {
+	const _stateStorage = SessionStorage.getInstance();
+
 	return (
 		<ScrollPlusStateContext.Provider value={_stateStorage}>
 			{children}
