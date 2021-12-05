@@ -1,6 +1,5 @@
 import { Location } from 'history';
-const STATE_KEY_PREFIX = '@@bgpm_appstate|';
-const BGPM_APP_STATE = '___BGPM_APP_STATE';
+import { STATE_KEY_PREFIX, BGPM_APP_STATE, DELIM } from './constants';
 
 const unavailbleMessage =
 	'[BGPM--AppState] Unable to access sessionStorage; sessionStorage is not available.';
@@ -62,9 +61,9 @@ export class SessionStorage {
 
 	getStateKey(location: Location, key: string): string {
 		const locationKey = location.key || location.pathname;
-		const stateKeyBase = `${STATE_KEY_PREFIX}${locationKey}`;
-		return key === null || typeof key === `undefined`
+		const stateKeyBase = `${STATE_KEY_PREFIX}${DELIM}${locationKey}`;
+		return key === null || typeof key === 'undefined'
 			? stateKeyBase
-			: `${stateKeyBase}|${key}`;
+			: `${stateKeyBase}${DELIM}${key}`;
 	}
 }
