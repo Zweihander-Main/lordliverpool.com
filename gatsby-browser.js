@@ -5,9 +5,9 @@
  */
 
 import React from 'react';
-import { wrapRoot } from './gatsby-common';
+import { wrapPage } from './gatsby-common';
 
-export const wrapRootElement = wrapRoot;
+export const wrapPageElement = wrapPage;
 
 /**
  *

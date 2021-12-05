@@ -38,8 +38,8 @@ export class SessionStorage {
 		return SessionStorage.instance;
 	}
 
-	readState(location: WindowLocation, key: string): ReadState | undefined {
-		const stateKey = this.getStateKey(location, key);
+	readState(location: WindowLocation): ReadState | undefined {
+		const stateKey = this.getStateKey(location);
 		const position = this.read(stateKey);
 		if (position && isStoredState(position)) {
 			return position;
@@ -50,20 +50,15 @@ export class SessionStorage {
 		return undefined;
 	}
 
-	saveState(
-		location: WindowLocation,
-		key: string,
-		position: number,
-		state: string
-	): void {
-		const stateKey = this.getStateKey(location, key);
+	saveState(location: WindowLocation, position: number, state: string): void {
+		const stateKey = this.getStateKey(location);
 		const toStoreObject: ReadState = { position, state };
 		this.save(stateKey, toStoreObject);
 	}
 
-	private getStateKey(location: WindowLocation, entryKey: string): string {
+	private getStateKey(location: WindowLocation): string {
 		const locationName = location.key || location.pathname;
-		return `${STATE_KEY_PREFIX}${DELIM}${locationName}${DELIM}${entryKey}`;
+		return `${STATE_KEY_PREFIX}${DELIM}${locationName}${DELIM}`;
 	}
 
 	private read(key: string): unknown | undefined {

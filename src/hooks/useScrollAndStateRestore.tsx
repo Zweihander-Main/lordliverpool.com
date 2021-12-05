@@ -1,6 +1,11 @@
-import ScrollPlusStateContext from 'contexts/ScrollPlusStateContext';
-import { useContext, useLayoutEffect, useEffect, useState } from 'react';
-import { useLocation } from '@reach/router';
+import {
+	useContext,
+	useLayoutEffect,
+	useEffect,
+	useState,
+	useCallback,
+} from 'react';
+import StorageContext from 'contexts/StorageContext';
 import rafSchd from 'raf-schd';
 
 // Adapter from Gatsby's version with additional state handling
@@ -8,7 +13,6 @@ import rafSchd from 'raf-schd';
 
 interface useScrollAndStateRestoreProps {
 	initialState?: string;
-	identifier: string;
 	scrollContainer: React.RefObject<HTMLElement>;
 }
 
@@ -19,25 +23,25 @@ interface ScrollRestorationProps {
 }
 
 const useScrollAndStateRestore = ({
-	identifier,
 	initialState,
 	scrollContainer,
 }: useScrollAndStateRestoreProps): ScrollRestorationProps => {
-	const location = useLocation();
-	const storage = useContext(ScrollPlusStateContext);
+	const storage = useContext(StorageContext);
 	const [state, setState] = useState<string>(initialState || '');
 
-	const scrollToRefPos = (pos: number) => {
-		if (scrollContainer.current) {
-			scrollContainer.current.scrollTop = pos || 0;
-		}
-	};
-
-	const rafScrollToRefPos = rafSchd(scrollToRefPos);
+	const scrollToRefPos = useCallback(
+		(pos: number) => {
+			if (scrollContainer.current) {
+				scrollContainer.current.scrollTop = pos || 0;
+			}
+		},
+		[scrollContainer]
+	);
 
 	useLayoutEffect(() => {
+		const rafScrollToRefPos = rafSchd(scrollToRefPos);
 		if (scrollContainer.current) {
-			const readState = storage.readState(location, identifier);
+			const readState = storage.loadSavedState();
 			if (readState) {
 				const { position: savedPos, state: savedState } = readState;
 				if (savedState) {
@@ -51,22 +55,17 @@ const useScrollAndStateRestore = ({
 		return () => {
 			rafScrollToRefPos.cancel();
 		};
-	}, []);
+	}, [storage, scrollContainer, scrollToRefPos]);
 
-	const save = () => {
+	const save = useCallback(() => {
 		if (scrollContainer.current) {
-			storage.saveState(
-				location,
-				identifier,
-				scrollContainer.current.scrollTop,
-				state
-			);
+			storage.saveState(scrollContainer.current.scrollTop, state);
 		}
-	};
+	}, [scrollContainer, state, storage]);
 
 	useEffect(() => {
 		save();
-	}, [state]);
+	}, [state, save]);
 
 	return {
 		onScroll: save,

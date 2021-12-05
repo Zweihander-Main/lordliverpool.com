@@ -45,7 +45,7 @@ const useLocationState = ({
 				rafScrollItemIntoView(node);
 			}
 		},
-		[scrolledToID]
+		[rafScrollItemIntoView]
 	);
 
 	const restoreScrollStateBasedOnLocationState = () => {
@@ -71,7 +71,8 @@ const useLocationState = ({
 		return () => {
 			rafRestoreScrollStateBasedOnLocationState.cancel();
 		};
-	}, []);
+	}, [rafRestoreScrollStateBasedOnLocationState]);
+
 	return {
 		initialState,
 		itemToScrollToOnLoad,
