@@ -5,12 +5,9 @@
  */
 
 import React from 'react';
+import { wrapRoot } from './gatsby-common';
 
-import AppProvider from './src/contexts/AppContext';
-
-export const wrapRootElement = ({ element }) => (
-	<AppProvider>{element}</AppProvider>
-);
+export const wrapRootElement = wrapRoot;
 
 /**
  *
