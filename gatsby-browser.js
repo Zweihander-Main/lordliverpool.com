@@ -31,3 +31,30 @@ export const shouldUpdateScroll = (props) => {
 	}
 	return true;
 };
+
+export const onClientEntry = () => {
+	if (process.env.NODE_ENV !== 'production') {
+		const whyDidYouRender = require('@welldone-software/why-did-you-render');
+		whyDidYouRender(React, {
+			trackAllPureComponents: true,
+			trackHooks: true,
+			include: [/.*/],
+			exclude: [
+				/^DevOverlay$/,
+				/^ErrorBoundary$/,
+				/^Link$/,
+				/^GatsbyLink$/,
+				/^GatsbyLinkLocationWrapper$/,
+				/^Location$/,
+				/^RouteAnnouncer$/,
+				/^Unknown$/,
+				/^[A-Z]$/,
+				/^Placeholder$/,
+				/^MainImage$/,
+				/^Picture$/,
+				/^StaticQueryStore$/,
+			],
+			collapseGroups: true,
+		});
+	}
+};
