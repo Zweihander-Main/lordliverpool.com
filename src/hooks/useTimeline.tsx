@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 
 const useTimeline = (
@@ -28,55 +28,67 @@ const useTimeline = (
 		return [vOC, cOV, cMV, width];
 	}, [containerWidth, viewportWidth]);
 
-	const calculateAreaGrabberLeftEdge = () => {
+	const calculateAreaGrabberLeftEdge = useCallback(() => {
 		let leftEdge = -(startPos * viewportOverContainer) || 0;
 		if (leftEdge + areaGrabberWidth > viewportWidth) {
 			leftEdge = viewportWidth - areaGrabberWidth;
 		}
 		setAreaGrabberLeftEdge(leftEdge);
-	};
+	}, [areaGrabberWidth, startPos, viewportOverContainer, viewportWidth]);
 
-	const calculatePercentageAlong = () => {
+	const calculatePercentageAlong = useCallback(() => {
 		let percentage = Math.abs(startPos / containerMinusViewport);
 		if (percentage > 1) {
 			percentage = 1;
 		}
 		setPercentageAlong(percentage);
-	};
+	}, [containerMinusViewport, startPos]);
 
 	useEffect(() => {
 		calculateAreaGrabberLeftEdge();
 		calculatePercentageAlong();
-	}, [viewportWidth, containerWidth, startPos]);
+	}, [
+		viewportWidth,
+		containerWidth,
+		startPos,
+		calculateAreaGrabberLeftEdge,
+		calculatePercentageAlong,
+	]);
 
-	const calculateYearOffset = () => {
+	const calculateYearOffset = useCallback(() => {
 		const yearWidth = yearRef.current?.offsetWidth || 0;
 		setYearOffset(percentageAlong * (areaGrabberWidth - yearWidth));
-	};
+	}, [yearRef, percentageAlong, areaGrabberWidth]);
 
 	useEffect(() => {
 		calculateYearOffset();
-	}, [yearRef, percentageAlong]);
+	}, [yearRef, percentageAlong, calculateYearOffset]);
 
-	const setPos = () => {
+	const setPos = useCallback(() => {
 		setStartPos(containerRef.current?.getBoundingClientRect().x || 0);
-	};
+	}, [containerRef]);
 
-	const handleWindowResize = () => {
+	const handleWindowResize = useCallback(() => {
 		setViewportWidth(window.innerWidth);
 		setPos();
-	};
+	}, [setPos]);
 
-	const handleScroll = () => {
+	const handleScroll = useCallback(() => {
 		setPos();
-	};
+	}, [setPos]);
 
-	const containerResizeObserver = new ResizeObserver(([container]) => {
-		containerRef.current &&
-			setContainerWidth(container.contentRect.width || 0);
-	});
+	const containerResizeObserver = useMemo(
+		() =>
+			new ResizeObserver(([container]) => {
+				containerRef.current &&
+					setContainerWidth(container.contentRect.width || 0);
+			}),
+
+		[containerRef]
+	);
 
 	useEffect(() => {
+		const container = containerRef.current;
 		setViewportWidth(window.innerWidth || 0);
 		window.addEventListener('resize', handleWindowResize);
 		containerWrapperRef.current?.addEventListener('scroll', handleScroll);
@@ -84,15 +96,17 @@ const useTimeline = (
 			containerResizeObserver.observe(containerRef.current);
 
 		return () => {
-			containerRef.current &&
-				containerResizeObserver.unobserve(containerRef.current);
+			container && containerResizeObserver.unobserve(container);
 			window.removeEventListener('resize', handleWindowResize);
-			containerWrapperRef.current?.removeEventListener(
-				'scroll',
-				handleScroll
-			);
+			container?.removeEventListener('scroll', handleScroll);
 		};
-	}, [containerRef, containerWrapperRef]);
+	}, [
+		containerRef,
+		containerWrapperRef,
+		containerResizeObserver,
+		handleScroll,
+		handleWindowResize,
+	]);
 
 	return {
 		percentageAlong,
