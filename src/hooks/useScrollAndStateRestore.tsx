@@ -37,7 +37,7 @@ const useScrollAndStateRestore = ({
 
 	useLayoutEffect(() => {
 		if (scrollContainer.current) {
-			const readState = storage.read(location, identifier);
+			const readState = storage.readState(location, identifier);
 			if (readState) {
 				const { position: savedPos, state: savedState } = readState;
 				if (savedState) {
@@ -55,7 +55,7 @@ const useScrollAndStateRestore = ({
 
 	const save = () => {
 		if (scrollContainer.current) {
-			storage.save(
+			storage.saveState(
 				location,
 				identifier,
 				scrollContainer.current.scrollTop,

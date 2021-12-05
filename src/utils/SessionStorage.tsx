@@ -1,14 +1,33 @@
-import { Location } from 'history';
+import { WindowLocation } from '@reach/router';
 import { STATE_KEY_PREFIX, BGPM_APP_STATE, DELIM } from './constants';
-
-const unavailbleMessage =
-	'[BGPM--AppState] Unable to access sessionStorage; sessionStorage is not available.';
 
 export type ReadState = {
 	position: number;
 	state: string;
 };
 
+const appStateInWindow = (): Record<string, unknown> | undefined => {
+	if (window && window[BGPM_APP_STATE]) {
+		const appStateObj: unknown = window[BGPM_APP_STATE];
+		if (typeof appStateObj === 'object' && appStateObj !== null) {
+			return appStateObj as Record<string, unknown>;
+		}
+	}
+	return undefined;
+};
+
+const isStoredState = (parsedState: unknown): parsedState is ReadState => {
+	if (
+		parsedState &&
+		typeof parsedState === 'object' &&
+		parsedState !== null &&
+		Object.prototype.hasOwnProperty.call(parsedState, 'position') &&
+		Object.prototype.hasOwnProperty.call(parsedState, 'state')
+	) {
+		return true;
+	}
+	return false;
+};
 export class SessionStorage {
 	private static instance: SessionStorage;
 
@@ -19,60 +38,75 @@ export class SessionStorage {
 		return SessionStorage.instance;
 	}
 
-	read(location: Location, key: string): ReadState | undefined {
+	readState(location: WindowLocation, key: string): ReadState | undefined {
 		const stateKey = this.getStateKey(location, key);
-
-		try {
-			const value = window.sessionStorage.getItem(stateKey);
-			return value ? JSON.parse(value) : undefined;
-		} catch (e) {
-			if (process.env.NODE_ENV !== `production`) {
-				console.warn(unavailbleMessage);
-			}
-
-			if (
-				window &&
-				window[BGPM_APP_STATE] &&
-				window[BGPM_APP_STATE][stateKey]
-			) {
-				return window[BGPM_APP_STATE][stateKey];
-			}
-
-			return undefined;
+		const position = this.read(stateKey);
+		if (position && isStoredState(position)) {
+			return position;
+		} else {
+			// Stored value is mangled, delete it
+			this.delete(stateKey);
 		}
+		return undefined;
 	}
 
-	save(
-		location: Location,
+	saveState(
+		location: WindowLocation,
 		key: string,
 		position: number,
 		state: string
 	): void {
 		const stateKey = this.getStateKey(location, key);
 		const toStoreObject: ReadState = { position, state };
-		const storedValue = JSON.stringify(toStoreObject);
+		this.save(stateKey, toStoreObject);
+	}
+
+	private getStateKey(location: WindowLocation, entryKey: string): string {
+		const locationName = location.key || location.pathname;
+		return `${STATE_KEY_PREFIX}${DELIM}${locationName}${DELIM}${entryKey}`;
+	}
+
+	private read(key: string): unknown | undefined {
+		try {
+			const value = window.sessionStorage.getItem(key);
+			return value ? JSON.parse(value) : undefined;
+		} catch (e) {
+			const appState = appStateInWindow();
+			if (appState && appState[key]) {
+				return appState[key];
+			}
+			return undefined;
+		}
+	}
+
+	private save(key: string, state: ReadState): void {
+		const storedValue = JSON.stringify(state);
 
 		try {
-			window.sessionStorage.setItem(stateKey, storedValue);
+			window.sessionStorage.setItem(key, storedValue);
 		} catch (e) {
-			if (window && window[BGPM_APP_STATE]) {
-				window[BGPM_APP_STATE][stateKey] = JSON.parse(storedValue);
+			const appState = appStateInWindow();
+			const parsedValue: unknown = JSON.parse(storedValue);
+			if (appState) {
+				appState[key] = parsedValue;
 			} else {
 				window[BGPM_APP_STATE] = {};
-				window[BGPM_APP_STATE][stateKey] = JSON.parse(storedValue);
-			}
-
-			if (process.env.NODE_ENV !== `production`) {
-				console.warn(unavailbleMessage);
+				const newAppState = appStateInWindow();
+				if (newAppState) {
+					newAppState[key] = parsedValue;
+				}
 			}
 		}
 	}
 
-	getStateKey(location: Location, key: string): string {
-		const locationKey = location.key || location.pathname;
-		const stateKeyBase = `${STATE_KEY_PREFIX}${DELIM}${locationKey}`;
-		return key === null || typeof key === 'undefined'
-			? stateKeyBase
-			: `${stateKeyBase}${DELIM}${key}`;
+	private delete(key: string): void {
+		try {
+			window.sessionStorage.removeItem(key);
+		} catch (e) {
+			const appState = appStateInWindow();
+			if (appState && appState[key]) {
+				delete appState[key];
+			}
+		}
 	}
 }
