@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useLocation } from '@reach/router';
 import rafSchd from 'raf-schd';
 import { LocTyping } from 'types';
@@ -20,7 +20,9 @@ const useLocationState = ({
 }: UseLocationStateProps): LocationStateProps => {
 	const location = useLocation() as LocTyping;
 	// undocumented but it works to check for back button
-	const fromBackButton = React.useRef(location?.action !== 'PUSH');
+	// TODO: this no longer works -- listener on history or make your own
+	// TODO storage should be abstracted one layer out -- move the scroll state and restore into context so you can insta-restore
+	const fromBackButton = React.useRef(location?.action === 'POP');
 
 	// If from back button, get data (if any) and send it back
 	// If not, restore scroll state based on location data (if any)
@@ -48,7 +50,7 @@ const useLocationState = ({
 		[rafScrollItemIntoView]
 	);
 
-	const restoreScrollStateBasedOnLocationState = () => {
+	const restoreScrollStateBasedOnLocationState = useCallback(() => {
 		const locScrollToID = location?.state?.id;
 		const locInitialPos = location?.state?.initialPos;
 		if (!fromBackButton.current) {
@@ -60,18 +62,17 @@ const useLocationState = ({
 				setScrolledToID(locScrollToID);
 			}
 		}
-	};
-
-	const rafRestoreScrollStateBasedOnLocationState = rafSchd(
-		restoreScrollStateBasedOnLocationState
-	);
+	}, [scrollContainer, location]);
 
 	React.useEffect(() => {
+		const rafRestoreScrollStateBasedOnLocationState = rafSchd(
+			restoreScrollStateBasedOnLocationState
+		);
 		rafRestoreScrollStateBasedOnLocationState();
 		return () => {
 			rafRestoreScrollStateBasedOnLocationState.cancel();
 		};
-	}, [rafRestoreScrollStateBasedOnLocationState]);
+	}, [restoreScrollStateBasedOnLocationState]);
 
 	return {
 		initialState,
