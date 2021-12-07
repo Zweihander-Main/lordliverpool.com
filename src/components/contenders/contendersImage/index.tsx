@@ -30,7 +30,11 @@ const ContendersImage: React.FC<ContendersImageProps> = ({
 			)}
 			<figcaption className={styles.caption}>
 				{displayDate && <h2 className={styles.dates}>{displayDate}</h2>}
-				{title && <h1 className={styles.name}>{title}</h1>}
+				{title && (
+					<h1 data-testid="caption" className={styles.name}>
+						{title}
+					</h1>
+				)}
 			</figcaption>
 		</figure>
 	);
