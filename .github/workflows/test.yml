@@ -1,0 +1,40 @@
+---
+name: e2e-test
+'on':
+  push:
+    branches:
+      - master
+jobs:
+  cypress-run:
+    runs-on: ubuntu-20.04
+    container:
+      image: cypress/browsers:node16.5.0-chrome94-ff93
+      options: --user 1001 --shm-size=2g
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          browser: chrome
+          start: npm run serve
+          wait-on: 'http://localhost:8000'
+          wait-on-timeout: 360
+
+      - name: Upload E2E run data as artifacts
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: e2e-run-data
+          path: |
+            /home/runner/work/torystories.stream/torystories.stream/cypress/screenshots/*
+            /home/runner/work/torystories.stream/torystories.stream/cypress/videos/*
+          retention-days: 14
+
+      - name: Push changes to netlify if success
+        uses: ad-m/github-push-action@master
+        if: success()
+        with:
+          github_token: ${{ secrets.REPO_GITHUB_TOKEN }}
+          branch: netlify
