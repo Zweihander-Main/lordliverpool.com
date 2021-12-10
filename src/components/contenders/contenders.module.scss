@@ -14,6 +14,8 @@ $image-width: 100vw/3 * 2;
 	box-shadow: 0 0 15px v.$black;
 	padding: 1rem;
 	position: relative;
+	overflow-y: scroll;
+	height: 100vh;
 }
 
 .menu-list {

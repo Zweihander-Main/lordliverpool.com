@@ -1,6 +1,6 @@
 import React from 'react';
 import { StorageProvider } from './StorageContext';
-import { HistoryProvider } from './HistoryContext';
+import { ScrollStateProvider } from './ScrollStateContext';
 
 type AppContextProps = {
 	children: React.ReactNode;
@@ -9,7 +9,7 @@ type AppContextProps = {
 const AppProvider: React.FC<AppContextProps> = ({ children }) => {
 	return (
 		<StorageProvider>
-			<HistoryProvider>{children}</HistoryProvider>
+			<ScrollStateProvider>{children}</ScrollStateProvider>
 		</StorageProvider>
 	);
 };

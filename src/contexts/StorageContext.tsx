@@ -1,16 +1,20 @@
 import React, { createContext } from 'react';
-import { SessionStorage, ReadState } from 'utils/SessionStorage';
+import { SessionStorage, ReadState, ReadId } from 'utils/SessionStorage';
 import { useLocation } from '@reach/router';
 import { LocTyping } from 'types';
 
 type StorageContextProps = {
 	loadSavedState: () => ReadState | undefined;
+	loadSavedId: () => ReadId | undefined;
 	saveState: (position: number, state: string) => void;
+	saveId: (id: string) => void;
 };
 
 const StorageContext = createContext<StorageContextProps>({
 	loadSavedState: () => undefined,
+	loadSavedId: () => undefined,
 	saveState: () => undefined,
+	saveId: () => undefined,
 });
 
 export default StorageContext;
@@ -23,15 +27,25 @@ export const StorageProvider: React.FC = ({ children }) => {
 		return storage.readState(location);
 	};
 
+	const loadSavedId = () => {
+		return storage.readId(location);
+	};
+
 	const saveState = (position: number, state: string) => {
 		storage.saveState(location, position, state);
+	};
+
+	const saveId = (id: string) => {
+		storage.saveId(location, id);
 	};
 
 	return (
 		<StorageContext.Provider
 			value={{
 				loadSavedState,
+				loadSavedId,
 				saveState,
+				saveId,
 			}}
 		>
 			{children}

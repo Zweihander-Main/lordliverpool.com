@@ -1,12 +1,17 @@
-import React from 'react';
+import React, {
+	useCallback,
+	useContext,
+	useEffect,
+	useLayoutEffect,
+	useRef,
+} from 'react';
 import * as styles from './chronology.module.scss';
 import { cardWidth } from 'styles/util/_variables.module.scss';
 import { useStaticQuery, graphql } from 'gatsby';
 import FilterMenu from './filterMenu';
 import Timeline from './timeline';
 import Card from './card';
-import useScrollAndStateRestore from 'hooks/useScrollAndStateRestore';
-import useLocationState from 'hooks/useLocationState';
+import ScrollStateContext from 'contexts/ScrollStateContext';
 
 const Chronology: React.FC = () => {
 	const chronologyData =
@@ -105,36 +110,43 @@ const Chronology: React.FC = () => {
 	);
 
 	const cardContainerRef = React.useRef<HTMLDivElement>(null);
-	const cardContainerWrapperRef = React.useRef<HTMLDivElement>(null);
-
-	const calculateScrollDistance = (targetCard: HTMLElement) => {
-		const { innerWidth: viewportWidth, innerHeight: viewportHeight } =
-			window;
-		console.warn({ cardWidth });
-		const cardAdjustment = viewportHeight * parseInt(cardWidth, 10);
-		const toScroll =
-			targetCard.offsetLeft - viewportWidth / 2 + cardAdjustment / 2;
-		return toScroll;
-	};
 
 	const {
-		initialState,
-		itemToScrollToOnLoad: cardToScrollToOnLoad,
-		scrolledToID: scrolledToCardID,
-	} = useLocationState({
-		scrollContainer: cardContainerWrapperRef,
-		calculateScrollDistance,
-	});
-
-	const {
-		state: selectedCategory,
-		setState: setSelectedCategory,
+		scrollContextState: selectedCategory,
+		setScrollContextState: setSelectedCategory,
+		idToScrollTo: cardIdToScrollTo,
+		posToScrollTo: cardPosToScrollTo,
 		onScroll: cardContainerWrapperOnScroll,
-	} = useScrollAndStateRestore({
-		identifier: 'card-container-wrapper',
-		initialState: initialState.current || 'all',
-		scrollContainer: cardContainerWrapperRef,
-	});
+		scrollContainerRef: cardContainerWrapperRef,
+	} = useContext(ScrollStateContext);
+
+	// attached to card as ref
+	const scrollThisCardWhenSetAsRef = useCallback(
+		(targetCard: HTMLElement) => {
+			if (cardContainerWrapperRef.current && targetCard) {
+				const {
+					innerWidth: viewportWidth,
+					innerHeight: viewportHeight,
+				} = window;
+				const cardAdjustment = viewportHeight * parseInt(cardWidth, 10);
+				const distanceToScroll =
+					targetCard.offsetLeft -
+					viewportWidth / 2 +
+					cardAdjustment / 2;
+				cardContainerWrapperRef.current.scrollTop = distanceToScroll;
+			}
+		},
+		[cardContainerWrapperRef]
+	);
+
+	// pos scroll
+	useLayoutEffect(() => {
+		if (cardPosToScrollTo && cardContainerWrapperRef.current) {
+			cardContainerWrapperRef.current.scrollTop = cardPosToScrollTo;
+		}
+	}, [cardPosToScrollTo, cardContainerWrapperRef]);
+
+	// TODO bug where the year of the grabber is off when going back
 
 	// Don't animate cards until a bit of time has passed to allow session
 	// storage to be checked
@@ -191,8 +203,8 @@ const Chronology: React.FC = () => {
 							return (
 								<Card
 									ref={
-										card.id === scrolledToCardID
-											? cardToScrollToOnLoad
+										card.id === cardIdToScrollTo
+											? scrollThisCardWhenSetAsRef
 											: null
 									}
 									key={card.id}

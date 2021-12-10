@@ -6,7 +6,6 @@ import { AppLocState } from 'types';
 type ContendersMenuProps = {
 	id: string;
 	isSelected: boolean;
-	selected: string;
 	title?: string;
 	setSelected: React.Dispatch<React.SetStateAction<string>>;
 	slug: string;
@@ -16,11 +15,8 @@ type ContendersMenuProps = {
 const ContendersItem = React.forwardRef<
 	HTMLLIElement | null,
 	ContendersMenuProps
->(({ id, isSelected, selected, title, setSelected, slug, menuRef }, ref) => {
+>(({ id, isSelected, title, setSelected, slug, menuRef }, ref) => {
 	const passingState: AppLocState = {
-		get upperState() {
-			return selected;
-		},
 		get initialPos() {
 			return menuRef?.current?.scrollTop;
 		},

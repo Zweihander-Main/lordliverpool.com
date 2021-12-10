@@ -6,7 +6,7 @@ import Contenders from 'components/contenders';
 
 const ContendersPage: React.FC = () => (
 	<Layout showFooter={false}>
-		<SEO title="Contenders" />
+		<SEO title="Contenders" app={true} />
 		<Contenders />
 	</Layout>
 );

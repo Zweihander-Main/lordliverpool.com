@@ -54,7 +54,7 @@ const Card = forwardRef<HTMLElement | null, CardProps>(
 					}}
 				/>
 			),
-			[]
+			[title]
 		);
 
 		return (

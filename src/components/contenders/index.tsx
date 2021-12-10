@@ -1,10 +1,15 @@
-import React from 'react';
+import React, {
+	useCallback,
+	useContext,
+	useEffect,
+	useLayoutEffect,
+	useState,
+} from 'react';
 import * as styles from './contenders.module.scss';
 import { useStaticQuery, graphql } from 'gatsby';
 import ContendersImage from './contendersImage';
 import ContendersItem from './contenderItem';
-import useScrollAndStateRestore from 'hooks/useScrollAndStateRestore';
-import useLocationState from 'hooks/useLocationState';
+import ScrollStateContext from 'contexts/ScrollStateContext';
 
 const Contenders: React.FC = () => {
 	const blogRollData =
@@ -45,55 +50,65 @@ const Contenders: React.FC = () => {
 
 	const { edges: contenders } = blogRollData.allMarkdownRemark;
 
-	const menuRef = React.useRef<HTMLDivElement>(null);
-
-	const calculateScrollDistance = (targetContender: HTMLElement) => {
-		const { innerHeight: viewportHeight } = window;
-		const toScroll = targetContender.offsetTop - viewportHeight / 2;
-		return toScroll;
-	};
-
 	const {
-		initialState,
-		itemToScrollToOnLoad: contenderToScrollToOnLoad,
-		scrolledToID: scrolledToContender,
-	} = useLocationState({
-		scrollContainer: menuRef,
-		calculateScrollDistance,
-	});
+		idToScrollTo: contenderIdToScrollTo,
+		scrollContainerRef: menuRef,
+		posToScrollTo: contenderPosToScrollTo,
+		onScroll,
+		saveId,
+	} = useContext(ScrollStateContext);
 
-	const {
-		onScroll: onMenuScroll,
-		setState: setSelected,
-		state: selected,
-	} = useScrollAndStateRestore({
-		identifier: 'contenders-menu',
-		initialState: initialState.current || contenders[0].node.id || '',
-		scrollContainer: menuRef,
-	});
+	const [selectedContenderId, setSelectedContenderId] = useState<string>(
+		contenders[0].node.id || ''
+	);
 
-	React.useEffect(() => {
-		if (scrolledToContender) {
-			setSelected(scrolledToContender);
+	const scrollToThisContenderWhenSetAsRef = useCallback(
+		(targetContender: HTMLLIElement) => {
+			console.log('scroll: ', { targetContender });
+			if (menuRef.current && targetContender) {
+				const { innerHeight: viewportHeight } = window;
+				const distanceToScroll =
+					targetContender.offsetTop - viewportHeight / 2;
+				menuRef.current.scrollTop = distanceToScroll;
+			}
+		},
+		[menuRef]
+	);
+
+	// id scroll
+	useLayoutEffect(() => {
+		if (contenderIdToScrollTo) {
+			setSelectedContenderId(contenderIdToScrollTo);
 		}
-	}, [scrolledToContender]);
+	}, [contenderIdToScrollTo, setSelectedContenderId]);
 
-	const selectedContender = contenders.find(
-		(c) => c.node.id === selected
+	// pos scroll
+	useLayoutEffect(() => {
+		if (contenderPosToScrollTo && menuRef.current) {
+			menuRef.current.scrollTop = contenderPosToScrollTo;
+		}
+	}, [contenderPosToScrollTo, menuRef]);
+
+	useEffect(() => {
+		saveId(selectedContenderId);
+	}, [selectedContenderId, saveId]);
+
+	const selectedContenderNode = contenders.find(
+		(c) => c.node.id === selectedContenderId
 	)?.node;
 
 	return (
 		<section className={styles.contenders}>
 			<ContendersImage
 				featuredImage={
-					selectedContender?.frontmatter?.featuredImage
+					selectedContenderNode?.frontmatter?.featuredImage
 						?.childImageSharp?.gatsbyImageData
 				}
-				displayDate={selectedContender?.frontmatter?.displayDate}
-				title={selectedContender?.frontmatter?.title}
-				selectedID={selectedContender?.id}
+				displayDate={selectedContenderNode?.frontmatter?.displayDate}
+				title={selectedContenderNode?.frontmatter?.title}
+				selectedID={selectedContenderNode?.id}
 			/>
-			<div className={styles.menu} ref={menuRef} onScroll={onMenuScroll}>
+			<div className={styles.menu} ref={menuRef} onScroll={onScroll}>
 				<h1>Contenders for Greatest</h1>
 				<ul className={styles.menuList}>
 					{contenders &&
@@ -101,18 +116,19 @@ const Contenders: React.FC = () => {
 							return contender?.fields?.slug ? (
 								<ContendersItem
 									id={contender.id}
-									isSelected={contender.id === selected}
-									setSelected={setSelected}
+									isSelected={
+										contender.id === selectedContenderId
+									}
+									setSelected={setSelectedContenderId}
 									slug={contender?.fields?.slug}
 									title={contender?.frontmatter?.title}
 									key={contender.id}
 									ref={
-										contender.id === scrolledToContender
-											? contenderToScrollToOnLoad
+										contender.id === contenderIdToScrollTo
+											? scrollToThisContenderWhenSetAsRef
 											: null
 									}
 									menuRef={menuRef}
-									selected={selected}
 								/>
 							) : null;
 						})}
