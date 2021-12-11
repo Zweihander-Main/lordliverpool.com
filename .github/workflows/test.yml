@@ -28,8 +28,8 @@ jobs:
         with:
           name: e2e-run-data
           path: |
-            /home/runner/work/torystories.stream/torystories.stream/cypress/screenshots/*
-            /home/runner/work/torystories.stream/torystories.stream/cypress/videos/*
+            /home/runner/work/lordliverpool.com/lordliverpool.com/cypress/screenshots/*
+            /home/runner/work/lordliverpool.com/lordliverpool.com/cypress/videos/*
           retention-days: 14
 
       - name: Push changes to netlify if success
