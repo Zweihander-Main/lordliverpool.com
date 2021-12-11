@@ -125,7 +125,7 @@ const Chronology: React.FC = () => {
 	} = useContext(ScrollLocContext);
 	const getScrollLocRef = useRef(getScrollLocCallback);
 
-	const { getLastNavigationFromBackButton } = useContext(HistoryContext);
+	const { isLastNavFromHistBack } = useContext(HistoryContext);
 
 	const [cardIdToScrollTo, setCardIdToScrollTo] = useState<string | null>();
 	const [scrollScrollingContainerTo, setScrollScrollingContainerTo] =
@@ -133,7 +133,7 @@ const Chronology: React.FC = () => {
 
 	useLayoutEffect(() => {
 		const { id, pos } = getScrollLocRef.current();
-		const fromBackButton = getLastNavigationFromBackButton();
+		const fromBackButton = isLastNavFromHistBack();
 
 		if (fromBackButton && pos) {
 			// if from back button, try and restore exactly
@@ -156,7 +156,7 @@ const Chronology: React.FC = () => {
 				setAnimateCards(true);
 			}
 		}
-	}, [getLastNavigationFromBackButton, setSelectedCategory, loadStorage]);
+	}, [isLastNavFromHistBack, setSelectedCategory, loadStorage]);
 
 	useLayoutEffect(() => {
 		if (scrollScrollingContainerTo && scrollingContainerRef.current) {

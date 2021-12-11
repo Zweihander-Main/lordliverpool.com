@@ -66,7 +66,7 @@ const Contenders: React.FC = () => {
 	} = useContext(ScrollLocContext);
 	const getScrollLocRef = useRef(getScrollLocCallback);
 
-	const { getLastNavigationFromBackButton } = useContext(HistoryContext);
+	const { isLastNavFromHistBack } = useContext(HistoryContext);
 
 	const [contenderIdToScrollTo, setContenderIdToScrollTo] = useState<
 		string | null
@@ -76,7 +76,7 @@ const Contenders: React.FC = () => {
 
 	useLayoutEffect(() => {
 		const { id, pos } = getScrollLocRef.current();
-		const fromBackButton = getLastNavigationFromBackButton();
+		const fromBackButton = isLastNavFromHistBack();
 
 		if (fromBackButton && pos) {
 			// if from back button, try and restore exactly
@@ -106,7 +106,7 @@ const Contenders: React.FC = () => {
 				setContenderIdToScrollTo(sId);
 			}
 		}
-	}, [getLastNavigationFromBackButton, loadStorage]);
+	}, [isLastNavFromHistBack, loadStorage]);
 
 	useLayoutEffect(() => {
 		if (scrollScrollingContainerTo && scrollingMenuRef.current) {

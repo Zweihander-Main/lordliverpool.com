@@ -1,11 +1,11 @@
 import React, { createContext, useRef, useEffect, useCallback } from 'react';
 
 type HistoryContextProps = {
-	getLastNavigationFromBackButton(this: void): boolean;
+	isLastNavFromHistBack(this: void): boolean;
 };
 
 const HistoryContext = createContext<HistoryContextProps>({
-	getLastNavigationFromBackButton: () => false,
+	isLastNavFromHistBack: () => false,
 });
 
 export default HistoryContext;
@@ -28,7 +28,7 @@ export const HistoryProvider: React.FC = ({ children }) => {
 		};
 	}, [historyListener]);
 
-	const getLastNavigationFromBackButton = useCallback(() => {
+	const isLastNavFromHistBack = useCallback(() => {
 		const returnValue = fromBackButton.current;
 		resetBackButton();
 		return returnValue;
@@ -37,7 +37,7 @@ export const HistoryProvider: React.FC = ({ children }) => {
 	return (
 		<HistoryContext.Provider
 			value={{
-				getLastNavigationFromBackButton,
+				isLastNavFromHistBack,
 			}}
 		>
 			{children}
