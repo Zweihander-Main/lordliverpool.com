@@ -56,12 +56,13 @@ const Contenders: React.FC = () => {
 		contenders[0].node.id || ''
 	);
 
-	const menuRef = useRef<HTMLDivElement>(null);
+	const scrollingMenuRef = useRef<HTMLDivElement>(null);
 
 	const {
 		setPos,
 		setId,
 		getScrollLoc: getScrollLocCallback,
+		loadStorage,
 	} = useContext(ScrollLocContext);
 	const getScrollLocRef = useRef(getScrollLocCallback);
 
@@ -70,19 +71,48 @@ const Contenders: React.FC = () => {
 	const [contenderIdToScrollTo, setContenderIdToScrollTo] = useState<
 		string | null
 	>();
+	const [scrollScrollingContainerTo, setScrollScrollingContainerTo] =
+		useState<number>();
 
 	useLayoutEffect(() => {
 		const { id, pos } = getScrollLocRef.current();
 		const fromBackButton = getLastNavigationFromBackButton();
 
-		if (fromBackButton && pos && menuRef.current) {
-			menuRef.current.scrollTop = pos;
-		}
-		if (id) {
+		if (fromBackButton && pos) {
+			// if from back button, try and restore exactly
+			setScrollScrollingContainerTo(pos);
+			if (id) {
+				setSelectedContenderId(id);
+			}
+		} else if (id) {
+			// else if id present, go to that
 			setSelectedContenderId(id);
 			setContenderIdToScrollTo(id);
+		} else if (pos) {
+			// else if pos present, restore just that
+			setScrollScrollingContainerTo(pos);
+		} else {
+			// page possibly reloaded, try asking storage
+			const { pos: sPos, id: sId } = loadStorage();
+			if (sPos) {
+				// if pos available, try and restore exactly
+				setScrollScrollingContainerTo(sPos);
+				if (sId) {
+					setSelectedContenderId(sId);
+				}
+			} else if (sId) {
+				// otherwise, go to id if present
+				setSelectedContenderId(sId);
+				setContenderIdToScrollTo(sId);
+			}
 		}
-	}, [getLastNavigationFromBackButton]);
+	}, [getLastNavigationFromBackButton, loadStorage]);
+
+	useLayoutEffect(() => {
+		if (scrollScrollingContainerTo && scrollingMenuRef.current) {
+			scrollingMenuRef.current.scrollTop = scrollScrollingContainerTo;
+		}
+	}, [scrollScrollingContainerTo]);
 
 	const menuOnScroll: React.UIEventHandler<HTMLElement> = useCallback(
 		(e) => {
@@ -96,17 +126,17 @@ const Contenders: React.FC = () => {
 
 	const scrollToThisContenderWhenSetAsRef = useCallback(
 		(targetContender: HTMLLIElement) => {
-			if (menuRef.current && targetContender) {
+			if (scrollingMenuRef.current && targetContender) {
 				const { innerHeight: viewportHeight } = window;
 				const { offsetHeight: targetHeight } = targetContender;
 				const newScrollTop =
 					targetContender.offsetTop -
 					viewportHeight / 2 +
 					targetHeight / 2;
-				menuRef.current.scrollTop = newScrollTop;
+				setScrollScrollingContainerTo(newScrollTop);
 			}
 		},
-		[menuRef]
+		[scrollingMenuRef]
 	);
 
 	useEffect(() => {
@@ -128,7 +158,11 @@ const Contenders: React.FC = () => {
 				title={selectedContenderNode?.frontmatter?.title}
 				selectedID={selectedContenderNode?.id}
 			/>
-			<div className={styles.menu} ref={menuRef} onScroll={menuOnScroll}>
+			<div
+				className={styles.menu}
+				ref={scrollingMenuRef}
+				onScroll={menuOnScroll}
+			>
 				<h1>Contenders for Greatest</h1>
 				<ul className={styles.menuList}>
 					{contenders &&

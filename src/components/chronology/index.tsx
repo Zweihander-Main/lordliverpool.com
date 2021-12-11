@@ -1,6 +1,7 @@
 import React, {
 	useCallback,
 	useContext,
+	useEffect,
 	useLayoutEffect,
 	useRef,
 	useState,
@@ -109,34 +110,61 @@ const Chronology: React.FC = () => {
 		})()
 	);
 
+	// Don't animate cards until all data loaded
+	const [animateCards, setAnimateCards] = React.useState(false);
+
 	const cardContainerRef = React.useRef<HTMLDivElement>(null);
-	const cardContainerWrapperRef = useRef<HTMLDivElement>(null);
+	const scrollingContainerRef = useRef<HTMLDivElement>(null);
 
 	const {
 		contextState: selectedCategory,
 		setContextState: setSelectedCategory,
 		getScrollLoc: getScrollLocCallback,
 		setPos,
+		loadStorage,
 	} = useContext(ScrollLocContext);
 	const getScrollLocRef = useRef(getScrollLocCallback);
 
 	const { getLastNavigationFromBackButton } = useContext(HistoryContext);
 
 	const [cardIdToScrollTo, setCardIdToScrollTo] = useState<string | null>();
+	const [scrollScrollingContainerTo, setScrollScrollingContainerTo] =
+		useState<number>();
 
 	useLayoutEffect(() => {
 		const { id, pos } = getScrollLocRef.current();
 		const fromBackButton = getLastNavigationFromBackButton();
 
-		if (fromBackButton && pos && cardContainerWrapperRef.current) {
-			cardContainerWrapperRef.current.scrollTop = pos;
+		if (fromBackButton && pos) {
+			// if from back button, try and restore exactly
+			setScrollScrollingContainerTo(pos);
 		} else if (id) {
+			// else if id present, prioritize that
 			setSelectedCategory('all');
 			setCardIdToScrollTo(id);
-		} else if (pos && cardContainerWrapperRef.current) {
-			cardContainerWrapperRef.current.scrollTop = pos;
+		} else if (pos) {
+			// else if only pos present, use that
+			setScrollScrollingContainerTo(pos);
+		} else {
+			// page possibly reloaded, try asking storage
+			const { pos: sPos } = loadStorage();
+			if (sPos) {
+				// if pos available, try and restore exactly
+				setScrollScrollingContainerTo(sPos);
+			} else {
+				// if not, no data available, cards can animate
+				setAnimateCards(true);
+			}
 		}
-	}, [getLastNavigationFromBackButton, setSelectedCategory]);
+	}, [getLastNavigationFromBackButton, setSelectedCategory, loadStorage]);
+
+	useLayoutEffect(() => {
+		if (scrollScrollingContainerTo && scrollingContainerRef.current) {
+			scrollingContainerRef.current.scrollTop =
+				scrollScrollingContainerTo;
+		}
+		setAnimateCards(true);
+	}, [scrollScrollingContainerTo]);
 
 	const cardContainerWrapperOnScroll: React.UIEventHandler<HTMLElement> =
 		useCallback(
@@ -152,7 +180,7 @@ const Chronology: React.FC = () => {
 	// attached to card as ref
 	const scrollThisCardWhenSetAsRef = useCallback(
 		(targetCard: HTMLElement) => {
-			if (cardContainerWrapperRef.current && targetCard) {
+			if (scrollingContainerRef.current && targetCard) {
 				const { innerWidth: viewportWidth } = window;
 				const {
 					offsetLeft: targetOffsetLeft,
@@ -160,31 +188,32 @@ const Chronology: React.FC = () => {
 				} = targetCard;
 				const newScrollTop =
 					targetOffsetLeft - viewportWidth / 2 + targetWidth / 2;
-				cardContainerWrapperRef.current.scrollTop = newScrollTop;
+				setScrollScrollingContainerTo(newScrollTop);
 			}
 		},
-		[cardContainerWrapperRef]
+		[scrollingContainerRef]
 	);
 
 	// TODO bug where the year of the grabber is off when going back
-	// TODO: checking session storage being checked can be done programmtically
 
-	// Don't animate cards until a bit of time has passed to allow session
-	// storage to be checked
-	const [animateCards, setAnimateCards] = React.useState(false);
-
-	React.useEffect(() => {
+	const [animateCardsAfterTimeout, setAnimateCardsAfterTimeout] =
+		useState(false);
+	useEffect(() => {
 		const animateTimeout = window.setTimeout(() => {
-			setAnimateCards(true);
-		}, 500);
-
-		// Set scrolling container to be focused on the getgo
-		if (cardContainerRef.current) {
-			cardContainerRef.current.focus();
-		}
+			if (!animateCardsAfterTimeout) {
+				setAnimateCardsAfterTimeout(true);
+			}
+		}, 300);
 		return () => {
 			window.clearTimeout(animateTimeout);
 		};
+	}, [animateCards, animateCardsAfterTimeout]);
+
+	// Set scrolling container to be focused on the getgo
+	useEffect(() => {
+		if (cardContainerRef.current) {
+			cardContainerRef.current.focus();
+		}
 	}, []);
 
 	const ticks: Array<string> = (
@@ -208,7 +237,7 @@ const Chronology: React.FC = () => {
 			/>
 			<div
 				className={styles.cardContainerWrapper}
-				ref={cardContainerWrapperRef}
+				ref={scrollingContainerRef}
 				onScroll={cardContainerWrapperOnScroll}
 				id={'chronology-scrolling-container'}
 			>
@@ -238,7 +267,7 @@ const Chronology: React.FC = () => {
 									slug={card?.fields?.slug}
 									text={card?.frontmatter?.card}
 									displayDate={card?.frontmatter?.displayDate}
-									animate={animateCards}
+									animate={animateCardsAfterTimeout}
 								/>
 							);
 						})}
@@ -248,7 +277,7 @@ const Chronology: React.FC = () => {
 			<Timeline
 				{...{
 					ticks,
-					cardContainerWrapperRef,
+					cardContainerWrapperRef: scrollingContainerRef,
 					cardContainerRef,
 				}}
 			/>
