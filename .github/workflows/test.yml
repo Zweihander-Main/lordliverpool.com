@@ -20,7 +20,7 @@ jobs:
           browser: chrome
           start: npm run serve
           wait-on: 'http://localhost:8000'
-          wait-on-timeout: 360
+          wait-on-timeout: 600
 
       - name: Upload E2E run data as artifacts
         uses: actions/upload-artifact@v2
