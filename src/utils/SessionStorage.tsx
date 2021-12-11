@@ -1,4 +1,4 @@
-import { WindowLocation } from '@reach/router';
+import { WindowLocation } from 'types';
 import { STATE_KEY_PREFIX, BGPM_APP_STATE, DELIM } from './constants';
 
 export type ReadState = {

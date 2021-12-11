@@ -1,7 +1,6 @@
 import React, { createContext } from 'react';
+import { HistoryWithKey, WindowLocation } from 'types';
 import { SessionStorage, ReadState, ReadId } from 'utils/SessionStorage';
-import { useLocation } from '@reach/router';
-import { LocTyping } from 'types';
 
 type StorageContextProps = {
 	loadSavedState: () => ReadState | undefined;
@@ -19,25 +18,29 @@ const StorageContext = createContext<StorageContextProps>({
 
 export default StorageContext;
 
-//TODO way to not rely on router?
+// TODO perf callback/ect.
 export const StorageProvider: React.FC = ({ children }) => {
 	const storage = SessionStorage.getInstance();
-	const location = useLocation() as LocTyping;
+
+	const createLocation = (): WindowLocation => ({
+		...window.location,
+		key: (history as HistoryWithKey)?.state?.key || undefined,
+	});
 
 	const loadSavedState = () => {
-		return storage.readState(location);
+		return storage.readState(createLocation());
 	};
 
 	const loadSavedId = () => {
-		return storage.readId(location);
+		return storage.readId(createLocation());
 	};
 
 	const saveState = (position: number, state: string) => {
-		storage.saveState(location, position, state);
+		storage.saveState(createLocation(), position, state);
 	};
 
 	const saveId = (id: string) => {
-		storage.saveId(location, id);
+		storage.saveId(createLocation(), id);
 	};
 
 	return (

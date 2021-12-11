@@ -6,6 +6,6 @@
 
 // You can delete this file if you're not using it
 import React from 'react';
-import { wrapPage } from './gatsby-common';
+import { wrapRoot } from './gatsby-common';
 
-export const wrapPageElement = wrapPage;
+export const wrapRootElement = wrapRoot;

@@ -10,9 +10,12 @@ export interface TemplatePageContext {
 	next: NextPrevInfo;
 }
 
-// Either upperState+initialPos OR id
-export type AppLocState = {
-	upperState?: string;
-	initialPos?: number;
-	id?: string;
+export type WindowLocation = Window['location'] & {
+	key?: string | undefined;
+};
+
+export type HistoryWithKey = {
+	state?: {
+		key?: string;
+	};
 };
