@@ -60,6 +60,11 @@ describe('Scroll state', () => {
 		cy.get('@back-button').click();
 		chronologyVerify();
 	});
+
+	//TODO: test start on post and go back
+	// TODO: go to single post, move a few, use back button
+	// TODO: louisa -> arbuthnot test
+	// TODO: click on one, then go back, then click on another, then press back button
 });
 
 export {};
