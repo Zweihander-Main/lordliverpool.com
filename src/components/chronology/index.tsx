@@ -1,17 +1,17 @@
 import React, {
 	useCallback,
 	useContext,
-	useEffect,
 	useLayoutEffect,
 	useRef,
+	useState,
 } from 'react';
 import * as styles from './chronology.module.scss';
-import { cardWidth } from 'styles/util/_variables.module.scss';
 import { useStaticQuery, graphql } from 'gatsby';
 import FilterMenu from './filterMenu';
 import Timeline from './timeline';
 import Card from './card';
-import ScrollStateContext from 'contexts/ScrollStateContext';
+import ScrollLocContext from 'contexts/ScrollLocContext';
+import HistoryContext from 'contexts/HistoryContext';
 
 const Chronology: React.FC = () => {
 	const chronologyData =
@@ -110,47 +110,67 @@ const Chronology: React.FC = () => {
 	);
 
 	const cardContainerRef = React.useRef<HTMLDivElement>(null);
+	const cardContainerWrapperRef = useRef<HTMLDivElement>(null);
 
 	const {
-		scrollContextState: selectedCategory,
-		setScrollContextState: setSelectedCategory,
-		idToScrollTo: cardIdToScrollTo,
-		posToScrollTo: cardPosToScrollTo,
-		onScroll: cardContainerWrapperOnScroll,
-		scrollContainerRef: cardContainerWrapperRef,
-	} = useContext(ScrollStateContext);
+		contextState: selectedCategory,
+		setContextState: setSelectedCategory,
+		getScrollLoc: getScrollLocCallback,
+		setPos,
+	} = useContext(ScrollLocContext);
+	const getScrollLocRef = useRef(getScrollLocCallback);
+
+	const { getLastNavigationFromBackButton } = useContext(HistoryContext);
+
+	const [cardIdToScrollTo, setCardIdToScrollTo] = useState<string | null>();
+
+	useLayoutEffect(() => {
+		const { id, pos } = getScrollLocRef.current();
+		const fromBackButton = getLastNavigationFromBackButton();
+
+		if (fromBackButton && pos && cardContainerWrapperRef.current) {
+			cardContainerWrapperRef.current.scrollTop = pos;
+		} else if (id) {
+			setSelectedCategory('all');
+			setCardIdToScrollTo(id);
+		} else if (pos && cardContainerWrapperRef.current) {
+			cardContainerWrapperRef.current.scrollTop = pos;
+		}
+	}, [getLastNavigationFromBackButton, setSelectedCategory]);
+
+	const cardContainerWrapperOnScroll: React.UIEventHandler<HTMLElement> =
+		useCallback(
+			(e) => {
+				const { scrollTop } = e.target as HTMLElement;
+				if (scrollTop) {
+					setPos(scrollTop);
+				}
+			},
+			[setPos]
+		);
 
 	// attached to card as ref
 	const scrollThisCardWhenSetAsRef = useCallback(
 		(targetCard: HTMLElement) => {
 			if (cardContainerWrapperRef.current && targetCard) {
+				const { innerWidth: viewportWidth } = window;
 				const {
-					innerWidth: viewportWidth,
-					innerHeight: viewportHeight,
-				} = window;
-				const cardAdjustment = viewportHeight * parseInt(cardWidth, 10);
-				const distanceToScroll =
-					targetCard.offsetLeft -
-					viewportWidth / 2 +
-					cardAdjustment / 2;
-				cardContainerWrapperRef.current.scrollTop = distanceToScroll;
+					offsetLeft: targetOffsetLeft,
+					offsetWidth: targetWidth,
+				} = targetCard;
+				const newScrollTop =
+					targetOffsetLeft - viewportWidth / 2 + targetWidth / 2;
+				cardContainerWrapperRef.current.scrollTop = newScrollTop;
 			}
 		},
 		[cardContainerWrapperRef]
 	);
 
-	// pos scroll
-	useLayoutEffect(() => {
-		if (cardPosToScrollTo && cardContainerWrapperRef.current) {
-			cardContainerWrapperRef.current.scrollTop = cardPosToScrollTo;
-		}
-	}, [cardPosToScrollTo, cardContainerWrapperRef]);
-
 	// TODO bug where the year of the grabber is off when going back
+	// TODO: checking session storage being checked can be done programmtically
 
 	// Don't animate cards until a bit of time has passed to allow session
 	// storage to be checked
-	// TODO: checking session storage being checked can be done programmtically
 	const [animateCards, setAnimateCards] = React.useState(false);
 
 	React.useEffect(() => {
@@ -219,10 +239,6 @@ const Chronology: React.FC = () => {
 									text={card?.frontmatter?.card}
 									displayDate={card?.frontmatter?.displayDate}
 									animate={animateCards}
-									selectedCategory={selectedCategory}
-									cardContainerWrapperRef={
-										cardContainerWrapperRef
-									}
 								/>
 							);
 						})}

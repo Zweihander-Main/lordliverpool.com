@@ -13,8 +13,6 @@ type CardProps = {
 	slug?: string;
 	text?: string;
 	displayDate?: string;
-	selectedCategory: string;
-	cardContainerWrapperRef?: React.RefObject<HTMLElement>;
 };
 
 const Card = forwardRef<HTMLElement | null, CardProps>(
@@ -28,20 +26,9 @@ const Card = forwardRef<HTMLElement | null, CardProps>(
 			slug,
 			text,
 			displayDate,
-			selectedCategory,
-			cardContainerWrapperRef,
 		},
 		ref
 	) => {
-		const passingState: AppLocState = {
-			get upperState() {
-				return selectedCategory;
-			},
-			get initialPos() {
-				return cardContainerWrapperRef?.current?.scrollTop;
-			},
-		};
-
 		const cardImage = useCallback(
 			(image: IGatsbyImageData) => (
 				<GatsbyImage
@@ -67,11 +54,7 @@ const Card = forwardRef<HTMLElement | null, CardProps>(
 				<div className={styles.inner}>
 					{featuredImage &&
 						(isFullArticle && slug ? (
-							<Link
-								to={slug}
-								className={styles.titleLink}
-								state={passingState}
-							>
+							<Link to={slug} className={styles.titleLink}>
 								{cardImage(featuredImage)}
 							</Link>
 						) : (
@@ -90,7 +73,6 @@ const Card = forwardRef<HTMLElement | null, CardProps>(
 									<Link
 										to={slug}
 										className={styles.titleLink}
-										state={passingState}
 									>
 										{title}
 									</Link>
@@ -116,7 +98,6 @@ const memoizedCard = memo(Card, (prevProps, nextProps) => {
 	if (
 		prevProps.show !== nextProps.show ||
 		prevProps.animate !== nextProps.animate ||
-		prevProps.selectedCategory !== nextProps.selectedCategory ||
 		prevProps.ref !== nextProps.ref
 	) {
 		return false;

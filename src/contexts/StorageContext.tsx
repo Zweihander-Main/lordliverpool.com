@@ -19,6 +19,7 @@ const StorageContext = createContext<StorageContextProps>({
 
 export default StorageContext;
 
+//TODO way to not rely on router?
 export const StorageProvider: React.FC = ({ children }) => {
 	const storage = SessionStorage.getInstance();
 	const location = useLocation() as LocTyping;

@@ -1,5 +1,3 @@
-import { WindowLocation } from '@reach/router';
-
 export type NextPrevInfo = {
 	slug: string;
 	title: string;
@@ -18,5 +16,3 @@ export type AppLocState = {
 	initialPos?: number;
 	id?: string;
 };
-
-export type LocTyping = WindowLocation<AppLocState> & { action?: string };

@@ -3,13 +3,15 @@ import React, {
 	useContext,
 	useEffect,
 	useLayoutEffect,
+	useRef,
 	useState,
 } from 'react';
 import * as styles from './contenders.module.scss';
 import { useStaticQuery, graphql } from 'gatsby';
 import ContendersImage from './contendersImage';
 import ContendersItem from './contenderItem';
-import ScrollStateContext from 'contexts/ScrollStateContext';
+import ScrollLocContext from 'contexts/ScrollLocContext';
+import HistoryContext from 'contexts/HistoryContext';
 
 const Contenders: React.FC = () => {
 	const blogRollData =
@@ -50,48 +52,66 @@ const Contenders: React.FC = () => {
 
 	const { edges: contenders } = blogRollData.allMarkdownRemark;
 
-	const {
-		idToScrollTo: contenderIdToScrollTo,
-		scrollContainerRef: menuRef,
-		posToScrollTo: contenderPosToScrollTo,
-		onScroll,
-		saveId,
-	} = useContext(ScrollStateContext);
-
 	const [selectedContenderId, setSelectedContenderId] = useState<string>(
 		contenders[0].node.id || ''
 	);
 
+	const menuRef = useRef<HTMLDivElement>(null);
+
+	const {
+		setPos,
+		setId,
+		getScrollLoc: getScrollLocCallback,
+	} = useContext(ScrollLocContext);
+	const getScrollLocRef = useRef(getScrollLocCallback);
+
+	const { getLastNavigationFromBackButton } = useContext(HistoryContext);
+
+	const [contenderIdToScrollTo, setContenderIdToScrollTo] = useState<
+		string | null
+	>();
+
+	useLayoutEffect(() => {
+		const { id, pos } = getScrollLocRef.current();
+		const fromBackButton = getLastNavigationFromBackButton();
+
+		if (fromBackButton && pos && menuRef.current) {
+			menuRef.current.scrollTop = pos;
+		}
+		if (id) {
+			setSelectedContenderId(id);
+			setContenderIdToScrollTo(id);
+		}
+	}, [getLastNavigationFromBackButton]);
+
+	const menuOnScroll: React.UIEventHandler<HTMLElement> = useCallback(
+		(e) => {
+			const { scrollTop } = e.target as HTMLElement;
+			if (scrollTop) {
+				setPos(scrollTop);
+			}
+		},
+		[setPos]
+	);
+
 	const scrollToThisContenderWhenSetAsRef = useCallback(
 		(targetContender: HTMLLIElement) => {
-			console.log('scroll: ', { targetContender });
 			if (menuRef.current && targetContender) {
 				const { innerHeight: viewportHeight } = window;
-				const distanceToScroll =
-					targetContender.offsetTop - viewportHeight / 2;
-				menuRef.current.scrollTop = distanceToScroll;
+				const { offsetHeight: targetHeight } = targetContender;
+				const newScrollTop =
+					targetContender.offsetTop -
+					viewportHeight / 2 +
+					targetHeight / 2;
+				menuRef.current.scrollTop = newScrollTop;
 			}
 		},
 		[menuRef]
 	);
 
-	// id scroll
-	useLayoutEffect(() => {
-		if (contenderIdToScrollTo) {
-			setSelectedContenderId(contenderIdToScrollTo);
-		}
-	}, [contenderIdToScrollTo, setSelectedContenderId]);
-
-	// pos scroll
-	useLayoutEffect(() => {
-		if (contenderPosToScrollTo && menuRef.current) {
-			menuRef.current.scrollTop = contenderPosToScrollTo;
-		}
-	}, [contenderPosToScrollTo, menuRef]);
-
 	useEffect(() => {
-		saveId(selectedContenderId);
-	}, [selectedContenderId, saveId]);
+		setId(selectedContenderId);
+	}, [selectedContenderId, setId]);
 
 	const selectedContenderNode = contenders.find(
 		(c) => c.node.id === selectedContenderId
@@ -108,7 +128,7 @@ const Contenders: React.FC = () => {
 				title={selectedContenderNode?.frontmatter?.title}
 				selectedID={selectedContenderNode?.id}
 			/>
-			<div className={styles.menu} ref={menuRef} onScroll={onScroll}>
+			<div className={styles.menu} ref={menuRef} onScroll={menuOnScroll}>
 				<h1>Contenders for Greatest</h1>
 				<ul className={styles.menuList}>
 					{contenders &&
@@ -128,7 +148,6 @@ const Contenders: React.FC = () => {
 											? scrollToThisContenderWhenSetAsRef
 											: null
 									}
-									menuRef={menuRef}
 								/>
 							) : null;
 						})}

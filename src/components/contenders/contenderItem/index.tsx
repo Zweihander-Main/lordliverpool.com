@@ -1,7 +1,6 @@
 import { Link } from 'gatsby';
 import React from 'react';
 import * as styles from './contendersItem.module.scss';
-import { AppLocState } from 'types';
 
 type ContendersMenuProps = {
 	id: string;
@@ -9,19 +8,12 @@ type ContendersMenuProps = {
 	title?: string;
 	setSelected: React.Dispatch<React.SetStateAction<string>>;
 	slug: string;
-	menuRef: React.RefObject<HTMLDivElement>;
 };
 
 const ContendersItem = React.forwardRef<
 	HTMLLIElement | null,
 	ContendersMenuProps
->(({ id, isSelected, title, setSelected, slug, menuRef }, ref) => {
-	const passingState: AppLocState = {
-		get initialPos() {
-			return menuRef?.current?.scrollTop;
-		},
-	};
-
+>(({ id, isSelected, title, setSelected, slug }, ref) => {
 	return (
 		<li className={styles.item} ref={ref}>
 			<Link
@@ -32,7 +24,6 @@ const ContendersItem = React.forwardRef<
 						? `${styles.link} ${styles.selected}`
 						: styles.link
 				}
-				state={passingState}
 			>
 				{title}
 			</Link>

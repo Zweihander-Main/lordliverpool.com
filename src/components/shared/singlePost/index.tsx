@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
 import Link from 'gatsby-link';
 import * as styles from './singlePost.module.scss';
 import { MdArrowBack, MdArrowForward } from 'react-icons/md';
-import { AppLocState, LocTyping, NextPrevInfo } from 'types';
-import { useLocation } from '@reach/router';
+import { AppLocState, NextPrevInfo } from 'types';
+import ScrollLocContext from 'contexts/ScrollLocContext';
 
 type SinglePostProps = {
 	headerImage?: IGatsbyImageData;
@@ -36,22 +36,13 @@ const PostHeader: React.FC<SinglePostProps> = ({
 	next,
 	id,
 }) => {
-	const location = useLocation() as LocTyping;
-	const upperState = location?.state?.upperState;
-	const initialPos = location?.state?.initialPos;
+	const { setId } = useContext(ScrollLocContext);
 
-	// If scroll position exists, restore it
-	// Otherwise, just tell the menu which item this is
-	const passingState: AppLocState | null = id
-		? typeof initialPos === 'number'
-			? {
-					upperState,
-					initialPos,
-			  }
-			: {
-					id,
-			  }
-		: null;
+	useEffect(() => {
+		if (id) {
+			setId(id);
+		}
+	}, [id, setId]);
 
 	//TODO add in author
 	// TODO figure out width
@@ -66,11 +57,7 @@ const PostHeader: React.FC<SinglePostProps> = ({
 						</Link>
 					)}
 					{linkBackURL && linkBackName && (
-						<Link
-							to={linkBackURL}
-							className={styles.linkUp}
-							state={passingState}
-						>
+						<Link to={linkBackURL} className={styles.linkUp}>
 							Back to {linkBackName}
 						</Link>
 					)}
