@@ -22,14 +22,20 @@ jobs:
           wait-on: 'http://localhost:8000'
           wait-on-timeout: 900
 
-      - name: Upload E2E run data as artifacts
+      - name: Upload E2E screenshots
         uses: actions/upload-artifact@v2
         if: failure()
         with:
-          name: e2e-run-data
-          path: |
-            cypress/screenshots
-            cypress/videos
+          name: cypress-screenshots
+          path: cypress/screenshots
+          retention-days: 14
+
+      - name: Upload E2E videos
+        uses: actions/upload-artifact@v2
+        if: failure()
+        with:
+          name: cypress-videos
+          path: cypress/videos
           retention-days: 14
 
       - name: Push changes to netlify if success
