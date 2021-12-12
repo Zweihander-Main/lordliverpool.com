@@ -50,7 +50,7 @@ const Card = forwardRef<HTMLElement | null, CardProps>(
 				}`}
 				ref={ref}
 			>
-				<div className={styles.inner}>
+				<div className={styles.inner} tabIndex={0} role={'article'}>
 					{featuredImage &&
 						(isFullArticle && slug ? (
 							<Link
