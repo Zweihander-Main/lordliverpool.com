@@ -54,7 +54,11 @@ const Card = forwardRef<HTMLElement | null, CardProps>(
 				<div className={styles.inner}>
 					{featuredImage &&
 						(isFullArticle && slug ? (
-							<Link to={slug} className={styles.titleLink}>
+							<Link
+								to={slug}
+								className={styles.titleLink}
+								aria-label={title}
+							>
 								{cardImage(featuredImage)}
 							</Link>
 						) : (
