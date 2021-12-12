@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import * as styles from './timeline.module.scss';
 import useTimeline from 'hooks/useTimeline';
 import useGrabber from 'hooks/useGrabber';
@@ -15,7 +15,7 @@ const Timeline: React.FC<TimelineProps> = ({
 	cardContainerWrapperRef,
 	cardContainerRef,
 }) => {
-	const tickContent = React.useMemo(() => {
+	const tickContent = useMemo(() => {
 		const returnArray = [];
 		for (let i = 0, len = ticks.length; i < len; i++) {
 			returnArray.push(<span key={i} className={styles.tick}></span>);
@@ -23,7 +23,7 @@ const Timeline: React.FC<TimelineProps> = ({
 		return returnArray;
 	}, [ticks]);
 
-	const yearRef = React.useRef<HTMLTimeElement>(null);
+	const yearRef = useRef<HTMLTimeElement>(null);
 
 	const {
 		percentageAlong,
@@ -39,18 +39,17 @@ const Timeline: React.FC<TimelineProps> = ({
 	const { onGrabberMouseDown, onGrabberTouchStart, isUserDragging } =
 		useGrabber(cardContainerWrapperRef, containerOverViewport);
 
-	const [rafYearOffset, setRafYearOffset] = React.useState(0);
-	const [rafAreaGrabberLeftEdge, setRafAreaGrabberLeftEdge] =
-		React.useState(0);
-	const [rafAreaGrabberWidth, setRabAreaGrabberWidth] = React.useState(0);
-	const [rafYear, setRafYear] = React.useState('');
-	const [rafIsUserDragging, setRafIsUserDragging] = React.useState(false);
+	const [rafYearOffset, setRafYearOffset] = useState(0);
+	const [rafAreaGrabberLeftEdge, setRafAreaGrabberLeftEdge] = useState(0);
+	const [rafAreaGrabberWidth, setRabAreaGrabberWidth] = useState(0);
+	const [rafYear, setRafYear] = useState('');
+	const [rafIsUserDragging, setRafIsUserDragging] = useState(false);
 
-	const [isScrolling, setIsScrolling] = React.useState(false);
-	const [rafIsScrolling, setRafIsScrolling] = React.useState(false);
-	const scrollingLatch = React.useRef<number | undefined>();
+	const [isScrolling, setIsScrolling] = useState(false);
+	const [rafIsScrolling, setRafIsScrolling] = useState(false);
+	const scrollingLatch = useRef<number | undefined>();
 
-	React.useEffect(() => {
+	useEffect(() => {
 		const cancelLatch = () => {
 			if (scrollingLatch) {
 				window.clearTimeout(scrollingLatch.current);
@@ -58,9 +57,7 @@ const Timeline: React.FC<TimelineProps> = ({
 			}
 		};
 		cancelLatch();
-		if (!isScrolling) {
-			setIsScrolling(true);
-		}
+		setIsScrolling(true);
 		if (!isUserDragging) {
 			scrollingLatch.current = window.setTimeout(() => {
 				setIsScrolling(false);
@@ -88,9 +85,8 @@ const Timeline: React.FC<TimelineProps> = ({
 		setRafIsUserDragging(dragging);
 	};
 
-	const scheduleAnimationUpdate = rafSchd(setRafValues);
-
-	React.useEffect(() => {
+	useEffect(() => {
+		const scheduleAnimationUpdate = rafSchd(setRafValues);
 		scheduleAnimationUpdate(
 			yearOffset,
 			areaGrabberLeftEdge,

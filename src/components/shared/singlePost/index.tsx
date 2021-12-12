@@ -3,7 +3,7 @@ import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
 import Link from 'gatsby-link';
 import * as styles from './singlePost.module.scss';
 import { MdArrowBack, MdArrowForward } from 'react-icons/md';
-import { AppLocState, NextPrevInfo } from 'types';
+import { NextPrevInfo } from 'types';
 import ScrollLocContext from 'contexts/ScrollLocContext';
 
 type SinglePostProps = {
