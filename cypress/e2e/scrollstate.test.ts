@@ -53,7 +53,6 @@ describe('Scroll state', () => {
 			cy.findByText(/^John Scott, 1st Earl of Eldon$/).should(
 				'be.visible'
 			);
-			cy.findByText(/^Amelia Watts Jenkinson$/).should('be.visible');
 		});
 
 		it('navigates to particular entry when no previous data held', () => {
@@ -88,9 +87,6 @@ describe('Scroll state', () => {
 				.click();
 			cy.verifyLocation('/chronology');
 			cy.findByText(/^Amelia Watts Jenkinson$/).should('be.visible');
-			cy.findByText(/^John Scott, 1st Earl of Eldon$/).should(
-				'be.visible'
-			);
 		});
 
 		it('maintains state on page reload', () => {
