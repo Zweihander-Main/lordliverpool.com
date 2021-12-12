@@ -28,7 +28,7 @@ describe('Scroll state', () => {
 
 		it('is preserved with back link', () => {
 			chronologySetup();
-			cy.findByText(/^Back to Chronology$/).as('back-button');
+			cy.findByLabelText(/^Back to /).as('back-button');
 			cy.get('@back-button').click();
 			chronologyVerifyState();
 		});
@@ -42,11 +42,11 @@ describe('Scroll state', () => {
 				.as('amelia')
 				.click();
 			cy.verifyLocation('/chronology/amelia-watts-jenkinson');
-			cy.findByText(/^John Scott, 1st Earl of Eldon$/)
+			cy.findByLabelText(/^Next entry: /)
 				.as('next')
 				.click();
 			cy.verifyLocation('/chronology/john-scott-1st-earl-of-eldon');
-			cy.findByText(/^Back to Chronology$/)
+			cy.findByLabelText(/^Back to /)
 				.as('back-button')
 				.click();
 			cy.verifyLocation('/chronology');
@@ -58,7 +58,7 @@ describe('Scroll state', () => {
 
 		it('navigates to particular entry when no previous data held', () => {
 			cy.visit('/chronology/john-scott-1st-earl-of-eldon').get('main');
-			cy.findByText(/^Back to Chronology$/)
+			cy.findByLabelText(/^Back to /)
 				.as('back-button')
 				.click();
 			cy.verifyLocation('/chronology');
@@ -83,7 +83,7 @@ describe('Scroll state', () => {
 				.as('amelia')
 				.click();
 			cy.verifyLocation('/chronology/amelia-watts-jenkinson');
-			cy.findByText(/^Back to Chronology$/)
+			cy.findByLabelText(/^Back to /)
 				.as('back-button')
 				.click();
 			cy.verifyLocation('/chronology');

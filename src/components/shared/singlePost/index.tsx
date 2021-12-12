@@ -51,18 +51,30 @@ const PostHeader: React.FC<SinglePostProps> = ({
 			<article className={styles.singlePost}>
 				<nav className={styles.navLinks}>
 					{prev && prev.title && prev.slug && (
-						<Link to={prev.slug} className={styles.linkPrev}>
+						<Link
+							to={prev.slug}
+							className={styles.linkPrev}
+							aria-label={`Previous entry: ${prev.title}`}
+						>
 							<MdArrowBack className={styles.arrowPrev} />
 							{prev.title}
 						</Link>
 					)}
 					{linkBackURL && linkBackName && (
-						<Link to={linkBackURL} className={styles.linkUp}>
+						<Link
+							to={linkBackURL}
+							className={styles.linkUp}
+							aria-label={`Back to ${linkBackName}`}
+						>
 							Back to {linkBackName}
 						</Link>
 					)}
 					{next && next.title && next.slug && (
-						<Link to={next.slug} className={styles.linkNext}>
+						<Link
+							to={next.slug}
+							className={styles.linkNext}
+							aria-label={`Next entry: ${next.title}`}
+						>
 							{next.title}
 							<MdArrowForward className={styles.arrowNext} />
 						</Link>
