@@ -88,9 +88,6 @@ describe('Scroll state', () => {
 				.click();
 			cy.verifyLocation('/chronology');
 			cy.findByText(/^Amelia Watts Jenkinson$/).should('be.visible');
-			cy.findByText(/^Louisa, Countess of Liverpool$/).should(
-				'not.be.visible'
-			);
 			cy.findByText(/^John Scott, 1st Earl of Eldon$/).should(
 				'be.visible'
 			);
