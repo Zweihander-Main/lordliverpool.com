@@ -39,8 +39,15 @@
 }
 
 .text {
+	color: inherit;
 	display: inline;
+	font-family: v.$header-font;
+	font-size: 0.81225rem; // TODO var
+	font-weight: 700;
+	letter-spacing: v.$letter-spacing;
+	line-height: 1.1; //TODO var
 	position: relative;
+	text-rendering: optimizeLegibility;
 	text-transform: uppercase;
 
 	@include m.media('height>HEIGHT_ultratiny', 'height<=HEIGHT_tiny') {
@@ -69,3 +76,5 @@
 		top: 0.07rem;
 	}
 }
+
+// TODO figure out sorting rules stylelint
