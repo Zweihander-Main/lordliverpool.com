@@ -178,3 +178,12 @@
 .post-meta {
 	box-shadow: initial;
 } // TODO build out a little
+
+h2:not(.subtitle) {
+	width: 100%;
+	border-bottom: 1px solid v.$pastel-bg;
+}
+
+ul {
+	list-style-type: circle;
+}

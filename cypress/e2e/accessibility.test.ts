@@ -3,6 +3,7 @@ describe('Accessibility tests', () => {
 	const visitAndInject = (loc: string) => {
 		cy.visit(loc).get('main').injectAxe();
 	};
+
 	it('Has no detectable accessibility violations on load', () => {
 		visitAndInject('/');
 		cy.checkA11yWithLog();

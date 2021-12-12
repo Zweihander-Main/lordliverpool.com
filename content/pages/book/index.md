@@ -19,41 +19,41 @@ featuredImage: Britains_Greatest_Prime_Minister.png
 
 ## Reviews
 
-[Britain's Greatest Prime Minister by Prof Kevin Dowd | The Cobden Centre](https://www.cobdencentre.org/2020/12/britains-greatest-prime-minister/)
+-   [Britain's Greatest Prime Minister by Prof Kevin Dowd | The Cobden Centre](https://www.cobdencentre.org/2020/12/britains-greatest-prime-minister/)
 
-[Britain’s Greatest Prime Minister: Lord Liverpool by Michael Arnold | Historical Association](https://www.history.org.uk/historian/resource/10008/britains-greatest-prime-minister-lord-liverpool)
+-   [Britain’s Greatest Prime Minister: Lord Liverpool by Michael Arnold | Historical Association](https://www.history.org.uk/historian/resource/10008/britains-greatest-prime-minister-lord-liverpool)
 
 ## Related Articles
 
-[Author interview with Martin Hutchinson](https://lutterworthpress.wordpress.com/2020/10/23/author-interview-with-martin-hutchinson/)
+-   [Author interview with Martin Hutchinson](https://lutterworthpress.wordpress.com/2020/10/23/author-interview-with-martin-hutchinson/)
 
-[Lord Liverpool | Historic UK](https://www.historic-uk.com/HistoryUK/HistoryofBritain/Lord-Liverpool/)
+-   [Lord Liverpool | Historic UK](https://www.historic-uk.com/HistoryUK/HistoryofBritain/Lord-Liverpool/)
 
-[How previous PM strategies could help fight debt today | FTAdviser](https://www.ftadviser.com/investments/2020/11/19/how-previous-pm-strategies-could-help-fight-debt-today/)
+-   [How previous PM strategies could help fight debt today | FTAdviser](https://www.ftadviser.com/investments/2020/11/19/how-previous-pm-strategies-could-help-fight-debt-today/)
 
-[Lord Liverpool and the Return To Gold | The Cobden Centre](https://www.cobdencentre.org/2017/08/lord-liverpool-and-the-return-to-gold/)
+-   [Lord Liverpool and the Return To Gold | The Cobden Centre](https://www.cobdencentre.org/2017/08/lord-liverpool-and-the-return-to-gold/)
 
-[The best books on Regency politics | Shepherd](https://shepherd.com/best-books/regency-politics)
+-   [The best books on Regency politics | Shepherd](https://shepherd.com/best-books/regency-politics)
 
-[The Economic Policies of Lord Liverpool | Cato Journal](https://www.cato.org/cato-journal/fall-2021/economic-policies-lord-liverpool)
+-   [The Economic Policies of Lord Liverpool | Cato Journal](https://www.cato.org/cato-journal/fall-2021/economic-policies-lord-liverpool)
 
 ## Editions
 
-#### Print Hardback
+### Print Hardback
 
 ISBN: 9780718895631<br>
 Specifications: 234x156mm (9.21x6.14in), 452pp<br>
 Illustrations: b&w<br>
 Released: November 26, 2020<br>
 
-#### Print Paperback
+### Print Paperback
 
 ISBN: 9780718895648<br>
 Specifications: 234x156mm (9.21x6.14in), 452pp<br>
 Illustrations: b&w<br>
 Released: May 2021<br>
 
-#### Ebook
+### Ebook
 
 ASIN: B08QDVQ9N4<br>
 Formats: ePub, Mobi, Kindle<br>
