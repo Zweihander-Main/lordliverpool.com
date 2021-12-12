@@ -234,6 +234,7 @@
 			"declaration-colon-newline-after": null,
 			"no-descending-specificity": null,
 			"value-keyword-case": null,
+			"color-function-notation": null,
 			"selector-pseudo-class-no-unknown": [
 				true,
 				{
