@@ -74,13 +74,13 @@ const Miscellany: React.FC = () => {
 								{post?.frontmatter && (
 									<header className={styles.header}>
 										<div>
-											<h2 className={styles.title}>
+											<h1 className={styles.title}>
 												{post.frontmatter.title}
-											</h2>
+											</h1>
 											{post.frontmatter?.subtitle && (
-												<h3 className={styles.subtitle}>
+												<h2 className={styles.subtitle}>
 													{post.frontmatter?.subtitle}
-												</h3>
+												</h2>
 											)}
 										</div>
 									</header>

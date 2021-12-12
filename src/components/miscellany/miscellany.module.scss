@@ -91,9 +91,12 @@ $masonry-margin: 5em;
 
 .title {
 	@extend %headings;
+	font-size: 1.51572rem; //TODO var
+	border-bottom: 1px solid color.adjust($color: v.$white, $alpha: -0.7);
 }
 
 .subtitle {
 	@extend %headings;
 	@include m.header-normal;
+	font-size: 1.31951rem;
 }
