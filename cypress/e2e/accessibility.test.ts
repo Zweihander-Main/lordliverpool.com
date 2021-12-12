@@ -33,8 +33,12 @@ describe('Accessibility tests', () => {
 	it('Has no violations in the miscellany path', () => {
 		visitAndInject('/miscellany');
 		cy.checkA11yWithLog();
-		cy.findByText(/^The decline of good economics/).click();
-		cy.verifyLocation('/miscellany/the-decline-of-good-economic');
+		cy.findByText(/^The decline of good economics/)
+			.parent()
+			.parent()
+			.parent()
+			.click();
+		cy.verifyLocation('/miscellany/the-decline-of-good-economics');
 		cy.get('main').injectAxe();
 		cy.checkA11yWithLog();
 	});
