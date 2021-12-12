@@ -7,16 +7,11 @@ describe('Accessibility tests', () => {
 		visitAndInject('/');
 		cy.checkA11yWithLog();
 	});
-	it('Has no violations on any of the main navigation links', () => {
-		visitAndInject('/chronology');
-		cy.checkA11yWithLog();
-		visitAndInject('/contenders');
-		cy.checkA11yWithLog();
-		visitAndInject('/miscellany');
-		cy.checkA11yWithLog();
+	it('Has no violations on any of the main non-path navigation links', () => {
 		visitAndInject('/author');
 		cy.checkA11yWithLog();
 		visitAndInject('/book');
+		cy.checkA11yWithLog();
 	});
 	it('Has no violations in the chronology path', () => {
 		visitAndInject('/chronology');
