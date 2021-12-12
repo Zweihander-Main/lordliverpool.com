@@ -82,9 +82,9 @@ const PostHeader: React.FC<SinglePostProps> = ({
 						<h2 className={styles.subtitle}>{subtitle}</h2>
 					)}
 					{extraHeaderText && (
-						<h4 className={styles.extraHeaderText}>
+						<h2 className={styles.extraHeaderText}>
 							{extraHeaderText}
-						</h4>
+						</h2>
 					)}
 				</div>
 				{headerImage && (

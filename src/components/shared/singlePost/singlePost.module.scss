@@ -70,7 +70,7 @@
 		margin-top: 15vh;
 	}
 
-	h2:not(.subtitle) {
+	h2:not(.subtitle):not(.extra-header-text) {
 		width: 100%;
 		border-bottom: 1px solid v.$pastel-bg;
 	}
@@ -163,7 +163,10 @@
 
 .extra-header-text {
 	@include m.header-normal;
-
+	font-weight: 400;
+	text-rendering: optimizeLegibility;
+	font-size: 1rem; //TODO var
+	line-height: 1.1;
 	font-family: v.$body-font;
 }
 
