@@ -72,8 +72,8 @@ $masonry-margin: 5em;
 // TODO: font size and text shadow
 
 .item-image {
-	position: initial;
 	opacity: 0.7;
+	position: initial;
 
 	&:hover {
 		opacity: 1;
@@ -91,12 +91,14 @@ $masonry-margin: 5em;
 
 .title {
 	@extend %headings;
-	font-size: 1.51572rem; //TODO var
+
 	border-bottom: 1px solid color.adjust($color: v.$white, $alpha: -0.7);
+	font-size: 1.51572rem; //TODO var
 }
 
 .subtitle {
 	@extend %headings;
 	@include m.header-normal;
+
 	font-size: 1.31951rem;
 }
