@@ -76,5 +76,10 @@ Cypress.Commands.add('checkA11yWithLog', (...args) => {
 		type === 'cli' ? terminalLog : args[2] || undefined
 	);
 });
+Cypress.Commands.add('verifyLocation', (path: string) => {
+	cy.location().should((loc) => {
+		expect(loc.pathname).to.be.oneOf([path, `${path}/`]);
+	});
+});
 
 export {};

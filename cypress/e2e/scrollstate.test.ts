@@ -3,12 +3,6 @@ import _ from 'cypress/types/lodash';
 describe('Scroll state', () => {
 	beforeEach(() => {});
 
-	const verifyLocation = (path: string) => {
-		cy.location().should((loc) => {
-			expect(loc.pathname).to.be.oneOf([path, `${path}/`]);
-		});
-	};
-
 	context('under chronology', () => {
 		const chronologySetup = () => {
 			cy.visit('/chronology').get('main');
@@ -16,11 +10,11 @@ describe('Scroll state', () => {
 			cy.findByText(/^Robert Peel$/).as('peel');
 			cy.get('@colleagues').click();
 			cy.get('@peel').click();
-			verifyLocation('/chronology/robert-peel');
+			cy.verifyLocation('/chronology/robert-peel');
 		};
 
 		const chronologyVerifyState = () => {
-			verifyLocation('/chronology');
+			cy.verifyLocation('/chronology');
 			cy.findByText(/^Robert Peel$/)
 				.as('peel')
 				.should('be.visible');
@@ -47,15 +41,15 @@ describe('Scroll state', () => {
 			cy.findByText(/^Amelia Watts Jenkinson$/)
 				.as('amelia')
 				.click();
-			verifyLocation('/chronology/amelia-watts-jenkinson');
+			cy.verifyLocation('/chronology/amelia-watts-jenkinson');
 			cy.findByText(/^John Scott, 1st Earl of Eldon$/)
 				.as('next')
 				.click();
-			verifyLocation('/chronology/john-scott-1st-earl-of-eldon');
+			cy.verifyLocation('/chronology/john-scott-1st-earl-of-eldon');
 			cy.findByText(/^Back to Chronology$/)
 				.as('back-button')
 				.click();
-			verifyLocation('/chronology');
+			cy.verifyLocation('/chronology');
 			cy.findByText(/^John Scott, 1st Earl of Eldon$/).should(
 				'be.visible'
 			);
@@ -67,7 +61,7 @@ describe('Scroll state', () => {
 			cy.findByText(/^Back to Chronology$/)
 				.as('back-button')
 				.click();
-			verifyLocation('/chronology');
+			cy.verifyLocation('/chronology');
 			cy.findByText(/^John Scott, 1st Earl of Eldon$/).should(
 				'be.visible'
 			);
@@ -82,17 +76,17 @@ describe('Scroll state', () => {
 			cy.findByText(/^Louisa, Countess of Liverpool$/)
 				.as('louisa')
 				.click();
-			verifyLocation('/chronology/louisa-countess-of-liverpool');
+			cy.verifyLocation('/chronology/louisa-countess-of-liverpool');
 			cy.go('back');
-			verifyLocation('/chronology');
+			cy.verifyLocation('/chronology');
 			cy.findByText(/^Amelia Watts Jenkinson$/)
 				.as('amelia')
 				.click();
-			verifyLocation('/chronology/amelia-watts-jenkinson');
+			cy.verifyLocation('/chronology/amelia-watts-jenkinson');
 			cy.findByText(/^Back to Chronology$/)
 				.as('back-button')
 				.click();
-			verifyLocation('/chronology');
+			cy.verifyLocation('/chronology');
 			cy.findByText(/^Amelia Watts Jenkinson$/).should('be.visible');
 			cy.findByText(/^Louisa, Countess of Liverpool$/).should(
 				'not.be.visible'
@@ -119,11 +113,11 @@ describe('Scroll state', () => {
 				.as('caption')
 				.should('have.text', 'Sir Robert Walpole');
 			cy.get('@theresa').click();
-			verifyLocation('/contenders/theresa-may');
+			cy.verifyLocation('/contenders/theresa-may');
 		};
 
 		const contendersVerifyCaption = () => {
-			verifyLocation('/contenders');
+			cy.verifyLocation('/contenders');
 			cy.findByTestId('caption').should('have.text', 'Theresa May');
 		};
 

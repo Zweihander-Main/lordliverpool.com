@@ -28,5 +28,10 @@ declare namespace Cypress {
 			options?: Options | undefined,
 			violationCallback?: ((violations: axe.Result[]) => void) | undefined
 		): void;
+		/**
+		 * Verify location has caused navigation change
+		 * @example cy.verifyLocation('/path')
+		 */
+		verifyLocation(path: string): void;
 	}
 }
