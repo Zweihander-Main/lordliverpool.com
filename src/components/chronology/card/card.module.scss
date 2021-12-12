@@ -140,6 +140,8 @@
 	outline: none;
 	text-align: center;
 	word-break: break-word;
+	font-size: 1.51572rem; //TODO var
+	margin-bottom: 1.38rem;
 
 	// TODO margin and for text
 	@include m.media('landscape') {

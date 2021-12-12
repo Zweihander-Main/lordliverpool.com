@@ -2,7 +2,6 @@ import React, { forwardRef, memo, useCallback } from 'react';
 import * as styles from './card.module.scss';
 import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
 import { Link } from 'gatsby';
-import { AppLocState } from 'types';
 
 type CardProps = {
 	show: boolean;
@@ -66,7 +65,7 @@ const Card = forwardRef<HTMLElement | null, CardProps>(
 						))}
 					<div className={styles.textContainer}>
 						{title && (
-							<h2
+							<h1
 								className={
 									featuredImage
 										? styles.header
@@ -83,7 +82,7 @@ const Card = forwardRef<HTMLElement | null, CardProps>(
 								) : (
 									title
 								)}
-							</h2>
+							</h1>
 						)}
 						{text && <p className={styles.text}>{text}</p>}
 					</div>
