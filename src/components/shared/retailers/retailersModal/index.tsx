@@ -307,6 +307,10 @@ const RetailersModal: React.FC = () => {
 								>
 									<a
 										target={'_blank'}
+										aria-label={
+											retailer?.frontmatter?.title ||
+											'Retailer'
+										}
 										rel={'noreferrer'}
 										href={retailer?.frontmatter?.link || ''}
 										className={styles.retailerLink}

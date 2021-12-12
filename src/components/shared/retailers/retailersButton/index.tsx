@@ -14,6 +14,7 @@ const RetailersButton: React.FC = () => {
 			className={styles.button}
 			href={'#retailers'}
 			onClick={onButtonClick}
+			aria-label={'Bring up available retailers'}
 		>
 			<MdShoppingCart className={styles.icon} />
 			<span className={styles.text}>Order now!</span>
