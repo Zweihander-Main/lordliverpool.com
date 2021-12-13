@@ -24,6 +24,14 @@
 // -- This will overwrite an existing command --
 // cypress.commands.overwrite('visit', (originalfn, url, options) => { ... })
 import axe from 'axe-core';
+import { addMatchImageSnapshotCommand } from 'cypress-image-snapshot/command';
+
+addMatchImageSnapshotCommand({
+	failureThreshold: 0.03, // threshold for entire image
+	failureThresholdType: 'percent', // percent of image or number of pixels
+	customDiffConfig: { threshold: 0.1 }, // threshold for each pixel
+	capture: 'viewport', // capture viewport in screenshot
+});
 
 Cypress.Commands.add('getSessionStorage', (key: string) => {
 	cy.window().then((window) => window.sessionStorage.getItem(key));
@@ -81,6 +89,14 @@ Cypress.Commands.add('verifyLocation', (path: string) => {
 		expect(loc.pathname).to.be.oneOf([path, `${path}/`]);
 	});
 	cy.get('main');
+});
+
+Cypress.Commands.add('loadImageByAltText', (altText: string) => {
+	cy.findByAltText(altText)
+		.should('be.visible')
+		.and(($img) => {
+			expect($img[0].clientWidth).to.be.greaterThan(0);
+		});
 });
 
 export {};

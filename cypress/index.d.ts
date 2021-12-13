@@ -33,5 +33,10 @@ declare namespace Cypress {
 		 * @example cy.verifyLocation('/path')
 		 */
 		verifyLocation(path: string): void;
+		/**
+		 * Wait for image to load, find by alt text, useful for Gatsby
+		 * @example cy.loadImageByAltText('Alt Text')
+		 */
+		loadImageByAltText(altText: string): void;
 	}
 }
