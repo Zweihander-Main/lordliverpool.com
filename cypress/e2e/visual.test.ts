@@ -1,10 +1,15 @@
 describe('Visual snapshots', () => {
+	beforeEach(() => {
+		cy.viewport(1920, 1080);
+	});
 	it('match for the hero', () => {
-		cy.visit('/').get('main'); // TODO refactor this across the board and on other site
+		cy.visit('/').get('main');
 		cy.loadImageByAltText(
 			"Britain's Greatest Prime Minister: Lord Liverpool"
 		);
-		cy.matchImageSnapshot('hero');
+		Cypress.browser.isHeadless
+			? cy.matchImageSnapshot('hero')
+			: cy.log('No screenshot taken when headed');
 	});
 });
 
