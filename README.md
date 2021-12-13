@@ -9,7 +9,7 @@
 -   GraphQL + Typegen
 -   SCSS + Modules
 -   Jest + Linting Runners
--   Cypress + Axe
+-   Cypress + Axe + Visual Regression
 -   NetlifyCMS + Netlify
 
 ## Dev notes
