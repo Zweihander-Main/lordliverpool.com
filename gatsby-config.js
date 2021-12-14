@@ -103,6 +103,7 @@ module.exports = {
 		},
 		`gatsby-transformer-remark`,
 		`gatsby-plugin-catch-links`,
+		`gatsby-plugin-netlify`,
 		`gatsby-plugin-netlify-cms`, // should be last in the array or close to it
 		{
 			resolve: `gatsby-plugin-typegen`,
