@@ -179,6 +179,7 @@ $breakpoints: v.$breakpoints;
 			$animation-show-name: 'card-scalex-to-show-#{$size}';
 		}
 
+		/* stylelint-disable keyframes-name-pattern */
 		@keyframes #{$animation-hide-name} {
 			0% {
 				margin: 0 $margin 0 0;
