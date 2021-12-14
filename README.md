@@ -46,6 +46,7 @@
 
 -   `npm run build`: Build to production using Gatsby (outputs to `public` folder)
 -   `npm run dev`: Build and serve development version using Gatsby
+-   `npm run clean`: Clean the `public` and `.cache` folders
 -   `npm run serve`: Build and serve production
 -   `npm run test`: Run jest and runners
 -   `npm run test:coverage`: Generate coverage reports
@@ -59,6 +60,7 @@
 -   `npm run cy:open`: Open cypress dashboard
 -   `npm run lint`: Run all jest runners
 -   `npm run lint:md`: Run remark markdown linter
+-   `npm run lint:ts`: Run TypeScript compiler
 -   `npm run prepare`: Prepare husky
 -   `npm run netlify`: Script to run as netlify that builds and generates public coverage reports
 -   `npm run format`: Auto-format using prettier
