@@ -8,18 +8,14 @@
 	color: v.$black;
 	display: grid;
 	grid-auto-rows: 1fr;
-	grid-template-areas: 'BookDisplay Info';
-	grid-template-columns: 45% 55%;
-	grid-template-rows: 100%;
+	grid-template: 'BookDisplay Info' 100% / 45% 55%;
 	min-height: 100vh;
 
 	@include m.media('<=wide') {
 		grid-auto-rows: initial;
-		grid-template-areas:
+		grid-template:
 			'BookDisplay'
-			'Info';
-		grid-template-columns: 100%;
-		grid-template-rows: 1fr;
+			'Info' 1fr / 100%;
 	}
 }
 

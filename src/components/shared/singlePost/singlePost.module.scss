@@ -71,8 +71,8 @@
 	}
 
 	h2:not(.subtitle):not(.extra-header-text) {
-		width: 100%;
 		border-bottom: 1px solid v.$pastel-bg;
+		width: 100%;
 	}
 
 	ul {
@@ -82,9 +82,9 @@
 
 .nav-links {
 	display: grid;
-	grid-template-areas: 'Left Middle Right';
-	grid-template-columns: 1fr 1fr 1fr;
-	grid-template-rows: 1fr;
+	grid-template:
+		'Left Middle Right' 1fr
+		/ 1fr 1fr 1fr;
 	justify-items: center;
 	max-width: v.$post-max-width;
 	padding: 1.5rem; //TODO double height screws up -- flex?
@@ -163,11 +163,12 @@
 
 .extra-header-text {
 	@include m.header-normal;
-	font-weight: 400;
-	text-rendering: optimizeLegibility;
-	font-size: 1rem; //TODO var
-	line-height: 1.1;
+
 	font-family: v.$body-font;
+	font-size: 1rem; //TODO var
+	font-weight: 400;
+	line-height: 1.1;
+	text-rendering: optimizeLegibility;
 }
 
 .post-image {

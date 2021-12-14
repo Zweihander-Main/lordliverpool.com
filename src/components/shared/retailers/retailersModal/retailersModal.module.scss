@@ -239,8 +239,7 @@ $options-top-padding: 0.2rem;
 
 .radio-options-container {
 	display: inline-flex;
-	flex-direction: row;
-	flex-wrap: wrap;
+	flex-flow: row wrap;
 	justify-content: flex-end;
 	margin: calc(#{-$options-top-padding} + #{-$options-border}) 0 0 0;
 	// row-gap: calc(#{$options-top-padding} + #{$options-border});

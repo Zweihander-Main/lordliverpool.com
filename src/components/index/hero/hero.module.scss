@@ -5,14 +5,12 @@
 .hero {
 	color: v.$white;
 	display: grid;
-	grid-template-areas:
-		'Hero-Image'
-		'Main-Title'
-		'Sub-Title'
-		'Scroll-Arrow'
-		'Retailers-Button';
-	grid-template-columns: 100%;
-	grid-template-rows: 46% 24% 8% 7% 15%;
+	grid-template:
+		'Hero-Image' 46%
+		'Main-Title' 24%
+		'Sub-Title' 8%
+		'Scroll-Arrow' 7%
+		'Retailers-Button' 15% / 100%;
 	height: 100vh; //Firefox sizing bug
 	min-height: 100vh;
 	text-align: center;
@@ -88,9 +86,11 @@
 		opacity: 0;
 		transform: rotate(-45deg) translate(0, 0);
 	}
+
 	50% {
 		opacity: 1;
 	}
+
 	100% {
 		opacity: 0;
 		transform: rotate(-45deg) translate(-20px, 20px);

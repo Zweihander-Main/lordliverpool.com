@@ -53,6 +53,7 @@ $menu-transition: 0.2s;
 	@include m.media('<=wide') {
 		margin: 0;
 		padding: 1rem 0.5rem 0.5rem 1rem;
+
 		.menu-text {
 			display: none;
 		}

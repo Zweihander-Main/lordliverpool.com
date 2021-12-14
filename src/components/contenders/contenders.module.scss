@@ -12,10 +12,10 @@ $image-width: 100vw/3 * 2;
 .menu {
 	background-color: v.$light-bg;
 	box-shadow: 0 0 15px v.$black;
+	height: 100vh;
+	overflow-y: scroll;
 	padding: 1rem;
 	position: relative;
-	overflow-y: scroll;
-	height: 100vh;
 }
 
 .menu-list {
