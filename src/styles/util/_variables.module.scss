@@ -3,10 +3,24 @@
 
 // typography related //TODO remove more of these or convert to vw
 $base-size: f.$base-size; // To avoid circular reference
+$base-line-height: 1.38;
+$scale-ratio: 2;
+
+// typography.js calculations
+$font-size-h1: math.pow($scale-ratio, (5/5)) * $base-size;
+$font-size-h2: math.pow($scale-ratio, (3/5)) * $base-size;
+$font-size-h3: math.pow($scale-ratio, (2/5)) * $base-size;
+$font-size-h4: math.pow($scale-ratio, (0/5)) * $base-size;
+$font-size-h5: math.pow($scale-ratio, (-1/5)) * $base-size;
+$font-size-h6: math.pow($scale-ratio, (-1.5/5)) * $base-size;
+$font-size-h7: math.pow($scale-ratio, (-1.6/5)) * $base-size;
+
+// TODO: sane naming scheme
 $hero-large-size: 4rem;
 $hero-sub-size: 1.5rem;
 $hero-tiny-size: 1.125rem;
 $chrono-year-size: 2.25rem;
+
 $header-font: 'Libre Baskerville', 'Georgia Pro', georgia, 'Times New Roman',
 	serif;
 $body-font: 'Cardo', Garamond, 'Times New Roman', serif;
@@ -104,6 +118,8 @@ $breakpoints: (
 // export for JS
 :export {
 	baseSize: $base-size;
+	baseLineHeight: $base-line-height;
+	scaleRatio: $scale-ratio;
 	headerFont: $header-font;
 	bodyFont: $body-font;
 	letterSpacing: $letter-spacing;

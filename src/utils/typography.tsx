@@ -11,8 +11,8 @@ const formatFont = (font: string) => {
 
 const typography = new Typography({
 	baseFontSize: v.baseSize,
-	baseLineHeight: 1.38,
-	scaleRatio: 2,
+	baseLineHeight: parseFloat(v.baseLineHeight),
+	scaleRatio: parseInt(v.scaleRatio),
 	bodyColor: 'inherit',
 	headerFontFamily: formatFont(v.headerFont),
 	bodyFontFamily: formatFont(v.bodyFont),
@@ -31,4 +31,5 @@ const typography = new Typography({
 		},
 	}),
 });
+
 export default typography;
