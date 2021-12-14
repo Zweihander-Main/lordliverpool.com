@@ -24,8 +24,7 @@
 -   Deployed on Netlify
     -   Netlify experimental cache enabled
     -   Gatsby fingerprinting disabled
--   Netlify builds from `netlify`
-    -   `netlify` branch is protected from push/merge without E2E test passing
+-   Netlify builds from `netlify` branch
     -   NetlifyCMS and netlify preview deploys working from `master` branch
 
 ### Workflow for development:
