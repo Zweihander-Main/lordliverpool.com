@@ -9,7 +9,7 @@ import BookInfo from 'components/index/bookInfo';
 const IndexPage: React.FC = () => {
 	return (
 		<Layout isHome={true}>
-			<SEO title="Home" />
+			<SEO />
 			<Hero />
 			<Modal />
 			<BookInfo />

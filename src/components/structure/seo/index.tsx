@@ -17,7 +17,7 @@ type SEOProps = {
 				name?: undefined;
 		  }
 	>;
-	title: string;
+	title?: string;
 	app?: boolean;
 };
 
@@ -25,7 +25,7 @@ const SEO: React.FC<SEOProps> = ({
 	description = '',
 	lang = 'en',
 	meta = [],
-	title,
+	title = '',
 	app = false,
 }) => {
 	const { site } = useStaticQuery<GatsbyTypes.SEOSiteMetadataQuery>(
@@ -75,8 +75,9 @@ const SEO: React.FC<SEOProps> = ({
 			bodyAttributes={{
 				class: bodyClass,
 			}}
-			title={title}
+			title={title !== '' ? title : undefined}
 			titleTemplate={`%s | ${site.siteMetadata.title}`}
+			defaultTitle={site.siteMetadata.title}
 			meta={[
 				{
 					name: 'description',
@@ -84,7 +85,7 @@ const SEO: React.FC<SEOProps> = ({
 				},
 				{
 					property: 'og:title',
-					content: title,
+					content: title !== '' ? title : site.siteMetadata.title,
 				},
 				{
 					property: 'og:description',
@@ -104,7 +105,7 @@ const SEO: React.FC<SEOProps> = ({
 				},
 				{
 					name: 'twitter:title',
-					content: title,
+					content: title !== '' ? title : site.siteMetadata.title,
 				},
 				{
 					name: 'twitter:description',
