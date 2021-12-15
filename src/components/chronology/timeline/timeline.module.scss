@@ -54,10 +54,10 @@
 .year {
 	color: v.$light-bg;
 	font-family: v.$header-font;
-	font-size: v.$chrono-year-size;
+	font-size: v.$font-size-chrono-year;
 	font-style: italic;
 	position: absolute;
-	top: calc(-#{v.$chrono-year-size} - 4px);
+	top: calc(-#{v.$font-size-chrono-year} - 4px);
 	transition: opacity 200ms v.$timing-function;
 	user-select: none;
 	white-space: nowrap;

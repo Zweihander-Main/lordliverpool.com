@@ -33,7 +33,7 @@
 .main-title {
 	@include m.header-text-shadow;
 
-	font-size: f.convert-to-viewport(v.$hero-large-size);
+	font-size: f.convert-to-viewport(v.$font-size-hero-title);
 	font-weight: normal;
 	grid-area: Main-Title;
 	line-height: f.convert-to-viewport(4.93rem);
@@ -42,7 +42,7 @@
 }
 
 .sub-title {
-	font-size: f.convert-to-viewport(v.$hero-sub-size, 1vh);
+	font-size: f.convert-to-viewport(v.$font-size-h2, 1vh);
 	font-style: italic;
 	font-weight: normal;
 	grid-area: Sub-Title;
