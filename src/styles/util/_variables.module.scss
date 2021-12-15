@@ -40,7 +40,8 @@ $color-black: #222;
 $color-gray: #aaa;
 
 // animation
-$timing-function: cubic-bezier(0.65, 0.05, 0.36, 1); //TODO make sure consistent
+$timing-quick: cubic-bezier(0.65, 0.05, 0.36, 1);
+$timing-gradual: cubic-bezier(0.22, 0.61, 0.36, 1);
 
 // border-radius
 $border-radius-large: 1rem;

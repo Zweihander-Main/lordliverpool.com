@@ -20,7 +20,7 @@ $menu-transition: 0.2s;
 	margin: 1rem 0 0 1rem;
 	padding: 1rem;
 	position: absolute;
-	transition: $menu-transition v.$timing-function;
+	transition: $menu-transition v.$timing-quick;
 	z-index: 1001;
 
 	@include m.media('<=desktop') {
@@ -72,7 +72,7 @@ $menu-transition: 0.2s;
 	background-color: v.$color-white;
 	height: 2px;
 	margin: 9px 1.4rem 9px 9px;
-	transition: $menu-transition v.$timing-function;
+	transition: $menu-transition v.$timing-quick;
 	width: 30px;
 
 	@include m.media('<=tablet') {
@@ -203,7 +203,7 @@ $menu-transition: 0.2s;
 	right: 0;
 	text-decoration: none;
 	top: 0;
-	transition: $menu-transition v.$timing-function;
+	transition: $menu-transition v.$timing-quick;
 	z-index: 1001;
 
 	@include m.media('<=desktop') {

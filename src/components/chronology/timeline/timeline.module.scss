@@ -27,7 +27,7 @@
 	height: v.$timeline-area-grabber-height;
 	left: 0;
 	position: absolute;
-	transition: width 100ms v.$timing-function; //TODO test phone and check if 5ms left transition is good/bad
+	transition: width 100ms v.$timing-quick; //TODO test phone and check if 5ms left transition is good/bad
 	user-select: none;
 	will-change: width, transform;
 	z-index: 9999;
@@ -58,7 +58,7 @@
 	font-style: italic;
 	position: absolute;
 	top: calc(-#{v.$font-size-chrono-year} - 4px);
-	transition: opacity 200ms v.$timing-function;
+	transition: opacity 200ms v.$timing-quick;
 	user-select: none;
 	white-space: nowrap;
 	will-change: transform;

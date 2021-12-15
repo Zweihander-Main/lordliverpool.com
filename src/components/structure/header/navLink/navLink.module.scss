@@ -2,9 +2,9 @@
 @use '~styles/util/mixins.module' as m;
 
 .nav-link {
-	animation: menuup 0.3s;
+	animation: menu-come-up 0.3s;
 	animation-fill-mode: both;
-	animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+	animation-timing-function: v.$timing-gradual;
 	background-color: v.$color-white;
 	border-right: 1px solid v.$color-gray;
 	bottom: -100vh;
@@ -46,7 +46,7 @@
 	}
 }
 
-@keyframes menuup {
+@keyframes menu-come-up {
 	from {
 		transform: translateY(0);
 	}
@@ -61,7 +61,7 @@
 	flex-direction: column;
 	height: 100%;
 	justify-content: center;
-	transition: 0.1s v.$timing-function;
+	transition: 0.1s v.$timing-quick;
 	user-select: none;
 	width: 100%;
 }

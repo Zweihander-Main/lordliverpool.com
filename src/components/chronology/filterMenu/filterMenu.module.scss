@@ -20,7 +20,7 @@
 	grid-area: FilterMenu;
 	justify-content: space-around;
 	margin: 0 250px; //TODO nope -- redo grid as well
-	transition: 100ms v.$timing-function;
+	transition: 100ms v.$timing-quick;
 	z-index: 9;
 	// TODO adjust based on new menu size when you resize it
 
@@ -53,7 +53,7 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
-	transition: 100ms v.$timing-function; //TODO -- logic to 150ms?
+	transition: 100ms v.$timing-quick; //TODO -- logic to 150ms?
 	width: 100%;
 
 	@include m.media('<=tablet') {
@@ -88,7 +88,7 @@
 	line-height: 1.1;
 	margin: 0;
 	padding: 0.6rem 2rem;
-	transition: 100ms v.$timing-function; // TODO consistency on button transition
+	transition: 100ms v.$timing-quick; // TODO consistency on button transition
 	z-index: 999;
 
 	@include m.media('height<=HEIGHT_short') {

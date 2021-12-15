@@ -43,7 +43,7 @@ $masonry-margin: 5em;
 	border-radius: v.$border-radius-normal;
 	overflow: hidden;
 	position: relative;
-	transition: 75ms v.$timing-function;
+	transition: 75ms v.$timing-quick;
 	width: 100%;
 
 	&:hover {

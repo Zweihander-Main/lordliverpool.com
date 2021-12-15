@@ -22,7 +22,7 @@ $options-top-padding: 0.2rem;
 	top: 0;
 	transform: translate(0, 100%);
 	transform: translate3d(0, 100%, 0);
-	transition: 250ms v.$timing-function;
+	transition: 250ms v.$timing-quick;
 	width: 0;
 	will-change: transform;
 	z-index: 999999;
@@ -52,8 +52,8 @@ $options-top-padding: 0.2rem;
 	position: relative;
 	top: 3rem;
 	transform: translateX(-50%);
-	transition: max-width 0.25s v.$timing-function,
-		margin-left 0.125s v.$timing-function;
+	transition: max-width 0.25s v.$timing-quick,
+		margin-left 0.125s v.$timing-quick;
 	z-index: 20;
 
 	@include m.media('height<=HEIGHT_short') {
@@ -154,7 +154,7 @@ $options-top-padding: 0.2rem;
 	opacity: 0.2;
 	padding: $retailer-gap;
 	position: relative;
-	transition: 200ms v.$timing-function;
+	transition: 200ms v.$timing-quick;
 	width: 100%;
 }
 

@@ -63,7 +63,7 @@ $breakpoints: v.$breakpoints;
 		margin: $margin;
 		opacity: 0;
 		position: absolute;
-		transition: all 150ms v.$timing-function;
+		transition: all 150ms v.$timing-quick;
 		width: 0;
 	}
 

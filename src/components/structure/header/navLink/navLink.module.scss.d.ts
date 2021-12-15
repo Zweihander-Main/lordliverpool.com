@@ -6,7 +6,7 @@ export const bodyFont: string;
 export const letterSpacing: string;
 export const cardWidth: string;
 export const navLink: string;
-export const menuup: string;
+export const menuComeUp: string;
 export const navLinkImage: string;
 export const navLinkContainer: string;
 export const navSubHeader: string;

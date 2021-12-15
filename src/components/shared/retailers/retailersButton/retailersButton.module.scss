@@ -16,7 +16,7 @@
 	color: v.$color-white;
 	padding: 0.6rem 1rem;
 	text-decoration: none;
-	transition: 75ms v.$timing-function;
+	transition: 75ms v.$timing-quick;
 
 	@include m.media('height>HEIGHT_ultratiny', 'height<=HEIGHT_tiny') {
 		padding: 0.45rem 0.75rem;
