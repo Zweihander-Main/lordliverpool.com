@@ -162,7 +162,7 @@ $breakpoints: v.$breakpoints;
 }
 
 @mixin filter-menu-link-small {
-	font-size: 1.05rem; //TODO var
+	font-size: v.$font-size-filter-menu-small;
 	padding: 0.5rem 1rem;
 }
 
