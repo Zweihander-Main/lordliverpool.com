@@ -5,10 +5,10 @@
 	animation: menuup 0.3s;
 	animation-fill-mode: both;
 	animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
-	background-color: v.$white;
-	border-right: 1px solid v.$subtle-gray;
+	background-color: v.$color-white;
+	border-right: 1px solid v.$color-gray;
 	bottom: -100vh;
-	color: v.$black;
+	color: v.$color-black;
 	height: 100%;
 	position: relative;
 	text-decoration: none;
@@ -16,7 +16,7 @@
 	will-change: transform;
 
 	@include m.media('<=desktop') {
-		border-bottom: 1px solid v.$subtle-gray;
+		border-bottom: 1px solid v.$color-gray;
 		border-right: 0;
 	}
 
@@ -33,8 +33,8 @@
 	&:hover {
 		@include m.header-text-shadow;
 
-		background-color: v.$dark-bg;
-		color: v.$white;
+		background-color: v.$color-red-dark;
+		color: v.$color-white;
 	}
 
 	.nav-link-image {

@@ -4,8 +4,8 @@
 
 .book-info {
 	align-items: center;
-	background-color: v.$light-bg;
-	color: v.$black;
+	background-color: v.$color-red-white;
+	color: v.$color-black;
 	display: grid;
 	grid-auto-rows: 1fr;
 	grid-template: 'BookDisplay Info' 100% / 45% 55%;
@@ -35,7 +35,7 @@
 	@include m.neumorphic-intensity(
 		v.$post-border-shadow-size,
 		v.$post-border-shadow-spread,
-		v.$light-bg,
+		v.$color-red-white,
 		v.$post-border-shadow-intensity
 	); //TODO consistent with single post
 
@@ -80,11 +80,11 @@
 }
 
 .author-link {
-	color: v.$black;
+	color: v.$color-black;
 }
 
 .more-info {
-	color: v.$black;
+	color: v.$color-black;
 	font-style: italic;
 	margin-left: 1rem;
 	padding: 1rem;

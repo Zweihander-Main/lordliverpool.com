@@ -5,12 +5,12 @@
 @import '~@fontsource/cardo/latin.css';
 
 html {
-	background-color: v.$dark-bg;
+	background-color: v.$color-red-dark;
 }
 
 ::selection {
-	background: v.$red;
-	color: v.$white;
+	background: v.$color-red;
+	color: v.$color-white;
 }
 
 .app-body {

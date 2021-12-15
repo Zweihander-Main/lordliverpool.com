@@ -6,15 +6,15 @@
 	@include m.neumorphic-intensity(
 		7px,
 		14px,
-		v.$blue-bg,
+		v.$color-blue,
 		60%
 	); // TODO consistency in terms of intensity, shadow spread, ect.
 
 	align-items: center;
 	background: #051926;
-	border-bottom: 1px solid color.adjust(v.$blue-bg, $lightness: 8%);
+	border-bottom: 1px solid color.adjust(v.$color-blue, $lightness: 8%);
 	border-radius: 0 0 v.$border-radius-normal * 2 v.$border-radius-normal * 2; //TODO border radius in some other unit or proportional to the size?
-	color: v.$white;
+	color: v.$color-white;
 	display: flex;
 	flex-direction: row;
 	grid-area: FilterMenu;
@@ -80,10 +80,10 @@
 	background-color: transparent;
 	border: 0;
 	border-radius: v.$border-radius-normal;
-	color: v.$white;
+	color: v.$color-white;
 	cursor: pointer;
 	display: block;
-	font-family: v.$header-font;
+	font-family: v.$font-family-header;
 	font-size: v.$font-size-h3;
 	line-height: 1.1;
 	margin: 0;
@@ -118,7 +118,7 @@
 .filter-menu-input:checked ~ .filter-menu-button-container > .filter-menu-link {
 	@include m.neumorphic-button(-3px, 6px, #051926, 60%);
 
-	color: v.$light-bg;
+	color: v.$color-red-white;
 
 	&:hover {
 		@include m.neumorphic-button(-3px, 6px, #051926, 60%);

@@ -10,7 +10,7 @@ $options-top-padding: 0.2rem;
 
 .outer {
 	bottom: 0;
-	color: v.$black;
+	color: v.$color-black;
 	height: 0;
 	left: 0;
 	line-height: 1.3;
@@ -37,9 +37,9 @@ $options-top-padding: 0.2rem;
 }
 
 .inner {
-	background: v.$white;
+	background: v.$color-white;
 	border-radius: v.$border-radius-normal;
-	box-shadow: 0 0 30px v.$black;
+	box-shadow: 0 0 30px v.$color-black;
 	left: 50%;
 	max-height: calc(90vh - 6rem);
 	max-width: 100%;
@@ -88,7 +88,7 @@ $options-top-padding: 0.2rem;
 }
 
 .close::before {
-	background-color: rgba(v.$black, $bg-opacity);
+	background-color: rgba(v.$color-black, $bg-opacity);
 	bottom: 0;
 	content: '';
 	left: 0;
@@ -101,7 +101,7 @@ $options-top-padding: 0.2rem;
 .close::after {
 	@include m.header-text-shadow;
 
-	color: v.$white;
+	color: v.$color-white;
 	content: '';
 	content: '\D7';
 	font-size: 2rem;
@@ -147,7 +147,7 @@ $options-top-padding: 0.2rem;
 
 .retailer {
 	align-content: center;
-	background: v.$ultra-white;
+	background: v.$color-perfect-white;
 	display: flex;
 	height: 100%;
 	justify-content: center;
@@ -159,13 +159,13 @@ $options-top-padding: 0.2rem;
 }
 
 .show-retailer {
-	@include m.neumorphic-intensity(3px, 10px, v.$white, 27%);
+	@include m.neumorphic-intensity(3px, 10px, v.$color-white, 27%);
 
 	opacity: 1;
 	will-change: transform;
 
 	&:hover {
-		@include m.neumorphic-intensity(4px, 19px, v.$white, 27%);
+		@include m.neumorphic-intensity(4px, 19px, v.$color-white, 27%);
 
 		transform: scale(1.05);
 	}
@@ -198,17 +198,17 @@ $options-top-padding: 0.2rem;
 }
 
 .menu {
-	font-family: v.$header-font;
+	font-family: v.$font-family-header;
 	font-size: 0.8rem;
 	margin-bottom: 1rem;
 }
 
 .menu-selection {
-	@include m.neumorphic-intensity(2px, 7px, v.$white, 23%);
+	@include m.neumorphic-intensity(2px, 7px, v.$color-white, 23%);
 
 	align-items: center;
-	background: v.$white;
-	border: 7px solid v.$white;
+	background: v.$color-white;
+	border: 7px solid v.$color-white;
 	border-radius: v.$border-radius-normal;
 	display: grid;
 	grid-template-columns: minmax(6rem, max-content) 1fr;
@@ -223,7 +223,7 @@ $options-top-padding: 0.2rem;
 }
 
 .menu-label {
-	color: rgba(v.$black, $menu-label-opacity);
+	color: rgba(v.$color-black, $menu-label-opacity);
 	display: inline-block;
 	font-weight: bold;
 	margin: 0 1rem 0 0.1rem;
@@ -258,19 +258,19 @@ $options-top-padding: 0.2rem;
 }
 
 .radio-option:checked + label {
-	@include m.neumorphic-button(-1px, 5px, v.$white, 28%);
+	@include m.neumorphic-button(-1px, 5px, v.$color-white, 28%);
 
-	background: v.$white;
-	color: v.$black;
+	background: v.$color-white;
+	color: v.$color-black;
 }
 
 .radio-label {
-	@include m.neumorphic-intensity(2px, 9px, v.$white, 18%);
-	@include m.neumorphic-raised-button(v.$white, 7%);
+	@include m.neumorphic-intensity(2px, 9px, v.$color-white, 18%);
+	@include m.neumorphic-raised-button(v.$color-white, 7%);
 
 	border: 0;
 	border-radius: v.$border-radius-normal/2;
-	color: rgba(v.$black, $radio-label-opacity);
+	color: rgba(v.$color-black, $radio-label-opacity);
 	cursor: pointer;
 	margin: calc(#{$options-top-padding} + #{$options-border}) 1rem 0 0;
 	padding: 0.2rem 1rem;
@@ -285,14 +285,14 @@ $options-top-padding: 0.2rem;
 	}
 
 	&:hover {
-		@include m.neumorphic-intensity(3px, 11px, v.$white, 18%);
-		@include m.neumorphic-raised-button(v.$white, 10%);
+		@include m.neumorphic-intensity(3px, 11px, v.$color-white, 18%);
+		@include m.neumorphic-raised-button(v.$color-white, 10%);
 
-		color: v.$black;
+		color: v.$color-black;
 	}
 
 	&:active {
-		@include m.neumorphic-raised-button(v.$white, 10%, true);
+		@include m.neumorphic-raised-button(v.$color-white, 10%, true);
 	}
 }
 

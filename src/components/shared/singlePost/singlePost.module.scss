@@ -4,7 +4,7 @@
 //TODO print styles
 .post-container {
 	align-items: center;
-	background-color: v.$light-bg;
+	background-color: v.$color-red-white;
 	display: flex;
 	flex-direction: column;
 	min-height: 95vh;
@@ -28,13 +28,13 @@
 	@include m.neumorphic-intensity(
 		v.$post-border-shadow-size,
 		v.$post-border-shadow-spread,
-		v.$light-bg,
+		v.$color-red-white,
 		$intensity: v.$post-border-shadow-intensity
 	);
 
 	align-items: center;
 	border-radius: v.$border-radius-large;
-	color: v.$black;
+	color: v.$color-black;
 	display: flex;
 	flex-direction: column;
 	margin: 10vh 2rem 0;
@@ -71,7 +71,7 @@
 	}
 
 	h2:not(.subtitle):not(.extra-header-text) {
-		border-bottom: 1px solid v.$pastel-bg;
+		border-bottom: 1px solid v.$color-red-pastel;
 		width: 100%;
 	}
 
@@ -107,7 +107,7 @@
 } //TODO neumorphic pics
 
 .nav-links a {
-	color: v.$black;
+	color: v.$color-black;
 	padding: 0 1rem 0.5rem;
 	position: relative;
 	text-decoration: underline;
@@ -164,7 +164,7 @@
 .extra-header-text {
 	@include m.header-normal;
 
-	font-family: v.$body-font;
+	font-family: v.$font-family-body;
 	font-size: 1rem; //TODO var
 	font-weight: 400;
 	line-height: 1.1;
@@ -183,7 +183,7 @@
 	a {
 		@include m.fancy-hover-link();
 
-		color: v.$black;
+		color: v.$color-black;
 		font-style: italic;
 	}
 }

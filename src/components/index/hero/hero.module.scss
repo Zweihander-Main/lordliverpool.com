@@ -3,7 +3,7 @@
 @use '~styles/util/functions.module' as f;
 
 .hero {
-	color: v.$white;
+	color: v.$color-white;
 	display: grid;
 	grid-template:
 		'Hero-Image' 46%
@@ -56,8 +56,8 @@
 
 	span {
 		animation: arrowdown 4s infinite;
-		border-bottom: 1px solid v.$white;
-		border-left: 1px solid v.$white;
+		border-bottom: 1px solid v.$color-white;
+		border-left: 1px solid v.$color-white;
 		box-sizing: border-box;
 		height: 24px;
 		left: 50%;

@@ -18,7 +18,7 @@ $breakpoints: v.$breakpoints;
 }
 
 @mixin header-text-shadow {
-	text-shadow: 0 1px 2px v.$black;
+	text-shadow: 0 1px 2px v.$color-black;
 }
 
 @mixin custom-scrollbar($scroll-bg, $thumb-bg) {
@@ -51,7 +51,7 @@ $breakpoints: v.$breakpoints;
 
 //TODO add to contenders in some form
 
-@mixin fancy-hover-link($color: v.$black, $bottom: 4px, $margin: 0) {
+@mixin fancy-hover-link($color: v.$color-black, $bottom: 4px, $margin: 0) {
 	position: relative;
 
 	&::before,
@@ -89,8 +89,8 @@ $breakpoints: v.$breakpoints;
 @mixin neumorphic-full(
 	$shadow-size: 0,
 	$shadow-spread: $shadow-size * 2,
-	$bottom-color: v.$dark-bg,
-	$top-color: v.$dark-bg
+	$bottom-color: v.$color-red-dark,
+	$top-color: v.$color-red-dark
 ) {
 	box-shadow: $shadow-size $shadow-size $shadow-spread $bottom-color,
 		(-$shadow-size) (-$shadow-size) $shadow-spread $top-color;
@@ -99,7 +99,7 @@ $breakpoints: v.$breakpoints;
 @mixin neumorphic-intensity(
 	$shadow-size: 0,
 	$shadow-spread: $shadow-size * 2,
-	$base-color: v.$dark-bg,
+	$base-color: v.$color-red-dark,
 	$intensity: 50%
 ) {
 	$top-color: f.color-difference-adjust($base-color, ($intensity/100));
@@ -116,10 +116,10 @@ $breakpoints: v.$breakpoints;
 @mixin neumorphic-button(
 	$inset-shadow-size: 0,
 	$inset-shadow-spread: $inset-shadow-size * 2,
-	$base-color: v.$dark-bg,
+	$base-color: v.$color-red-dark,
 	$intensity: 50%,
 	$shadow-size: 0,
-	$shadow-color: v.$black
+	$shadow-color: v.$color-black
 ) {
 	$top-inset-color: f.color-difference-adjust($base-color, ($intensity/100));
 	$bottom-inset-color: f.color-difference-adjust(
@@ -135,7 +135,7 @@ $breakpoints: v.$breakpoints;
 }
 
 @mixin neumorphic-raised-button(
-	$base-color: v.$dark-bg,
+	$base-color: v.$color-red-dark,
 	$intensity: 50%,
 	$reverse: false
 ) {

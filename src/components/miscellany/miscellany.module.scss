@@ -33,13 +33,13 @@ $masonry-margin: 5em;
 	@include m.neumorphic-intensity(
 		$drop-shadow-offset,
 		$drop-shadow-blur,
-		v.$dark-bg,
+		v.$color-red-dark,
 		150%
 	);
 
 	//TODO could this look better and more neumorphic?
 
-	background-color: v.$red;
+	background-color: v.$color-red;
 	border-radius: v.$border-radius-normal;
 	overflow: hidden;
 	position: relative;
@@ -50,7 +50,7 @@ $masonry-margin: 5em;
 		@include m.neumorphic-intensity(
 			$drop-shadow-offset + 4px,
 			$drop-shadow-blur + 8px,
-			v.$dark-bg,
+			v.$color-red-dark,
 			150%
 		); // TODO look ma, a bug
 	}
@@ -83,7 +83,7 @@ $masonry-margin: 5em;
 %headings {
 	@include m.header-text-shadow;
 
-	color: v.$white;
+	color: v.$color-white;
 	margin-left: 2rem;
 	margin-right: 2rem;
 	//TODO some kind of hover? make better
@@ -92,7 +92,7 @@ $masonry-margin: 5em;
 .title {
 	@extend %headings;
 
-	border-bottom: 1px solid color.adjust($color: v.$white, $alpha: -0.7);
+	border-bottom: 1px solid color.adjust($color: v.$color-white, $alpha: -0.7);
 	font-size: v.$font-size-h2;
 }
 

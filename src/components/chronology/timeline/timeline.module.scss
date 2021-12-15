@@ -3,7 +3,7 @@
 
 .timeline {
 	align-items: flex-end;
-	color: v.$white;
+	color: v.$color-white;
 	display: flex;
 	flex-direction: row;
 	grid-area: Timeline;
@@ -18,11 +18,11 @@
 	@include m.neumorphic-button(
 		4px,
 		8px,
-		rgba(v.$white, v.$timeline-area-grabber-opacity + 0.1),
+		rgba(v.$color-white, v.$timeline-area-grabber-opacity + 0.1),
 		20%
 	);
 
-	background: rgba(v.$white, v.$timeline-area-grabber-opacity);
+	background: rgba(v.$color-white, v.$timeline-area-grabber-opacity);
 	cursor: grab;
 	height: v.$timeline-area-grabber-height;
 	left: 0;
@@ -52,8 +52,8 @@
 }
 
 .year {
-	color: v.$light-bg;
-	font-family: v.$header-font;
+	color: v.$color-red-white;
+	font-family: v.$font-family-header;
 	font-size: v.$font-size-chrono-year;
 	font-style: italic;
 	position: absolute;
@@ -87,9 +87,9 @@
 }
 
 .tick {
-	@include m.neumorphic-intensity(1px, 2px, v.$blue-bg, 250%); //TODO nope
+	@include m.neumorphic-intensity(1px, 2px, v.$color-blue, 250%); //TODO nope
 
-	background: v.$blue-bg;
+	background: v.$color-blue;
 	height: v.$timeline-area-grabber-height - 15;
 	width: 3px;
 

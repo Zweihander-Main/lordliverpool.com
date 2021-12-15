@@ -3,7 +3,7 @@
 @use './../contenders.module.scss' as c;
 @use 'sass:color';
 
-$pic-bg: color.adjust(v.$light-bg, $lightness: -60%, $saturation: -10%);
+$pic-bg: color.adjust(v.$color-red-white, $lightness: -60%, $saturation: -10%);
 
 .picture-container {
 	background-color: $pic-bg;
@@ -30,7 +30,7 @@ $pic-bg: color.adjust(v.$light-bg, $lightness: -60%, $saturation: -10%);
 	@include m.header-text-shadow;
 
 	align-self: end;
-	color: v.$white;
+	color: v.$color-white;
 	grid-column: 1;
 	grid-row: 1;
 	padding: 0 2rem 1.3rem;
@@ -50,7 +50,7 @@ $pic-bg: color.adjust(v.$light-bg, $lightness: -60%, $saturation: -10%);
 }
 
 .menu {
-	box-shadow: 0 0 15px v.$black;
+	box-shadow: 0 0 15px v.$color-black;
 	grid-column: 2;
 	overflow-y: scroll;
 	padding: 1rem;

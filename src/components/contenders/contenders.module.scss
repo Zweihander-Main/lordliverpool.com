@@ -4,14 +4,14 @@
 $image-width: 100vw/3 * 2;
 
 .contenders {
-	background-color: v.$black;
-	color: v.$black;
+	background-color: v.$color-black;
+	color: v.$color-black;
 	margin-left: $image-width;
 }
 
 .menu {
-	background-color: v.$light-bg;
-	box-shadow: 0 0 15px v.$black;
+	background-color: v.$color-red-white;
+	box-shadow: 0 0 15px v.$color-black;
 	height: 100vh;
 	overflow-y: scroll;
 	padding: 1rem;

@@ -2,11 +2,18 @@
 @use '~styles/util/mixins.module' as m;
 
 .button {
-	@include m.neumorphic-button(1px, 3px, v.$red, 120%, 2px, v.$black);
+	@include m.neumorphic-button(
+		1px,
+		3px,
+		v.$color-red,
+		120%,
+		2px,
+		v.$color-black
+	);
 
-	background: v.$red;
+	background: v.$color-red;
 	border-radius: v.$border-radius-normal;
-	color: v.$white;
+	color: v.$color-white;
 	padding: 0.6rem 1rem;
 	text-decoration: none;
 	transition: 75ms v.$timing-function;
@@ -30,18 +37,32 @@
 	}
 
 	&:hover {
-		@include m.neumorphic-button(2px, 5px, v.$red, 120%, 5px, v.$black);
+		@include m.neumorphic-button(
+			2px,
+			5px,
+			v.$color-red,
+			120%,
+			5px,
+			v.$color-black
+		);
 	}
 
 	&:active {
-		@include m.neumorphic-button(-1px, 3px, v.$red, 120%, 5px, v.$black);
+		@include m.neumorphic-button(
+			-1px,
+			3px,
+			v.$color-red,
+			120%,
+			5px,
+			v.$color-black
+		);
 	}
 }
 
 .text {
 	color: inherit;
 	display: inline;
-	font-family: v.$header-font;
+	font-family: v.$font-family-header;
 	font-size: v.$font-size-h6;
 	font-weight: 700;
 	letter-spacing: v.$letter-spacing;

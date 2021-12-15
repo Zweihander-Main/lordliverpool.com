@@ -6,7 +6,7 @@
 // TODO -- JS for touch scrolling sideways
 
 .chronology {
-	background-color: v.$blue-bg;
+	background-color: v.$color-blue;
 	display: grid;
 	grid-template-areas: 'FilterMenu' 'Cards' 'Timeline';
 	grid-template-columns: 100%;

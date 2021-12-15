@@ -12,7 +12,7 @@ $menu-transition: 0.2s;
 	align-items: center;
 	background-color: transparent;
 	border: 0;
-	color: v.$white;
+	color: v.$color-white;
 	cursor: pointer;
 	display: flex;
 	flex-direction: row;
@@ -42,7 +42,7 @@ $menu-transition: 0.2s;
 }
 
 .menu-button-dark {
-	color: v.$black;
+	color: v.$color-black;
 }
 
 .menu-button-mini {
@@ -69,7 +69,7 @@ $menu-transition: 0.2s;
 }
 
 .menu-bar-line {
-	background-color: v.$white;
+	background-color: v.$color-white;
 	height: 2px;
 	margin: 9px 1.4rem 9px 9px;
 	transition: $menu-transition v.$timing-function;
@@ -87,11 +87,11 @@ $menu-transition: 0.2s;
 }
 
 .menu-bar-line-dark {
-	background-color: v.$black;
+	background-color: v.$color-black;
 }
 
 %menu-button-text {
-	font-family: v.$header-font;
+	font-family: v.$font-family-header;
 	font-weight: bold;
 	letter-spacing: v.$letter-spacing-wide;
 	text-decoration: none;
@@ -134,7 +134,7 @@ $menu-transition: 0.2s;
 }
 
 .menu-input:checked ~ .menu-button {
-	color: v.$black;
+	color: v.$color-black;
 
 	.menu-text-open {
 		display: none;
@@ -145,7 +145,7 @@ $menu-transition: 0.2s;
 	}
 
 	.menu-bar-line {
-		background-color: v.$black;
+		background-color: v.$color-black;
 	}
 
 	.menu-bar-line:first-child {
@@ -193,7 +193,7 @@ $menu-transition: 0.2s;
 
 .home-button-link {
 	align-items: center;
-	color: v.$black;
+	color: v.$color-black;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;

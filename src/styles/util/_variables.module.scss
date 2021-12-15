@@ -4,49 +4,49 @@
 // typography related
 $base-size: f.$base-size; // To avoid circular reference
 $base-line-height: 1.38;
-$scale-ratio: 2;
+$base-scale-ratio: 2;
 
 // typography.js calculations -- 35 and 7 not in library
-$font-size-h1: math.pow($scale-ratio, (5/5)) * 1rem; // 2.000rem
-$font-size-h2: math.pow($scale-ratio, (3/5)) * 1rem; // 1.515rem
-$font-size-h3: math.pow($scale-ratio, (2/5)) * 1rem; // 1.319rem
-$font-size-h35: math.pow($scale-ratio, (1/5)) * 1rem; // 1.149rem
-$font-size-h4: math.pow($scale-ratio, (0/5)) * 1rem; // 1.000rem
-$font-size-h5: math.pow($scale-ratio, (-1/5)) * 1rem; // 0.871rem
-$font-size-h6: math.pow($scale-ratio, (-1.5/5)) * 1rem; // 0.812rem
-$font-size-h7: math.pow($scale-ratio, (-1.6/5)) * 1rem; // 0.801rem
+$font-size-h1: math.pow($base-scale-ratio, (5/5)) * 1rem; // 2.000rem
+$font-size-h2: math.pow($base-scale-ratio, (3/5)) * 1rem; // 1.515rem
+$font-size-h3: math.pow($base-scale-ratio, (2/5)) * 1rem; // 1.319rem
+$font-size-h35: math.pow($base-scale-ratio, (1/5)) * 1rem; // 1.149rem
+$font-size-h4: math.pow($base-scale-ratio, (0/5)) * 1rem; // 1.000rem
+$font-size-h5: math.pow($base-scale-ratio, (-1/5)) * 1rem; // 0.871rem
+$font-size-h6: math.pow($base-scale-ratio, (-1.5/5)) * 1rem; // 0.812rem
+$font-size-h7: math.pow($base-scale-ratio, (-1.6/5)) * 1rem; // 0.801rem
 
-// TODO: sane naming scheme
 $font-size-hero-title: 4rem;
 $font-size-chrono-year: 2.25rem;
 
-$header-font: 'Libre Baskerville', 'Georgia Pro', georgia, 'Times New Roman',
-	serif;
-$body-font: 'Cardo', Garamond, 'Times New Roman', serif;
+$font-family-header: 'Libre Baskerville', 'Georgia Pro', georgia,
+	'Times New Roman', serif;
+$font-family-body: 'Cardo', Garamond, 'Times New Roman', serif;
+
 $letter-spacing: 0.05em;
 $letter-spacing-wide: 0.15em;
 
 // colors
-$ultra-white: #fff;
-$white: #f7f7f7;
-$red: #550003;
-$dark-bg: #260101;
-$light-bg: #f2e3d0;
-$black-bg: #130101;
-$blue-bg: #051926;
-$pastel-bg: #bfaaaa;
-$black: #222;
-$subtle-gray: #aaa;
-$blue-card-bg: #030e15;
+$color-perfect-white: #fff;
+$color-white: #f7f7f7;
+$color-red: #550003;
+$color-red-dark: #260101;
+$color-red-black: #130101;
+$color-red-pastel: #bfaaaa;
+$color-red-white: #f2e3d0;
+$color-blue: #051926;
+$color-blue-black: #030e15;
+$color-black: #222;
+$color-gray: #aaa;
 
 // animation
 $timing-function: cubic-bezier(0.65, 0.05, 0.36, 1); //TODO make sure consistent
 
 // border-radius
-$border-radius-large: 16px;
-$border-radius-normal: 8px;
-$border-radius-small: 4px;
-$border-radius-tiny: 2px;
+$border-radius-large: 1rem;
+$border-radius-normal: 0.5rem;
+$border-radius-small: 0.25rem;
+$border-radius-tiny: 0.125rem;
 
 // chronology
 $filter-menu-height: 60px;
@@ -90,6 +90,7 @@ $card-total-margin-shorter: $filter-menu-height-short + $timeline-height-shorter
 	$card-top-margin-shorter + $card-bottom-margin-shorter;
 $card-total-margin-ultratiny: $filter-menu-height-short +
 	$card-top-margin-ultratiny + $card-bottom-margin-ultratiny;
+
 // singleposts
 $post-max-width: 51rem;
 $post-border-shadow-size: 17px;
@@ -118,9 +119,9 @@ $breakpoints: (
 :export {
 	baseSize: $base-size;
 	baseLineHeight: $base-line-height;
-	scaleRatio: $scale-ratio;
-	headerFont: $header-font;
-	bodyFont: $body-font;
+	scaleRatio: $base-scale-ratio;
+	headerFont: $font-family-header;
+	bodyFont: $font-family-body;
 	letterSpacing: $letter-spacing;
 	cardWidth: math.div(f.strip-units($card-width), 100);
 }
