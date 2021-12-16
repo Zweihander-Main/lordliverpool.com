@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Link } from 'gatsby';
 import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
 import * as styles from './navLink.module.scss';
@@ -42,4 +42,7 @@ const NavLink: React.FC<NavLinkProps> = ({
 	</Link>
 );
 
-export default NavLink;
+// Never changes after initial render
+const MemoizedNavLink = memo(NavLink, () => true);
+
+export default MemoizedNavLink;
