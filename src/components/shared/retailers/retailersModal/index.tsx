@@ -2,6 +2,7 @@ import React, { memo } from 'react';
 import * as styles from './retailersModal.module.scss';
 import { useStaticQuery, graphql } from 'gatsby';
 import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
+import isEqual from 'react-fast-compare';
 
 interface IFlagPics {
 	[index: `${string}_pic`]: IGatsbyImageData | undefined;
@@ -24,12 +25,7 @@ const RetailerItemFlagImage: React.FC<RetailerItemFlagImageProps> = ({
 	/>
 );
 
-const MemoizedRetailerItemFlagImage = memo(
-	RetailerItemFlagImage,
-	(prevProps, nextProps) =>
-		prevProps.flagImage === nextProps.flagImage &&
-		prevProps.flagName === nextProps.flagName
-);
+const MemoizedRetailerItemFlagImage = memo(RetailerItemFlagImage, isEqual);
 
 type RetailerItemImageProps = {
 	image: IGatsbyImageData;
@@ -51,12 +47,7 @@ const RetailerItemImage: React.FC<RetailerItemImageProps> = ({
 	/>
 );
 
-const MemoizedRetailerItemImage = memo(
-	RetailerItemImage,
-	(prevProps, nextProps) =>
-		prevProps.image === nextProps.image &&
-		prevProps.title === nextProps.title
-);
+const MemoizedRetailerItemImage = memo(RetailerItemImage, isEqual);
 
 type RetailerItemProps = {
 	shouldDisplay: boolean;
@@ -101,16 +92,7 @@ const RetailerItem: React.FC<RetailerItemProps> = ({
 	);
 };
 
-const MemoizedRetailerItem = memo(
-	RetailerItem,
-	(prevProps, nextProps) =>
-		prevProps.shouldDisplay === nextProps.shouldDisplay &&
-		prevProps.title === nextProps.title &&
-		prevProps.link === nextProps.link &&
-		prevProps.image === nextProps.image &&
-		prevProps.flagImage === nextProps.flagImage &&
-		prevProps.flagName === nextProps.flagName
-);
+const MemoizedRetailerItem = memo(RetailerItem, isEqual);
 
 const RetailersModal: React.FC = () => {
 	const retailersData =
