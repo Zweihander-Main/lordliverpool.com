@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { memo } from 'react';
 import Header from 'components/structure/header';
 import Footer from 'components/structure/footer';
 import 'styles/base.global.scss';
 import * as styles from './layout.module.scss';
+import isEqual from 'react-fast-compare';
 
 type LayoutProps = {
 	isHome?: boolean;
@@ -25,4 +26,7 @@ const Layout: React.FC<
 	);
 };
 
-export default Layout;
+// For use with retailers link which has a hash based method for non-JS users
+const MemoizedLayout = memo(Layout, isEqual);
+
+export default MemoizedLayout;
