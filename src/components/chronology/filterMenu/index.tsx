@@ -4,7 +4,7 @@ import { MdFilterList } from 'react-icons/md';
 
 type FilterMenuProps = {
 	categories: React.MutableRefObject<string[]>;
-	setSelectedCategory: React.Dispatch<React.SetStateAction<string>>;
+	setSelectedCategory: (state: string) => void;
 	selectedCategory: string;
 };
 

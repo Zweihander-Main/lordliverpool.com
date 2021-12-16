@@ -117,13 +117,19 @@ const Chronology: React.FC = () => {
 	const scrollingContainerRef = useRef<HTMLDivElement>(null);
 
 	const {
-		contextState: selectedCategory,
-		setContextState: setSelectedCategory,
-		getScrollLoc: getScrollLocCallback,
-		setPos,
+		state: { contextState: selectedCategory },
+		dispatch,
+		getPositions,
 		loadStorage,
 	} = useContext(ScrollLocContext);
-	const getScrollLocRef = useRef(getScrollLocCallback);
+
+	const setSelectedCategory = useCallback(
+		(state: string) => {
+			dispatch({ type: 'updateContextState', payload: state });
+		},
+		[dispatch]
+	);
+	const getPositionsRef = useRef(getPositions);
 
 	const { isLastNavFromHistBack } = useContext(HistoryContext);
 
@@ -132,7 +138,7 @@ const Chronology: React.FC = () => {
 		useState<number>();
 
 	useLayoutEffect(() => {
-		const { id, pos } = getScrollLocRef.current();
+		const { id, pos } = getPositionsRef.current();
 		const fromBackButton = isLastNavFromHistBack();
 
 		if (fromBackButton && pos) {
@@ -171,10 +177,10 @@ const Chronology: React.FC = () => {
 			(e) => {
 				const { scrollTop } = e.target as HTMLElement;
 				if (scrollTop) {
-					setPos(scrollTop);
+					dispatch({ type: 'updatePos', payload: scrollTop });
 				}
 			},
-			[setPos]
+			[dispatch]
 		);
 
 	// attached to card as ref

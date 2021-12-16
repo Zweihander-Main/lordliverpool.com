@@ -58,13 +58,9 @@ const Contenders: React.FC = () => {
 
 	const scrollingMenuRef = useRef<HTMLDivElement>(null);
 
-	const {
-		setPos,
-		setId,
-		getScrollLoc: getScrollLocCallback,
-		loadStorage,
-	} = useContext(ScrollLocContext);
-	const getScrollLocRef = useRef(getScrollLocCallback);
+	const { dispatch, getPositions, loadStorage } =
+		useContext(ScrollLocContext);
+	const getPositionsRef = useRef(getPositions);
 
 	const { isLastNavFromHistBack } = useContext(HistoryContext);
 
@@ -75,7 +71,7 @@ const Contenders: React.FC = () => {
 		useState<number>();
 
 	useLayoutEffect(() => {
-		const { id, pos } = getScrollLocRef.current();
+		const { id, pos } = getPositionsRef.current();
 		const fromBackButton = isLastNavFromHistBack();
 
 		if (fromBackButton && pos) {
@@ -118,10 +114,10 @@ const Contenders: React.FC = () => {
 		(e) => {
 			const { scrollTop } = e.target as HTMLElement;
 			if (scrollTop) {
-				setPos(scrollTop);
+				dispatch({ type: 'updatePos', payload: scrollTop });
 			}
 		},
-		[setPos]
+		[dispatch]
 	);
 
 	const scrollToThisContenderWhenSetAsRef = useCallback(
@@ -140,8 +136,8 @@ const Contenders: React.FC = () => {
 	);
 
 	useEffect(() => {
-		setId(selectedContenderId);
-	}, [selectedContenderId, setId]);
+		dispatch({ type: 'updateId', payload: selectedContenderId });
+	}, [dispatch, selectedContenderId]);
 
 	const selectedContenderNode = contenders.find(
 		(c) => c.node.id === selectedContenderId

@@ -36,13 +36,13 @@ const PostHeader: React.FC<SinglePostProps> = ({
 	next,
 	id,
 }) => {
-	const { setId } = useContext(ScrollLocContext);
+	const { dispatch } = useContext(ScrollLocContext);
 
 	useEffect(() => {
 		if (id) {
-			setId(id);
+			dispatch({ type: 'updateId', payload: id });
 		}
-	}, [id, setId]);
+	}, [id, dispatch]);
 
 	//TODO add in author
 	// TODO figure out width
