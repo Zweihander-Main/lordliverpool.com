@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import * as styles from './retailersModal.module.scss';
 import { useStaticQuery, graphql } from 'gatsby';
 import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
@@ -6,6 +6,111 @@ import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
 interface IFlagPics {
 	[index: `${string}_pic`]: IGatsbyImageData | undefined;
 }
+
+type RetailerItemFlagImageProps = {
+	flagImage: IGatsbyImageData;
+	flagName: string;
+};
+
+const RetailerItemFlagImage: React.FC<RetailerItemFlagImageProps> = ({
+	flagImage,
+	flagName,
+}) => (
+	<GatsbyImage
+		image={flagImage}
+		alt={`${flagName} flag`}
+		className={styles.flag}
+		style={{ position: 'absolute' }}
+	/>
+);
+
+const MemoizedRetailerItemFlagImage = memo(
+	RetailerItemFlagImage,
+	(prevProps, nextProps) =>
+		prevProps.flagImage === nextProps.flagImage &&
+		prevProps.flagName === nextProps.flagName
+);
+
+type RetailerItemImageProps = {
+	image: IGatsbyImageData;
+	title: string;
+};
+
+const RetailerItemImage: React.FC<RetailerItemImageProps> = ({
+	image,
+	title,
+}) => (
+	<GatsbyImage
+		image={image}
+		alt={title}
+		className={styles.logo}
+		imgStyle={{
+			margin: 0,
+			objectFit: 'contain',
+		}}
+	/>
+);
+
+const MemoizedRetailerItemImage = memo(
+	RetailerItemImage,
+	(prevProps, nextProps) =>
+		prevProps.image === nextProps.image &&
+		prevProps.title === nextProps.title
+);
+
+type RetailerItemProps = {
+	shouldDisplay: boolean;
+	title: string;
+	link: string;
+	image: IGatsbyImageData | undefined;
+	flagImage: IGatsbyImageData | undefined;
+	flagName: string;
+};
+
+const RetailerItem: React.FC<RetailerItemProps> = ({
+	shouldDisplay,
+	title,
+	link,
+	image,
+	flagImage,
+	flagName,
+}) => {
+	return (
+		<div
+			className={
+				shouldDisplay
+					? `${styles.retailer} ${styles.showRetailer}`
+					: styles.retailer
+			}
+		>
+			<a
+				target={'_blank'}
+				aria-label={title}
+				rel={'noreferrer'}
+				href={link}
+				className={styles.retailerLink}
+			>
+				{image && <MemoizedRetailerItemImage {...{ title, image }} />}
+				{flagImage && (
+					<MemoizedRetailerItemFlagImage
+						{...{ flagImage, flagName }}
+					/>
+				)}
+			</a>
+		</div>
+	);
+};
+
+const MemoizedRetailerItem = memo(
+	RetailerItem,
+	(prevProps, nextProps) =>
+		prevProps.shouldDisplay === nextProps.shouldDisplay &&
+		prevProps.title === nextProps.title &&
+		prevProps.link === nextProps.link &&
+		prevProps.image === nextProps.image &&
+		prevProps.flagImage === nextProps.flagImage &&
+		prevProps.flagName === nextProps.flagName
+);
 
 const RetailersModal: React.FC = () => {
 	const retailersData =
@@ -297,58 +402,21 @@ const RetailersModal: React.FC = () => {
 								shouldDisplay = false;
 							}
 							return (
-								<div
-									className={
-										shouldDisplay
-											? `${styles.retailer} ${styles.showRetailer}`
-											: styles.retailer
-									}
-									key={retailer.id}
-								>
-									<a
-										target={'_blank'}
-										aria-label={
+								<MemoizedRetailerItem
+									{...{
+										shouldDisplay,
+										title:
 											retailer?.frontmatter?.title ||
-											'Retailer'
-										}
-										rel={'noreferrer'}
-										href={retailer?.frontmatter?.link || ''}
-										className={styles.retailerLink}
-									>
-										{retailer?.frontmatter?.featuredImage
-											?.childImageSharp
-											?.gatsbyImageData && (
-											<GatsbyImage
-												image={
-													retailer.frontmatter
-														.featuredImage
-														.childImageSharp
-														.gatsbyImageData
-												}
-												alt={
-													retailer.frontmatter
-														.title ||
-													'Retailer Image'
-												}
-												className={styles.logo}
-												imgStyle={{
-													margin: 0,
-													objectFit: 'contain',
-												}}
-											/>
-										)}
-										{flagImage && (
-											<GatsbyImage
-												image={flagImage}
-												alt={`${
-													flag || 'Image of'
-												} flag`}
-												className={styles.flag}
-												style={{ position: 'absolute' }}
-											/>
-										)}
-									</a>
-								</div>
+											'Retailer',
+										link: retailer?.frontmatter?.link || '',
+										image: retailer?.frontmatter
+											?.featuredImage?.childImageSharp
+											?.gatsbyImageData,
+										flagImage,
+										flagName: flag || 'Image of',
+									}}
+									key={retailer.id}
+								/>
 							);
 						})}
 				</div>
