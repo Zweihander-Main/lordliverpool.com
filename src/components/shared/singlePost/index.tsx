@@ -1,10 +1,9 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
 import Link from 'gatsby-link';
 import * as styles from './singlePost.module.scss';
 import { MdArrowBack, MdArrowForward } from 'react-icons/md';
 import { NextPrevInfo } from 'types';
-import ScrollLocContext from 'contexts/ScrollLocContext';
 
 type SinglePostProps = {
 	headerImage?: IGatsbyImageData;
@@ -17,7 +16,6 @@ type SinglePostProps = {
 	linkBackName?: string;
 	prev?: NextPrevInfo;
 	next?: NextPrevInfo;
-	id?: string;
 };
 
 //TODO attribution for lifted posts
@@ -34,16 +32,7 @@ const PostHeader: React.FC<SinglePostProps> = ({
 	linkBackName,
 	prev,
 	next,
-	id,
 }) => {
-	const { dispatch } = useContext(ScrollLocContext);
-
-	useEffect(() => {
-		if (id) {
-			dispatch({ type: 'updateId', payload: id });
-		}
-	}, [id, dispatch]);
-
 	//TODO add in author
 	// TODO figure out width
 	return (
