@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import * as styles from './filterMenu.module.scss';
 import { MdFilterList } from 'react-icons/md';
 
@@ -57,4 +57,10 @@ const FilterMenu: React.FC<FilterMenuProps> = ({
 	);
 };
 
-export default FilterMenu;
+const MemoizedFilterMenu = memo(
+	FilterMenu,
+	(prevProps, nextProps) =>
+		prevProps.selectedCategory === nextProps.selectedCategory
+);
+
+export default MemoizedFilterMenu;
