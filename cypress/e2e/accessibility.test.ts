@@ -32,6 +32,7 @@ describe('Accessibility tests', () => {
 	});
 	it('Has no violations in the miscellany path', () => {
 		visitAndInject('/miscellany');
+		cy.loadImageByAltText('The decline of good economics');
 		cy.checkA11yWithLog();
 		cy.findByText(/^The decline of good economics/)
 			.parent()
