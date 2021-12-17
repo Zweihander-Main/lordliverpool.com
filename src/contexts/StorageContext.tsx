@@ -1,19 +1,15 @@
 import React, { createContext } from 'react';
 import { HistoryWithKey, WindowLocation } from 'types';
-import { SessionStorage, ReadState, ReadId } from 'utils/SessionStorage';
+import { SessionStorage, ReadState } from 'utils/SessionStorage';
 
 type StorageContextProps = {
 	loadSavedState: () => ReadState | undefined;
-	loadSavedId: () => ReadId | undefined;
-	saveState: (position: number, state: string) => void;
-	saveId: (id: string) => void;
+	saveState: (state: string, pos: number | null, id: string | null) => void;
 };
 
 const StorageContext = createContext<StorageContextProps>({
 	loadSavedState: () => undefined,
-	loadSavedId: () => undefined,
 	saveState: () => undefined,
-	saveId: () => undefined,
 });
 
 export default StorageContext;
@@ -31,25 +27,19 @@ export const StorageProvider: React.FC = ({ children }) => {
 		return storage.readState(createLocation());
 	};
 
-	const loadSavedId = () => {
-		return storage.readId(createLocation());
-	};
-
-	const saveState = (position: number, state: string) => {
-		storage.saveState(createLocation(), position, state);
-	};
-
-	const saveId = (id: string) => {
-		storage.saveId(createLocation(), id);
+	const saveState = (
+		state: string,
+		pos: number | null,
+		id: string | null
+	) => {
+		storage.saveState(createLocation(), state, pos, id);
 	};
 
 	return (
 		<StorageContext.Provider
 			value={{
 				loadSavedState,
-				loadSavedId,
 				saveState,
-				saveId,
 			}}
 		>
 			{children}

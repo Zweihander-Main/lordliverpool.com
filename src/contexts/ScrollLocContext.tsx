@@ -60,8 +60,8 @@ type ScrollLocReducerActions =
 			type: 'updateAll';
 			payload: {
 				contextState: string;
-				pos: number;
-				id: string;
+				pos: number | null;
+				id: string | null;
 			};
 	  }
 	| {
@@ -142,34 +142,25 @@ export const ScrollLocProvider: React.FC = ({ children }) => {
 		const returnObj: ScrollLoc = {};
 		const savedState = storage.loadSavedState();
 		if (savedState) {
-			const { position, state } = savedState;
-			dispatch({ type: 'updatePos', payload: position });
-			returnObj.pos = position;
-			dispatch({ type: 'updateContextState', payload: state });
-		}
-		const savedId = storage.loadSavedId();
-		if (savedId) {
-			const { id } = savedId;
-			dispatch({ type: 'updateId', payload: id });
-			returnObj.id = id;
+			const { state, pos, id } = savedState;
+			dispatch({
+				type: 'updateAll',
+				payload: { contextState: state, pos, id },
+			});
+			if (id) {
+				returnObj.id = id;
+			}
+			if (pos) {
+				returnObj.pos = pos;
+			}
 		}
 		return returnObj;
 	}, [storage]);
 
 	useEffect(() => {
-		const pos = state.pos;
-		const contextState = state.contextState;
-		if (pos) {
-			storage.saveState(pos, contextState);
-		}
-	}, [storage, state.pos, state.contextState]);
-
-	useEffect(() => {
-		const id = state.id;
-		if (id) {
-			storage.saveId(id);
-		}
-	}, [storage, state.id]);
+		const { contextState, pos, id } = state;
+		storage.saveState(contextState, pos, id);
+	}, [storage, state]);
 
 	return (
 		<ScrollStateContext.Provider

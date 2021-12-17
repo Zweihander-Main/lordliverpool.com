@@ -2,15 +2,10 @@ import { WindowLocation } from 'types';
 import { STATE_KEY_PREFIX, BGPM_APP_STATE, DELIM } from './constants';
 
 export type ReadState = {
-	position: number;
 	state: string;
+	pos: number | null;
+	id: string | null;
 };
-
-export type ReadId = {
-	id: string;
-};
-
-type LocKeyType = 'ID' | 'STATE';
 
 const appStateInWindow = (): Record<string, unknown> | undefined => {
 	if (window && window[BGPM_APP_STATE]) {
@@ -27,25 +22,15 @@ const isStoredState = (parsedState: unknown): parsedState is ReadState => {
 		parsedState &&
 		typeof parsedState === 'object' &&
 		parsedState !== null &&
-		Object.prototype.hasOwnProperty.call(parsedState, 'position') &&
-		Object.prototype.hasOwnProperty.call(parsedState, 'state')
-	) {
-		return true;
-	}
-	return false;
-};
-
-const isStoredId = (parsedState: unknown): parsedState is ReadId => {
-	if (
-		parsedState &&
-		typeof parsedState === 'object' &&
-		parsedState !== null &&
+		Object.prototype.hasOwnProperty.call(parsedState, 'state') &&
+		Object.prototype.hasOwnProperty.call(parsedState, 'pos') &&
 		Object.prototype.hasOwnProperty.call(parsedState, 'id')
 	) {
 		return true;
 	}
 	return false;
 };
+
 export class SessionStorage {
 	private static instance: SessionStorage;
 
@@ -57,10 +42,10 @@ export class SessionStorage {
 	}
 
 	readState(location: WindowLocation): ReadState | undefined {
-		const locKey = this.getLocKey(location, 'STATE');
-		const position = this.read(locKey);
-		if (position && isStoredState(position)) {
-			return position;
+		const locKey = this.getLocKey(location);
+		const state = this.read(locKey);
+		if (state && isStoredState(state)) {
+			return state;
 		} else {
 			// Stored value is mangled, delete it
 			this.delete(locKey);
@@ -68,33 +53,20 @@ export class SessionStorage {
 		return undefined;
 	}
 
-	readId(location: WindowLocation): ReadId | undefined {
-		const locKey = this.getLocKey(location, 'ID');
-		const id = this.read(locKey);
-		if (id && isStoredId(id)) {
-			return id;
-		} else {
-			// Stored value is mangled, delete it
-			this.delete(locKey);
-		}
-		return undefined;
-	}
-
-	saveState(location: WindowLocation, position: number, state: string): void {
-		const stateKey = this.getLocKey(location, 'STATE');
-		const toStoreObject: ReadState = { position, state };
+	saveState(
+		location: WindowLocation,
+		state: string,
+		pos: number | null,
+		id: string | null
+	): void {
+		const stateKey = this.getLocKey(location);
+		const toStoreObject: ReadState = { state, pos, id };
 		this.save(stateKey, toStoreObject);
 	}
 
-	saveId(location: WindowLocation, id: string): void {
-		const locKey = this.getLocKey(location, 'ID');
-		const toStoreObject: ReadId = { id };
-		this.save(locKey, toStoreObject);
-	}
-
-	private getLocKey(location: WindowLocation, type: LocKeyType): string {
+	private getLocKey(location: WindowLocation): string {
 		const locationName = location.key || location.pathname;
-		return `${STATE_KEY_PREFIX}${DELIM}${locationName}${DELIM}${type}`;
+		return `${STATE_KEY_PREFIX}${DELIM}${locationName}${DELIM}`;
 	}
 
 	private read(key: string): unknown | undefined {
@@ -110,7 +82,7 @@ export class SessionStorage {
 		}
 	}
 
-	private save(key: string, state: ReadState | ReadId): void {
+	private save(key: string, state: ReadState): void {
 		const storedValue = JSON.stringify(state);
 
 		try {
