@@ -1,7 +1,29 @@
-import React, { forwardRef, memo, useCallback } from 'react';
+import React, { forwardRef, memo } from 'react';
 import * as styles from './card.module.scss';
 import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
 import { Link } from 'gatsby';
+
+type CardImageProps = {
+	title: string;
+	image: IGatsbyImageData;
+};
+
+const CardImage: React.FC<CardImageProps> = ({ title, image }) => {
+	return (
+		<GatsbyImage
+			alt={title || 'Image for Card'}
+			image={image}
+			className={styles.image}
+			objectFit={'contain'}
+			imgStyle={{
+				objectPosition: 'center 10%',
+			}}
+		/>
+	);
+};
+
+// shouldn't ever change
+const MemoizedCardImage = memo(CardImage, () => true);
 
 type CardProps = {
 	show: boolean;
@@ -28,21 +50,6 @@ const Card = forwardRef<HTMLElement | null, CardProps>(
 		},
 		ref
 	) => {
-		const cardImage = useCallback(
-			(image: IGatsbyImageData) => (
-				<GatsbyImage
-					alt={title || 'Image for Card'}
-					image={image}
-					className={styles.image}
-					objectFit={'contain'}
-					imgStyle={{
-						objectPosition: 'center 10%',
-					}}
-				/>
-			),
-			[title]
-		);
-
 		return (
 			<article
 				className={`${styles.card} ${animate ? styles.animate : ''} ${
@@ -58,10 +65,16 @@ const Card = forwardRef<HTMLElement | null, CardProps>(
 								className={styles.titleLink}
 								aria-label={title}
 							>
-								{cardImage(featuredImage)}
+								<MemoizedCardImage
+									title={title || 'Image for Card'}
+									image={featuredImage}
+								/>
 							</Link>
 						) : (
-							cardImage(featuredImage)
+							<MemoizedCardImage
+								title={title || 'Image for Card'}
+								image={featuredImage}
+							/>
 						))}
 					<div className={styles.textContainer}>
 						{title && (
