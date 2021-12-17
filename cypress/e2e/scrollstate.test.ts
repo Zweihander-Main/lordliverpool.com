@@ -42,9 +42,9 @@ describe('Scroll state', () => {
 			cy.findByText(/^Family$/)
 				.as('family')
 				.click();
-			cy.findByText(/^Amelia Watts Jenkinson$/)
-				.as('amelia')
-				.click();
+			cy.findByText(/^Amelia Watts Jenkinson$/);
+			cy.loadImageByAltText('Amelia Watts Jenkinson');
+			cy.findByText(/^Amelia Watts Jenkinson$/).click();
 			cy.verifyLocation('/chronology/amelia-watts-jenkinson');
 			cy.loadImageByAltText('Amelia Watts Jenkinson');
 			cy.findByLabelText(/^Next entry: /)
