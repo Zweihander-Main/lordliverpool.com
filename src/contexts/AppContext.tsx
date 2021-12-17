@@ -3,11 +3,7 @@ import { StorageProvider } from './StorageContext';
 import { ScrollLocProvider } from './ScrollLocContext';
 import { HistoryProvider } from './HistoryContext';
 
-type AppContextProps = {
-	children: React.ReactNode;
-};
-
-const AppProvider: React.FC<AppContextProps> = ({ children }) => {
+const AppProvider: React.FC = ({ children }) => {
 	return (
 		<HistoryProvider>
 			<StorageProvider>
