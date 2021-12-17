@@ -1,11 +1,5 @@
-import { WindowLocation } from 'types';
-import { STATE_KEY_PREFIX, BGPM_APP_STATE, DELIM } from './constants';
-
-export type ReadState = {
-	state: string;
-	pos: number | null;
-	id: string | null;
-};
+import { STATE_KEY_PREFIX, BGPM_APP_STATE } from './constants';
+import { ScrollLocReducerState } from 'types';
 
 const appStateInWindow = (): Record<string, unknown> | undefined => {
 	if (window && window[BGPM_APP_STATE]) {
@@ -17,14 +11,25 @@ const appStateInWindow = (): Record<string, unknown> | undefined => {
 	return undefined;
 };
 
-const isStoredState = (parsedState: unknown): parsedState is ReadState => {
+const isStoredState = (
+	parsedState: unknown
+): parsedState is ScrollLocReducerState => {
 	if (
 		parsedState &&
 		typeof parsedState === 'object' &&
 		parsedState !== null &&
-		Object.prototype.hasOwnProperty.call(parsedState, 'state') &&
-		Object.prototype.hasOwnProperty.call(parsedState, 'pos') &&
-		Object.prototype.hasOwnProperty.call(parsedState, 'id')
+		Object.keys(parsedState).every(
+			(track) =>
+				Object.prototype.hasOwnProperty.call(
+					parsedState[track],
+					'contextState'
+				) &&
+				Object.prototype.hasOwnProperty.call(
+					parsedState[track],
+					'pos'
+				) &&
+				Object.prototype.hasOwnProperty.call(parsedState[track], 'id')
+		)
 	) {
 		return true;
 	}
@@ -41,8 +46,8 @@ export class SessionStorage {
 		return SessionStorage.instance;
 	}
 
-	readState(location: WindowLocation): ReadState | undefined {
-		const locKey = this.getLocKey(location);
+	readState(): ScrollLocReducerState | undefined {
+		const locKey = this.getLocKey();
 		const state = this.read(locKey);
 		if (state && isStoredState(state)) {
 			return state;
@@ -53,20 +58,13 @@ export class SessionStorage {
 		return undefined;
 	}
 
-	saveState(
-		location: WindowLocation,
-		state: string,
-		pos: number | null,
-		id: string | null
-	): void {
-		const stateKey = this.getLocKey(location);
-		const toStoreObject: ReadState = { state, pos, id };
-		this.save(stateKey, toStoreObject);
+	saveState(state: ScrollLocReducerState): void {
+		const stateKey = this.getLocKey();
+		this.save(stateKey, state);
 	}
 
-	private getLocKey(location: WindowLocation): string {
-		const locationName = location.key || location.pathname;
-		return `${STATE_KEY_PREFIX}${DELIM}${locationName}${DELIM}`;
+	private getLocKey(): string {
+		return `${STATE_KEY_PREFIX}`;
 	}
 
 	private read(key: string): unknown | undefined {
@@ -82,7 +80,7 @@ export class SessionStorage {
 		}
 	}
 
-	private save(key: string, state: ReadState): void {
+	private save(key: string, state: ScrollLocReducerState): void {
 		const storedValue = JSON.stringify(state);
 
 		try {

@@ -10,12 +10,10 @@ export interface TemplatePageContext {
 	next: NextPrevInfo;
 }
 
-export type WindowLocation = Window['location'] & {
-	key?: string | undefined;
-};
-
-export type HistoryWithKey = {
-	state?: {
-		key?: string;
+export type ScrollLocReducerState = {
+	[key: string]: {
+		contextState: string;
+		pos: number | null;
+		id: string | null;
 	};
 };

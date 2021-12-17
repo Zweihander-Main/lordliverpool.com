@@ -13,6 +13,8 @@ import ContendersItem from './contenderItem';
 import ScrollLocContext from 'contexts/ScrollLocContext';
 import HistoryContext from 'contexts/HistoryContext';
 
+const TRACK = 'contenders';
+
 const Contenders: React.FC = () => {
 	const blogRollData =
 		useStaticQuery<GatsbyTypes.ContendersQueryQuery>(graphql`
@@ -71,7 +73,7 @@ const Contenders: React.FC = () => {
 		useState<number>();
 
 	useLayoutEffect(() => {
-		const { id, pos } = getPositionsRef.current();
+		const { id, pos } = getPositionsRef.current(TRACK);
 		const fromBackButton = isLastNavFromHistBack();
 
 		if (fromBackButton && pos) {
@@ -89,7 +91,7 @@ const Contenders: React.FC = () => {
 			setScrollScrollingContainerTo(pos);
 		} else {
 			// page possibly reloaded, try asking storage
-			const { pos: sPos, id: sId } = loadStorage();
+			const { pos: sPos, id: sId } = loadStorage(TRACK);
 			if (sPos) {
 				// if pos available, try and restore exactly
 				setScrollScrollingContainerTo(sPos);
@@ -114,7 +116,11 @@ const Contenders: React.FC = () => {
 		(e) => {
 			const { scrollTop } = e.target as HTMLElement;
 			if (scrollTop) {
-				dispatch({ type: 'updatePos', payload: scrollTop });
+				dispatch({
+					type: 'updatePos',
+					payload: scrollTop,
+					track: TRACK,
+				});
 			}
 		},
 		[dispatch]
@@ -136,7 +142,11 @@ const Contenders: React.FC = () => {
 	);
 
 	useEffect(() => {
-		dispatch({ type: 'updateId', payload: selectedContenderId });
+		dispatch({
+			type: 'updateId',
+			payload: selectedContenderId,
+			track: TRACK,
+		});
 	}, [dispatch, selectedContenderId]);
 
 	const selectedContenderNode = contenders.find(

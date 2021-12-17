@@ -16,7 +16,7 @@ const ContenderPostTemplate: React.FC<
 	const { dispatch } = useContext(ScrollLocContext);
 	useEffect(() => {
 		if (id) {
-			dispatch({ type: 'updateId', payload: id });
+			dispatch({ type: 'updateId', payload: id, track: 'contenders' });
 		}
 	}, [dispatch, id]);
 
@@ -59,9 +59,6 @@ export const pageQuery = graphql`
 			excerpt(pruneLength: 160)
 			html
 			id
-			fields {
-				sourceInstanceName
-			}
 			frontmatter {
 				title
 				displayDate

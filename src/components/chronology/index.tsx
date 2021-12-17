@@ -14,6 +14,8 @@ import Card from './card';
 import ScrollLocContext from 'contexts/ScrollLocContext';
 import HistoryContext from 'contexts/HistoryContext';
 
+const TRACK = 'chronology';
+
 const Chronology: React.FC = () => {
 	const chronologyData =
 		useStaticQuery<GatsbyTypes.ChronologyQueryQuery>(graphql`
@@ -116,16 +118,18 @@ const Chronology: React.FC = () => {
 	const cardContainerRef = React.useRef<HTMLDivElement>(null);
 	const scrollingContainerRef = useRef<HTMLDivElement>(null);
 
-	const {
-		state: { contextState: selectedCategory },
-		dispatch,
-		getPositions,
-		loadStorage,
-	} = useContext(ScrollLocContext);
+	const { state, dispatch, getPositions, loadStorage } =
+		useContext(ScrollLocContext);
+
+	const selectedCategory = state[TRACK]?.contextState || 'all';
 
 	const setSelectedCategory = useCallback(
 		(state: string) => {
-			dispatch({ type: 'updateContextState', payload: state });
+			dispatch({
+				type: 'updateContextState',
+				payload: state,
+				track: TRACK,
+			});
 		},
 		[dispatch]
 	);
@@ -138,7 +142,7 @@ const Chronology: React.FC = () => {
 		useState<number>();
 
 	useLayoutEffect(() => {
-		const { id, pos } = getPositionsRef.current();
+		const { id, pos } = getPositionsRef.current(TRACK);
 		const fromBackButton = isLastNavFromHistBack();
 
 		if (fromBackButton && pos) {
@@ -153,7 +157,7 @@ const Chronology: React.FC = () => {
 			setScrollScrollingContainerTo(pos);
 		} else {
 			// page possibly reloaded, try asking storage
-			const { pos: sPos } = loadStorage();
+			const { pos: sPos } = loadStorage(TRACK);
 			if (sPos) {
 				// if pos available, try and restore exactly
 				setScrollScrollingContainerTo(sPos);
@@ -177,7 +181,11 @@ const Chronology: React.FC = () => {
 			(e) => {
 				const { scrollTop } = e.target as HTMLElement;
 				if (scrollTop) {
-					dispatch({ type: 'updatePos', payload: scrollTop });
+					dispatch({
+						type: 'updatePos',
+						payload: scrollTop,
+						track: TRACK,
+					});
 				}
 			},
 			[dispatch]

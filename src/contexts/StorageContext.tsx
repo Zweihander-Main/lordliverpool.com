@@ -1,10 +1,10 @@
 import React, { createContext } from 'react';
-import { HistoryWithKey, WindowLocation } from 'types';
-import { SessionStorage, ReadState } from 'utils/SessionStorage';
+import { SessionStorage } from 'utils/SessionStorage';
+import { ScrollLocReducerState } from 'types';
 
 type StorageContextProps = {
-	loadSavedState: () => ReadState | undefined;
-	saveState: (state: string, pos: number | null, id: string | null) => void;
+	loadSavedState: () => ScrollLocReducerState | undefined;
+	saveState: (state: ScrollLocReducerState) => void;
 };
 
 const StorageContext = createContext<StorageContextProps>({
@@ -18,21 +18,12 @@ export default StorageContext;
 export const StorageProvider: React.FC = ({ children }) => {
 	const storage = SessionStorage.getInstance();
 
-	const createLocation = (): WindowLocation => ({
-		...window.location,
-		key: (history as HistoryWithKey)?.state?.key || undefined,
-	});
-
 	const loadSavedState = () => {
-		return storage.readState(createLocation());
+		return storage.readState();
 	};
 
-	const saveState = (
-		state: string,
-		pos: number | null,
-		id: string | null
-	) => {
-		storage.saveState(createLocation(), state, pos, id);
+	const saveState = (state: ScrollLocReducerState) => {
+		storage.saveState(state);
 	};
 
 	return (

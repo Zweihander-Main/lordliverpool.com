@@ -6,6 +6,7 @@ import React, {
 	useReducer,
 } from 'react';
 import StorageContext from './StorageContext';
+import { ScrollLocReducerState } from 'types';
 
 export type ScrollLoc = {
 	id?: string;
@@ -15,17 +16,13 @@ export type ScrollLoc = {
 type ScrollStateContextProps = {
 	state: ScrollLocReducerState;
 	dispatch: React.Dispatch<ScrollLocReducerActions>;
-	getPositions(this: void): ScrollLoc;
-	loadStorage(this: void): ScrollLoc;
+	getPositions(this: void, track: string): ScrollLoc;
+	loadStorage(this: void, track: string): ScrollLoc;
 };
 
-type ScrollLocReducerState = {
-	contextState: string;
-	pos: number | null;
-	id: string | null;
-};
+const initialScrollLocState: ScrollLocReducerState = {};
 
-const initialScrollLocState: ScrollLocReducerState = {
+const defaultScrollLocState: ScrollLocReducerState[string] = {
 	contextState: 'all',
 	pos: null,
 	id: null,
@@ -44,10 +41,12 @@ type ScrollLocReducerActions =
 	| {
 			type: 'updatePos';
 			payload: number;
+			track: string;
 	  }
 	| {
 			type: 'updateId';
 			payload: string;
+			track: string;
 	  }
 	| {
 			type: 'updatePositions';
@@ -55,6 +54,7 @@ type ScrollLocReducerActions =
 				pos: number;
 				id: string;
 			};
+			track: string;
 	  }
 	| {
 			type: 'updateAll';
@@ -63,52 +63,84 @@ type ScrollLocReducerActions =
 				pos: number | null;
 				id: string | null;
 			};
+			track: string;
 	  }
 	| {
 			type: 'updateContextState';
 			payload: string;
+			track: string;
 	  }
 	| {
 			type: 'resetPositions';
+			track: string;
 	  }
 	| {
 			type: 'resetAll';
+			track: string;
 	  };
 
 const scrollLocReducer = (
 	state: ScrollLocReducerState,
 	action: ScrollLocReducerActions
 ) => {
+	const track = action.track;
+	const curTrackState = state[track] || defaultScrollLocState;
 	switch (action.type) {
 		case 'updatePos': {
-			return { ...state, pos: action.payload };
+			return {
+				...state,
+				[track]: { ...curTrackState, pos: action.payload },
+			};
 		}
 		case 'updateId': {
-			return { ...state, id: action.payload };
+			return {
+				...state,
+				[track]: { ...curTrackState, id: action.payload },
+			};
 		}
 		case 'updatePositions': {
 			return {
 				...state,
-				pos: action.payload.pos,
-				id: action.payload.id,
+				[track]: {
+					...curTrackState,
+					pos: action.payload.pos,
+					id: action.payload.id,
+				},
 			};
 		}
 		case 'updateAll': {
 			return {
 				...state,
-				contextState: action.payload.contextState,
-				pos: action.payload.pos,
-				id: action.payload.id,
+				[track]: {
+					...curTrackState,
+					contextState: action.payload.contextState,
+					pos: action.payload.pos,
+					id: action.payload.id,
+				},
 			};
 		}
 		case 'updateContextState': {
-			return { ...state, contextState: action.payload };
+			return {
+				...state,
+				[track]: { ...curTrackState, contextState: action.payload },
+			};
 		}
 		case 'resetPositions': {
-			return { ...state, pos: null, id: null };
+			return {
+				...state,
+				[track]: { ...curTrackState, pos: null, id: null },
+			};
 		}
 		case 'resetAll': {
-			return { ...state, contextState: 'all', pos: null, id: null };
+			return {
+				...state,
+				[track]: {
+					...curTrackState,
+					contextState: 'all',
+					pos: null,
+					id: null,
+				},
+			};
 		}
 		default: {
 			return state;
@@ -124,42 +156,53 @@ export const ScrollLocProvider: React.FC = ({ children }) => {
 		initialScrollLocState
 	);
 
-	const getPositions = useCallback(() => {
-		const returnObj: ScrollLoc = {};
-		const id = state.id;
-		const pos = state.pos;
-		if (id) {
-			returnObj.id = id;
-		}
-		if (pos) {
-			returnObj.pos = pos;
-		}
-		dispatch({ type: 'resetPositions' });
-		return returnObj;
-	}, [state.id, state.pos]);
+	const getPositions = useCallback(
+		(track: string) => {
+			const returnObj: ScrollLoc = {};
+			const trackState = state[track];
+			if (trackState) {
+				const { id, pos } = trackState;
+				if (id) {
+					returnObj.id = id;
+				}
+				if (pos) {
+					returnObj.pos = pos;
+				}
+			}
+			dispatch({ type: 'resetPositions', track });
+			return returnObj;
+		},
+		[state]
+	);
 
-	const loadStorage = useCallback(() => {
-		const returnObj: ScrollLoc = {};
-		const savedState = storage.loadSavedState();
-		if (savedState) {
-			const { state, pos, id } = savedState;
-			dispatch({
-				type: 'updateAll',
-				payload: { contextState: state, pos, id },
-			});
-			if (id) {
-				returnObj.id = id;
+	const loadStorage = useCallback(
+		(track: string) => {
+			const returnObj: ScrollLoc = {};
+			const savedState = storage.loadSavedState();
+			if (savedState) {
+				const trackState = savedState[track];
+				if (trackState) {
+					const { contextState, pos, id } = trackState;
+					dispatch({
+						type: 'updateAll',
+						payload: { contextState, pos, id },
+						track,
+					});
+					if (id) {
+						returnObj.id = id;
+					}
+					if (pos) {
+						returnObj.pos = pos;
+					}
+				}
 			}
-			if (pos) {
-				returnObj.pos = pos;
-			}
-		}
-		return returnObj;
-	}, [storage]);
+			return returnObj;
+		},
+		[storage]
+	);
 
 	useEffect(() => {
-		const { contextState, pos, id } = state;
-		storage.saveState(contextState, pos, id);
+		storage.saveState(state);
 	}, [storage, state]);
 
 	return (
