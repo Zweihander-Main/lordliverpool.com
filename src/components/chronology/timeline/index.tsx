@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
 import * as styles from './timeline.module.scss';
 import useTimeline from 'hooks/useTimeline';
 import useGrabber from 'hooks/useGrabber';
@@ -149,4 +149,9 @@ const Timeline: React.FC<TimelineProps> = ({
 	);
 };
 
-export default Timeline;
+const MemoizedTimeline = memo(
+	Timeline,
+	(prevProps, nextProps) => prevProps.ticks.length === nextProps.ticks.length
+);
+
+export default MemoizedTimeline;
