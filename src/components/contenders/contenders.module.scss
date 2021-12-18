@@ -16,6 +16,14 @@ $image-width: 100vw/3 * 2;
 	overflow-y: scroll;
 	padding: 1rem;
 	position: relative;
+	@include m.media('<=desktop') {
+		height: 100/3 * 2vh;
+		left: 0;
+		position: absolute;
+		text-align: center;
+		top: 0;
+		width: 100vw;
+	}
 }
 
 .menu-list {

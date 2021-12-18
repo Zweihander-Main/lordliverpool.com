@@ -10,6 +10,7 @@ export const menu: string;
 export const menuList: string;
 export const pictureContainer: string;
 export const picture: string;
+export const pictureInner: string;
 export const caption: string;
 export const name: string;
 export const dates: string;

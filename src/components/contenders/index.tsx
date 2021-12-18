@@ -153,6 +153,8 @@ const Contenders: React.FC = () => {
 		(c) => c.node.id === selectedContenderId
 	)?.node;
 
+	const [top, setTop] = useState(0);
+
 	return (
 		<section className={styles.contenders}>
 			<ContendersImage

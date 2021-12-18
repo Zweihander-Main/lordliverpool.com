@@ -9,6 +9,7 @@ type ContendersImageProps = {
 	selectedID?: string;
 };
 
+// TODO replace all imgstyle with imgclassname
 const ContendersImage: React.FC<ContendersImageProps> = ({
 	featuredImage,
 	displayDate,
@@ -23,9 +24,7 @@ const ContendersImage: React.FC<ContendersImageProps> = ({
 					image={featuredImage}
 					key={selectedID}
 					className={styles.picture}
-					imgStyle={{
-						objectPosition: 'center 25%',
-					}}
+					imgClassName={styles.pictureInner}
 				/>
 			)}
 			<figcaption className={styles.caption}>

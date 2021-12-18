@@ -16,6 +16,14 @@ $pic-bg: color.adjust(v.$color-red-white, $lightness: -60%, $saturation: -10%);
 	position: fixed;
 	top: 0;
 	width: c.$image-width;
+	@include m.media('<=desktop') {
+		bottom: 0;
+		height: 100/3 * 1vh;
+		margin-bottom: 0;
+		position: absolute;
+		top: auto;
+		width: 100vw;
+	}
 }
 
 .picture {
@@ -24,6 +32,13 @@ $pic-bg: color.adjust(v.$color-red-white, $lightness: -60%, $saturation: -10%);
 	height: 100%;
 	mix-blend-mode: overlay;
 	width: 100%;
+}
+
+.picture-inner {
+	object-position: center 25%;
+	@include m.media('<=desktop') {
+		object-position: center 15%;
+	}
 }
 
 .caption {
@@ -40,6 +55,12 @@ $pic-bg: color.adjust(v.$color-red-white, $lightness: -60%, $saturation: -10%);
 .name {
 	font-size: 3.5vw;
 	margin-bottom: 0;
+	@include m.media('<=desktop') {
+		font-size: 5vw;
+	}
+	@include m.media('<=phone') {
+		font-size: 8vw;
+	}
 }
 
 .dates {
@@ -47,6 +68,12 @@ $pic-bg: color.adjust(v.$color-red-white, $lightness: -60%, $saturation: -10%);
 
 	font-size: 1.6vw;
 	margin-bottom: 0.1rem;
+	@include m.media('<=desktop') {
+		font-size: 2.5vw;
+	}
+	@include m.media('<=phone') {
+		font-size: 4.5vw;
+	}
 }
 
 .menu {
