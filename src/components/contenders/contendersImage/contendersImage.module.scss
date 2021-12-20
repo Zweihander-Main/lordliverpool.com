@@ -50,6 +50,12 @@ $pic-bg: color.adjust(v.$color-red-white, $lightness: -60%, $saturation: -10%);
 	grid-row: 1;
 	padding: 0 2rem 1.3rem;
 	text-transform: uppercase;
+	@include m.media('<=desktop') {
+		padding: 0 1.5rem 1rem;
+	}
+	@include m.media('<=phone') {
+		padding: 0 1rem 0.3rem;
+	}
 }
 
 .name {
@@ -59,7 +65,7 @@ $pic-bg: color.adjust(v.$color-red-white, $lightness: -60%, $saturation: -10%);
 		font-size: 5vw;
 	}
 	@include m.media('<=phone') {
-		font-size: 8vw;
+		font-size: 7vw;
 	}
 }
 
@@ -72,7 +78,7 @@ $pic-bg: color.adjust(v.$color-red-white, $lightness: -60%, $saturation: -10%);
 		font-size: 2.5vw;
 	}
 	@include m.media('<=phone') {
-		font-size: 4.5vw;
+		font-size: 3.8vw;
 	}
 }
 
