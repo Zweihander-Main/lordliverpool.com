@@ -8,3 +8,4 @@ export const cardWidth: string;
 export const contenders: string;
 export const menu: string;
 export const menuList: string;
+export const doubleTapMsg: string;

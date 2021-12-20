@@ -30,3 +30,13 @@ $image-width: 100vw/3 * 2;
 	list-style: none;
 	margin-left: 0;
 }
+
+.double-tap-msg {
+	display: none;
+	font-size: v.$font-size-h7;
+	margin-top: -0.3rem;
+
+	@media (pointer: coarse) {
+		display: block;
+	}
+}

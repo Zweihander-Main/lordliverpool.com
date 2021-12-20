@@ -169,6 +169,7 @@ const Contenders: React.FC = () => {
 				ref={scrollingMenuRef}
 				onScroll={menuOnScroll}
 			>
+				<p className={styles.doubleTapMsg}>Double tap to open</p>
 				<h1>Contenders for Greatest</h1>
 				<ul className={styles.menuList}>
 					{contenders &&

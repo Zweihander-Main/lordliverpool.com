@@ -8,6 +8,7 @@ export const cardWidth: string;
 export const contenders: string;
 export const menu: string;
 export const menuList: string;
+export const doubleTapMsg: string;
 export const pictureContainer: string;
 export const picture: string;
 export const pictureInner: string;

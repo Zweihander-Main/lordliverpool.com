@@ -45,8 +45,6 @@ const ContendersItem = React.forwardRef<
 			[isSelected]
 		);
 
-	// TODO UI indicator for double tap
-
 	return (
 		<li className={styles.item} ref={ref}>
 			<Link
