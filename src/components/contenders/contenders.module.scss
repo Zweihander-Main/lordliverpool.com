@@ -1,7 +1,9 @@
 @use '~styles/util/variables.module' as v;
 @use '~styles/util/mixins.module' as m;
+@use 'sass:color';
 
 $image-width: 100vw/3 * 2;
+$color-line: color.adjust(v.$color-red-white, $lightness: -3%);
 
 .contenders {
 	background-color: v.$color-black;
@@ -11,6 +13,14 @@ $image-width: 100vw/3 * 2;
 
 .menu {
 	background-color: v.$color-red-white;
+	background-image: repeating-linear-gradient(
+		to right,
+		$color-line,
+		$color-line 1px,
+		v.$color-red-white 1px,
+		v.$color-red-white
+	);
+	background-size: 20px 20px;
 	box-shadow: 0 0 15px v.$color-black;
 	height: 100vh;
 	overflow-y: scroll;
