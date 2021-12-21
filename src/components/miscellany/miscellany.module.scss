@@ -4,7 +4,9 @@
 
 $drop-shadow-offset: 4px;
 $drop-shadow-blur: 25px;
-$masonry-margin: 5em;
+$masonry-margin: 4rem;
+$masonry-margin-small: 3rem;
+$masonry-margin-tiny: 2rem;
 
 .masonry {
 	box-sizing: border-box;
@@ -15,11 +17,25 @@ $masonry-margin: 5em;
 
 	@include m.media('<=ultrawide') {
 		column-count: 2;
-	} //TODO vars and mixins
+	}
 
 	@include m.media('<=wide') {
 		column-count: 1;
-	} //TODO can do better
+		column-gap: $masonry-margin-small;
+		margin: $masonry-margin-small;
+	}
+
+	@include m.media('<=tablet') {
+		column-count: 1;
+		column-gap: $masonry-margin-tiny;
+		margin: $masonry-margin-tiny;
+	}
+
+	@include m.media('<=phone') {
+		column-count: 1;
+		column-gap: 0;
+		margin: 0;
+	}
 }
 
 .link {
@@ -27,6 +43,17 @@ $masonry-margin: 5em;
 	display: inline-block;
 	margin: ($masonry-margin/2) 0;
 	width: 100%;
+	@include m.media('<=wide') {
+		margin: ($masonry-margin-small/2) 0;
+	}
+
+	@include m.media('<=tablet') {
+		margin: ($masonry-margin-tiny/2) 0;
+	}
+
+	@include m.media('<=phone') {
+		margin: 0;
+	}
 }
 
 .item {
@@ -37,14 +64,25 @@ $masonry-margin: 5em;
 		150%
 	);
 
-	//TODO could this look better and more neumorphic?
-
 	background-color: v.$color-red;
 	border-radius: v.$border-radius-normal;
 	overflow: hidden;
+	padding-top: 1.38rem;
 	position: relative;
 	transition: 75ms v.$timing-quick;
 	width: 100%;
+
+	@include m.media('<=phone') {
+		border-radius: 0;
+	}
+
+	@include m.media('<=tiny') {
+		min-height: 16rem;
+	}
+
+	@include m.media('<=ultratiny') {
+		min-height: 20rem;
+	}
 
 	&:hover {
 		@include m.neumorphic-intensity(
@@ -52,7 +90,7 @@ $masonry-margin: 5em;
 			$drop-shadow-blur + 8px,
 			v.$color-red-dark,
 			150%
-		); // TODO look ma, a bug
+		);
 	}
 }
 
@@ -63,13 +101,10 @@ $masonry-margin: 5em;
 	grid-template-columns: 100%;
 	grid-template-rows: 100%;
 	height: 100%;
-	padding-bottom: 1rem;
 	pointer-events: none;
 	position: absolute;
 	width: 100%;
 }
-
-// TODO: font size and text shadow
 
 .item-image {
 	opacity: 0.7;
@@ -80,13 +115,19 @@ $masonry-margin: 5em;
 	}
 }
 
+.headings-container {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	justify-content: end;
+}
+
 %headings {
 	@include m.header-text-shadow;
 
 	color: v.$color-white;
-	margin-left: 2rem;
-	margin-right: 2rem;
-	//TODO some kind of hover? make better
+	margin-left: 1.38rem;
+	margin-right: 1.38rem;
 }
 
 .title {
@@ -94,6 +135,9 @@ $masonry-margin: 5em;
 
 	border-bottom: 1px solid color.adjust($color: v.$color-white, $alpha: -0.7);
 	font-size: v.$font-size-h2;
+	@include m.media('<=phone') {
+		font-size: v.$font-size-h3;
+	}
 }
 
 .subtitle {
@@ -101,4 +145,7 @@ $masonry-margin: 5em;
 	@include m.header-normal;
 
 	font-size: v.$font-size-h3;
+	@include m.media('<=phone') {
+		font-size: v.$font-size-h4;
+	}
 }

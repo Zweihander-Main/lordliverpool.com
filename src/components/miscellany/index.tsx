@@ -73,7 +73,9 @@ const Miscellany: React.FC = () => {
 								)}
 								{post?.frontmatter && (
 									<header className={styles.header}>
-										<div>
+										<div
+											className={styles.headingsContainer}
+										>
 											<h1 className={styles.title}>
 												{post.frontmatter.title}
 											</h1>
