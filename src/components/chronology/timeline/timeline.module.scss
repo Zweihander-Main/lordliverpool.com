@@ -12,7 +12,7 @@
 	@include m.media('portrait') {
 		display: none; // TODO build this out
 	}
-} // TODO bug with scrollbar hiding last tick?
+}
 
 .area-grabber {
 	@include m.neumorphic-button(
@@ -27,7 +27,7 @@
 	height: v.$timeline-area-grabber-height;
 	left: 0;
 	position: absolute;
-	transition: width 100ms v.$timing-quick; //TODO test phone and check if 5ms left transition is good/bad
+	transition: width 100ms v.$timing-quick;
 	user-select: none;
 	will-change: width, transform;
 	z-index: 9999;
@@ -87,7 +87,7 @@
 }
 
 .tick {
-	@include m.neumorphic-intensity(1px, 2px, v.$color-blue, 250%); //TODO nope
+	@include m.neumorphic-intensity(1px, 2px, v.$color-blue, 250%);
 
 	background: v.$color-blue;
 	height: v.$timeline-area-grabber-height - 15;
