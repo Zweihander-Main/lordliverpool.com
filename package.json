@@ -251,7 +251,9 @@
 			"indentation": [
 				"tab",
 				{
-					"ignore": "value"
+					"ignore": [
+						"value"
+					]
 				}
 			],
 			"max-empty-lines": 2,
