@@ -1,4 +1,4 @@
-import React, { createContext } from 'react';
+import React, { ReactNode, createContext } from 'react';
 import { SessionStorage } from 'utils/SessionStorage';
 import { ScrollLocReducerState } from 'types';
 
@@ -15,7 +15,9 @@ const StorageContext = createContext<StorageContextProps>({
 export default StorageContext;
 
 // TODO perf callback/ect.
-export const StorageProvider: React.FC = ({ children }) => {
+export const StorageProvider: React.FC<{ children?: ReactNode }> = ({
+	children,
+}) => {
 	const storage = SessionStorage.getInstance();
 
 	const loadSavedState = () => {

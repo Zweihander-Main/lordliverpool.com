@@ -17,70 +17,69 @@ import HistoryContext from 'contexts/HistoryContext';
 const TRACK = 'chronology';
 
 const Chronology: React.FC = () => {
-	const chronologyData =
-		useStaticQuery<GatsbyTypes.ChronologyQueryQuery>(graphql`
-			query ChronologyQuery {
-				noPost: allMarkdownRemark(
-					sort: { order: ASC, fields: [frontmatter___date] }
-					filter: {
-						fields: { sourceInstanceName: { eq: "chronology" } }
-						rawMarkdownBody: { eq: "" }
-					}
-				) {
-					edges {
-						node {
-							id
-							frontmatter {
-								title
-								date(formatString: "y")
-								displayDate
-								category
-								card
-								featuredImage {
-									childImageSharp {
-										gatsbyImageData(
-											width: 600
-											layout: CONSTRAINED
-										)
-									}
-								}
-							}
-						}
-					}
+	const chronologyData = useStaticQuery<Queries.ChronologyQueryQuery>(graphql`
+		query ChronologyQuery {
+			noPost: allMarkdownRemark(
+				sort: { frontmatter: { date: ASC } }
+				filter: {
+					fields: { sourceInstanceName: { eq: "chronology" } }
+					rawMarkdownBody: { eq: "" }
 				}
-				withPost: allMarkdownRemark(
-					sort: { order: ASC, fields: [frontmatter___date] }
-					filter: {
-						fields: { sourceInstanceName: { eq: "chronology" } }
-						rawMarkdownBody: { ne: "" }
-					}
-				) {
-					edges {
-						node {
-							id
-							fields {
-								slug
-							}
-							frontmatter {
-								title
-								date(formatString: "y")
-								displayDate
-								category
-								card
-								featuredImage {
-									childImageSharp {
-										gatsbyImageData(
-											width: 600
-											layout: CONSTRAINED
-										)
-									}
+			) {
+				edges {
+					node {
+						id
+						frontmatter {
+							title
+							date(formatString: "y")
+							displayDate
+							category
+							card
+							featuredImage {
+								childImageSharp {
+									gatsbyImageData(
+										width: 600
+										layout: CONSTRAINED
+									)
 								}
 							}
 						}
 					}
 				}
 			}
-		`);
+			withPost: allMarkdownRemark(
+				sort: { frontmatter: { date: ASC } }
+				filter: {
+					fields: { sourceInstanceName: { eq: "chronology" } }
+					rawMarkdownBody: { ne: "" }
+				}
+			) {
+				edges {
+					node {
+						id
+						fields {
+							slug
+						}
+						frontmatter {
+							title
+							date(formatString: "y")
+							displayDate
+							category
+							card
+							featuredImage {
+								childImageSharp {
+									gatsbyImageData(
+										width: 600
+										layout: CONSTRAINED
+									)
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	`);
 
 	const cards = React.useRef(
 		(() => {

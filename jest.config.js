@@ -1,5 +1,5 @@
 const { compilerOptions } = require('./tsconfig.json');
-const { pathsToModuleNameMapper } = require('ts-jest/utils');
+const { pathsToModuleNameMapper } = require('ts-jest');
 const path = require('path');
 
 const paths = pathsToModuleNameMapper(compilerOptions.paths, {
@@ -21,11 +21,11 @@ const basicIgnorePatterns = [
 	'__snapshots__',
 ];
 
-const testPathIgnorePatterns = [...basicIgnorePatterns, '__generated__'];
+const testPathIgnorePatterns = [...basicIgnorePatterns, 'gatsby-types.d.ts'];
 
 const transformIgnorePatterns = [
 	...basicIgnorePatterns,
-	'__generated__',
+	'gatsby-types.d.ts',
 	'<rootDir>/node_modules/(?!(gatsby)/)',
 ];
 
@@ -49,7 +49,9 @@ const commonForJestTests = {
 		...fixedPaths,
 	},
 	setupFiles: ['<rootDir>/test/loadershim.js'],
-	testURL: 'http://localhost',
+	testEnvironmentOptions: {
+		url: 'http://localhost',
+	},
 	transform: {
 		'^.+\\.[jt]sx?$': '<rootDir>/test/jest-preprocess.js',
 	},
@@ -64,7 +66,7 @@ module.exports = {
 	collectCoverageFrom: [
 		'**/src/**/*.{js,jsx,ts,tsx}',
 		'!**/__tests__/**',
-		'!**/__generated__/**',
+		'!**/gatsby-types.d.ts',
 		'!**/__server_tests__/**',
 		'!**/node_modules/**',
 	],

@@ -1,12 +1,12 @@
 import React from 'react';
 import * as styles from './bookInfo.module.scss';
 import { GatsbyImage } from 'gatsby-plugin-image';
-import { useStaticQuery, graphql } from 'gatsby';
-import Link from 'gatsby-link';
+import { useStaticQuery, graphql, Link } from 'gatsby';
+// import Link from 'gatsby-link';
 import ModalButton from 'components/shared/retailers/retailersButton';
 
 const BookInfo: React.FC = () => {
-	const bookInfoData = useStaticQuery<GatsbyTypes.BookInfoQuery>(graphql`
+	const bookInfoData = useStaticQuery<Queries.BookInfoQuery>(graphql`
 		query BookInfo {
 			file(relativePath: { eq: "bookcover.png" }) {
 				childImageSharp {
@@ -58,7 +58,7 @@ const BookInfo: React.FC = () => {
 					/>
 				)}
 				<ModalButton />
-				<Link to="/book/" className={styles.moreInfo}>
+				<Link to="/book" className={styles.moreInfo}>
 					More info
 				</Link>
 			</article>

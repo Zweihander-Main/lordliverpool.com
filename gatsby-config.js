@@ -4,11 +4,14 @@ module.exports = {
 		description: `Britain’s Greatest Prime Minister: Lord Liverpool unpicks two centuries of Whig history to redeem Lord Liverpool (1770-1828) from ‘arch-mediocrity’ and establish him as the greatest political leader the country has ever seen.`,
 		author: `Martin Hutchinson`,
 	},
+	trailingSlash: 'ignore',
+	graphqlTypegen: true,
 	flags: {
 		FAST_DEV: true,
 		PARALLEL_SOURCING: true,
 	},
 	plugins: [
+		`gatsby-plugin-pnpm`,
 		`gatsby-alias-imports`,
 		{
 			resolve: `gatsby-plugin-typescript`,
@@ -105,18 +108,5 @@ module.exports = {
 		`gatsby-plugin-catch-links`,
 		`gatsby-plugin-netlify`,
 		`gatsby-plugin-netlify-cms`, // should be last in the array or close to it
-		{
-			resolve: `gatsby-plugin-typegen`,
-			options: {
-				outputPath: `src/__generated__/gatsby-types.d.ts`,
-				emitSchema: {
-					'src/__generated__/gatsby-introspection.json': true,
-					'src/__generated__/gatsby-schema.graphql': true,
-				},
-				emitPluginDocuments: {
-					'src/__generated__/gatsby-plugin-documents.graphql': true,
-				},
-			},
-		},
 	],
 };

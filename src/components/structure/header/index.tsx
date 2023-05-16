@@ -16,7 +16,7 @@ const Header: React.FC<HeaderProps> = ({
 	darkMenu = false,
 	miniMenu = false,
 }) => {
-	const imageData = useStaticQuery<GatsbyTypes.MenuImagesQuery>(graphql`
+	const imageData = useStaticQuery<Queries.MenuImagesQuery>(graphql`
 		query MenuImages {
 			chronology: file(
 				relativePath: {

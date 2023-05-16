@@ -1,4 +1,5 @@
 import React, {
+	ReactNode,
 	createContext,
 	useCallback,
 	useContext,
@@ -148,7 +149,9 @@ const scrollLocReducer = (
 	}
 };
 
-export const ScrollLocProvider: React.FC = ({ children }) => {
+export const ScrollLocProvider: React.FC<{ children?: ReactNode }> = ({
+	children,
+}) => {
 	const storage = useContext(StorageContext);
 
 	const [state, dispatch] = useReducer(

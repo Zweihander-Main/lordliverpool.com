@@ -1,4 +1,10 @@
-import React, { createContext, useRef, useEffect, useCallback } from 'react';
+import React, {
+	createContext,
+	useRef,
+	useEffect,
+	useCallback,
+	ReactNode,
+} from 'react';
 
 type HistoryContextProps = {
 	isLastNavFromHistBack(this: void): boolean;
@@ -10,7 +16,9 @@ const HistoryContext = createContext<HistoryContextProps>({
 
 export default HistoryContext;
 
-export const HistoryProvider: React.FC = ({ children }) => {
+export const HistoryProvider: React.FC<{ children?: ReactNode }> = ({
+	children,
+}) => {
 	const fromBackButton = useRef(false);
 
 	const resetBackButton = useCallback(() => {

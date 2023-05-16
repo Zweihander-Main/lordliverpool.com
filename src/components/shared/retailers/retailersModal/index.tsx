@@ -95,68 +95,65 @@ const RetailerItem: React.FC<RetailerItemProps> = ({
 const MemoizedRetailerItem = memo(RetailerItem, isEqual);
 
 const RetailersModal: React.FC = () => {
-	const retailersData =
-		useStaticQuery<GatsbyTypes.RetailersInfoQuery>(graphql`
-			query RetailersInfo {
-				allMarkdownRemark(
-					sort: { order: ASC, fields: [frontmatter___order] }
-					filter: {
-						fields: { sourceInstanceName: { eq: "retailers" } }
-					}
-				) {
-					edges {
-						node {
-							id
-							frontmatter {
-								title
-								currency
-								format
-								link
-								flag
-								featuredImage {
-									childImageSharp {
-										gatsbyImageData(
-											width: 400
-											layout: CONSTRAINED
-										)
-									}
+	const retailersData = useStaticQuery<Queries.RetailersInfoQuery>(graphql`
+		query RetailersInfo {
+			allMarkdownRemark(
+				sort: { frontmatter: { order: ASC } }
+				filter: { fields: { sourceInstanceName: { eq: "retailers" } } }
+			) {
+				edges {
+					node {
+						id
+						frontmatter {
+							title
+							currency
+							format
+							link
+							flag
+							featuredImage {
+								childImageSharp {
+									gatsbyImageData(
+										width: 400
+										layout: CONSTRAINED
+									)
 								}
 							}
 						}
 					}
 				}
-				UK_pic: file(relativePath: { eq: "uk.png" }) {
-					childImageSharp {
-						gatsbyImageData(width: 40, layout: FIXED)
-					}
-				}
-				USA_pic: file(relativePath: { eq: "usa.png" }) {
-					childImageSharp {
-						gatsbyImageData(width: 40, layout: FIXED)
-					}
-				}
-				JP_pic: file(relativePath: { eq: "japan.png" }) {
-					childImageSharp {
-						gatsbyImageData(width: 40, layout: FIXED)
-					}
-				}
-				ES_pic: file(relativePath: { eq: "spain.png" }) {
-					childImageSharp {
-						gatsbyImageData(width: 40, layout: FIXED)
-					}
-				}
-				FR_pic: file(relativePath: { eq: "france.png" }) {
-					childImageSharp {
-						gatsbyImageData(width: 40, layout: FIXED)
-					}
-				}
-				IT_pic: file(relativePath: { eq: "italy.png" }) {
-					childImageSharp {
-						gatsbyImageData(width: 40, layout: FIXED)
-					}
+			}
+			UK_pic: file(relativePath: { eq: "uk.png" }) {
+				childImageSharp {
+					gatsbyImageData(width: 40, layout: FIXED)
 				}
 			}
-		`);
+			USA_pic: file(relativePath: { eq: "usa.png" }) {
+				childImageSharp {
+					gatsbyImageData(width: 40, layout: FIXED)
+				}
+			}
+			JP_pic: file(relativePath: { eq: "japan.png" }) {
+				childImageSharp {
+					gatsbyImageData(width: 40, layout: FIXED)
+				}
+			}
+			ES_pic: file(relativePath: { eq: "spain.png" }) {
+				childImageSharp {
+					gatsbyImageData(width: 40, layout: FIXED)
+				}
+			}
+			FR_pic: file(relativePath: { eq: "france.png" }) {
+				childImageSharp {
+					gatsbyImageData(width: 40, layout: FIXED)
+				}
+			}
+			IT_pic: file(relativePath: { eq: "italy.png" }) {
+				childImageSharp {
+					gatsbyImageData(width: 40, layout: FIXED)
+				}
+			}
+		}
+	`);
 
 	const flagPics = React.useRef<IFlagPics>(
 		(() => {

@@ -29,11 +29,11 @@ type CardProps = {
 	show: boolean;
 	animate: boolean;
 	featuredImage?: IGatsbyImageData;
-	title?: string;
+	title?: string | null;
 	isFullArticle: boolean;
-	slug?: string;
-	text?: string;
-	displayDate?: string;
+	slug?: string | null;
+	text?: string | null;
+	displayDate?: string | null;
 };
 
 const Card = forwardRef<HTMLElement | null, CardProps>(
@@ -63,7 +63,7 @@ const Card = forwardRef<HTMLElement | null, CardProps>(
 							<Link
 								to={slug}
 								className={styles.titleLink}
-								aria-label={title}
+								aria-label={title as string}
 							>
 								<MemoizedCardImage
 									title={title || 'Image for Card'}

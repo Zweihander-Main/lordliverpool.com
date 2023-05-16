@@ -5,7 +5,7 @@ import * as styles from './contendersItem.module.scss';
 type ContendersMenuProps = {
 	id: string;
 	isSelected: boolean;
-	title?: string;
+	title?: string | null;
 	setSelected: React.Dispatch<React.SetStateAction<string>>;
 	slug: string;
 };

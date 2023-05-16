@@ -1,6 +1,6 @@
 import React from 'react';
 import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
-import Link from 'gatsby-link';
+import { Link } from 'gatsby';
 import * as styles from './singlePost.module.scss';
 import { MdArrowBack, MdArrowForward } from 'react-icons/md';
 import { NextPrevInfo } from 'types';
@@ -8,12 +8,12 @@ import { NextPrevInfo } from 'types';
 type SinglePostProps = {
 	headerImage?: IGatsbyImageData;
 	title: string;
-	subtitle?: string;
-	extraHeaderText?: string;
+	subtitle?: string | null;
+	extraHeaderText?: string | null;
 	content: string;
-	meta?: string;
-	linkBackURL?: string;
-	linkBackName?: string;
+	meta?: string | null;
+	linkBackURL?: string | null;
+	linkBackName?: string | null;
 	prev?: NextPrevInfo;
 	next?: NextPrevInfo;
 };

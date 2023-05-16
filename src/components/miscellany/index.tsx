@@ -4,10 +4,10 @@ import { useStaticQuery, graphql, Link } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 
 const Miscellany: React.FC = () => {
-	const blogRollData = useStaticQuery<GatsbyTypes.BlogRollQueryQuery>(graphql`
+	const blogRollData = useStaticQuery<Queries.BlogRollQueryQuery>(graphql`
 		query BlogRollQuery {
 			allMarkdownRemark(
-				sort: { order: DESC, fields: [frontmatter___date] }
+				sort: { frontmatter: { date: DESC } }
 				filter: { fields: { sourceInstanceName: { eq: "miscellany" } } }
 			) {
 				edges {

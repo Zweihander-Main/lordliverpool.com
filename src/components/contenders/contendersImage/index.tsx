@@ -4,9 +4,9 @@ import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
 
 type ContendersImageProps = {
 	featuredImage?: IGatsbyImageData;
-	displayDate?: string;
-	title?: string;
-	selectedID?: string;
+	displayDate?: string | null;
+	title?: string | null;
+	selectedID?: string | null;
 };
 
 // TODO replace all imgstyle with imgclassname

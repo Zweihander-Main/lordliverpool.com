@@ -7,7 +7,7 @@ import { TemplatePageContext } from '../types';
 import ScrollLocContext from 'contexts/ScrollLocContext';
 
 const ChronologyPostTemplate: React.FC<
-	PageProps<GatsbyTypes.ChronologyPostBySlugQuery, TemplatePageContext>
+	PageProps<Queries.ChronologyPostBySlugQuery, TemplatePageContext>
 > = ({ data, pageContext }) => {
 	const post = data.markdownRemark;
 	const { prev, next } = pageContext;

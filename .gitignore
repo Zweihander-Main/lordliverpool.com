@@ -166,5 +166,5 @@ cypress/screenshots/*
 cypress/videos/*
 __diff_output__
 
-# TypeGen generated files (changes between dev and build so not worth it)
-src/__generated__/*
+# Typegen
+gatsby-types.d.ts

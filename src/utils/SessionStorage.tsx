@@ -1,5 +1,10 @@
 import { STATE_KEY_PREFIX, BGPM_APP_STATE } from './constants';
 import { ScrollLocReducerState } from 'types';
+declare global {
+	interface Window {
+		[BGPM_APP_STATE]: Record<string, unknown>;
+	}
+}
 
 const appStateInWindow = (): Record<string, unknown> | undefined => {
 	if (window && window[BGPM_APP_STATE]) {
@@ -21,14 +26,17 @@ const isStoredState = (
 		Object.keys(parsedState).every(
 			(track) =>
 				Object.prototype.hasOwnProperty.call(
-					parsedState[track],
+					(parsedState as Record<string, unknown>)[track],
 					'contextState'
 				) &&
 				Object.prototype.hasOwnProperty.call(
-					parsedState[track],
+					(parsedState as Record<string, unknown>)[track],
 					'pos'
 				) &&
-				Object.prototype.hasOwnProperty.call(parsedState[track], 'id')
+				Object.prototype.hasOwnProperty.call(
+					(parsedState as Record<string, unknown>)[track],
+					'id'
+				)
 		)
 	) {
 		return true;

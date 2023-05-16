@@ -5,16 +5,16 @@ import SEO from 'components/structure/seo';
 import SinglePost from 'components/shared/singlePost';
 
 type BookQuery = {
-	readonly markdownRemark: GatsbyTypes.Maybe<
-		Pick<GatsbyTypes.MarkdownRemark, 'html' | 'excerpt'> & {
-			readonly frontmatter: GatsbyTypes.Maybe<
+	readonly markdownRemark: Queries.Maybe<
+		Pick<Queries.MarkdownRemark, 'html' | 'excerpt'> & {
+			readonly frontmatter: Queries.Maybe<
 				Pick<
-					GatsbyTypes.MarkdownRemarkFrontmatter,
+					Queries.MarkdownRemarkFrontmatter,
 					'title' | 'description'
 				> & {
-					readonly featuredImage: GatsbyTypes.Maybe<{
-						readonly childImageSharp: GatsbyTypes.Maybe<
-							Pick<GatsbyTypes.ImageSharp, 'gatsbyImageData'>
+					readonly featuredImage: Queries.Maybe<{
+						readonly childImageSharp: Queries.Maybe<
+							Pick<Queries.ImageSharp, 'gatsbyImageData'>
 						>;
 					}>;
 				}
@@ -25,7 +25,7 @@ type BookQuery = {
 
 const Book: React.FC = () => {
 	/* eslint-disable  @typescript-eslint/no-unsafe-assignment */
-	const bookData: BookQuery = useStaticQuery<GatsbyTypes.BookQuery>(graphql`
+	const bookData: BookQuery = useStaticQuery<Queries.BookQuery>(graphql`
 		query Book {
 			markdownRemark(fields: { slug: { eq: "/pages/book" } }) {
 				html

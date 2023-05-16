@@ -7,7 +7,7 @@ import { TemplatePageContext } from '../types';
 import ScrollLocContext from 'contexts/ScrollLocContext';
 
 const ContenderPostTemplate: React.FC<
-	PageProps<GatsbyTypes.ContenderPostBySlugQuery, TemplatePageContext>
+	PageProps<Queries.ContenderPostBySlugQuery, TemplatePageContext>
 > = ({ data, pageContext }) => {
 	const post = data.markdownRemark;
 	const { prev, next } = pageContext;

@@ -6,7 +6,7 @@ import ModalButton from 'components/shared/retailers/retailersButton';
 import * as styles from './hero.module.scss';
 
 const Hero: React.FC = () => {
-	const heroImageData = useStaticQuery<GatsbyTypes.HeroImageQuery>(graphql`
+	const heroImageData = useStaticQuery<Queries.HeroImageQuery>(graphql`
 		query HeroImage {
 			heroImage: file(relativePath: { eq: "liverpoolherobg.png" }) {
 				childImageSharp {

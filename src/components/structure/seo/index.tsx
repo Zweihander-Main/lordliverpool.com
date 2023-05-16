@@ -28,7 +28,7 @@ const SEO: React.FC<SEOProps> = ({
 	title = '',
 	app = false,
 }) => {
-	const { site } = useStaticQuery<GatsbyTypes.SEOSiteMetadataQuery>(
+	const { site } = useStaticQuery<Queries.SEOSiteMetadataQuery>(
 		graphql`
 			query SEOSiteMetadata {
 				site {

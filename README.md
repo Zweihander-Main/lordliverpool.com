@@ -9,7 +9,7 @@
 
 ## Technologies used:
 
--   GatsbyJS (v4)
+-   GatsbyJS (v5)
 -   TypeScript
 -   GraphQL + Typegen
 -   SCSS + Modules

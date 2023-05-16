@@ -6,7 +6,7 @@ import SinglePost from 'components/shared/singlePost';
 import { TemplatePageContext } from '../types';
 
 const MiscellanyPostTemplate: React.FC<
-	PageProps<GatsbyTypes.BlogPostBySlugQuery, TemplatePageContext>
+	PageProps<Queries.BlogPostBySlugQuery, TemplatePageContext>
 > = ({ data, pageContext }) => {
 	const post = data.markdownRemark;
 	const { next, prev } = pageContext;

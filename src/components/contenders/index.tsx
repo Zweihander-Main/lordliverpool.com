@@ -16,41 +16,36 @@ import HistoryContext from 'contexts/HistoryContext';
 const TRACK = 'contenders';
 
 const Contenders: React.FC = () => {
-	const blogRollData =
-		useStaticQuery<GatsbyTypes.ContendersQueryQuery>(graphql`
-			query ContendersQuery {
-				allMarkdownRemark(
-					sort: { order: ASC, fields: [frontmatter___date] }
-					filter: {
-						fields: { sourceInstanceName: { eq: "contenders" } }
-					}
-				) {
-					edges {
-						node {
-							id
-							fields {
-								slug
-							}
-							frontmatter {
-								title
-								displayDate
-								featuredImage {
-									childImageSharp {
-										gatsbyImageData(
-											width: 800
-											transformOptions: {
-												grayscale: true
-											}
-											layout: CONSTRAINED
-										)
-									}
+	const blogRollData = useStaticQuery<Queries.ContendersQueryQuery>(graphql`
+		query ContendersQuery {
+			allMarkdownRemark(
+				sort: { frontmatter: { date: ASC } }
+				filter: { fields: { sourceInstanceName: { eq: "contenders" } } }
+			) {
+				edges {
+					node {
+						id
+						fields {
+							slug
+						}
+						frontmatter {
+							title
+							displayDate
+							featuredImage {
+								childImageSharp {
+									gatsbyImageData(
+										width: 800
+										transformOptions: { grayscale: true }
+										layout: CONSTRAINED
+									)
 								}
 							}
 						}
 					}
 				}
 			}
-		`);
+		}
+	`);
 
 	const { edges: contenders } = blogRollData.allMarkdownRemark;
 

@@ -6,16 +6,16 @@ import SinglePost from 'components/shared/singlePost';
 
 // Workaround for inconsistent generated types
 type AuthorQuery = {
-	readonly markdownRemark: GatsbyTypes.Maybe<
-		Pick<GatsbyTypes.MarkdownRemark, 'html' | 'excerpt'> & {
-			readonly frontmatter: GatsbyTypes.Maybe<
+	readonly markdownRemark: Queries.Maybe<
+		Pick<Queries.MarkdownRemark, 'html' | 'excerpt'> & {
+			readonly frontmatter: Queries.Maybe<
 				Pick<
-					GatsbyTypes.MarkdownRemarkFrontmatter,
+					Queries.MarkdownRemarkFrontmatter,
 					'title' | 'description'
 				> & {
-					readonly featuredImage: GatsbyTypes.Maybe<{
-						readonly childImageSharp: GatsbyTypes.Maybe<
-							Pick<GatsbyTypes.ImageSharp, 'gatsbyImageData'>
+					readonly featuredImage: Queries.Maybe<{
+						readonly childImageSharp: Queries.Maybe<
+							Pick<Queries.ImageSharp, 'gatsbyImageData'>
 						>;
 					}>;
 				}
@@ -26,24 +26,23 @@ type AuthorQuery = {
 
 const Author: React.FC = () => {
 	/* eslint-disable  @typescript-eslint/no-unsafe-assignment */
-	const authorData: AuthorQuery =
-		useStaticQuery<GatsbyTypes.AuthorQuery>(graphql`
-			query Author {
-				markdownRemark(fields: { slug: { eq: "/pages/author" } }) {
-					html
-					excerpt(pruneLength: 160)
-					frontmatter {
-						title
-						description
-						featuredImage {
-							childImageSharp {
-								gatsbyImageData(width: 550, layout: CONSTRAINED)
-							}
+	const authorData: AuthorQuery = useStaticQuery<Queries.AuthorQuery>(graphql`
+		query Author {
+			markdownRemark(fields: { slug: { eq: "/pages/author" } }) {
+				html
+				excerpt(pruneLength: 160)
+				frontmatter {
+					title
+					description
+					featuredImage {
+						childImageSharp {
+							gatsbyImageData(width: 550, layout: CONSTRAINED)
 						}
 					}
 				}
 			}
-		`);
+		}
+	`);
 	/* eslint-enable  @typescript-eslint/no-unsafe-assignment */
 
 	const page = authorData.markdownRemark;
