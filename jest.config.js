@@ -65,6 +65,7 @@ const commonForLintRunners = {
 module.exports = {
 	collectCoverageFrom: [
 		'**/src/**/*.{js,jsx,ts,tsx}',
+		'!**/*.scss.d.ts',
 		'!**/__tests__/**',
 		'!**/gatsby-types.d.ts',
 		'!**/__server_tests__/**',
