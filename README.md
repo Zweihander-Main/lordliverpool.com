@@ -16,6 +16,7 @@
 -   Jest + Linting Runners
 -   Cypress + Axe + Visual Regression
 -   NetlifyCMS + Netlify
+-   pnpm
 
 ## Dev workflow
 
@@ -44,26 +45,26 @@
 
 ## Scripts
 
--   `npm run build`: Build to production using Gatsby (outputs to `public` folder)
--   `npm run dev`: Build and serve development version using Gatsby
--   `npm run clean`: Clean the `public` and `.cache` folders
--   `npm run serve`: Build and serve production
--   `npm run test`: Run jest and runners
--   `npm run test:coverage`: Generate coverage reports
--   `npm run test:watch`: Run jest and runners in watch mode
--   `npm run test:debug`: Run jest and allow node-based debugging
--   `npm run test:e2e`: Run cypress E2E tests
--   `npm run test:e2e:run`: Run cypress on production build
--   `npm run test:e2e:dev`: Open cypress dashboard on development build
--   `npm run test:e2e:dev:prod`: Open cypress dashboard on production build
--   `npm run cy:run`: Run cypress
--   `npm run cy:open`: Open cypress dashboard
--   `npm run lint`: Run all jest runners
--   `npm run lint:md`: Run remark markdown linter
--   `npm run lint:ts`: Run TypeScript compiler
--   `npm run prepare`: Prepare husky
--   `npm run netlify`: Script to run as netlify that builds and generates public coverage reports
--   `npm run format`: Auto-format using prettier
+-   `pnpm run build`: Build to production using Gatsby (outputs to `public` folder)
+-   `pnpm run dev`: Build and serve development version using Gatsby
+-   `pnpm run clean`: Clean the `public` and `.cache` folders
+-   `pnpm run serve`: Build and serve production
+-   `pnpm run test`: Run jest and runners
+-   `pnpm run test:coverage`: Generate coverage reports
+-   `pnpm run test:watch`: Run jest and runners in watch mode
+-   `pnpm run test:debug`: Run jest and allow node-based debugging
+-   `pnpm run test:e2e`: Run cypress E2E tests
+-   `pnpm run test:e2e:run`: Run cypress on production build
+-   `pnpm run test:e2e:dev`: Open cypress dashboard on development build
+-   `pnpm run test:e2e:dev:prod`: Open cypress dashboard on production build
+-   `pnpm run cy:run`: Run cypress
+-   `pnpm run cy:open`: Open cypress dashboard
+-   `pnpm run lint`: Run all jest runners
+-   `pnpm run lint:md`: Run remark markdown linter
+-   `pnpm run lint:ts`: Run TypeScript compiler
+-   `pnpm run prepare`: Prepare husky
+-   `pnpm run netlify`: Script to run as netlify that builds and generates public coverage reports
+-   `pnpm run format`: Auto-format using prettier
 
 ## Possible improvements
 

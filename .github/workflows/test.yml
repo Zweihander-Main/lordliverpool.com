@@ -10,11 +10,23 @@ jobs:
   cypress-run:
     runs-on: ubuntu-20.04
     container:
-      image: cypress/browsers:node16.5.0-chrome94-ff93
-      options: --user 1001 --shm-size=2g
+      image: cypress/browsers:node18.12.0-chrome107
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 8
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+          cache: 'pnpm'
+
+      - run: pnpm install --frozen-lockfile
 
       - name: Caching Gatsby
         id: gatsby-cache-build
@@ -31,7 +43,7 @@ jobs:
         uses: cypress-io/github-action@v2
         with:
           browser: chrome
-          start: npm run serve
+          start: pnpm run serve
           wait-on: 'http://localhost:8000'
           wait-on-timeout: 900
 
