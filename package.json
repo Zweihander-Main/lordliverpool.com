@@ -84,7 +84,6 @@
 		"jest-watch-typeahead": "^2.2.2",
 		"lint-staged": "^13.2.2",
 		"netlify-cli": "^15.1.0",
-		"npm-run-all": "^4.1.5",
 		"prettier": "^2.8.8",
 		"react-test-renderer": "^18.2.0",
 		"remark-cli": "^11.0.0",
@@ -117,7 +116,8 @@
 		"lint:ts": "tsc -p .",
 		"lint:md": "remark .",
 		"prepare": "husky install",
-		"netlify": "npm-run-all --parallel test:coverage build && cp -r coverage/lcov-report public/lcov-report",
+		"netlify:build": "pnpm run build",
+		"netlify:coverage": "pnpm run test:coverage && cp -r coverage/lcov-report public/lcov-report",
 		"format": "prettier --write \"**/*{js,jsx,ts,tsx,json,md,css,md,scss}\""
 	},
 	"repository": {
