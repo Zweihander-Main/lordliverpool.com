@@ -45,7 +45,7 @@ const BookInfo: React.FC = () => {
 				<h2 className={styles.subHeader}>Lord Liverpool</h2>
 				<h3 className={styles.authorHeader}>
 					By{' '}
-					<Link to="/author/" className={styles.authorLink}>
+					<Link to="/author" className={styles.authorLink}>
 						Martin Hutchinson
 					</Link>
 				</h3>
