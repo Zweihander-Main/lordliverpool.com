@@ -31,7 +31,7 @@ In September 1822 Liverpool married Mary Chester, daughter of the Rev. Charles C
 
 Mrs Arbuthnot tells stories of Liverpool during his first marriage, excelling at charades and leaping over a sofa to sit next to the Countess Lieven. After 1821 she grew exasperated with him from time to time, especially as he was insufficiently staunch in supporting her beloved Wellington against the machinations of Canning. She wrote of him at his death:
 
-> He remained Minister too long for his own fame for, as his health decayed, he became supine, let everything go to ruin and had no longer energy or strength to resist the influence of Mr. Canning; but he was a very honest, upright man and deserves a higher character as a statesman than I dare say History will grant to him. … [T]he energy, firmness and talent he displayed in the war and in the most difficult crises will be overlooked or forgotten.<sup>11</sup>
+> He remained Minister too long for his own fame for, as his health decayed, he became supine, let everything go to ruin and had no longer energy or strength to resist the influence of Mr. Canning; but he was a very honest, upright man and deserves a higher character as a statesman than I dare say History will grant to him. … \[T]he energy, firmness and talent he displayed in the war and in the most difficult crises will be overlooked or forgotten.<sup>11</sup>
 
 \[1] Comment on Liverpool’s premiership in Briggs, _Sir Robert Peel_, in van Thal, _The Prime Ministers_, Vol. 1, pp. 287-96.
 

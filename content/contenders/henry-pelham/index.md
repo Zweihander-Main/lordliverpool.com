@@ -4,6 +4,7 @@ featuredImage: Henry_Pelham.jpg
 date: 1743-01-01T20:20:00.000Z
 displayDate: 1743 - 1754
 ---
+
 Henry Pelham (1694-1754) was the brains and financial acumen in the family, while his older brother Thomas, Duke of Newcastle managed the family’s extensive patronage and foreign policy.
 
 In many ways Pelham was an improved version of Walpole. He pursued the same policy of peace, economy and low taxes, but although he used the same patronage methods as Walpole, he appears not to have been personally corrupt, holding the office of Paymaster of the Forces from 1730-43, the last four of which were war years, without conspicuous self-enrichment. He was a less outgoing personality than Walpole, and not an especially good Parliamentary speaker, but like Walpole was a superb administrator and excellent with finance.

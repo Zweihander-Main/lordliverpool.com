@@ -4,6 +4,7 @@ subtitle: The politics of the neglected 1st Earl of Liverpool
 date: 2015-02-21T20:28:20.240Z
 featuredImage: the_house_of_commons_1793-94_by_karl_anton_hickel.jpg
 ---
+
 When William Pitt the younger formed his government in December 1783, it was a Whig one. Pitt himself, his two Secretaries of State and most of his Cabinet were Whigs. Yet by his death in 1806, his long-standing administration was generally accepted as a Tory government, and its direct successors were to continue ruling as Tory governments until 1830. The change, of both label and principle, was largely achieved by the influence of Charles Jenkinson, first Earl of Liverpool, Pitt’s long-serving President of the Board of Trade.
 
 At the start of his government, Pitt firmly identified himself as a Whig. Pitt’s father the Earl of Chatham had been a Whig, albeit one allied to opposition forces in Walpole’s time, and had formed a coalition with the orthodox Whig Duke of Newcastle that had won the Seven Years War before being ousted by the Tory-leaning George III, in favor of the Earl of Bute, leading the first Tory government for 48 years. Pitt’s 1783 Secretaries of State were the Marquess of Carmarthen, who had been aligned with the Whigs in opposition to Lord North’s mostly Tory government in the 1770s, and Thomas Townshend, Viscount Sydney, who had also been in opposition to North and was the grandson of Walpole’s Whig Secretary of State.

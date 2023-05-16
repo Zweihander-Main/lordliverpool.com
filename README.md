@@ -30,18 +30,18 @@
 
 ### Workflow for development:
 
-1. Pre-commit hooks run on code: all jest tests and lint runners
-2. Push to `master` branch
-3. E2E tests run on new code
-4. If passed, branch pushed into `netlify`
+    1. Pre-commit hooks run on code: all jest tests and lint runners
+    2. Push to `master` branch
+    3. E2E tests run on new code
+    4. If passed, branch pushed into `netlify`
 
 ### Workflow for NetlifyCMS:
 
-1. PR created in `master`
-2. Preview deploys run on PR
-3. PR manually merged or merged through UI
-4. E2E tests run on new code
-5. If passed, branch pushed into `netlify`
+    1. PR created in `master`
+    2. Preview deploys run on PR
+    3. PR manually merged or merged through UI
+    4. E2E tests run on new code
+    5. If passed, branch pushed into `netlify`
 
 ## Scripts
 

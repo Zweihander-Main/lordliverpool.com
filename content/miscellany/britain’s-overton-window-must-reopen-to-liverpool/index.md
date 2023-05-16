@@ -4,6 +4,7 @@ subtitle: New policy opportunities and better ways ahead
 date: 2016-06-27T20:15:26.093Z
 featuredImage: palace-of-westminster.jpg
 ---
+
 Now that the brave British have voted by a small majority to exit the European Union, they need a new philosophy of government. To get one, they must think more broadly, open the Overton Window of permissible discourse beyond the spendthrift Keynesian globalism of the immediate past, the hard-left socialism of Jeremy Corbyn, the social democracy of the 20th Century and the Whiggery/Liberalism of the 19th Century. They must include in their consideration the philosophy against which the Overton Window has been shut for over 150 years, the most successful philosophy ever adopted in British government: the “original definition” Conservatism of Robert Banks Jenkinson, 2nd Earl of Liverpool (1770-1828).
 
 The Overton Window, a term invented by Joseph P. Overton (1960-2003), is the range of ideas the public finds acceptable. Propose ideas within the Window, and you will be taken seriously, if not universally followed. Propose ideas from beyond the Window and you will be treated as at best an eccentric, at worst a dangerous lunatic and a threat to political order.

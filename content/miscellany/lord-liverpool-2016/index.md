@@ -4,6 +4,7 @@ subtitle: How the U.S. could enjoy a second Industrial Revolution
 date: 2015-11-09T21:08:18.453Z
 featuredImage: liverpool2016.png
 ---
+
 With the U.S. primary season approaching, and the quality of debate showing the flaws in the existing candidates, I thought it worth pondering how a truly superior statesman, Robert Banks Jenkinson, second Earl of Liverpool (British prime minister, 1812-27) would set about winning a U.S. Presidential election (assuming he had the necessary birth qualification to participate.) It is easy to say that a statesman with Liverpool’s beliefs could not win a modern election, but nevertheless useful to ponder how much and in what directions he would have to change his approach to have a sporting chance.
 
 Ben Carson has shown the merits of Liverpool’s likely approach to the Presidential debates. While he would regard the moderators’ questioning as grossly impertinent, Liverpool had plenty of experience in House of Commons debates which were not entirely decorous, and would use a Carson-like refusal to insult the other candidates together with a very un-Carsonian mastery of detail and the issues to turn in an impressive performance. He would not provide the verbal fireworks of Donald Trump, Ted Cruz or Marco Rubio, and would therefore not “win” the debates in the eyes of the media, but would nevertheless more than hold his own.

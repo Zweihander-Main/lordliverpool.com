@@ -4,6 +4,7 @@ featuredImage: William_Pitt_the_Younger.jpg
 date: 1783-01-01T20:20:00.000Z
 displayDate: 1783 - 1801, 1804 - 1806
 ---
+
 To Liverpool’s contemporaries, William Pitt the younger (1759-1806) was incomparably the greatest of prime ministers. Liverpool himself, guided by his cynical and knowledgeable father whose relationship with Pitt was cool, never indulged in the kind of hero-worship of Pitt undertaken by the mercurial George Canning (1770-1827). Nevertheless, as a minister after 1807 he described his colleagues as “followers of Mr. Pitt” and as prime minister he paid full tribute on several occasions to Pitt’s abilities and to his position as “the pilot that weathered the storm.”
 
 Pitt’s supremacy among prime ministers continued to be acknowledged until the World War II generation – the Robert Donat movie “The Young Mr. Pitt” of 1942, made during that conflict, is sufficient testimony to the admiration in which he was still held. Only more recently have mild doubts arisen.

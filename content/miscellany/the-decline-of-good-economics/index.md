@@ -4,6 +4,7 @@ subtitle: On the development of economic ideas over the last 200 years
 date: 2019-01-28T21:03:17.428Z
 featuredImage: william_hogarth_-_gin_lane.jpg
 ---
+
 There are many reasons why the Industrial Revolution happened in Britain in 1775-1850, but among the most important is the quality of economic thought among British policymakers of that period. Adam Smith, Thomas Malthus and David Ricardo gave them an excellent grounding in free market economics, and few statesmen of that period opposed their doctrines. Alas, over the last two centuries the quality of economic discourse has steadily declined. Spurious economic theories have appeared, and statesmen seem determined to avoid the correct ones.
 
 The deterioration in economic discourse is intellectually very odd. It is as if physicists had moved from quantum mechanics to Newton’s gravitation to the Ptolemaic theory of epicycles. Like modern economics, the Ptolemaic epicycle theory was highly complex — God forbade the ellipse and the sun went around the Earth, so planets moved in circles centered on other circles. The theory would indeed have lent itself very nicely to modelling on a modern supercomputer. Also like modern economics however, the Ptolemaic theory was wrong. Unlike physics, chemistry and other sciences, economics appears to have proceeded from truth to error; it is not really clear why.
