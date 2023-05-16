@@ -110,7 +110,7 @@ $menu-transition: 0.2s;
 	@extend %menu-button-text;
 
 	float: right;
-} //TODO Make sure em vs rem
+} // TODO Make sure em vs rem
 
 .menu-text-close {
 	display: none;
@@ -185,9 +185,9 @@ $menu-transition: 0.2s;
 	z-index: 1000;
 
 	@include m.media('<=desktop') {
-		//TODO var,
+		// TODO var,
 		grid-template-columns: 100%;
-		grid-template-rows: repeat(5, minmax(0, 1fr)); //TODO var
+		grid-template-rows: repeat(5, minmax(0, 1fr)); // TODO var
 	}
 }
 
@@ -219,6 +219,7 @@ $menu-transition: 0.2s;
 		padding: 0.5rem;
 	}
 }
+
 // TODO fix animation of home button appearing
 
 .home-button-text {
@@ -232,5 +233,5 @@ $menu-transition: 0.2s;
 	@include m.media('<=tiny') {
 		font-size: 30px;
 		margin: 1px 7px 5px 1.1rem;
-	} //TODO top for shorter
+	} // TODO top for shorter
 }

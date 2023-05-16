@@ -3,6 +3,7 @@
 @use './functions.module' as f;
 @use 'sass:color';
 @use 'sass:map';
+@use 'sass:list';
 @import 'node_modules/include-media/dist/include-media';
 
 $breakpoints: v.$breakpoints;
@@ -49,7 +50,7 @@ $breakpoints: v.$breakpoints;
 	}
 }
 
-//TODO add to contenders in some form
+// TODO add to contenders in some form
 
 @mixin fancy-hover-link($color: v.$color-black, $bottom: 4px, $margin: 0) {
 	position: relative;
@@ -102,8 +103,8 @@ $breakpoints: v.$breakpoints;
 	$base-color: v.$color-red-dark,
 	$intensity: 50%
 ) {
-	$top-color: f.color-difference-adjust($base-color, ($intensity/100));
-	$bottom-color: f.color-difference-adjust($base-color, (-$intensity/100));
+	$top-color: f.color-difference-adjust($base-color, ($intensity / 100));
+	$bottom-color: f.color-difference-adjust($base-color, (-$intensity / 100));
 
 	@include neumorphic-full(
 		$shadow-size,
@@ -121,10 +122,13 @@ $breakpoints: v.$breakpoints;
 	$shadow-size: 0,
 	$shadow-color: v.$color-black
 ) {
-	$top-inset-color: f.color-difference-adjust($base-color, ($intensity/100));
+	$top-inset-color: f.color-difference-adjust(
+		$base-color,
+		($intensity / 100)
+	);
 	$bottom-inset-color: f.color-difference-adjust(
 		$base-color,
-		(-$intensity/100)
+		(-$intensity / 100)
 	);
 
 	box-shadow: inset (-$inset-shadow-size) (-$inset-shadow-size)
@@ -143,8 +147,8 @@ $breakpoints: v.$breakpoints;
 		$intensity: -$intensity;
 	}
 
-	$from: f.color-difference-adjust($base-color, ($intensity/100));
-	$to: f.color-difference-adjust($base-color, (-$intensity/100));
+	$from: f.color-difference-adjust($base-color, ($intensity / 100));
+	$to: f.color-difference-adjust($base-color, (-$intensity / 100));
 
 	background: linear-gradient(145deg, $from, $to);
 }
@@ -169,11 +173,12 @@ $breakpoints: v.$breakpoints;
 // Use 'default' for blank default size
 @mixin card-scalex-keyframe-generate($margin-map, $width-map, $sizes...) {
 	@for $i from 0 to length($sizes) {
-		$size: nth($sizes, $i + 1);
+		$size: list.nth($sizes, $i + 1);
 		$margin: map.get($margin-map, $size);
 		$width: map.get($width-map, $size);
 		$animation-hide-name: 'card-scalex-to-hide';
 		$animation-show-name: 'card-scalex-to-show';
+
 		@if $size != 'default' {
 			$animation-hide-name: 'card-scalex-to-hide-#{$size}';
 			$animation-show-name: 'card-scalex-to-show-#{$size}';
@@ -193,14 +198,14 @@ $breakpoints: v.$breakpoints;
 			}
 
 			50% {
-				margin: 0 $margin/2 0 0;
-				width: $width/2;
+				margin: 0 ($margin / 2) 0 0;
+				width: $width / 2;
 			}
 
 			99.9% {
-				margin: 0 $margin/2 0 0;
+				margin: 0 ($margin / 2) 0 0;
 				transform: scaleX(0);
-				width: $width/2;
+				width: $width / 2;
 			}
 
 			100% {
@@ -222,14 +227,14 @@ $breakpoints: v.$breakpoints;
 			}
 
 			50% {
-				margin: 0 $margin/2 0 0;
-				width: $width/2;
+				margin: 0 ($margin / 2) 0 0;
+				width: $width / 2;
 			}
 
 			99.9% {
-				margin: 0 $margin/2 0 0;
+				margin: 0 ($margin / 2) 0 0;
 				transform: scaleX(1);
-				width: $width/2;
+				width: $width / 2;
 			}
 
 			100% {

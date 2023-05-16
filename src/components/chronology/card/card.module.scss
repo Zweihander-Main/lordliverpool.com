@@ -5,7 +5,7 @@
 @use 'sass:map';
 
 .card {
-	//TODO remove color vars
+	// TODO remove color vars
 	@include m.neumorphic-intensity(
 		12px,
 		25px,
@@ -30,11 +30,13 @@
 		animation-name: card-scalex-to-show;
 		margin: 0 v.$card-margin 0 0;
 		max-height: calc(100vh - #{v.$card-total-margin});
-		width: v.$card-width; //TODO right?
+		width: v.$card-width; // TODO right?
 		will-change: transform, width, margin;
+
 		@include m.media('height<=HEIGHT_short') {
 			max-height: calc(100vh - #{v.$card-total-margin-short});
 		}
+
 		@include m.media('height<=HEIGHT_shorter') {
 			@include m.neumorphic-intensity(
 				10px,
@@ -71,15 +73,19 @@
 		max-height: v.$card-portrait-max-height;
 		width: v.$card-portrait-width;
 		will-change: transform, height, margin;
+
 		@include m.media('<=desktop') {
 			width: v.$card-portrait-width-desktop;
 		}
+
 		@include m.media('<=tablet') {
 			width: v.$card-portrait-width-tablet;
 		}
+
 		@include m.media('<=phone') {
 			width: v.$card-portrait-width-phone;
 		}
+
 		// TODO tiny intensity
 	}
 }
@@ -87,9 +93,11 @@
 .hidden {
 	@include m.media('landscape') {
 		animation-name: card-scalex-to-hide;
+
 		@include m.media('height<=HEIGHT_shorter') {
 			animation-name: card-scalex-to-hide-shorter;
 		}
+
 		@include m.media('height<=HEIGHT_shorter') {
 			animation-name: card-scalex-to-hide-ultratiny;
 		}
@@ -113,22 +121,27 @@
 	grid-area: 1 / 1 / 3 / 2;
 	grid-template:
 		'Image' minmax(0, max-content)
-		'TextContainer' minmax(0, min-content)
-		/ 1fr; //TODO massacre of tranent and perfect spacing
+		'TextContainer' minmax(0, min-content) / 1fr;
+
+	// TODO massacre of Tranent and perfect spacing
 
 	overflow-y: auto;
-	//TODO name grids everywhere
+
+	// TODO name grids everywhere
 	// TODO remove image named grid
 	@include m.media('landscape') {
 		width: v.$card-width;
+
 		@include m.media('height<=HEIGHT_shorter') {
 			border: v.$card-border-shorter solid transparent;
 			width: v.$card-width-shorter;
 		}
+
 		@include m.media('height<=HEIGHT_ultratiny') {
 			width: v.$card-width-ultratiny;
 		}
 	}
+
 	@include m.media('portrait') {
 		width: 100%;
 	}
@@ -149,6 +162,7 @@
 		@include m.media('height<=HEIGHT_tiny') {
 			font-size: v.$font-size-h3;
 		}
+
 		@include m.media('height<=HEIGHT_ultratiny') {
 			font-size: v.$font-size-h4;
 		}
@@ -157,13 +171,14 @@
 
 .title-link {
 	color: v.$color-white;
-	margin-bottom: 1.38rem; //TODO Var with bottom
+	margin-bottom: 1.38rem; // TODO Var with bottom
 
 	@include m.media('height<=HEIGHT_tiny') {
-		margin-bottom: 1.2rem; //TODO rem;
+		margin-bottom: 1.2rem; // TODO rem;
 	}
+
 	@include m.media('height<=HEIGHT_ultratiny') {
-		margin-bottom: 1rem; //TODO rem;
+		margin-bottom: 1rem; // TODO rem;
 	}
 
 	.image {
@@ -183,21 +198,25 @@
 	object-position: center 35%;
 	outline: none;
 	width: 100%;
+
 	@include m.media('height<=HEIGHT_tiny') {
-		margin-bottom: 1.2rem; //TODO rem;
+		margin-bottom: 1.2rem; // TODO rem;
 	}
+
 	@include m.media('height<=HEIGHT_ultratiny') {
-		margin-bottom: 1rem; //TODO rem;
+		margin-bottom: 1rem; // TODO rem;
 	}
 }
+
 // TODO Zoom
 // TODO fix mixins and ect. for breakpoints
 // TODO border on bottom of menu
 
 .text {
-	color: color.adjust(v.$color-white, $lightness: -7%); //TODO var
+	color: color.adjust(v.$color-white, $lightness: -7%); // TODO var
 	text-align: justify;
 	white-space: break-spaces;
+
 	@include m.media('landscape') {
 		@include m.media('height<=HEIGHT_ultratiny') {
 			font-size: v.$font-size-h7;
@@ -219,9 +238,11 @@
 		@include m.media('height<=HEIGHT_shorter') {
 			width: v.$card-width-shorter;
 		}
+
 		@include m.media('height<=HEIGHT_tiny') {
-			font-size: 2.9vh; //TODO rem;
+			font-size: 2.9vh; // TODO rem;
 		}
+
 		@include m.media('height<=HEIGHT_ultratiny') {
 			width: v.$card-width-ultratiny;
 		}
@@ -260,12 +281,12 @@ $widths: (
 	}
 
 	50% {
-		margin: 0 auto v.$card-margin/2 auto;
+		margin: 0 auto (v.$card-margin / 2) auto;
 		max-height: v.$card-portrait-animation-height;
 	}
 
 	99.9% {
-		margin: 0 auto v.$card-margin/2 auto;
+		margin: 0 auto (v.$card-margin / 2) auto;
 		max-height: v.$card-portrait-animation-height;
 		transform: scaleY(0);
 	}
@@ -289,12 +310,12 @@ $widths: (
 	}
 
 	50% {
-		margin: 0 auto v.$card-margin/2 auto;
+		margin: 0 auto (v.$card-margin / 2) auto;
 		max-height: v.$card-portrait-animation-height;
 	}
 
 	99.9% {
-		margin: 0 auto v.$card-margin/2 auto;
+		margin: 0 auto (v.$card-margin / 2) auto;
 		max-height: v.$card-portrait-animation-height;
 		transform: scaleY(1);
 	}

@@ -13,15 +13,16 @@
 	align-items: center;
 	background: #051926;
 	border-bottom: 1px solid color.adjust(v.$color-blue, $lightness: 8%);
-	border-radius: 0 0 v.$border-radius-normal * 2 v.$border-radius-normal * 2; //TODO border radius in some other unit or proportional to the size?
+	border-radius: 0 0 v.$border-radius-normal * 2 v.$border-radius-normal * 2; // TODO border radius in some other unit or proportional to the size?
 	color: v.$color-white;
 	display: flex;
 	flex-direction: row;
 	grid-area: FilterMenu;
 	justify-content: space-around;
-	margin: 0 250px; //TODO nope -- redo grid as well
+	margin: 0 250px; // TODO nope -- redo grid as well
 	transition: 100ms v.$timing-quick;
 	z-index: 9;
+
 	// TODO adjust based on new menu size when you resize it
 
 	@include m.media('<=ultrawide') {
@@ -53,7 +54,7 @@
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
-	transition: 100ms v.$timing-quick; //TODO -- logic to 150ms?
+	transition: 100ms v.$timing-quick; // TODO -- logic to 150ms?
 	width: 100%;
 
 	@include m.media('<=tablet') {

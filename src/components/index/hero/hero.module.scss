@@ -11,7 +11,7 @@
 		'Sub-Title' 8%
 		'Scroll-Arrow' 7%
 		'Retailers-Button' 15% / 100%;
-	height: 100vh; //Firefox sizing bug
+	height: 100vh; // Firefox sizing bug
 	min-height: 100vh;
 	text-align: center;
 
@@ -36,8 +36,7 @@
 	font-size: f.convert-to-viewport(v.$font-size-hero-title);
 	font-weight: normal;
 	grid-area: Main-Title;
-	line-height: f.convert-to-viewport(4.93rem);
-	//TODO var
+	line-height: f.convert-to-viewport(4.93rem); // TODO var
 	text-transform: uppercase;
 }
 
@@ -94,6 +93,7 @@
 	100% {
 		opacity: 0;
 		transform: rotate(-45deg) translate(-20px, 20px);
+
 		@include m.media('height<=HEIGHT_short') {
 			transform: rotate(-45deg) translate(-10px, 10px);
 		}
@@ -123,12 +123,12 @@
 	font-weight: normal;
 
 	@include m.media('height>HEIGHT_tiny', 'height<=HEIGHT_short') {
-		font-size: f.convert-to-viewport(1.25rem, 1vh); //TODO var
+		font-size: f.convert-to-viewport(1.25rem, 1vh); // TODO var
 		margin-bottom: 1rem;
 	}
 
 	@include m.media('height<=HEIGHT_tiny') {
-		font-size: f.convert-to-viewport(1.5rem, 1vh); //TODO var
+		font-size: f.convert-to-viewport(1.5rem, 1vh); // TODO var
 		margin-bottom: 1rem;
 	}
 

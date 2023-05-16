@@ -66,19 +66,19 @@
 	font-size: v.$font-size-h6;
 	font-weight: 700;
 	letter-spacing: v.$letter-spacing;
-	line-height: 1.1; //TODO var
+	line-height: 1.1; // TODO var
 	position: relative;
 	text-rendering: optimizeLegibility;
 	text-transform: uppercase;
 
 	@include m.media('height>HEIGHT_ultratiny', 'height<=HEIGHT_tiny') {
 		bottom: 0.05rem;
-		font-size: 0.6rem; //TODO var
+		font-size: 0.6rem; // TODO var
 	}
 
 	@include m.media('height<=HEIGHT_ultratiny') {
 		bottom: 0.08rem;
-		font-size: 0.5rem; //TODO var
+		font-size: 0.5rem; // TODO var
 	}
 }
 
@@ -93,7 +93,7 @@
 	}
 
 	@include m.media('height<=HEIGHT_ultratiny') {
-		font-size: 0.7rem; //TODO var
+		font-size: 0.7rem; // TODO var
 		top: 0.07rem;
 	}
 }

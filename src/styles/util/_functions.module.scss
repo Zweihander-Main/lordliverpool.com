@@ -9,10 +9,12 @@ $base-size: 18px;
 
 @function convert-to-viewport($original, $return-units: 1vmin) {
 	$to-convert: $original;
-	@if (math.unit($original) == 'rem') {
+
+	@if math.unit($original) == 'rem' {
 		$stripped-original: strip-units($original);
 		$to-convert: $stripped-original * $base-size;
 	}
+
 	// Based on development monitor of vmin 1094px
 	@return math.div($to-convert, 10.94px) * $return-units;
 }
@@ -21,11 +23,9 @@ $base-size: 18px;
 	$red: color.red($color);
 	$green: color.green($color);
 	$blue: color.blue($color);
-
 	$new-red: $red + ($red * $difference);
 	$new-green: $green + ($green * $difference);
 	$new-blue: $blue + ($blue * $difference);
-
 	$new-red: math.round(math.min(255, math.max(0, $new-red)));
 	$new-green: math.round(math.min(255, math.max(0, $new-green)));
 	$new-blue: math.round(math.min(255, math.max(0, $new-blue)));

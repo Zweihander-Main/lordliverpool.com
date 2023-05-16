@@ -9,17 +9,14 @@ $options-border: 7px;
 $options-top-padding: 0.2rem;
 
 .outer {
-	bottom: 0;
 	color: v.$color-black;
 	height: 0;
-	left: 0;
 	line-height: 1.3;
 	opacity: 0;
 	outline: none;
 	overflow: hidden;
 	position: fixed;
-	right: 0;
-	top: 0;
+	inset: 0;
 	transform: translate(0, 100%);
 	transform: translate3d(0, 100%, 0);
 	transition: 250ms v.$timing-quick;
@@ -89,12 +86,9 @@ $options-top-padding: 0.2rem;
 
 .close::before {
 	background-color: rgba(v.$color-black, $bg-opacity);
-	bottom: 0;
+	inset: 0;
 	content: '';
-	left: 0;
 	position: absolute;
-	right: 0;
-	top: 0;
 	z-index: 10;
 }
 
@@ -102,7 +96,6 @@ $options-top-padding: 0.2rem;
 	@include m.header-text-shadow;
 
 	color: v.$color-white;
-	content: '';
 	content: '\D7';
 	font-size: 2rem;
 	height: 2rem;
@@ -242,6 +235,7 @@ $options-top-padding: 0.2rem;
 	flex-flow: row wrap;
 	justify-content: flex-end;
 	margin: calc(#{-$options-top-padding} + #{-$options-border}) 0 0 0;
+
 	// row-gap: calc(#{$options-top-padding} + #{$options-border});
 
 	@include m.media('<=phone') {
@@ -269,7 +263,7 @@ $options-top-padding: 0.2rem;
 	@include m.neumorphic-raised-button(v.$color-white, 7%);
 
 	border: 0;
-	border-radius: v.$border-radius-normal/2;
+	border-radius: v.$border-radius-normal / 2;
 	color: rgba(v.$color-black, $radio-label-opacity);
 	cursor: pointer;
 	margin: calc(#{$options-top-padding} + #{$options-border}) 1rem 0 0;

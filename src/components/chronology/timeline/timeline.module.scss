@@ -62,15 +62,16 @@
 	user-select: none;
 	white-space: nowrap;
 	will-change: transform;
+
 	@include m.media('landscape') {
 		@include m.media('height<=HEIGHT_short') {
-			font-size: 1.75rem; //TODO var
+			font-size: 1.75rem; // TODO var
 			opacity: 0.3;
 			top: calc(-1.75rem - 3px);
 		}
 
 		@include m.media('height<=HEIGHT_shorter') {
-			font-size: 1.5rem; //TODO var
+			font-size: 1.5rem; // TODO var
 			top: calc(-1.5rem - 2px);
 		}
 	}
@@ -102,6 +103,7 @@
 
 .tick:nth-of-type(2n) {
 	height: v.$timeline-area-grabber-height - 25;
+
 	@include m.media('landscape') {
 		@include m.media('height<=HEIGHT_shorter') {
 			height: v.$timeline-area-grabber-height-shorter - 25;

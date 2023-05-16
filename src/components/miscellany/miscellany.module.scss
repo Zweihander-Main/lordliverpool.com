@@ -41,14 +41,15 @@ $masonry-margin-tiny: 2rem;
 .link {
 	box-sizing: border-box;
 	display: inline-block;
-	margin: ($masonry-margin/2) 0;
+	margin: ($masonry-margin / 2) 0;
 	width: 100%;
+
 	@include m.media('<=wide') {
-		margin: ($masonry-margin-small/2) 0;
+		margin: ($masonry-margin-small / 2) 0;
 	}
 
 	@include m.media('<=tablet') {
-		margin: ($masonry-margin-tiny/2) 0;
+		margin: ($masonry-margin-tiny / 2) 0;
 	}
 
 	@include m.media('<=phone') {
@@ -135,6 +136,7 @@ $masonry-margin-tiny: 2rem;
 
 	border-bottom: 1px solid color.adjust($color: v.$color-white, $alpha: -0.7);
 	font-size: v.$font-size-h2;
+
 	@include m.media('<=phone') {
 		font-size: v.$font-size-h3;
 	}
@@ -145,6 +147,7 @@ $masonry-margin-tiny: 2rem;
 	@include m.header-normal;
 
 	font-size: v.$font-size-h3;
+
 	@include m.media('<=phone') {
 		font-size: v.$font-size-h4;
 	}

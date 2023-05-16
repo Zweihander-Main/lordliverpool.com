@@ -17,6 +17,7 @@
 		grid-template-rows: v.$filter-menu-height 1fr;
 		height: 100%;
 		min-height: 100vh;
+
 		// position: static; //TODO confirm
 
 		@include m.media('height<=HEIGHT_short') {
@@ -27,6 +28,7 @@
 	@include m.media('landscape') {
 		grid-template-rows: v.$filter-menu-height 1fr v.$timeline-height;
 		height: 100vh;
+
 		@include m.media('height<=HEIGHT_short') {
 			grid-template-rows: v.$filter-menu-height-short 1fr v.$timeline-height-short;
 		}
@@ -56,9 +58,11 @@
 		@include m.media('height<=HEIGHT_short') {
 			top: v.$card-top-margin-short;
 		}
+
 		@include m.media('height<=HEIGHT_shorter') {
 			top: v.$card-top-margin-shorter;
 		}
+
 		@include m.media('height<=HEIGHT_ultratiny') {
 			top: v.$card-top-margin-ultratiny;
 		}
@@ -100,13 +104,14 @@
 
 .buffer {
 	@include m.media('landscape') {
-		height: v.$card-height; //TODO fix
-		width: 10vw; //TODO is this right?
+		height: v.$card-height; // TODO fix
+		width: 10vw; // TODO is this right?
 	}
 
 	@include m.media('portrait') {
-		height: v.$filter-menu-height * 2; //TODO keep?:w
-		width: 80vw; //TODO var
+		height: v.$filter-menu-height * 2; // TODO keep?:w
+		width: 80vw; // TODO var
+
 		@include m.media('height<=HEIGHT_short') {
 			height: v.$filter-menu-height-short * 2;
 		}

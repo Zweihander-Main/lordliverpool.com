@@ -16,9 +16,10 @@ $pic-bg: color.adjust(v.$color-red-white, $lightness: -60%, $saturation: -10%);
 	position: fixed;
 	top: 0;
 	width: c.$image-width;
+
 	@include m.media('<=desktop') {
 		bottom: 0;
-		height: 100/3 * 1vh;
+		height: 100 / 3 * 1vh;
 		margin-bottom: 0;
 		position: absolute;
 		top: auto;
@@ -36,6 +37,7 @@ $pic-bg: color.adjust(v.$color-red-white, $lightness: -60%, $saturation: -10%);
 
 .picture-inner {
 	object-position: center 25%;
+
 	@include m.media('<=desktop') {
 		object-position: center 15%;
 	}
@@ -50,9 +52,11 @@ $pic-bg: color.adjust(v.$color-red-white, $lightness: -60%, $saturation: -10%);
 	grid-row: 1;
 	padding: 0 2rem 1.3rem;
 	text-transform: uppercase;
+
 	@include m.media('<=desktop') {
 		padding: 0 1.5rem 1rem;
 	}
+
 	@include m.media('<=phone') {
 		padding: 0 1rem 0.3rem;
 	}
@@ -61,9 +65,11 @@ $pic-bg: color.adjust(v.$color-red-white, $lightness: -60%, $saturation: -10%);
 .name {
 	font-size: 3.5vw;
 	margin-bottom: 0;
+
 	@include m.media('<=desktop') {
 		font-size: 5vw;
 	}
+
 	@include m.media('<=phone') {
 		font-size: 7vw;
 	}
@@ -74,9 +80,11 @@ $pic-bg: color.adjust(v.$color-red-white, $lightness: -60%, $saturation: -10%);
 
 	font-size: 1.6vw;
 	margin-bottom: 0.1rem;
+
 	@include m.media('<=desktop') {
 		font-size: 2.5vw;
 	}
+
 	@include m.media('<=phone') {
 		font-size: 3.8vw;
 	}

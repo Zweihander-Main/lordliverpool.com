@@ -2,7 +2,7 @@
 @use '~styles/util/mixins.module' as m;
 @use 'sass:color';
 
-$image-width: 100vw/3 * 2;
+$image-width: 100vw / 3 * 2;
 $color-line: color.adjust(v.$color-red-white, $lightness: -3%);
 
 .contenders {
@@ -26,8 +26,9 @@ $color-line: color.adjust(v.$color-red-white, $lightness: -3%);
 	overflow-y: scroll;
 	padding: 1rem;
 	position: relative;
+
 	@include m.media('<=desktop') {
-		height: 100/3 * 2vh;
+		height: 100 / 3 * 2vh;
 		left: 0;
 		position: absolute;
 		text-align: center;

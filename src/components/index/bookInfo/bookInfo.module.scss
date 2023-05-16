@@ -26,8 +26,7 @@
 
 	@include m.media('<=wide') {
 		align-self: center;
-		//TODO var
-		margin: 2rem 1rem 1rem;
+		margin: 2rem 1rem 1rem; // TODO var
 	}
 }
 
@@ -37,7 +36,7 @@
 		v.$post-border-shadow-spread,
 		v.$color-red-white,
 		v.$post-border-shadow-intensity
-	); //TODO consistent with single post
+	); // TODO consistent with single post
 
 	align-self: center;
 	border-radius: v.$border-radius-large;

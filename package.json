@@ -92,9 +92,7 @@
 		"remark-preset-lint-recommended": "^6.1.2",
 		"start-server-and-test": "^2.0.0",
 		"stylelint": "^15.6.1",
-		"stylelint-config-prettier": "^9.0.5",
-		"stylelint-config-sass-guidelines": "^10.0.0",
-		"stylelint-config-standard": "^33.0.0",
+		"stylelint-config-standard-scss": "^9.0.0",
 		"ts-graphql-plugin": "^3.0.1",
 		"ts-jest": "^29.1.0",
 		"tslib": "^2.5.0",
@@ -248,26 +246,16 @@
 	},
 	"stylelint": {
 		"extends": [
-			"stylelint-config-standard",
-			"stylelint-config-sass-guidelines",
-			"stylelint-config-prettier"
+			"stylelint-config-standard-scss"
 		],
 		"rules": {
-			"indentation": [
-				"tab",
-				{
-					"ignore": [
-						"value"
-					]
-				}
-			],
-			"max-empty-lines": 2,
 			"comment-whitespace-inside": null,
 			"declaration-block-no-shorthand-property-overrides": true,
 			"declaration-colon-newline-after": null,
 			"no-descending-specificity": null,
 			"value-keyword-case": null,
 			"color-function-notation": null,
+			"scss/operator-no-newline-after": null,
 			"selector-pseudo-class-no-unknown": [
 				true,
 				{

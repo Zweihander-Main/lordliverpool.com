@@ -1,7 +1,7 @@
 @use '~styles/util/variables.module' as v;
 @use '~styles/util/mixins.module' as m;
 
-//TODO print styles
+// TODO print styles
 .post-container {
 	align-items: center;
 	background-color: v.$color-red-white;
@@ -40,6 +40,7 @@
 	margin: 10vh 2rem 0;
 	max-width: 51rem;
 	padding: 5rem;
+
 	// TODO share some consistency with single post
 
 	@include m.media('<=ultrawide') {
@@ -70,7 +71,7 @@
 		margin-top: 15vh;
 	}
 
-	h2:not(.subtitle):not(.extra-header-text) {
+	h2:not(.subtitle, .extra-header-text) {
 		border-bottom: 1px solid v.$color-red-pastel;
 		width: 100%;
 	}
@@ -87,9 +88,9 @@
 		/ 1fr 1fr 1fr;
 	justify-items: center;
 	max-width: v.$post-max-width;
-	padding: 1.5rem; //TODO double height screws up -- flex?
+	padding: 1.5rem; // TODO double height screws up -- flex?
 	position: absolute;
-	top: 0; //TODO is this the best way?
+	top: 0; // TODO is this the best way?
 	width: 100%;
 
 	@include m.media('<=ultrawide') {
@@ -104,7 +105,7 @@
 		row-gap: 1rem;
 		top: -2rem;
 	}
-} //TODO neumorphic pics
+} // TODO neumorphic pics
 
 .nav-links a {
 	color: v.$color-black;
@@ -165,7 +166,7 @@
 	@include m.header-normal;
 
 	font-family: v.$font-family-body;
-	font-size: 1rem; //TODO var
+	font-size: 1rem; // TODO var
 	font-weight: 400;
 	line-height: 1.1;
 	text-rendering: optimizeLegibility;
@@ -175,13 +176,13 @@
 	margin-bottom: 2.38rem;
 	max-width: 30rem;
 	width: 100%;
-} //TODO var?
+} // TODO var?
 
 .post-content {
 	text-align: left;
 
 	a {
-		@include m.fancy-hover-link();
+		@include m.fancy-hover-link;
 
 		color: v.$color-black;
 		font-style: italic;
