@@ -13,7 +13,7 @@ jobs:
       image: cypress/browsers:node18.12.0-chrome107
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
@@ -30,7 +30,7 @@ jobs:
 
       - name: Caching Gatsby
         id: gatsby-cache-build
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: |
             public
@@ -40,27 +40,21 @@ jobs:
             ${{ runner.os }}-gatsby-build-
 
       - name: Cypress run
-        uses: cypress-io/github-action@v2
+        uses: cypress-io/github-action@v5
         with:
           browser: chrome
-          start: pnpm run serve
+          start: npm run serve
           wait-on: 'http://localhost:8000'
           wait-on-timeout: 900
 
-      - name: Upload E2E screenshots
-        uses: actions/upload-artifact@v2
+      - name: Upload E2E run data as artifacts
+        uses: actions/upload-artifact@v3
         if: failure()
         with:
-          name: cypress-screenshots
-          path: cypress/screenshots
-          retention-days: 14
-
-      - name: Upload E2E videos
-        uses: actions/upload-artifact@v2
-        if: failure()
-        with:
-          name: cypress-videos
-          path: cypress/videos
+          name: e2e-run-data
+          path: |
+            /home/runner/work/lordliverpool.com/lordliverpool.com/cypress/screenshots/*
+            /home/runner/work/lordliverpool.com/lordliverpool.com/cypress/videos/*
           retention-days: 14
 
       - name: Push changes to netlify if success
