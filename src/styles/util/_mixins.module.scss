@@ -103,8 +103,8 @@ $breakpoints: v.$breakpoints;
 	$base-color: v.$color-red-dark,
 	$intensity: 50%
 ) {
-	$top-color: f.color-difference-adjust($base-color, ($intensity / 100));
-	$bottom-color: f.color-difference-adjust($base-color, (-$intensity / 100));
+	$top-color: f.color-difference-adjust($base-color, $intensity * 0.01);
+	$bottom-color: f.color-difference-adjust($base-color, -$intensity * 0.01);
 
 	@include neumorphic-full(
 		$shadow-size,
@@ -122,13 +122,10 @@ $breakpoints: v.$breakpoints;
 	$shadow-size: 0,
 	$shadow-color: v.$color-black
 ) {
-	$top-inset-color: f.color-difference-adjust(
-		$base-color,
-		($intensity / 100)
-	);
+	$top-inset-color: f.color-difference-adjust($base-color, $intensity * 0.01);
 	$bottom-inset-color: f.color-difference-adjust(
 		$base-color,
-		(-$intensity / 100)
+		-$intensity * 0.01
 	);
 
 	box-shadow: inset (-$inset-shadow-size) (-$inset-shadow-size)
@@ -147,8 +144,8 @@ $breakpoints: v.$breakpoints;
 		$intensity: -$intensity;
 	}
 
-	$from: f.color-difference-adjust($base-color, ($intensity / 100));
-	$to: f.color-difference-adjust($base-color, (-$intensity / 100));
+	$from: f.color-difference-adjust($base-color, $intensity * 0.01);
+	$to: f.color-difference-adjust($base-color, -$intensity * 0.01);
 
 	background: linear-gradient(145deg, $from, $to);
 }
@@ -198,14 +195,14 @@ $breakpoints: v.$breakpoints;
 			}
 
 			50% {
-				margin: 0 ($margin / 2) 0 0;
-				width: $width / 2;
+				margin: 0 calc($margin / 2) 0 0;
+				width: calc($width / 2);
 			}
 
 			99.9% {
-				margin: 0 ($margin / 2) 0 0;
+				margin: 0 calc($margin / 2) 0 0;
 				transform: scaleX(0);
-				width: $width / 2;
+				width: calc($width / 2);
 			}
 
 			100% {
@@ -227,14 +224,14 @@ $breakpoints: v.$breakpoints;
 			}
 
 			50% {
-				margin: 0 ($margin / 2) 0 0;
-				width: $width / 2;
+				margin: 0 calc($margin / 2) 0 0;
+				width: calc($width / 2);
 			}
 
 			99.9% {
-				margin: 0 ($margin / 2) 0 0;
+				margin: 0 calc($margin / 2) 0 0;
 				transform: scaleX(1);
-				width: $width / 2;
+				width: calc($width / 2);
 			}
 
 			100% {

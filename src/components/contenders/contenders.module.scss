@@ -2,7 +2,7 @@
 @use '~styles/util/mixins.module' as m;
 @use 'sass:color';
 
-$image-width: 100vw / 3 * 2;
+$image-width: calc(100vw / 3 * 2);
 $color-line: color.adjust(v.$color-red-white, $lightness: -3%);
 
 .contenders {
@@ -28,7 +28,7 @@ $color-line: color.adjust(v.$color-red-white, $lightness: -3%);
 	position: relative;
 
 	@include m.media('<=desktop') {
-		height: 100 / 3 * 2vh;
+		height: calc(100 / 3 * 2vh);
 		left: 0;
 		position: absolute;
 		text-align: center;

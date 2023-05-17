@@ -107,7 +107,7 @@
 	padding-top: 1em;
 
 	@include m.media('height<=HEIGHT_short') {
-		align-self: start;
+		align-self: flex-start;
 	}
 
 	@include m.media('height<=HEIGHT_tiny') {

@@ -41,19 +41,19 @@ $masonry-margin-tiny: 2rem;
 .link {
 	box-sizing: border-box;
 	display: inline-block;
-	margin: ($masonry-margin / 2) 0;
+	margin: calc($masonry-margin / 2) 0;
 	width: 100%;
 
 	@include m.media('<=wide') {
-		margin: ($masonry-margin-small / 2) 0;
+		margin: calc($masonry-margin-small / 2) 0;
 	}
 
 	@include m.media('<=tablet') {
-		margin: ($masonry-margin-tiny / 2) 0;
+		margin: calc($masonry-margin-tiny / 2) 0;
 	}
 
 	@include m.media('<=phone') {
-		margin: 0 0 ($masonry-margin-tiny * 0.666) 0;
+		margin: 0 0 calc($masonry-margin-tiny * 0.666) 0;
 	}
 }
 
@@ -95,7 +95,7 @@ $masonry-margin-tiny: 2rem;
 }
 
 .header {
-	align-items: end;
+	align-items: flex-end;
 	bottom: 0;
 	display: grid;
 	grid-template-columns: 100%;
@@ -121,7 +121,7 @@ $masonry-margin-tiny: 2rem;
 	display: flex;
 	flex-direction: column;
 	height: 100%;
-	justify-content: end;
+	justify-content: flex-end;
 }
 
 %headings {

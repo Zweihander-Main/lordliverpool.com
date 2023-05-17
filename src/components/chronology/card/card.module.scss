@@ -281,12 +281,12 @@ $widths: (
 	}
 
 	50% {
-		margin: 0 auto (v.$card-margin / 2) auto;
+		margin: 0 auto calc(v.$card-margin / 2) auto;
 		max-height: v.$card-portrait-animation-height;
 	}
 
 	99.9% {
-		margin: 0 auto (v.$card-margin / 2) auto;
+		margin: 0 auto calc(v.$card-margin / 2) auto;
 		max-height: v.$card-portrait-animation-height;
 		transform: scaleY(0);
 	}
@@ -310,12 +310,12 @@ $widths: (
 	}
 
 	50% {
-		margin: 0 auto (v.$card-margin / 2) auto;
+		margin: 0 auto calc(v.$card-margin / 2) auto;
 		max-height: v.$card-portrait-animation-height;
 	}
 
 	99.9% {
-		margin: 0 auto (v.$card-margin / 2) auto;
+		margin: 0 auto calc(v.$card-margin / 2) auto;
 		max-height: v.$card-portrait-animation-height;
 		transform: scaleY(1);
 	}

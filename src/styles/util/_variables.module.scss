@@ -7,14 +7,14 @@ $base-line-height: 1.38;
 $base-scale-ratio: 2;
 
 // typography.js calculations -- 35 and 7 not in library
-$font-size-h1: math.pow($base-scale-ratio, (5 / 5)) * 1rem; // 2.000rem
-$font-size-h2: math.pow($base-scale-ratio, (3 / 5)) * 1rem; // 1.515rem
-$font-size-h3: math.pow($base-scale-ratio, (2 / 5)) * 1rem; // 1.319rem
-$font-size-h35: math.pow($base-scale-ratio, (1 / 5)) * 1rem; // 1.149rem
-$font-size-h4: math.pow($base-scale-ratio, (0 / 5)) * 1rem; // 1.000rem
-$font-size-h5: math.pow($base-scale-ratio, (-1 / 5)) * 1rem; // 0.871rem
-$font-size-h6: math.pow($base-scale-ratio, (-1.5 / 5)) * 1rem; // 0.812rem
-$font-size-h7: math.pow($base-scale-ratio, (-1.6 / 5)) * 1rem; // 0.801rem
+$font-size-h1: math.pow($base-scale-ratio, calc(5 / 5)) * 1rem; // 2.000rem
+$font-size-h2: math.pow($base-scale-ratio, calc(3 / 5)) * 1rem; // 1.515rem
+$font-size-h3: math.pow($base-scale-ratio, calc(2 / 5)) * 1rem; // 1.319rem
+$font-size-h35: math.pow($base-scale-ratio, calc(1 / 5)) * 1rem; // 1.149rem
+$font-size-h4: math.pow($base-scale-ratio, calc(0 / 5)) * 1rem; // 1.000rem
+$font-size-h5: math.pow($base-scale-ratio, calc(-1 / 5)) * 1rem; // 0.871rem
+$font-size-h6: math.pow($base-scale-ratio, calc(-1.5 / 5)) * 1rem; // 0.812rem
+$font-size-h7: math.pow($base-scale-ratio, calc(-1.6 / 5)) * 1rem; // 0.801rem
 
 $font-size-hero-title: 4rem;
 $font-size-chrono-year: 2.25rem;

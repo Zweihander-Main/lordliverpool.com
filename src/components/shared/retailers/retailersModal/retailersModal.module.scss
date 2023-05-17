@@ -263,7 +263,7 @@ $options-top-padding: 0.2rem;
 	@include m.neumorphic-raised-button(v.$color-white, 7%);
 
 	border: 0;
-	border-radius: v.$border-radius-normal / 2;
+	border-radius: calc(v.$border-radius-normal / 2);
 	color: rgba(v.$color-black, $radio-label-opacity);
 	cursor: pointer;
 	margin: calc(#{$options-top-padding} + #{$options-border}) 1rem 0 0;

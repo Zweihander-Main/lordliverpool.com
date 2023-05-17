@@ -19,7 +19,7 @@ $pic-bg: color.adjust(v.$color-red-white, $lightness: -60%, $saturation: -10%);
 
 	@include m.media('<=desktop') {
 		bottom: 0;
-		height: 100 / 3 * 1vh;
+		height: calc(100 / 3 * 1vh);
 		margin-bottom: 0;
 		position: absolute;
 		top: auto;
@@ -46,7 +46,7 @@ $pic-bg: color.adjust(v.$color-red-white, $lightness: -60%, $saturation: -10%);
 .caption {
 	@include m.header-text-shadow;
 
-	align-self: end;
+	align-self: flex-end;
 	color: v.$color-white;
 	grid-column: 1;
 	grid-row: 1;
