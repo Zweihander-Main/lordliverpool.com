@@ -1,5 +1,5 @@
 [build]
   publish = "public/"
-  command = "pnpm run netlify:build"
+  command = "yarn run netlify:build"
 [[plugins]]
   package = "@netlify/plugin-gatsby"

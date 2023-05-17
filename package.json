@@ -71,7 +71,6 @@
 		"eslint-plugin-react": "^7.32.2",
 		"eslint-plugin-react-hooks": "^4.6.0",
 		"gatsby-plugin-netlify": "^5.1.0",
-		"gatsby-plugin-pnpm": "^1.2.10",
 		"husky": "^8.0.3",
 		"identity-obj-proxy": "^3.0.0",
 		"is-ci-cli": "^2.2.0",
@@ -116,8 +115,8 @@
 		"lint:ts": "tsc -p .",
 		"lint:md": "remark .",
 		"prepare": "husky install",
-		"netlify:build": "pnpm run build",
-		"netlify:coverage": "pnpm run test:coverage && cp -r coverage/lcov-report public/lcov-report",
+		"netlify:build": "yarn run build",
+		"netlify:coverage": "yarn run test:coverage && cp -r coverage/lcov-report public/lcov-report",
 		"format": "prettier --write \"**/*{js,jsx,ts,tsx,json,md,css,md,scss}\""
 	},
 	"repository": {

@@ -16,7 +16,6 @@
 -   Jest + Linting Runners
 -   Cypress + Axe + Visual Regression
 -   NetlifyCMS + Netlify
--   pnpm
 
 ## Dev workflow
 
@@ -45,26 +44,26 @@
 
 ## Scripts
 
--   `pnpm run build`: Build to production using Gatsby (outputs to `public` folder)
--   `pnpm run dev`: Build and serve development version using Gatsby
--   `pnpm run clean`: Clean the `public` and `.cache` folders
--   `pnpm run serve`: Build and serve production
--   `pnpm run test`: Run jest and runners
--   `pnpm run test:coverage`: Generate coverage reports
--   `pnpm run test:watch`: Run jest and runners in watch mode
--   `pnpm run test:debug`: Run jest and allow node-based debugging
--   `pnpm run test:e2e`: Run cypress E2E tests
--   `pnpm run test:e2e:run`: Run cypress on production build
--   `pnpm run test:e2e:dev`: Open cypress dashboard on development build
--   `pnpm run test:e2e:dev:prod`: Open cypress dashboard on production build
--   `pnpm run cy:run`: Run cypress
--   `pnpm run cy:open`: Open cypress dashboard
--   `pnpm run lint`: Run all jest runners
--   `pnpm run lint:md`: Run remark markdown linter
--   `pnpm run lint:ts`: Run TypeScript compiler
--   `pnpm run prepare`: Prepare husky
--   `pnpm run netlify`: Script to run as netlify that builds and generates public coverage reports
--   `pnpm run format`: Auto-format using prettier
+-   `yarn run build`: Build to production using Gatsby (outputs to `public` folder)
+-   `yarn run dev`: Build and serve development version using Gatsby
+-   `yarn run clean`: Clean the `public` and `.cache` folders
+-   `yarn run serve`: Build and serve production
+-   `yarn run test`: Run jest and runners
+-   `yarn run test:coverage`: Generate coverage reports
+-   `yarn run test:watch`: Run jest and runners in watch mode
+-   `yarn run test:debug`: Run jest and allow node-based debugging
+-   `yarn run test:e2e`: Run cypress E2E tests
+-   `yarn run test:e2e:run`: Run cypress on production build
+-   `yarn run test:e2e:dev`: Open cypress dashboard on development build
+-   `yarn run test:e2e:dev:prod`: Open cypress dashboard on production build
+-   `yarn run cy:run`: Run cypress
+-   `yarn run cy:open`: Open cypress dashboard
+-   `yarn run lint`: Run all jest runners
+-   `yarn run lint:md`: Run remark markdown linter
+-   `yarn run lint:ts`: Run TypeScript compiler
+-   `yarn run prepare`: Prepare husky
+-   `yarn run netlify`: Script to run as netlify that builds and generates public coverage reports
+-   `yarn run format`: Auto-format using prettier
 
 ## Possible improvements
 

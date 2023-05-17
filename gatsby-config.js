@@ -11,7 +11,6 @@ module.exports = {
 		PARALLEL_SOURCING: true,
 	},
 	plugins: [
-		`gatsby-plugin-pnpm`,
 		`gatsby-alias-imports`,
 		{
 			resolve: `gatsby-plugin-typescript`,
