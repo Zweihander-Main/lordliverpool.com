@@ -5,7 +5,7 @@
  */
 
 // You can delete this file if you're not using it
-import React from 'react';
+import * as React from 'react';
 import { wrapRoot } from './gatsby-common';
 
 export const wrapRootElement = wrapRoot;
