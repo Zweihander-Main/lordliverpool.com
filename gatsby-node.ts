@@ -1,5 +1,6 @@
-const path = require('path');
-const { createFilePath } = require('gatsby-source-filesystem');
+import type { GatsbyNode } from 'gatsby';
+import path from 'path';
+import { createFilePath } from 'gatsby-source-filesystem';
 
 const hasPage = (edge) => {
 	switch (edge.node.fields.sourceInstanceName) {
@@ -58,9 +59,12 @@ const findNext = (posts, startIndex, sourceInstanceName) => {
 	return null;
 };
 
-exports.createPages = ({ actions, graphql }) => {
+export const createPages: GatsbyNode['createPages'] = async ({
+	actions,
+	graphql,
+}) => {
 	const { createPage } = actions;
-	return graphql(`
+	const result = await graphql(`
 		{
 			allMarkdownRemark(
 				sort: { frontmatter: { date: ASC } }
@@ -81,64 +85,70 @@ exports.createPages = ({ actions, graphql }) => {
 				}
 			}
 		}
-	`).then((result) => {
-		if (result.errors) {
-			result.errors.forEach((e) => console.error(e.toString()));
-			return Promise.reject(result.errors);
-		}
-		const posts = result.data.allMarkdownRemark.edges;
-		posts.forEach((edge, index, array) => {
-			const id = edge.node.id;
-			if (hasPage(edge)) {
-				createPage({
-					path: edge.node.fields.slug,
-					component: path.resolve(
-						`src/templates/${String(
-							edge.node.fields.sourceInstanceName
-						)}.tsx`
+	`);
+	if (result.errors) {
+		return Promise.reject(result.errors);
+	}
+	const posts = result.data.allMarkdownRemark.edges;
+	posts.forEach((edge, index, array) => {
+		const id = edge.node.id;
+		if (hasPage(edge)) {
+			createPage({
+				path: edge.node.fields.slug,
+				component: path.resolve(
+					`src/templates/${String(
+						edge.node.fields.sourceInstanceName
+					)}.tsx`
+				),
+				// additional data can be passed via context
+				context: {
+					id,
+					next: findNext(
+						array,
+						index,
+						edge.node.fields.sourceInstanceName
 					),
-					// additional data can be passed via context
-					context: {
-						id,
-						next: findNext(
-							array,
-							index,
-							edge.node.fields.sourceInstanceName
-						),
-						prev: findPrev(
-							array,
-							index,
-							edge.node.fields.sourceInstanceName
-						),
-					},
-				});
-			}
-		});
+					prev: findPrev(
+						array,
+						index,
+						edge.node.fields.sourceInstanceName
+					),
+				},
+			});
+		}
 	});
 };
-exports.onCreateNode = ({ node, actions, getNode }) => {
+
+export const onCreateNode: GatsbyNode['onCreateNode'] = ({
+	node,
+	actions,
+	getNode,
+}) => {
 	const { createNodeField } = actions;
-	if (node.internal.type === `MarkdownRemark`) {
-		const { sourceInstanceName } = getNode(node.parent);
+	if (node.internal.type === 'MarkdownRemark') {
+		const { sourceInstanceName } = getNode(node.parent as string) as Record<
+			string,
+			string
+		>;
 		const relativePath = createFilePath({
 			node,
 			getNode,
 			trailingSlash: false,
 		});
 		createNodeField({
-			name: `slug`,
+			name: 'slug',
 			node,
 			value: `/${sourceInstanceName}${relativePath}`,
 		});
 		createNodeField({
-			name: `sourceInstanceName`,
+			name: 'sourceInstanceName',
 			node,
 			value: sourceInstanceName,
 		});
 	}
 };
 
-exports.onCreateWebpackConfig = (
+export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = (
 	{ stage, actions, loaders },
 	{ postCssPlugins, useResolveUrlLoader }
 ) => {
@@ -211,16 +221,12 @@ exports.onCreateWebpackConfig = (
 
 	if (useResolveUrlLoader && !isSSR) {
 		sassRule.use.push({
-			loader: `resolve-url-loader`,
-			options: useResolveUrlLoader.options
-				? useResolveUrlLoader.options
-				: {},
+			loader: 'resolve-url-loader',
+			options: useResolveUrlLoader?.options || {},
 		});
 		sassRuleModules.use.push({
-			loader: `resolve-url-loader`,
-			options: useResolveUrlLoader.options
-				? useResolveUrlLoader.options
-				: {},
+			loader: 'resolve-url-loader',
+			options: useResolveUrlLoader?.options || {},
 		});
 	}
 
