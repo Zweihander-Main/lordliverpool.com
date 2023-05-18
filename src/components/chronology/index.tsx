@@ -11,8 +11,8 @@ import { useStaticQuery, graphql } from 'gatsby';
 import FilterMenu from './filterMenu';
 import Timeline from './timeline';
 import Card from './card';
-import ScrollLocContext from 'contexts/ScrollLocContext';
-import HistoryContext from 'contexts/HistoryContext';
+import ScrollLocContext from '../../contexts/ScrollLocContext';
+import HistoryContext from '../../contexts/HistoryContext';
 
 const TRACK = 'chronology';
 

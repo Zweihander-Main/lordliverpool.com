@@ -1,10 +1,10 @@
 import React, { useContext, useEffect } from 'react';
 import { graphql, PageProps } from 'gatsby';
-import Layout from 'components/structure/layout';
-import SEO from 'components/structure/seo';
-import SinglePost from 'components/shared/singlePost';
+import Layout from '../components/structure/layout';
+import SEO from '../components/structure/seo';
+import SinglePost from '../components/shared/singlePost';
 import { TemplatePageContext } from '../types';
-import ScrollLocContext from 'contexts/ScrollLocContext';
+import ScrollLocContext from '../contexts/ScrollLocContext';
 
 const ChronologyPostTemplate: React.FC<
 	PageProps<Queries.ChronologyPostBySlugQuery, TemplatePageContext>

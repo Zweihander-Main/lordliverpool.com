@@ -1,5 +1,5 @@
-@use '~styles/util/variables.module' as v;
-@use '~styles/util/mixins.module' as m;
+@use '../../../styles/util/variables.module' as v;
+@use '../../../styles/util/mixins.module' as m;
 @use './../contenders.module.scss' as c;
 @use 'sass:color';
 

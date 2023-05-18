@@ -1,6 +1,6 @@
 import React, { ReactNode, createContext } from 'react';
-import { SessionStorage } from 'utils/SessionStorage';
-import { ScrollLocReducerState } from 'types';
+import { SessionStorage } from '../utils/SessionStorage';
+import { ScrollLocReducerState } from '../types';
 
 type StorageContextProps = {
 	loadSavedState: () => ScrollLocReducerState | undefined;

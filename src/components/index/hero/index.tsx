@@ -1,7 +1,7 @@
 import React from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
-import ModalButton from 'components/shared/retailers/retailersButton';
+import ModalButton from '../../../components/shared/retailers/retailersButton';
 
 import * as styles from './hero.module.scss';
 

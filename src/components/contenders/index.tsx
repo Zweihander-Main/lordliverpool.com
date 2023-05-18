@@ -10,8 +10,8 @@ import * as styles from './contenders.module.scss';
 import { useStaticQuery, graphql } from 'gatsby';
 import ContendersImage from './contendersImage';
 import ContendersItem from './contenderItem';
-import ScrollLocContext from 'contexts/ScrollLocContext';
-import HistoryContext from 'contexts/HistoryContext';
+import ScrollLocContext from '../../contexts/ScrollLocContext';
+import HistoryContext from '../../contexts/HistoryContext';
 
 const TRACK = 'contenders';
 

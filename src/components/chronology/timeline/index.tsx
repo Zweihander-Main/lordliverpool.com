@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useMemo, useRef, useState } from 'react';
 import * as styles from './timeline.module.scss';
-import useTimeline from 'hooks/useTimeline';
-import useGrabber from 'hooks/useGrabber';
+import useTimeline from '../../../hooks/useTimeline';
+import useGrabber from '../../../hooks/useGrabber';
 import rafSchd from 'raf-schd';
 
 type TimelineProps = {

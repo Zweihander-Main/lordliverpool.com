@@ -1,6 +1,6 @@
-@use '~styles/util/variables.module' as v;
-@use '~styles/util/mixins.module' as m;
-@use '~styles/util/functions.module' as f;
+@use '../../styles/util/variables.module' as v;
+@use '../../styles/util/mixins.module' as m;
+@use '../../styles/util/functions.module' as f;
 @use 'sass:color';
 
 // TODO -- JS for touch scrolling sideways

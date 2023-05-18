@@ -7,7 +7,7 @@ import React, {
 	useReducer,
 } from 'react';
 import StorageContext from './StorageContext';
-import { ScrollLocReducerState } from 'types';
+import { ScrollLocReducerState } from '../types';
 
 export type ScrollLoc = {
 	id?: string;

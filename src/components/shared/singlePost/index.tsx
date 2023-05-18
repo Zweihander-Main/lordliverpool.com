@@ -3,7 +3,7 @@ import { GatsbyImage, IGatsbyImageData } from 'gatsby-plugin-image';
 import { Link } from 'gatsby';
 import * as styles from './singlePost.module.scss';
 import { MdArrowBack, MdArrowForward } from 'react-icons/md';
-import { NextPrevInfo } from 'types';
+import { NextPrevInfo } from '../../../types';
 
 type SinglePostProps = {
 	headerImage?: IGatsbyImageData;

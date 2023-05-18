@@ -1,5 +1,5 @@
 import Typography from 'typography';
-import * as v from 'styles/util/_variables.module.scss';
+import * as v from '../styles/util/_variables.module.scss';
 
 const formatFont = (font: string) => {
 	if (!font) return [''];

@@ -1,5 +1,5 @@
 import { STATE_KEY_PREFIX, BGPM_APP_STATE } from './constants';
-import { ScrollLocReducerState } from 'types';
+import { ScrollLocReducerState } from '../types';
 declare global {
 	interface Window {
 		[BGPM_APP_STATE]: Record<string, unknown>;

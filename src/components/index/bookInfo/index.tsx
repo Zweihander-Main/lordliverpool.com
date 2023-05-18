@@ -3,7 +3,7 @@ import * as styles from './bookInfo.module.scss';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 // import Link from 'gatsby-link';
-import ModalButton from 'components/shared/retailers/retailersButton';
+import ModalButton from '../../../components/shared/retailers/retailersButton';
 
 const BookInfo: React.FC = () => {
 	const bookInfoData = useStaticQuery<Queries.BookInfoQuery>(graphql`

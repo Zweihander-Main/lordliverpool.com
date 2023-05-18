@@ -10,7 +10,6 @@
 		"@fontsource/libre-baskerville": "^4.5.10",
 		"dts-css-modules-loader": "^2.0.1",
 		"gatsby": "^5.9.1",
-		"gatsby-alias-imports": "^1.0.6",
 		"gatsby-plugin-catch-links": "^5.9.0",
 		"gatsby-plugin-image": "^3.9.0",
 		"gatsby-plugin-manifest": "^5.9.0",

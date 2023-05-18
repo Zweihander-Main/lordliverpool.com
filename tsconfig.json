@@ -2,7 +2,6 @@
 	"compilerOptions": {
 		"allowJs": false,
 		"allowSyntheticDefaultImports": true,
-		"baseUrl": "src",
 		"declaration": true,
 		"esModuleInterop": true,
 		"experimentalDecorators": true,
@@ -27,15 +26,6 @@
 		"resolveJsonModule": true,
 		"noEmit": true,
 		"isolatedModules": true,
-		"paths": {
-			"components": ["src/components"],
-			"hooks": ["src/hooks"],
-			"styles": ["src/styles"],
-			"pages": ["src/pages"],
-			"images": ["src/images"],
-			"contexts": ["src/contexts"],
-			"utils": ["src/utils"]
-		},
 		"plugins": [
 			{
 				"name": "ts-graphql-plugin",

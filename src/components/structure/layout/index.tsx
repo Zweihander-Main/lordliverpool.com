@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
-import Header from 'components/structure/header';
-import Footer from 'components/structure/footer';
-import 'styles/base.global.scss';
+import Header from '../../../components/structure/header';
+import Footer from '../../../components/structure/footer';
+import '../../../styles/base.global.scss';
 import * as styles from './layout.module.scss';
 import isEqual from 'react-fast-compare';
 
