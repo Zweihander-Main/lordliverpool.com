@@ -20,5 +20,8 @@
 		"Tranent",
 		"ultratiny",
 		"ultrawide"
-	]
+	],
+	"editor.unicodeHighlight.allowedCharacters": {
+		"’": true
+	}
 }

@@ -1,8 +1,11 @@
-module.exports = {
+import type { GatsbyConfig } from 'gatsby';
+
+const config: GatsbyConfig = {
 	siteMetadata: {
-		title: `Britain's Greatest Prime Minister: Lord Liverpool`, //TODO Change title and description
-		description: `Britain’s Greatest Prime Minister: Lord Liverpool unpicks two centuries of Whig history to redeem Lord Liverpool (1770-1828) from ‘arch-mediocrity’ and establish him as the greatest political leader the country has ever seen.`,
-		author: `Martin Hutchinson`,
+		title: 'Britain’s Greatest Prime Minister: Lord Liverpool',
+		description:
+			'Britain’s Greatest Prime Minister: Lord Liverpool unpicks two centuries of Whig history to redeem Lord Liverpool (1770-1828) from ‘arch-mediocrity’ and establish him as the greatest political leader the country has ever seen.',
+		author: 'Martin Hutchinson',
 	},
 	trailingSlash: 'ignore',
 	graphqlTypegen: true,
@@ -12,38 +15,38 @@ module.exports = {
 	},
 	plugins: [
 		{
-			resolve: `gatsby-plugin-typescript`,
+			resolve: 'gatsby-plugin-typescript',
 			options: {
 				isTSX: true,
 				allExtensions: true,
 			},
 		},
 		{
-			resolve: `gatsby-plugin-typography`,
+			resolve: 'gatsby-plugin-typography',
 			options: {
-				pathToConfigModule: `src/utils/typography.tsx`,
+				pathToConfigModule: 'src/utils/typography.tsx',
 				omitGoogleFont: true,
 			},
 		},
-		`gatsby-plugin-react-helmet`,
+		'gatsby-plugin-react-helmet',
 		{
-			resolve: `gatsby-source-filesystem`,
+			resolve: 'gatsby-source-filesystem',
 			options: {
-				name: `images`,
+				name: 'images',
 				path: `${__dirname}/src/images`,
 			},
 		},
-		`gatsby-plugin-remove-fingerprints`,
-		`gatsby-plugin-image`,
+		'gatsby-plugin-remove-fingerprints',
+		'gatsby-plugin-image',
 		{
-			resolve: `gatsby-plugin-sharp`,
+			resolve: 'gatsby-plugin-sharp',
 			options: {
 				defaults: {
-					formats: [`auto`, `webp`],
-					placeholder: `dominantColor`,
+					formats: ['auto', 'webp'],
+					placeholder: 'dominantColor',
 					quality: 50,
 					breakpoints: [750, 1080, 1366, 1920],
-					backgroundColor: `transparent`,
+					backgroundColor: 'transparent',
 					tracedSVGOptions: {},
 					blurredOptions: {},
 					jpgOptions: {},
@@ -53,58 +56,60 @@ module.exports = {
 				},
 			},
 		},
-		`gatsby-transformer-sharp`,
+		'gatsby-transformer-sharp',
 		{
-			resolve: `gatsby-plugin-manifest`,
+			resolve: 'gatsby-plugin-manifest',
 			options: {
-				name: `Britain's Greatest Prime Minister: Lord Liverpool`,
-				short_name: `Lord Liverpool`,
-				start_url: `/`,
-				lang: `en`,
-				background_color: `#260101`,
-				theme_color: `#260101`,
-				display: `minimal-ui`,
-				icon: `src/images/bgpmicon.png`, // This path is relative to the root of the site.
+				name: 'Britain’s Greatest Prime Minister: Lord Liverpool',
+				short_name: 'Lord Liverpool',
+				start_url: '/',
+				lang: 'en',
+				background_color: '#260101',
+				theme_color: '#260101',
+				display: 'minimal-ui',
+				icon: 'src/images/bgpmicon.png', // This path is relative to the root of the site.
 			},
 		},
 		{
-			resolve: `gatsby-source-filesystem`,
+			resolve: 'gatsby-source-filesystem',
 			options: {
 				path: `${__dirname}/content/miscellany`,
-				name: `miscellany`,
+				name: 'miscellany',
 			},
 		},
 		{
-			resolve: `gatsby-source-filesystem`,
+			resolve: 'gatsby-source-filesystem',
 			options: {
 				path: `${__dirname}/content/chronology`,
-				name: `chronology`,
+				name: 'chronology',
 			},
 		},
 		{
-			resolve: `gatsby-source-filesystem`,
+			resolve: 'gatsby-source-filesystem',
 			options: {
 				path: `${__dirname}/content/contenders`,
-				name: `contenders`,
+				name: 'contenders',
 			},
 		},
 		{
-			resolve: `gatsby-source-filesystem`,
+			resolve: 'gatsby-source-filesystem',
 			options: {
 				path: `${__dirname}/content/pages`,
-				name: `pages`,
+				name: 'pages',
 			},
 		},
 		{
-			resolve: `gatsby-source-filesystem`,
+			resolve: 'gatsby-source-filesystem',
 			options: {
 				path: `${__dirname}/content/retailers`,
-				name: `retailers`,
+				name: 'retailers',
 			},
 		},
-		`gatsby-transformer-remark`,
-		`gatsby-plugin-catch-links`,
-		`gatsby-plugin-netlify`,
-		`gatsby-plugin-netlify-cms`, // should be last in the array or close to it
+		'gatsby-transformer-remark',
+		'gatsby-plugin-catch-links',
+		'gatsby-plugin-netlify',
+		'gatsby-plugin-netlify-cms', // should be last in the array or close to it
 	],
 };
+
+export default config;
