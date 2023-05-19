@@ -2,38 +2,54 @@ import type { GatsbyNode } from 'gatsby';
 import path from 'path';
 import { createFilePath } from 'gatsby-source-filesystem';
 
-const hasPage = (edge) => {
-	switch (edge.node.fields.sourceInstanceName) {
-		case 'chronology':
-			if (
-				!edge.node.rawMarkdownBody ||
-				edge.node.rawMarkdownBody.trim() === ''
-			) {
+const hasPage = (
+	edge: Queries.createPagesInNodeQuery['allMarkdownRemark']['edges'][number]
+) => {
+	if (edge.node.fields?.sourceInstanceName) {
+		switch (edge.node.fields.sourceInstanceName) {
+			case 'chronology':
+				if (
+					!edge.node.rawMarkdownBody ||
+					edge.node.rawMarkdownBody.trim() === ''
+				) {
+					return false;
+				}
+				break;
+			case 'pages':
 				return false;
-			}
-			break;
-		case 'pages':
-			return false;
-			break;
-		case 'retailers':
-			return false;
-			break;
+				break;
+			case 'retailers':
+				return false;
+				break;
+		}
+		return true;
 	}
-	return true;
+	return false;
 };
 
-const constructPrevNextObject = (post) => {
-	return {
-		title: post.node.frontmatter.title,
-		slug: post.node.fields.slug,
-	};
+const constructPrevNextObject = (
+	post: Queries.createPagesInNodeQuery['allMarkdownRemark']['edges'][number]
+) => {
+	if (post.node.frontmatter?.title && post.node.fields?.slug) {
+		return {
+			title: post.node.frontmatter.title,
+			slug: post.node.fields.slug,
+		};
+	} else {
+		return {};
+	}
 };
 
-const findPrev = (posts, startIndex, sourceInstanceName) => {
+const findPrev = (
+	posts: Queries.createPagesInNodeQuery['allMarkdownRemark']['edges'],
+	startIndex: number,
+	sourceInstanceName: string | null
+) => {
 	let i = startIndex - 1;
 	while (i >= 0) {
 		const post = posts[i];
 		if (
+			post.node.fields?.sourceInstanceName &&
 			post.node.fields.sourceInstanceName === sourceInstanceName &&
 			hasPage(post)
 		) {
@@ -44,11 +60,16 @@ const findPrev = (posts, startIndex, sourceInstanceName) => {
 	return null;
 };
 
-const findNext = (posts, startIndex, sourceInstanceName) => {
+const findNext = (
+	posts: Queries.createPagesInNodeQuery['allMarkdownRemark']['edges'],
+	startIndex: number,
+	sourceInstanceName: string | null
+) => {
 	let i = startIndex + 1;
 	while (i < posts.length) {
 		const post = posts[i];
 		if (
+			post.node.fields?.sourceInstanceName &&
 			post.node.fields.sourceInstanceName === sourceInstanceName &&
 			hasPage(post)
 		) {
@@ -64,8 +85,8 @@ export const createPages: GatsbyNode['createPages'] = async ({
 	graphql,
 }) => {
 	const { createPage } = actions;
-	const result = await graphql(`
-		{
+	const result = await graphql<Queries.createPagesInNodeQuery>(`
+		query createPagesInNode {
 			allMarkdownRemark(
 				sort: { frontmatter: { date: ASC } }
 				limit: 10000
@@ -89,34 +110,36 @@ export const createPages: GatsbyNode['createPages'] = async ({
 	if (result.errors) {
 		return Promise.reject(result.errors);
 	}
-	const posts = result.data.allMarkdownRemark.edges;
-	posts.forEach((edge, index, array) => {
-		const id = edge.node.id;
-		if (hasPage(edge)) {
-			createPage({
-				path: edge.node.fields.slug,
-				component: path.resolve(
-					`src/templates/${String(
-						edge.node.fields.sourceInstanceName
-					)}.tsx`
-				),
-				// additional data can be passed via context
-				context: {
-					id,
-					next: findNext(
-						array,
-						index,
-						edge.node.fields.sourceInstanceName
+	const posts = result?.data?.allMarkdownRemark.edges;
+	if (posts && posts.length > 0) {
+		posts.forEach((edge, index, array) => {
+			const id = edge.node.id;
+			if (hasPage(edge) && edge.node.fields?.slug) {
+				createPage({
+					path: edge.node.fields.slug,
+					component: path.resolve(
+						`src/templates/${String(
+							edge.node.fields.sourceInstanceName
+						)}.tsx`
 					),
-					prev: findPrev(
-						array,
-						index,
-						edge.node.fields.sourceInstanceName
-					),
-				},
-			});
-		}
-	});
+					// additional data can be passed via context
+					context: {
+						id,
+						next: findNext(
+							array,
+							index,
+							edge.node.fields.sourceInstanceName
+						),
+						prev: findPrev(
+							array,
+							index,
+							edge.node.fields.sourceInstanceName
+						),
+					},
+				});
+			}
+		});
+	}
 };
 
 export const onCreateNode: GatsbyNode['onCreateNode'] = ({
@@ -220,13 +243,15 @@ export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = (
 	};
 
 	if (useResolveUrlLoader && !isSSR) {
+		const urlLoaderOptions =
+			(useResolveUrlLoader as Record<string, unknown>)?.options || {};
 		sassRule.use.push({
 			loader: 'resolve-url-loader',
-			options: useResolveUrlLoader?.options || {},
+			options: urlLoaderOptions,
 		});
 		sassRuleModules.use.push({
 			loader: 'resolve-url-loader',
-			options: useResolveUrlLoader?.options || {},
+			options: urlLoaderOptions,
 		});
 	}
 

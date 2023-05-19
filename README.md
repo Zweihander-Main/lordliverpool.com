@@ -10,9 +10,10 @@
 ## Technologies used:
 
 -   GatsbyJS (v5)
--   TypeScript
--   GraphQL + Typegen
--   SCSS + Modules
+    -   TypeScript
+    -   GraphQL + Typegen
+    -   SCSS + Modules
+    -   Sitemap using git metadata
 -   Jest + Linting Runners
 -   Cypress + Axe + Visual Regression
 -   NetlifyCMS + Netlify
