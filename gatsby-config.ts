@@ -235,6 +235,13 @@ const config: GatsbyConfig = {
 			},
 		},
 		{
+			resolve: 'gatsby-plugin-robots-txt',
+			options: {
+				sitemap: `${siteUrl}sitemap-index.xml`,
+				policy: [{ userAgent: '*', allow: '/' }],
+			},
+		},
+		{
 			resolve: 'gatsby-plugin-manifest',
 			options: {
 				name: title,
