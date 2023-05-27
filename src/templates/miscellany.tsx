@@ -4,6 +4,7 @@ import Layout from '../components/StructLayout';
 import SEO from '../components/StructSEO';
 import SinglePost from '../components/SinglePost';
 import { TemplatePageContext } from '../types';
+import type { HeadFC } from 'gatsby';
 
 const MiscellanyPostTemplate: React.FC<
 	PageProps<Queries.BlogPostBySlugQuery, TemplatePageContext>
@@ -21,13 +22,6 @@ const MiscellanyPostTemplate: React.FC<
 
 	return (
 		<Layout darkMenu={true}>
-			<SEO
-				title={post?.frontmatter?.title || ''}
-				description={
-					post?.frontmatter?.description || post?.excerpt || ''
-				}
-			/>
-
 			<SinglePost
 				headerImage={
 					post.frontmatter.featuredImage.childImageSharp
@@ -45,6 +39,17 @@ const MiscellanyPostTemplate: React.FC<
 		</Layout>
 	);
 };
+
+export const Head: HeadFC<Queries.BlogPostBySlugQuery> = ({ data }) => (
+	<SEO
+		title={data.markdownRemark?.frontmatter?.title || ''}
+		description={
+			data.markdownRemark?.frontmatter?.description ||
+			data.markdownRemark?.excerpt ||
+			''
+		}
+	/>
+);
 
 export default MiscellanyPostTemplate;
 

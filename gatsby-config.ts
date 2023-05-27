@@ -75,7 +75,6 @@ const config: GatsbyConfig = {
 				omitGoogleFont: true,
 			},
 		},
-		'gatsby-plugin-react-helmet',
 		{
 			resolve: 'gatsby-source-filesystem',
 			options: {

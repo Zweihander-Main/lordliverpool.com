@@ -2,7 +2,6 @@ import React, {
 	useCallback,
 	useContext,
 	useEffect,
-	useLayoutEffect,
 	useRef,
 	useState,
 } from 'react';
@@ -67,7 +66,7 @@ const Contenders: React.FC = () => {
 	const [scrollScrollingContainerTo, setScrollScrollingContainerTo] =
 		useState<number>();
 
-	useLayoutEffect(() => {
+	useEffect(() => {
 		const { id, pos } = getPositionsRef.current(TRACK);
 		const fromBackButton = isLastNavFromHistBack();
 
@@ -101,7 +100,7 @@ const Contenders: React.FC = () => {
 		}
 	}, [isLastNavFromHistBack, loadStorage]);
 
-	useLayoutEffect(() => {
+	useEffect(() => {
 		if (scrollScrollingContainerTo && scrollingMenuRef.current) {
 			scrollingMenuRef.current.scrollTop = scrollScrollingContainerTo;
 		}

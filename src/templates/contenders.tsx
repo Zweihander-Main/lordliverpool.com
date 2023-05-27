@@ -5,6 +5,7 @@ import SEO from '../components/StructSEO';
 import SinglePost from '../components/SinglePost';
 import { TemplatePageContext } from '../types';
 import ScrollLocContext from '../contexts/ScrollLocContext';
+import type { HeadFC } from 'gatsby';
 
 const ContenderPostTemplate: React.FC<
 	PageProps<Queries.ContenderPostBySlugQuery, TemplatePageContext>
@@ -22,13 +23,6 @@ const ContenderPostTemplate: React.FC<
 
 	return (
 		<Layout darkMenu={true}>
-			<SEO
-				title={post?.frontmatter?.title || ''}
-				description={
-					post?.frontmatter?.description || post?.excerpt || ''
-				}
-			/>
-
 			<SinglePost
 				headerImage={
 					post?.frontmatter?.featuredImage?.childImageSharp
@@ -45,6 +39,17 @@ const ContenderPostTemplate: React.FC<
 		</Layout>
 	);
 };
+
+export const Head: HeadFC<Queries.ContenderPostBySlugQuery> = ({ data }) => (
+	<SEO
+		title={data.markdownRemark?.frontmatter?.title || ''}
+		description={
+			data.markdownRemark?.frontmatter?.description ||
+			data.markdownRemark?.excerpt ||
+			''
+		}
+	/>
+);
 
 export default ContenderPostTemplate;
 

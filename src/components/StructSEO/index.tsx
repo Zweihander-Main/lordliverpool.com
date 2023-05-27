@@ -1,30 +1,14 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 
 type SEOProps = {
 	description?: string;
-	lang?: string;
-	meta?: Array<
-		| {
-				name: string;
-				content: string;
-				property?: undefined;
-		  }
-		| {
-				property: string;
-				content: string;
-				name?: undefined;
-		  }
-	>;
 	title?: string;
 	app?: boolean;
 };
 
-const SEO: React.FC<SEOProps> = ({
+const SEO: React.FC<React.PropsWithChildren<SEOProps>> = ({
 	description = '',
-	lang = 'en',
-	meta = [],
 	title = '',
 	app = false,
 }) => {
@@ -66,53 +50,31 @@ const SEO: React.FC<SEOProps> = ({
 		bodyClass += 'app-body ';
 	}
 
+	const fullPageTitle = `${title}${title !== '' ? ' | ' : ''}${
+		site.siteMetadata.title
+	}`;
+
 	return (
-		<Helmet
-			htmlAttributes={{
-				class: htmlClass,
-				lang,
-			}}
-			bodyAttributes={{
-				class: bodyClass,
-			}}
-			title={title !== '' ? title : undefined}
-			titleTemplate={`%s | ${site.siteMetadata.title}`}
-			defaultTitle={site.siteMetadata.title}
-			meta={[
-				{
-					name: 'description',
-					content: metaDescription,
-				},
-				{
-					property: 'og:title',
-					content: title !== '' ? title : site.siteMetadata.title,
-				},
-				{
-					property: 'og:description',
-					content: metaDescription,
-				},
-				{
-					property: 'og:type',
-					content: 'website',
-				},
-				{
-					name: 'twitter:card',
-					content: 'summary',
-				},
-				{
-					name: 'twitter:creator',
-					content: site.siteMetadata.author,
-				},
-				{
-					name: 'twitter:title',
-					content: title !== '' ? title : site.siteMetadata.title,
-				},
-				{
-					name: 'twitter:description',
-					content: metaDescription,
-				},
-			].concat(meta)}
-		/>
+		<>
+			<html className={htmlClass} lang="en"></html>
+			<body className={bodyClass}></body>
+			<title>{fullPageTitle}</title>
+			<meta name="description" content={metaDescription} />
+			<meta name="author" content={site.siteMetadata.author} />
+			<meta
+				name="og:title"
+				content={title !== '' ? title : site.siteMetadata.title}
+			/>
+			<meta name="og:description" content={metaDescription} />
+			<meta name="og:type" content="website" />
+			<meta name="twitter:card" content="summary" />
+			<meta name="twitter:creator" content={site.siteMetadata.author} />
+			<meta
+				name="twitter:title"
+				content={title !== '' ? title : site.siteMetadata.title}
+			/>
+			<meta name="twitter:description" content={metaDescription} />
+		</>
 	);
 };
 

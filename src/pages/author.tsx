@@ -1,61 +1,15 @@
 import React from 'react';
-import { graphql, useStaticQuery } from 'gatsby';
+import { PageProps, graphql } from 'gatsby';
 import Layout from '../components/StructLayout';
 import SEO from '../components/StructSEO';
 import SinglePost from '../components/SinglePost';
+import type { HeadFC } from 'gatsby';
 
-// Workaround for inconsistent generated types
-type AuthorQuery = {
-	readonly markdownRemark: Queries.Maybe<
-		Pick<Queries.MarkdownRemark, 'html' | 'excerpt'> & {
-			readonly frontmatter: Queries.Maybe<
-				Pick<
-					Queries.MarkdownRemarkFrontmatter,
-					'title' | 'description'
-				> & {
-					readonly featuredImage: Queries.Maybe<{
-						readonly childImageSharp: Queries.Maybe<
-							Pick<Queries.ImageSharp, 'gatsbyImageData'>
-						>;
-					}>;
-				}
-			>;
-		}
-	>;
-};
-
-const Author: React.FC = () => {
-	/* eslint-disable  @typescript-eslint/no-unsafe-assignment */
-	const authorData: AuthorQuery = useStaticQuery<Queries.AuthorQuery>(graphql`
-		query Author {
-			markdownRemark(fields: { slug: { eq: "/pages/author" } }) {
-				html
-				excerpt(pruneLength: 160)
-				frontmatter {
-					title
-					description
-					featuredImage {
-						childImageSharp {
-							gatsbyImageData(width: 550, layout: CONSTRAINED)
-						}
-					}
-				}
-			}
-		}
-	`);
-	/* eslint-enable  @typescript-eslint/no-unsafe-assignment */
-
-	const page = authorData.markdownRemark;
+const Author: React.FC<PageProps<Queries.AuthorQuery>> = ({ data }) => {
+	const page = data.markdownRemark;
 
 	return (
 		<Layout darkMenu={true}>
-			<SEO
-				title={page?.frontmatter?.title || ''}
-				description={
-					page?.frontmatter?.description || page?.excerpt || ''
-				}
-			/>
-
 			<SinglePost
 				headerImage={
 					page?.frontmatter?.featuredImage?.childImageSharp
@@ -68,4 +22,33 @@ const Author: React.FC = () => {
 	);
 };
 
+export const Head: HeadFC<Queries.AuthorQuery> = ({ data }) => (
+	<SEO
+		title={data.markdownRemark?.frontmatter?.title || ''}
+		description={
+			data.markdownRemark?.frontmatter?.description ||
+			data.markdownRemark?.excerpt ||
+			''
+		}
+	/>
+);
+
 export default Author;
+
+export const pageQuery = graphql`
+	query Author {
+		markdownRemark(fields: { slug: { eq: "/pages/author" } }) {
+			html
+			excerpt(pruneLength: 160)
+			frontmatter {
+				title
+				description
+				featuredImage {
+					childImageSharp {
+						gatsbyImageData(width: 550, layout: CONSTRAINED)
+					}
+				}
+			}
+		}
+	}
+`;
