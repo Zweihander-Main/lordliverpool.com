@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Layout from '../components/structure/layout';
-import SEO from '../components/structure/seo';
-import Miscellany from '../components/miscellany';
+import Layout from '../components/StructLayout';
+import SEO from '../components/StructSEO';
+import Miscellany from '../components/Miscellany';
 
 const MiscellanyPage: React.FC = () => (
 	<Layout>

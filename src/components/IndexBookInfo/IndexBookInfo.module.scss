@@ -1,0 +1,107 @@
+@use '../../styles/util/variables.module' as v;
+@use '../../styles/util/mixins.module' as m;
+@use 'sass:color';
+
+.book-info {
+	align-items: center;
+	background-color: v.$color-red-white;
+	color: v.$color-black;
+	display: grid;
+	grid-auto-rows: 1fr;
+	grid-template: 'BookDisplay Info' 100% / 45% 55%;
+	min-height: 100vh;
+
+	@include m.media('<=wide') {
+		grid-auto-rows: initial;
+		grid-template:
+			'BookDisplay'
+			'Info' 1fr / 100%;
+	}
+}
+
+.book-display {
+	grid-area: BookDisplay;
+	margin: 5rem;
+	max-height: 80vh;
+
+	@include m.media('<=wide') {
+		align-self: center;
+		margin: 2rem 1rem 1rem; // TODO var
+	}
+}
+
+.info {
+	@include m.neumorphic-intensity(
+		v.$post-border-shadow-size,
+		v.$post-border-shadow-spread,
+		v.$color-red-white,
+		v.$post-border-shadow-intensity
+	); // TODO consistent with single post
+
+	align-self: center;
+	border-radius: v.$border-radius-large;
+	grid-area: Info;
+	margin: 3rem 2rem 3rem 0;
+	max-width: v.$post-max-width - 2rem;
+	padding: 4rem;
+
+	@include m.media('<=wide') {
+		margin: 2rem 2rem 3rem;
+		place-self: center;
+	}
+
+	@include m.media('<=tablet') {
+		margin: 1rem 1rem 2rem;
+		padding: 3rem 2rem;
+	}
+
+	@include m.media('<=phone') {
+		border-radius: 0;
+		margin: 1rem 0 2rem;
+		padding: 2rem 1rem;
+	}
+
+	@include m.media('<=ultratiny') {
+		padding: 2rem 0.5rem;
+	}
+}
+
+.header {
+	@include m.successive-headings;
+}
+
+.sub-header {
+	@include m.header-normal;
+}
+
+.author-header {
+	@include m.header-normal;
+}
+
+.author-link {
+	color: v.$color-black;
+}
+
+.more-info {
+	color: v.$color-black;
+	font-style: italic;
+	margin-left: 1rem;
+	padding: 1rem;
+
+	@include m.media('<=phone') {
+		display: block;
+		text-align: center;
+	}
+
+	@include m.media('>phone') {
+		@include m.fancy-hover-link($margin: 0 -1rem 1rem);
+	}
+}
+
+.text {
+	margin-bottom: 2rem;
+
+	a {
+		@include m.fancy-hover-link;
+	}
+}

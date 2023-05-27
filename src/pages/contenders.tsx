@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Layout from '../components/structure/layout';
-import SEO from '../components/structure/seo';
-import Contenders from '../components/contenders';
+import Layout from '../components/StructLayout';
+import SEO from '../components/StructSEO';
+import Contenders from '../components/Contenders';
 
 const ContendersPage: React.FC = () => (
 	<Layout showFooter={false}>

@@ -1,8 +1,8 @@
 import React, { useContext, useEffect } from 'react';
 import { graphql, PageProps } from 'gatsby';
-import Layout from '../components/structure/layout';
-import SEO from '../components/structure/seo';
-import SinglePost from '../components/shared/singlePost';
+import Layout from '../components/StructLayout';
+import SEO from '../components/StructSEO';
+import SinglePost from '../components/SinglePost';
 import { TemplatePageContext } from '../types';
 import ScrollLocContext from '../contexts/ScrollLocContext';
 

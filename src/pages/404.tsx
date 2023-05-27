@@ -1,8 +1,8 @@
 import React from 'react';
 
-import Layout from '../components/structure/layout';
-import SEO from '../components/structure/seo';
-import SinglePost from '../components/shared/singlePost';
+import Layout from '../components/StructLayout';
+import SEO from '../components/StructSEO';
+import SinglePost from '../components/SinglePost';
 
 const NotFoundPage: React.FC = () => (
 	<Layout darkMenu={true}>

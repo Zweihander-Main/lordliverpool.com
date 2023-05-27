@@ -1,0 +1,138 @@
+@use '../../styles/util/variables.module' as v;
+@use '../../styles/util/mixins.module' as m;
+@use '../../styles/util/functions.module' as f;
+
+.hero {
+	color: v.$color-white;
+	display: grid;
+	grid-template:
+		'Hero-Image' 46%
+		'Main-Title' 24%
+		'Sub-Title' 8%
+		'Scroll-Arrow' 7%
+		'Retailers-Button' 15% / 100%;
+	height: 100vh; // Firefox sizing bug
+	min-height: 100vh;
+	text-align: center;
+
+	@include m.media('height>HEIGHT_ultratiny', 'height<=HEIGHT_short') {
+		grid-template-rows: 46% 19% 7% 11% 17%;
+	}
+
+	@include m.media('height<=HEIGHT_ultratiny') {
+		grid-template-rows: 46% 18% 5% 13% 18%;
+	}
+}
+
+.hero-image {
+	height: 100%;
+	width: 100%;
+	z-index: -1;
+}
+
+.main-title {
+	@include m.header-text-shadow;
+
+	font-size: f.convert-to-viewport(v.$font-size-hero-title);
+	font-weight: normal;
+	grid-area: Main-Title;
+	line-height: f.convert-to-viewport(4.93rem); // TODO var
+	text-transform: uppercase;
+}
+
+.sub-title {
+	font-size: f.convert-to-viewport(v.$font-size-h2, 1vh);
+	font-style: italic;
+	font-weight: normal;
+	grid-area: Sub-Title;
+	letter-spacing: v.$letter-spacing-wide;
+}
+
+.arrow {
+	grid-area: Scroll-Arrow;
+	padding-top: 70px;
+	position: relative;
+
+	span {
+		animation: arrowdown 4s infinite;
+		border-bottom: 1px solid v.$color-white;
+		border-left: 1px solid v.$color-white;
+		box-sizing: border-box;
+		height: 24px;
+		left: 50%;
+		margin-left: -12px;
+		position: absolute;
+		top: 0;
+		transform: rotate(-45deg);
+		width: 24px;
+
+		@include m.media('height<=HEIGHT_short') {
+			height: 12px;
+			margin-left: -6px;
+			width: 12px;
+		}
+
+		@include m.media('height<=HEIGHT_tiny') {
+			height: 8px;
+			margin-left: -4px;
+			width: 8px;
+		}
+	}
+}
+
+@keyframes arrowdown {
+	0% {
+		opacity: 0;
+		transform: rotate(-45deg) translate(0, 0);
+	}
+
+	50% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+		transform: rotate(-45deg) translate(-20px, 20px);
+
+		@include m.media('height<=HEIGHT_short') {
+			transform: rotate(-45deg) translate(-10px, 10px);
+		}
+	}
+}
+
+.retailers {
+	align-self: center;
+	grid-area: Retailers-Button;
+	padding-bottom: 3vh;
+	padding-top: 1em;
+
+	@include m.media('height<=HEIGHT_short') {
+		align-self: flex-start;
+	}
+
+	@include m.media('height<=HEIGHT_tiny') {
+		padding-top: 2px;
+	}
+
+	h4 {
+		@include m.header-normal;
+	}
+}
+
+.available-text {
+	font-weight: normal;
+
+	@include m.media('height>HEIGHT_tiny', 'height<=HEIGHT_short') {
+		font-size: f.convert-to-viewport(1.25rem, 1vh); // TODO var
+		margin-bottom: 1rem;
+	}
+
+	@include m.media('height<=HEIGHT_tiny') {
+		font-size: f.convert-to-viewport(1.5rem, 1vh); // TODO var
+		margin-bottom: 1rem;
+	}
+
+	@include m.media('height<=HEIGHT_ultratiny') {
+		margin-bottom: 0.4rem;
+	}
+}

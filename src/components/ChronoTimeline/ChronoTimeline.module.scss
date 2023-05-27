@@ -1,0 +1,112 @@
+@use '../../styles/util/variables.module' as v;
+@use '../../styles/util/mixins.module' as m;
+
+.timeline {
+	align-items: flex-end;
+	color: v.$color-white;
+	display: flex;
+	flex-direction: row;
+	grid-area: Timeline;
+	justify-content: space-around;
+
+	@include m.media('portrait') {
+		display: none; // TODO build this out
+	}
+}
+
+.area-grabber {
+	@include m.neumorphic-button(
+		4px,
+		8px,
+		rgba(v.$color-white, v.$timeline-area-grabber-opacity + 0.1),
+		20%
+	);
+
+	background: rgba(v.$color-white, v.$timeline-area-grabber-opacity);
+	cursor: grab;
+	height: v.$timeline-area-grabber-height;
+	left: 0;
+	position: absolute;
+	transition: width 100ms v.$timing-quick;
+	user-select: none;
+	will-change: width, transform;
+	z-index: 9999;
+
+	@include m.media('landscape') {
+		@include m.media('height<=HEIGHT_shorter') {
+			height: v.$timeline-area-grabber-height-shorter;
+		}
+	}
+
+	&:hover {
+		@extend %active-timeline;
+	}
+}
+
+.is-scrolling {
+	@extend %active-timeline;
+}
+
+.is-user-dragging {
+	cursor: ew-resize;
+}
+
+.year {
+	color: v.$color-red-white;
+	font-family: v.$font-family-header;
+	font-size: v.$font-size-chrono-year;
+	font-style: italic;
+	position: absolute;
+	top: calc(-#{v.$font-size-chrono-year} - 4px);
+	transition: opacity 200ms v.$timing-quick;
+	user-select: none;
+	white-space: nowrap;
+	will-change: transform;
+
+	@include m.media('landscape') {
+		@include m.media('height<=HEIGHT_short') {
+			font-size: 1.75rem; // TODO var
+			opacity: 0.3;
+			top: calc(-1.75rem - 3px);
+		}
+
+		@include m.media('height<=HEIGHT_shorter') {
+			font-size: 1.5rem; // TODO var
+			top: calc(-1.5rem - 2px);
+		}
+	}
+}
+
+%active-timeline {
+	@include m.media('landscape') {
+		@include m.media('height<=HEIGHT_short') {
+			.year {
+				opacity: 1;
+			}
+		}
+	}
+}
+
+.tick {
+	@include m.neumorphic-intensity(1px, 2px, v.$color-blue, 250%);
+
+	background: v.$color-blue;
+	height: v.$timeline-area-grabber-height - 15;
+	width: 3px;
+
+	@include m.media('landscape') {
+		@include m.media('height<=HEIGHT_shorter') {
+			height: v.$timeline-area-grabber-height-shorter - 15;
+		}
+	}
+}
+
+.tick:nth-of-type(2n) {
+	height: v.$timeline-area-grabber-height - 25;
+
+	@include m.media('landscape') {
+		@include m.media('height<=HEIGHT_shorter') {
+			height: v.$timeline-area-grabber-height-shorter - 25;
+		}
+	}
+}

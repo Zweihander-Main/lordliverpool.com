@@ -1,0 +1,101 @@
+@use '../../styles/util/variables.module' as v;
+@use '../../styles/util/mixins.module' as m;
+
+.button {
+	@include m.neumorphic-button(
+		1px,
+		3px,
+		v.$color-red,
+		120%,
+		2px,
+		v.$color-black
+	);
+
+	background: v.$color-red;
+	border-radius: v.$border-radius-normal;
+	color: v.$color-white;
+	padding: 0.6rem 1rem;
+	text-decoration: none;
+	transition: 75ms v.$timing-quick;
+
+	@include m.media('height>HEIGHT_ultratiny', 'height<=HEIGHT_tiny') {
+		padding: 0.45rem 0.75rem;
+	}
+
+	@include m.media('height<=HEIGHT_ultratiny') {
+		padding: 0.3rem 0.5rem;
+	}
+
+	@include m.media('<=phone') {
+		display: block;
+		margin: 0 2rem;
+		text-align: center;
+	}
+
+	@include m.media('<=ultratiny') {
+		margin: 0 1rem;
+	}
+
+	&:hover {
+		@include m.neumorphic-button(
+			2px,
+			5px,
+			v.$color-red,
+			120%,
+			5px,
+			v.$color-black
+		);
+	}
+
+	&:active {
+		@include m.neumorphic-button(
+			-1px,
+			3px,
+			v.$color-red,
+			120%,
+			5px,
+			v.$color-black
+		);
+	}
+}
+
+.text {
+	color: inherit;
+	display: inline;
+	font-family: v.$font-family-header;
+	font-size: v.$font-size-h6;
+	font-weight: 700;
+	letter-spacing: v.$letter-spacing;
+	line-height: 1.1; // TODO var
+	position: relative;
+	text-rendering: optimizeLegibility;
+	text-transform: uppercase;
+
+	@include m.media('height>HEIGHT_ultratiny', 'height<=HEIGHT_tiny') {
+		bottom: 0.05rem;
+		font-size: 0.6rem; // TODO var
+	}
+
+	@include m.media('height<=HEIGHT_ultratiny') {
+		bottom: 0.08rem;
+		font-size: 0.5rem; // TODO var
+	}
+}
+
+.icon {
+	margin-right: 0.4rem;
+	position: relative;
+	top: 0.2rem;
+
+	@include m.media('height<=HEIGHT_tiny') {
+		font-size: 0.8rem;
+		top: 0.1rem;
+	}
+
+	@include m.media('height<=HEIGHT_ultratiny') {
+		font-size: 0.7rem; // TODO var
+		top: 0.07rem;
+	}
+}
+
+// TODO figure out sorting rules stylelint

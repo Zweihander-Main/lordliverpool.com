@@ -95,6 +95,9 @@ $card-total-margin-shorter: $filter-menu-height-short + $timeline-height-shorter
 $card-total-margin-ultratiny: $filter-menu-height-short +
 	$card-top-margin-ultratiny + $card-bottom-margin-ultratiny;
 
+// contenders
+$contenders-image-width: calc(100vw / 3 * 2);
+
 // single posts
 $post-max-width: 51rem;
 $post-border-shadow-size: 17px;

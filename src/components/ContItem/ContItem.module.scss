@@ -1,0 +1,17 @@
+@use '../../styles/util/variables.module' as v;
+@use '../../styles/util/mixins.module' as m;
+
+.item {
+	font-size: v.$font-size-h3;
+	line-height: 1.1;
+	margin-bottom: 1.38rem;
+}
+
+.link {
+	color: v.$color-black;
+	text-decoration: none;
+}
+
+.selected {
+	text-decoration: underline;
+}
