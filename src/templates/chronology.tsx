@@ -41,26 +41,45 @@ const ChronologyPostTemplate: React.FC<
 	);
 };
 
-export const Head: HeadFC<Queries.ChronologyPostBySlugQuery> = ({ data }) => (
-	<SEO
-		title={data.markdownRemark?.frontmatter?.title || ''}
-		description={
-			data.markdownRemark?.frontmatter?.description ||
-			data.markdownRemark?.excerpt ||
-			''
-		}
-	/>
-);
+export const Head: HeadFC<Queries.ChronologyPostBySlugQuery> = ({ data }) => {
+	const post = data.markdownRemark;
+	const ogImage =
+		data.ogImage?.frontmatter?.featuredImage?.childImageSharp
+			?.gatsbyImageData.images.fallback?.src;
+	const twitterImage =
+		data.twitterImage?.frontmatter?.featuredImage?.childImageSharp
+			?.gatsbyImageData.images.fallback?.src;
+	return (
+		<SEO
+			title={post?.frontmatter?.title || ''}
+			description={post?.frontmatter?.description || post?.excerpt || ''}
+		>
+			<meta id="og-type" name="og:type" content="article" />
+			{ogImage && (
+				<meta id="og-image" name="og:image" content={ogImage} />
+			)}
+			{twitterImage && (
+				<>
+					<meta
+						id="twitter-card"
+						name="twitter:card"
+						content="summary_large_image"
+					/>
+					<meta
+						id="twitter-image"
+						name="twitter:image"
+						content={twitterImage}
+					/>
+				</>
+			)}
+		</SEO>
+	);
+};
 
 export default ChronologyPostTemplate;
 
 export const pageQuery = graphql`
 	query ChronologyPostBySlug($path: String!) {
-		site {
-			siteMetadata {
-				title
-			}
-		}
 		markdownRemark(fields: { slug: { eq: $path } }) {
 			excerpt(pruneLength: 160)
 			html
@@ -76,6 +95,36 @@ export const pageQuery = graphql`
 							width: 540
 							layout: CONSTRAINED
 							quality: 70
+						)
+					}
+				}
+			}
+		}
+		ogImage: markdownRemark(fields: { slug: { eq: $path } }) {
+			frontmatter {
+				featuredImage {
+					childImageSharp {
+						gatsbyImageData(
+							width: 1200
+							layout: FIXED
+							quality: 70
+							aspectRatio: 1.91
+							transformOptions: { cropFocus: CENTER }
+						)
+					}
+				}
+			}
+		}
+		twitterImage: markdownRemark(fields: { slug: { eq: $path } }) {
+			frontmatter {
+				featuredImage {
+					childImageSharp {
+						gatsbyImageData(
+							width: 1200
+							layout: FIXED
+							quality: 70
+							aspectRatio: 2
+							transformOptions: { cropFocus: CENTER }
 						)
 					}
 				}
