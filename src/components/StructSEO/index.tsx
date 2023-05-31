@@ -11,6 +11,7 @@ const SEO: React.FC<React.PropsWithChildren<SEOProps>> = ({
 	description = '',
 	title = '',
 	app = false,
+	children,
 }) => {
 	const { site } = useStaticQuery<Queries.SEOSiteMetadataQuery>(
 		graphql`
@@ -59,21 +60,47 @@ const SEO: React.FC<React.PropsWithChildren<SEOProps>> = ({
 			<html className={htmlClass} lang="en"></html>
 			<body className={bodyClass}></body>
 			<title>{fullPageTitle}</title>
-			<meta name="description" content={metaDescription} />
-			<meta name="author" content={site.siteMetadata.author} />
 			<meta
+				id="meta-description"
+				name="description"
+				content={metaDescription}
+			/>
+			<meta
+				id="meta-author"
+				name="author"
+				content={site.siteMetadata.author}
+			/>
+			<meta
+				id="og-title"
 				name="og:title"
 				content={title !== '' ? title : site.siteMetadata.title}
 			/>
-			<meta name="og:description" content={metaDescription} />
-			<meta name="og:type" content="website" />
-			<meta name="twitter:card" content="summary" />
-			<meta name="twitter:creator" content={site.siteMetadata.author} />
 			<meta
+				id="og-description"
+				name="og:description"
+				content={metaDescription}
+			/>
+			<meta id="og-type" name="og:type" content="website" />
+			{/*TODO add in og:image and twitter:image*/}
+			<meta id="og-image" name="og:image" content="" />
+			<meta id="twitter-image" name="twitter:image" content="" />
+			<meta id="twitter-card" name="twitter:card" content="summary" />
+			<meta
+				id="twitter-creator"
+				name="twitter:creator"
+				content={site.siteMetadata.author}
+			/>
+			<meta
+				id="twitter-title"
 				name="twitter:title"
 				content={title !== '' ? title : site.siteMetadata.title}
 			/>
-			<meta name="twitter:description" content={metaDescription} />
+			<meta
+				id="twitter-description"
+				name="twitter:description"
+				content={metaDescription}
+			/>
+			{children}
 		</>
 	);
 };
