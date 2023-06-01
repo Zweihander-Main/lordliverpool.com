@@ -106,3 +106,35 @@ const SEO: React.FC<React.PropsWithChildren<SEOProps>> = ({
 };
 
 export default SEO;
+
+/** SEO images for use in templates */
+export const socialQueries = graphql`
+	fragment OgImage on MarkdownRemark {
+		frontmatter {
+			featuredImage {
+				childImageSharp {
+					gatsbyImageData(
+						width: 1200
+						layout: FIXED
+						quality: 70
+						aspectRatio: 1.91
+					)
+				}
+			}
+		}
+	}
+	fragment TwitterImage on MarkdownRemark {
+		frontmatter {
+			featuredImage {
+				childImageSharp {
+					gatsbyImageData(
+						width: 1200
+						layout: FIXED
+						quality: 70
+						aspectRatio: 2
+					)
+				}
+			}
+		}
+	}
+`;

@@ -101,34 +101,10 @@ export const pageQuery = graphql`
 			}
 		}
 		ogImage: markdownRemark(fields: { slug: { eq: $path } }) {
-			frontmatter {
-				featuredImage {
-					childImageSharp {
-						gatsbyImageData(
-							width: 1200
-							layout: FIXED
-							quality: 70
-							aspectRatio: 1.91
-							transformOptions: { cropFocus: CENTER }
-						)
-					}
-				}
-			}
+			...OgImage
 		}
 		twitterImage: markdownRemark(fields: { slug: { eq: $path } }) {
-			frontmatter {
-				featuredImage {
-					childImageSharp {
-						gatsbyImageData(
-							width: 1200
-							layout: FIXED
-							quality: 70
-							aspectRatio: 2
-							transformOptions: { cropFocus: CENTER }
-						)
-					}
-				}
-			}
+			...TwitterImage
 		}
 	}
 `;
