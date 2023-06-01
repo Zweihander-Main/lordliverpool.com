@@ -48,7 +48,7 @@ export const Head: HeadFC<Queries.ContenderPostBySlugQuery> = ({ data }) => {
 	const twitterImage =
 		data.twitterImage?.frontmatter?.featuredImage?.childImageSharp
 			?.gatsbyImageData.images.fallback?.src;
-	const authorUrl = `${data.site?.siteMetadata?.siteUrl || '/'}author`;
+	const authorUrl = `${data.site?.siteMetadata?.siteUrl || ''}/author`;
 	return (
 		<SEO
 			title={post?.frontmatter?.title || ''}
