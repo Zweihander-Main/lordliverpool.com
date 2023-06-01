@@ -48,12 +48,23 @@ export const Head: HeadFC<Queries.ContenderPostBySlugQuery> = ({ data }) => {
 	const twitterImage =
 		data.twitterImage?.frontmatter?.featuredImage?.childImageSharp
 			?.gatsbyImageData.images.fallback?.src;
+	const authorUrl = `${data.site?.siteMetadata?.siteUrl || '/'}author`;
 	return (
 		<SEO
 			title={post?.frontmatter?.title || ''}
 			description={post?.frontmatter?.description || post?.excerpt || ''}
 		>
 			<meta id="og-type" name="og:type" content="article" />
+			<meta
+				id="article-author"
+				name="article:author"
+				content={authorUrl}
+			/>
+			<meta
+				id="article-section"
+				name="article:section"
+				content="Contenders"
+			/>
 			{ogImage && (
 				<meta id="og-image" name="og:image" content={ogImage} />
 			)}
@@ -97,6 +108,9 @@ export const pageQuery = graphql`
 					}
 				}
 			}
+		}
+		site {
+			...SiteData
 		}
 		ogImage: markdownRemark(fields: { slug: { eq: $path } }) {
 			...OgImage

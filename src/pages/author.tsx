@@ -22,16 +22,56 @@ const Author: React.FC<PageProps<Queries.AuthorQuery>> = ({ data }) => {
 	);
 };
 
-export const Head: HeadFC<Queries.AuthorQuery> = ({ data }) => (
-	<SEO
-		title={data.markdownRemark?.frontmatter?.title || ''}
-		description={
-			data.markdownRemark?.frontmatter?.description ||
-			data.markdownRemark?.excerpt ||
-			''
-		}
-	/>
-);
+export const Head: HeadFC<Queries.AuthorQuery> = ({ data }) => {
+	const info = data.markdownRemark;
+	const ogImage =
+		data.ogImage?.frontmatter?.featuredImage?.childImageSharp
+			?.gatsbyImageData.images.fallback?.src;
+	const twitterImage =
+		data.twitterImage?.frontmatter?.featuredImage?.childImageSharp
+			?.gatsbyImageData.images.fallback?.src;
+	return (
+		<SEO
+			title={info?.frontmatter?.title || ''}
+			description={info?.frontmatter?.description || info?.excerpt || ''}
+		>
+			<meta id="og-type" name="og:type" content="profile" />
+			<meta
+				id="profile-first"
+				name="profile:first_name"
+				content="Martin"
+			/>
+			<meta
+				id="profile-last"
+				name="profile:last_name"
+				content="Hutchinson"
+			/>
+			<meta
+				id="profile-username"
+				name="profile:username"
+				content="TBWNS"
+			/>
+			<meta id="profile-gender" name="profile:gender" content="male" />
+			{ogImage && (
+				<meta id="og-image" name="og:image" content={ogImage} />
+			)}
+			{twitterImage && (
+				<>
+					<meta
+						id="twitter-card"
+						name="twitter:card"
+						content="summary_large_image"
+					/>
+					<meta
+						id="twitter-image"
+						name="twitter:image"
+						content={twitterImage}
+					/>
+				</>
+			)}
+		</SEO>
+	);
+};
 
 export default Author;
 
@@ -49,6 +89,14 @@ export const pageQuery = graphql`
 					}
 				}
 			}
+		}
+		ogImage: markdownRemark(fields: { slug: { eq: "/pages/author" } }) {
+			...OgImage
+		}
+		twitterImage: markdownRemark(
+			fields: { slug: { eq: "/pages/author" } }
+		) {
+			...TwitterImage
 		}
 	}
 `;

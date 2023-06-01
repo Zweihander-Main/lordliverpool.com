@@ -109,6 +109,14 @@ export default SEO;
 
 /** SEO images for use in templates */
 export const socialQueries = graphql`
+	fragment SiteData on Site {
+		siteMetadata {
+			title
+			description
+			author
+			siteUrl
+		}
+	}
 	fragment OgImage on MarkdownRemark {
 		frontmatter {
 			featuredImage {

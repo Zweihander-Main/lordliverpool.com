@@ -40,6 +40,11 @@ const MiscellanyPostTemplate: React.FC<
 	);
 };
 
+// TODO: add in book for book page
+// TODO: add in profile for profile page
+// TODO: add in published_time, modified_time, author, tag, section
+// TODO: move image up a bit
+
 export const Head: HeadFC<Queries.BlogPostBySlugQuery> = ({ data }) => {
 	const post = data.markdownRemark;
 	const ogImage =
@@ -48,12 +53,28 @@ export const Head: HeadFC<Queries.BlogPostBySlugQuery> = ({ data }) => {
 	const twitterImage =
 		data.twitterImage?.frontmatter?.featuredImage?.childImageSharp
 			?.gatsbyImageData.images.fallback?.src;
+	const authorUrl = `${data.site?.siteMetadata?.siteUrl || '/'}author`;
 	return (
 		<SEO
 			title={post?.frontmatter?.title || ''}
 			description={post?.frontmatter?.description || post?.excerpt || ''}
 		>
 			<meta id="og-type" name="og:type" content="article" />
+			<meta
+				id="article-published"
+				name="article:published_time"
+				content={post?.frontmatter?.date || ''}
+			/>
+			<meta
+				id="article-author"
+				name="article:author"
+				content={authorUrl}
+			/>
+			<meta
+				id="article-section"
+				name="article:section"
+				content="Miscellany"
+			/>
 			{ogImage && (
 				<meta id="og-image" name="og:image" content={ogImage} />
 			)}
@@ -97,6 +118,9 @@ export const pageQuery = graphql`
 					}
 				}
 			}
+		}
+		site {
+			...SiteData
 		}
 		ogImage: markdownRemark(fields: { slug: { eq: $path } }) {
 			...OgImage
