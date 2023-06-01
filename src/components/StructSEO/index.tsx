@@ -13,20 +13,44 @@ const SEO: React.FC<React.PropsWithChildren<SEOProps>> = ({
 	app = false,
 	children,
 }) => {
-	const { site } = useStaticQuery<Queries.SEOSiteMetadataQuery>(
-		graphql`
-			query SEOSiteMetadata {
-				site {
-					siteMetadata {
-						title
-						description
-						author
+	const { defaultImageOg, defaultImageTwitter, site } =
+		useStaticQuery<Queries.SEOSiteMetadataQuery>(
+			graphql`
+				query SEOSiteMetadata {
+					site {
+						siteMetadata {
+							title
+							description
+							author
+						}
+					}
+					defaultImageOg: file(
+						relativePath: { eq: "liverpoolherobg.png" }
+					) {
+						childImageSharp {
+							gatsbyImageData(
+								width: 1200
+								layout: FIXED
+								quality: 90
+								aspectRatio: 1.91
+							)
+						}
+					}
+					defaultImageTwitter: file(
+						relativePath: { eq: "liverpoolherobg.png" }
+					) {
+						childImageSharp {
+							gatsbyImageData(
+								width: 1200
+								layout: FIXED
+								quality: 90
+								aspectRatio: 1.91
+							)
+						}
 					}
 				}
-			}
-		`
-	);
-
+			`
+		);
 	if (
 		!(
 			site &&
@@ -38,6 +62,19 @@ const SEO: React.FC<React.PropsWithChildren<SEOProps>> = ({
 	) {
 		throw new Error('Some part of SEO required site metadata is missing.');
 	}
+
+	if (
+		!defaultImageOg?.childImageSharp?.gatsbyImageData?.images?.fallback
+			?.src ||
+		!defaultImageTwitter?.childImageSharp?.gatsbyImageData?.images?.fallback
+	) {
+		throw new Error('No file found for liverpoolherobg.png');
+	}
+
+	const defaultImageOGSrc =
+		defaultImageOg.childImageSharp.gatsbyImageData.images.fallback.src;
+	const defaultImageTwitterSrc =
+		defaultImageTwitter.childImageSharp.gatsbyImageData.images.fallback.src;
 
 	const metaDescription = description || site.siteMetadata.description;
 
@@ -81,9 +118,12 @@ const SEO: React.FC<React.PropsWithChildren<SEOProps>> = ({
 				content={metaDescription}
 			/>
 			<meta id="og-type" name="og:type" content="website" />
-			{/*TODO add in og:image and twitter:image*/}
-			<meta id="og-image" name="og:image" content="" />
-			<meta id="twitter-image" name="twitter:image" content="" />
+			<meta id="og-image" name="og:image" content={defaultImageOGSrc} />
+			<meta
+				id="twitter-image"
+				name="twitter:image"
+				content={defaultImageTwitterSrc}
+			/>
 			<meta id="twitter-card" name="twitter:card" content="summary" />
 			<meta
 				id="twitter-creator"
