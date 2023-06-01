@@ -145,6 +145,23 @@ collections:
             name: featuredImage
             widget: image
             required: false
+          - label: ISBN
+            name: isbn
+            widget: string
+            required: false
+          - label: Release Date 
+            name: releaseDate
+            widget: datetime 
+            required: false
+          - label: seoTags
+            name: releaseDate
+            widget: datetime 
+            required: false
+          - label: SEO Tags
+            name: seoTags 
+            widget: list
+            allow_add: true
+            required: false 
           - label: Body
             name: body
             widget: markdown

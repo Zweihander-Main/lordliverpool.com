@@ -1,6 +1,14 @@
 ---
 title: Publication Information
 featuredImage: Britains_Greatest_Prime_Minister.png
+isbn: '9780718895631'
+releaseDate: 2020-11-26T12:00:00.000Z
+seoTags:
+    - History
+    - British Politics
+    - Economics
+    - Finance
+    - Foreign Policy
 ---
 
 ## Endorsements

@@ -23,16 +23,62 @@ const Book: React.FC<PageProps<Queries.BookQuery>> = ({ data }) => {
 	);
 };
 
-export const Head: HeadFC<Queries.BookQuery> = ({ data }) => (
-	<SEO
-		title={data.markdownRemark?.frontmatter?.title || ''}
-		description={
-			data.markdownRemark?.frontmatter?.description ||
-			data.markdownRemark?.excerpt ||
-			''
-		}
-	/>
-);
+export const Head: HeadFC<Queries.BookQuery> = ({ data }) => {
+	const info = data.markdownRemark;
+	const ogImage =
+		data.ogImage?.frontmatter?.featuredImage?.childImageSharp
+			?.gatsbyImageData.images.fallback?.src;
+	const twitterImage =
+		data.twitterImage?.frontmatter?.featuredImage?.childImageSharp
+			?.gatsbyImageData.images.fallback?.src;
+	const authorUrl = `${data.site?.siteMetadata?.siteUrl || ''}/author`;
+	const releaseDate = info?.frontmatter?.releaseDate;
+	const isbn = info?.frontmatter?.isbn;
+	const seoTags = info?.frontmatter?.seoTags;
+	return (
+		<SEO
+			title={info?.frontmatter?.title || ''}
+			description={info?.frontmatter?.description || info?.excerpt || ''}
+		>
+			<meta id="og-type" name="og:type" content="book" />
+			<meta id="book-author" name="book:author" content={authorUrl} />
+			{isbn && <meta id="book-isbn" name="book:isbn" content={isbn} />}
+			{releaseDate && (
+				<meta
+					id="book-release"
+					name="book:release_date"
+					content="2021-05-01"
+				/>
+			)}
+			{seoTags &&
+				seoTags.map((tag, i) => (
+					<meta
+						key={tag}
+						id={`book-tag-${i}`}
+						name="book:tag"
+						content={tag as string}
+					/>
+				))}
+			{ogImage && (
+				<meta id="og-image" name="og:image" content={ogImage} />
+			)}
+			{twitterImage && (
+				<>
+					<meta
+						id="twitter-card"
+						name="twitter:card"
+						content="summary_large_image"
+					/>
+					<meta
+						id="twitter-image"
+						name="twitter:image"
+						content={twitterImage}
+					/>
+				</>
+			)}
+		</SEO>
+	);
+};
 
 export default Book;
 
@@ -44,12 +90,24 @@ export const pageQuery = graphql`
 			frontmatter {
 				title
 				description
+				isbn
+				releaseDate
+				seoTags
 				featuredImage {
 					childImageSharp {
 						gatsbyImageData(width: 550, layout: CONSTRAINED)
 					}
 				}
 			}
+		}
+		site {
+			...SiteData
+		}
+		ogImage: markdownRemark(fields: { slug: { eq: "/pages/book" } }) {
+			...OgImage
+		}
+		twitterImage: markdownRemark(fields: { slug: { eq: "/pages/book" } }) {
+			...TwitterImage
 		}
 	}
 `;

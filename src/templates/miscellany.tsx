@@ -40,11 +40,6 @@ const MiscellanyPostTemplate: React.FC<
 	);
 };
 
-// TODO: add in book for book page
-// TODO: add in profile for profile page
-// TODO: add in published_time, modified_time, author, tag, section
-// TODO: move image up a bit
-
 export const Head: HeadFC<Queries.BlogPostBySlugQuery> = ({ data }) => {
 	const post = data.markdownRemark;
 	const ogImage =
