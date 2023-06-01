@@ -59,7 +59,7 @@ const BookInfo: React.FC = () => {
 				)}
 				<ModalButton />
 				<Link to="/book" className={styles.moreInfo}>
-					More info
+					Endorsements and Reviews
 				</Link>
 			</article>
 		</section>
