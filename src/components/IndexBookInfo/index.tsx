@@ -1,6 +1,6 @@
 import React from 'react';
 import * as styles from './IndexBookInfo.module.scss';
-import { GatsbyImage } from 'gatsby-plugin-image';
+import { StaticImage } from 'gatsby-plugin-image';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 // import Link from 'gatsby-link';
 import ModalButton from '../RetailersButton';
@@ -8,33 +8,26 @@ import ModalButton from '../RetailersButton';
 const BookInfo: React.FC = () => {
 	const bookInfoData = useStaticQuery<Queries.BookInfoQuery>(graphql`
 		query BookInfo {
-			file(relativePath: { eq: "bookcover.png" }) {
-				childImageSharp {
-					gatsbyImageData(width: 950, layout: CONSTRAINED)
-				}
-			}
 			markdownRemark(fields: { slug: { eq: "/pages/home__bookInfo" } }) {
 				html
 			}
 		}
 	`);
 
-	if (!bookInfoData.file?.childImageSharp?.gatsbyImageData) {
-		throw new Error('There is no file match for bookcover.png');
-	}
-
 	return (
 		<section className={styles.bookInfo}>
-			<GatsbyImage
+			<StaticImage
 				alt="Book cover for Britain's Greatest Prime Minister"
-				image={bookInfoData.file.childImageSharp.gatsbyImageData}
+				src="../../images/bookcover.png"
 				className={styles.bookDisplay}
+				formats={['auto', 'webp', 'avif']}
 				imgStyle={{
 					width: 'auto',
 					objectFit: 'contain',
 					margin: '0 auto',
 					right: '0',
 					background: 'radial-gradient(#f5ece1 0%, transparent 72%)',
+					aspectRatio: 'auto 791 / 922',
 				}}
 			/>
 			<article className={styles.info}>
