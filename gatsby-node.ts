@@ -1,4 +1,5 @@
 import type { GatsbyNode } from 'gatsby';
+import webpack from 'webpack';
 import path from 'path';
 import { createFilePath } from 'gatsby-source-filesystem';
 
@@ -270,5 +271,10 @@ export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = (
 		module: {
 			rules: configRules,
 		},
+		plugins: [
+			new webpack.IgnorePlugin({
+				resourceRegExp: /^netlify-identity-widget$/,
+			}), // Prevent Netlify Identity from being bundled, undo for adding new users
+		],
 	});
 };
