@@ -153,10 +153,6 @@ collections:
             name: releaseDate
             widget: datetime 
             required: false
-          - label: seoTags
-            name: releaseDate
-            widget: datetime 
-            required: false
           - label: SEO Tags
             name: seoTags 
             widget: list
