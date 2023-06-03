@@ -61,6 +61,14 @@ const config: GatsbyConfig = {
 		PARALLEL_SOURCING: true,
 	},
 	plugins: [
+		'gatsby-plugin-perf-budgets',
+		{
+			resolve: 'gatsby-plugin-webpack-bundle-analyser-v2',
+			options: {
+				devMode: true,
+				analyzerMode: 'static',
+			},
+		},
 		{
 			resolve: 'gatsby-plugin-typescript',
 			options: {
