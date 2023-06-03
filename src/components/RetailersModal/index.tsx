@@ -77,7 +77,7 @@ const RetailerItem: React.FC<RetailerItemProps> = ({
 			<a
 				target={'_blank'}
 				aria-label={title}
-				rel={'noreferrer'}
+				rel={'noreferrer noopener'}
 				href={link}
 				className={styles.retailerLink}
 			>
