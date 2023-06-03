@@ -69,6 +69,7 @@ $menu-transition: 0.2s;
 }
 
 .menu-bar-line {
+	display: block;
 	background-color: v.$color-white;
 	height: 2px;
 	margin: 9px 1.4rem 9px 9px;
@@ -87,6 +88,7 @@ $menu-transition: 0.2s;
 }
 
 .menu-bar-line-dark {
+	display: block;
 	background-color: v.$color-black;
 }
 

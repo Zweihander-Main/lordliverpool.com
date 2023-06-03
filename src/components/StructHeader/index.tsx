@@ -99,11 +99,11 @@ const Header: React.FC<HeaderProps> = ({
 				className={styles.menuInput}
 			/>
 			<label htmlFor="menu" className={menuClass}>
-				<div className={styles.menuBars}>
-					<div className={menuBarLineClass}></div>
-					<div className={menuBarLineClass}></div>
-					<div className={menuBarLineClass}></div>
-				</div>
+				<span className={styles.menuBars}>
+					<span className={menuBarLineClass}></span>
+					<span className={menuBarLineClass}></span>
+					<span className={menuBarLineClass}></span>
+				</span>
 				<span className={styles.menuText}>
 					<span className={styles.menuTextOpen}>Menu</span>
 					<span className={styles.menuTextClose}>Close</span>
