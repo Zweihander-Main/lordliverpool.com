@@ -10,6 +10,7 @@ export const heroImage: string;
 export const mainTitle: string;
 export const subTitle: string;
 export const arrow: string;
-export const arrowdown: string;
+export const arrowdownNormal: string;
+export const arrowdownShort: string;
 export const retailers: string;
 export const availableText: string;

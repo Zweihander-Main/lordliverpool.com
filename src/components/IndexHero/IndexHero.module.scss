@@ -54,7 +54,7 @@
 	position: relative;
 
 	span {
-		animation: arrowdown 4s infinite;
+		animation: arrowdown-normal 4s infinite;
 		border-bottom: 1px solid v.$color-white;
 		border-left: 1px solid v.$color-white;
 		box-sizing: border-box;
@@ -67,6 +67,7 @@
 		width: 24px;
 
 		@include m.media('height<=HEIGHT_short') {
+			animation: arrowdown-short 4s infinite;
 			height: 12px;
 			margin-left: -6px;
 			width: 12px;
@@ -80,7 +81,7 @@
 	}
 }
 
-@keyframes arrowdown {
+@keyframes arrowdown-normal {
 	0% {
 		opacity: 0;
 		transform: rotate(-45deg) translate(0, 0);
@@ -93,10 +94,22 @@
 	100% {
 		opacity: 0;
 		transform: rotate(-45deg) translate(-20px, 20px);
+	}
+}
 
-		@include m.media('height<=HEIGHT_short') {
-			transform: rotate(-45deg) translate(-10px, 10px);
-		}
+@keyframes arrowdown-short {
+	0% {
+		opacity: 0;
+		transform: rotate(-45deg) translate(0, 0);
+	}
+
+	50% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+		transform: rotate(-45deg) translate(-10px, 10px);
 	}
 }
 
