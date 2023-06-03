@@ -95,9 +95,9 @@
 	},
 	"scripts": {
 		"build": "gatsby build --log-pages",
-		"dev": "GATSBY_EXPERIMENTAL_QUERY_CONCURRENCY=32 GATSBY_CPU_COUNT=48 gatsby develop",
+		"dev": "GATSBY_EXPERIMENTAL_QUERY_CONCURRENCY=32 GATSBY_CPU_COUNT=logical_cores gatsby develop",
 		"clean": "gatsby clean",
-		"serve": "gatsby build; gatsby serve -p 8000",
+		"serve": "GATSBY_EXPERIMENTAL_QUERY_CONCURRENCY=32 GATSBY_CPU_COUNT=logical_cores gatsby build; gatsby serve -p 8000",
 		"test": "is-ci-cli test:coverage test:watch",
 		"test:coverage": "jest --passWithNoTests --coverage --selectProjects \"client\"",
 		"test:watch": "jest --watch",
