@@ -303,6 +303,7 @@ const RetailersModal: React.FC = () => {
 								</React.Fragment>
 							))}
 							<button
+								type="reset"
 								className={`${styles.radioLabel} ${
 									styles.unselect
 								} ${
@@ -341,6 +342,7 @@ const RetailersModal: React.FC = () => {
 								</React.Fragment>
 							))}
 							<button
+								type="reset"
 								className={`${styles.radioLabel} ${
 									styles.unselect
 								} ${

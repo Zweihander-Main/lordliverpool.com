@@ -41,6 +41,7 @@ const FilterMenu: React.FC<FilterMenuProps> = ({
 			<div className={styles.filterMenuMobile}>
 				{categories.current.map((category) => (
 					<button
+						type={category === 'All' ? 'reset' : 'button'}
 						key={category}
 						onClick={() => changeSelectedCategory(category)}
 						className={
