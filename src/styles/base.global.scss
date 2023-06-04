@@ -1,8 +1,26 @@
 /* stylelint-disable no-invalid-position-at-import-rule */
 @use './util/variables.module' as v;
 @use './util/mixins.module' as m;
-@import '~@fontsource/libre-baskerville/latin.css';
-@import '~@fontsource/cardo/latin.css';
+@use '~@fontsource/libre-baskerville/scss/mixins' as libreBaskerville;
+@use '~@fontsource/cardo/scss/mixins' as cardo;
+@include libreBaskerville.faces(
+	$subsets: 'latin',
+	$display: 'swap',
+	$displayVar: 'false',
+	$weights: (
+		400,
+		700,
+	)
+);
+@include cardo.faces(
+	$subsets: 'latin',
+	$display: 'swap',
+	$displayVar: 'false',
+	$weights: (
+		400,
+		700,
+	)
+);
 
 html {
 	background-color: v.$color-red-dark;
