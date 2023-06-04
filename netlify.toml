@@ -8,3 +8,12 @@
   package = "@netlify/plugin-gatsby"
 [[plugins]]
 	package = "netlify-plugin-cypress"
+[[plugins]]
+  package = "@netlify/plugin-lighthouse"
+  [plugins.inputs.thresholds]
+    performance = 0.8
+    accessibility = 0.8
+    best-practices = 0.8
+    seo = 0.8
+  [plugins.inputs.audits]
+    output_path = "public/reports/lighthouse.html"
