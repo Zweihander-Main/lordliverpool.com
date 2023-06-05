@@ -118,6 +118,7 @@
 		"prepare": "husky install",
 		"netlify:build": "yarn run build",
 		"netlify:coverage": "yarn run test:coverage && cp -r coverage/lcov-report public/lcov-report",
+		"netlify:test": "gatsby serve -p 8000",
 		"format": "prettier --write \"**/*{js,jsx,ts,tsx,json,md,css,md,scss}\""
 	},
 	"repository": {

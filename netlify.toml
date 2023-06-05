@@ -1,13 +1,22 @@
 [build]
   publish = "public/"
   command = "yarn run netlify:build"
+
 [build.environment]
 	CYPRESS_CACHE_FOLDER = "./node_modules/CypressBinary"
 	TERM = "xterm"
+
 [[plugins]]
   package = "@netlify/plugin-gatsby"
+
 [[plugins]]
 	package = "netlify-plugin-cypress"
+  [plugins.inputs.preBuild]
+    enable = true
+    start = 'yarn run netlify:test'
+    wait-on = 'http://localhost:8000'
+    wait-on-timeout = '30'
+
 [[plugins]]
   package = "@netlify/plugin-lighthouse"
   [plugins.inputs.thresholds]
