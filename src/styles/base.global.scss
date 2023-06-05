@@ -4,18 +4,18 @@
 @use '~@fontsource/libre-baskerville/scss/mixins' as libreBaskerville;
 @use '~@fontsource/cardo/scss/mixins' as cardo;
 @include libreBaskerville.faces(
-	$subsets: 'latin',
-	$display: 'swap',
-	$displayVar: 'false',
+	$subsets: latin,
+	$display: swap,
+	$displayVar: false,
 	$weights: (
 		400,
 		700,
 	)
 );
 @include cardo.faces(
-	$subsets: 'latin',
-	$display: 'swap',
-	$displayVar: 'false',
+	$subsets: latin,
+	$display: swap,
+	$displayVar: false,
 	$weights: (
 		400,
 		700,
