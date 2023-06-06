@@ -10,74 +10,46 @@ type HeaderProps = {
 	miniMenu?: boolean;
 };
 
-// TODO: Explore putting it in the CMS
-// NOTE: Do no refactor this to use a static image. Getting rid of the query gains a kb.
 const Header: React.FC<HeaderProps> = ({
 	isHome = false,
 	darkMenu = false,
 	miniMenu = false,
 }) => {
-	const imageData = useStaticQuery<Queries.MenuImagesQuery>(graphql`
-		query MenuImages {
-			chronology: file(
-				relativePath: {
-					eq: "Charles_Jenkinson,_1st_Earl_of_Liverpool_by_George_Romney.jpg"
-				}
+	const navigationData = useStaticQuery<Queries.NavigationItemsQuery>(graphql`
+		query NavigationItems {
+			allMarkdownRemark(
+				filter: { fields: { sourceInstanceName: { eq: "navigation" } } }
 			) {
-				childImageSharp {
-					gatsbyImageData(width: 800, layout: CONSTRAINED)
-				}
-			}
-			contenders: file(
-				relativePath: { eq: "William_Pitt_the_Younger.jpg" }
-			) {
-				childImageSharp {
-					gatsbyImageData(width: 800, layout: CONSTRAINED)
-				}
-			}
-			miscellany: file(
-				relativePath: {
-					eq: "The_House_of_Commons_1793-94_by_Karl_Anton_Hickel.jpg"
-				}
-			) {
-				childImageSharp {
-					gatsbyImageData(width: 800, layout: CONSTRAINED)
-				}
-			}
-			author: file(relativePath: { eq: "Martin_Hutchinson.jpg" }) {
-				childImageSharp {
-					gatsbyImageData(width: 800, layout: CONSTRAINED)
-				}
-			}
-			book: file(relativePath: { eq: "Robert_Banks_Jenkinson.jpg" }) {
-				childImageSharp {
-					gatsbyImageData(width: 800, layout: CONSTRAINED)
+				edges {
+					node {
+						frontmatter {
+							title
+							order
+							headerText
+							subHeaderText
+							imageAltText
+							imageBrightness
+							featuredImage {
+								childImageSharp {
+									gatsbyImageData(
+										width: 800
+										layout: CONSTRAINED
+									)
+								}
+							}
+						}
+					}
 				}
 			}
 		}
 	`);
 
-	const images = Object.keys(imageData) as [
-		'chronology',
-		'contenders',
-		'miscellany',
-		'author',
-		'book'
-	];
-	images.forEach((imageKey) => {
-		if (
-			!(
-				imageData[imageKey] &&
-				imageData[imageKey]?.childImageSharp?.gatsbyImageData
-			)
-		) {
-			throw new Error(`${imageKey} menu item background image not found`);
-		}
-	});
-	const imageDataArray = images.map(
-		(imageKey) => imageData[imageKey]?.childImageSharp?.gatsbyImageData
+	const { edges: navItems } = navigationData.allMarkdownRemark;
+	const sortedNavItems = [...navItems].sort(
+		(a, b) =>
+			(a?.node?.frontmatter?.order || 0) -
+			(b?.node?.frontmatter?.order || 0)
 	);
-	const [chronology, contenders, miscellany, author, book] = imageDataArray;
 
 	const menuBarLineClass = darkMenu
 		? `${styles.menuBarLine} ${styles.menuBarLineDark}`
@@ -113,39 +85,21 @@ const Header: React.FC<HeaderProps> = ({
 
 			<div className={styles.overlayNavigation}>
 				<nav className={styles.nav}>
-					<NavLink
-						linkTo={'/chronology'}
-						headerText={'Chronology'}
-						subHeaderText={'The Life and Colleagues'}
-						image={chronology}
-						brightness={90}
-					/>
-					<NavLink
-						linkTo={'/contenders'}
-						headerText={'Contenders'}
-						subHeaderText={'For Greatest Prime Minister'}
-						image={contenders}
-						brightness={80}
-					/>
-					<NavLink
-						linkTo={'/miscellany'}
-						headerText={'Miscellany'}
-						subHeaderText={'On All Things Liverpool'}
-						image={miscellany}
-					/>
-					<NavLink
-						linkTo={'/author'}
-						headerText={'Author'}
-						subHeaderText={'About Martin Hutchinson'}
-						image={author}
-						brightness={70}
-					/>
-					<NavLink
-						linkTo={'/book'}
-						headerText={'Book'}
-						subHeaderText={'Reviews and Information'}
-						image={book}
-					/>
+					{sortedNavItems.map(({ node: { frontmatter } }, i) => {
+						return (
+							<NavLink
+								key={frontmatter?.title || i}
+								linkTo={`/${frontmatter?.title || ''}`}
+								headerText={frontmatter?.headerText || ''}
+								subHeaderText={frontmatter?.subHeaderText || ''}
+								image={
+									frontmatter?.featuredImage?.childImageSharp
+										?.gatsbyImageData
+								}
+								brightness={frontmatter?.imageBrightness}
+							/>
+						);
+					})}
 					{!isHome && (
 						<Link to="/" className={styles.homeButtonLink}>
 							<span className={styles.homeButtonText}>Home</span>

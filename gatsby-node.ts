@@ -19,6 +19,9 @@ const hasPage = (
 			case 'pages':
 				return false;
 				break;
+			case 'navigation':
+				return false;
+				break;
 			case 'retailers':
 				return false;
 				break;

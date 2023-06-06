@@ -1,211 +1,252 @@
 backend:
-    name: git-gateway
-    branch: master
+  name: git-gateway
+  branch: master
 
 media_folder: static/img
 public_folder: /img
 publish_mode: editorial_workflow
 editor:
-    preview: true
+  preview: true
 collections:
-    - name: miscellany
-      label: Miscellany
-      folder: content/miscellany
-      create: true
-      slug: index
-      media_folder: ''
-      public_folder: ''
-      path: '{{title}}/index'
-      fields:
-          - label: Title
-            name: title
-            widget: string
-            required: true
-          - label: Subtitle
-            name: subtitle
-            widget: string
-            required: false
-          - label: Publish Date
-            name: date
-            widget: datetime
-            required: true
-          - label: SEO Description
-            name: description
-            widget: string
-            required: false
-          - label: Post Image
-            name: featuredImage
-            widget: image
-            required: true
-          - label: Body
-            name: body
-            widget: markdown
-            required: true
-    - name: chronology
-      label: Chronology
-      folder: content/chronology
-      create: true
-      slug: index
-      media_folder: ''
-      public_folder: ''
-      path: '{{title}}/index'
-      fields:
-          - label: Title
-            name: title
-            widget: string
-            required: true
-          - label: SEO Description
-            name: description
-            widget: string
-            required: false
-          - label: Featured Image
-            name: featuredImage
-            widget: image
-            required: false
-          - label: Timeline Date
-            name: date
-            widget: datetime
-            required: true
-            time_format: false
-            date_format: true
-          - label: Display Date
-            name: displayDate
-            widget: string
-            required: true
-          - label: Type of Content
-            name: category
-            widget: select
-            required: true
-            default: 'events'
-            options:
-                - { label: 'Family', value: 'family' }
-                - { label: 'Colleagues', value: 'colleagues' }
-                - { label: 'Events', value: 'events' }
-          - label: Card Content
-            name: card
-            widget: markdown
-            required: false
-          - label: Article Content
-            name: body
-            widget: markdown
-            required: false
-    - name: contenders
-      label: Contenders
-      folder: content/contenders
-      create: true
-      slug: index
-      media_folder: ''
-      public_folder: ''
-      path: '{{title}}/index'
-      fields:
-          - label: Name
-            name: title
-            widget: string
-            required: true
-          - label: SEO Description
-            name: description
-            widget: string
-            required: false
-          - label: Featured Image
-            name: featuredImage
-            widget: image
-            required: true
-          - label: Term Start Date
-            name: date
-            widget: datetime
-            required: true
-            time_format: false
-            date_format: true
-          - label: Display Date
-            name: displayDate
-            widget: string
-            required: true
-          - label: Body
-            name: body
-            widget: markdown
-            required: false
-    - name: pages
-      label: Pages and Content
-      folder: content/pages
-      create: true
-      slug: index
-      media_folder: ''
-      public_folder: ''
-      path: '{{title}}/index'
-      fields:
-          - label: Name
-            name: title
-            widget: string
-            required: true
-          - label: SEO Description
-            name: description
-            widget: string
-            required: false
-          - label: Featured Image
-            name: featuredImage
-            widget: image
-            required: false
-          - label: ISBN
-            name: isbn
-            widget: string
-            required: false
-          - label: Release Date 
-            name: releaseDate
-            widget: datetime 
-            required: false
-          - label: SEO Tags
-            name: seoTags 
-            widget: list
-            allow_add: true
-            required: false 
-          - label: Body
-            name: body
-            widget: markdown
-            required: false
-    - name: retailers
-      label: Retailers
-      folder: content/retailers
-      create: true
-      slug: index
-      media_folder: ''
-      public_folder: ''
-      path: '{{title}}/index'
-      fields:
-          - label: Name
-            name: title
-            widget: string
-            required: true
-          - label: Featured Image
-            name: featuredImage
-            widget: image
-            required: false
-          - label: Currency
-            name: currency
-            widget: list
-            default: ['GBP']
-            allow_add: true
-            required: true
-          - label: Format
-            name: format
-            widget: select
-            options: ['Softcover', 'Hardback', 'Ebook']
-            min: 1
-            multiple: true
-            required: true
-          - label: link
-            name: link
-            widget: string
-            required: true
-          - label: flag
-            name: flag
-            widget: select
-            options: ['None', 'UK', 'USA', 'JP', 'FR', 'ES', 'IT']
-            multiple: false
-            required: true
-            default: ['None']
-          - label: Order
-            name: order
-            widget: number
-            default: 0
-            value_type: int
-            required: true
+  - name: miscellany
+    label: Miscellany
+    folder: content/miscellany
+    create: true
+    slug: index
+    media_folder: ''
+    public_folder: ''
+    path: '{{title}}/index'
+    fields:
+      - label: Title
+        name: title
+        widget: string
+        required: true
+      - label: Subtitle
+        name: subtitle
+        widget: string
+        required: false
+      - label: Publish Date
+        name: date
+        widget: datetime
+        required: true
+      - label: SEO Description
+        name: description
+        widget: string
+        required: false
+      - label: Post Image
+        name: featuredImage
+        widget: image
+        required: true
+      - label: Body
+        name: body
+        widget: markdown
+        required: true
+  - name: chronology
+    label: Chronology
+    folder: content/chronology
+    create: true
+    slug: index
+    media_folder: ''
+    public_folder: ''
+    path: '{{title}}/index'
+    fields:
+      - label: Title
+        name: title
+        widget: string
+        required: true
+      - label: SEO Description
+        name: description
+        widget: string
+        required: false
+      - label: Featured Image
+        name: featuredImage
+        widget: image
+        required: false
+      - label: Timeline Date
+        name: date
+        widget: datetime
+        required: true
+        time_format: false
+        date_format: true
+      - label: Display Date
+        name: displayDate
+        widget: string
+        required: true
+      - label: Type of Content
+        name: category
+        widget: select
+        required: true
+        default: 'events'
+        options:
+          - { label: 'Family', value: 'family' }
+          - { label: 'Colleagues', value: 'colleagues' }
+          - { label: 'Events', value: 'events' }
+      - label: Card Content
+        name: card
+        widget: markdown
+        required: false
+      - label: Article Content
+        name: body
+        widget: markdown
+        required: false
+  - name: contenders
+    label: Contenders
+    folder: content/contenders
+    create: true
+    slug: index
+    media_folder: ''
+    public_folder: ''
+    path: '{{title}}/index'
+    fields:
+      - label: Name
+        name: title
+        widget: string
+        required: true
+      - label: SEO Description
+        name: description
+        widget: string
+        required: false
+      - label: Featured Image
+        name: featuredImage
+        widget: image
+        required: true
+      - label: Term Start Date
+        name: date
+        widget: datetime
+        required: true
+        time_format: false
+        date_format: true
+      - label: Display Date
+        name: displayDate
+        widget: string
+        required: true
+      - label: Body
+        name: body
+        widget: markdown
+        required: false
+  - name: pages
+    label: Pages and Content
+    folder: content/pages
+    create: true
+    slug: index
+    media_folder: ''
+    public_folder: ''
+    path: '{{title}}/index'
+    fields:
+      - label: Name
+        name: title
+        widget: string
+        required: true
+      - label: SEO Description
+        name: description
+        widget: string
+        required: false
+      - label: Featured Image
+        name: featuredImage
+        widget: image
+        required: false
+      - label: ISBN
+        name: isbn
+        widget: string
+        required: false
+      - label: Release Date
+        name: releaseDate
+        widget: datetime
+        required: false
+      - label: SEO Tags
+        name: seoTags
+        widget: list
+        allow_add: true
+        required: false
+      - label: Body
+        name: body
+        widget: markdown
+        required: false
+  - name: navigation
+    label: Menu Navigation
+    folder: content/navigation
+    create: true
+    slug: index
+    media_folder: ''
+    public_folder: ''
+    path: '{{title}}/index'
+    fields:
+      - label: Page name (/ automatically added)
+        name: title
+        widget: string
+        required: true
+      - label: Order
+        name: order
+        widget: number
+        required: true
+      - label: Navigation Header Text
+        name: headerText
+        widget: string
+        required: true
+      - label: Navigation Sub-Header Text
+        name: subHeaderText
+        widget: string
+        required: true
+      - label: Featured Image
+        name: featuredImage
+        widget: image
+        required: true
+      - label: Alt Text for Image
+        name: imageAltText
+        widget: image
+        required: true
+      - label: Image Brightness Adjustment
+        name: imageBrightness
+        widget: number
+        required: false
+      - label: Body
+        name: body
+        widget: markdown
+        required: false
+  - name: retailers
+    label: Retailers
+    folder: content/retailers
+    create: true
+    slug: index
+    media_folder: ''
+    public_folder: ''
+    path: '{{title}}/index'
+    fields:
+      - label: Name
+        name: title
+        widget: string
+        required: true
+      - label: Featured Image
+        name: featuredImage
+        widget: image
+        required: false
+      - label: Currency
+        name: currency
+        widget: list
+        default: ['GBP']
+        allow_add: true
+        required: true
+      - label: Format
+        name: format
+        widget: select
+        options: ['Softcover', 'Hardback', 'Ebook']
+        min: 1
+        multiple: true
+        required: true
+      - label: link
+        name: link
+        widget: string
+        required: true
+      - label: flag
+        name: flag
+        widget: select
+        options: ['None', 'UK', 'USA', 'JP', 'FR', 'ES', 'IT']
+        multiple: false
+        required: true
+        default: ['None']
+      - label: Order
+        name: order
+        widget: number
+        default: 0
+        value_type: int
+        required: true

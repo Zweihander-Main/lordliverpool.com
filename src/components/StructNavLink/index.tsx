@@ -8,9 +8,10 @@ type NavLinkProps = {
 	image: IGatsbyImageData | undefined;
 	headerText: string;
 	subHeaderText: string;
-	brightness?: number;
+	brightness?: number | null;
 };
 
+// NOTE: Do no refactor this to use a static image. Getting rid of the query gains a kb.
 const NavLink: React.FC<NavLinkProps> = ({
 	linkTo,
 	image,

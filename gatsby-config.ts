@@ -292,6 +292,13 @@ const config: GatsbyConfig = {
 		{
 			resolve: 'gatsby-source-filesystem',
 			options: {
+				path: `${__dirname}/content/navigation`,
+				name: 'navigation',
+			},
+		},
+		{
+			resolve: 'gatsby-source-filesystem',
+			options: {
 				path: `${__dirname}/content/retailers`,
 				name: 'retailers',
 			},
