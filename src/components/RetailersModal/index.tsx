@@ -122,32 +122,32 @@ const RetailersModal: React.FC = () => {
 					}
 				}
 			}
-			UK_pic: file(relativePath: { eq: "uk.png" }) {
+			UK_pic: file(relativePath: { eq: "retailerFlags/uk.png" }) {
 				childImageSharp {
 					gatsbyImageData(width: 40, layout: FIXED)
 				}
 			}
-			USA_pic: file(relativePath: { eq: "usa.png" }) {
+			USA_pic: file(relativePath: { eq: "retailerFlags/usa.png" }) {
 				childImageSharp {
 					gatsbyImageData(width: 40, layout: FIXED)
 				}
 			}
-			JP_pic: file(relativePath: { eq: "japan.png" }) {
+			JP_pic: file(relativePath: { eq: "retailerFlags/japan.png" }) {
 				childImageSharp {
 					gatsbyImageData(width: 40, layout: FIXED)
 				}
 			}
-			ES_pic: file(relativePath: { eq: "spain.png" }) {
+			ES_pic: file(relativePath: { eq: "retailerFlags/spain.png" }) {
 				childImageSharp {
 					gatsbyImageData(width: 40, layout: FIXED)
 				}
 			}
-			FR_pic: file(relativePath: { eq: "france.png" }) {
+			FR_pic: file(relativePath: { eq: "retailerFlags/france.png" }) {
 				childImageSharp {
 					gatsbyImageData(width: 40, layout: FIXED)
 				}
 			}
-			IT_pic: file(relativePath: { eq: "italy.png" }) {
+			IT_pic: file(relativePath: { eq: "retailerFlags/italy.png" }) {
 				childImageSharp {
 					gatsbyImageData(width: 40, layout: FIXED)
 				}

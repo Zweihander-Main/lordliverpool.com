@@ -18,7 +18,7 @@ const BookInfo: React.FC = () => {
 		<section className={styles.bookInfo}>
 			<StaticImage
 				alt="Book cover for Britain's Greatest Prime Minister"
-				src="../../images/bookcover.png"
+				src="../../images/bgpmbookcover.png"
 				className={styles.bookDisplay}
 				formats={['auto', 'webp', 'avif']}
 				imgStyle={{
