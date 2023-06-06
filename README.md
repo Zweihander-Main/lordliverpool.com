@@ -27,6 +27,10 @@
     -   Gatsby fingerprinting disabled
 -   Netlify builds from `netlify` branch
     -   NetlifyCMS and netlify preview deploys working from `master` branch
+-   Perf analysis:
+    -   `/report.html` for `webpack-bundle-analyser` total bundle info
+    -   `/admin/report.html` for `webpack-bundle-analyser` on `netlify-cms`
+    -   `/_report.html` for `perf-budgets` breakdown by page
 
 ### Workflow for development:
 
