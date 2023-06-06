@@ -10,7 +10,8 @@ type HeaderProps = {
 	miniMenu?: boolean;
 };
 
-// TODO: Explore staticimage for this or putting it in the CMS
+// TODO: Explore putting it in the CMS
+// NOTE: Do no refactor this to use a static image. Getting rid of the query gains a kb.
 const Header: React.FC<HeaderProps> = ({
 	isHome = false,
 	darkMenu = false,
@@ -43,12 +44,12 @@ const Header: React.FC<HeaderProps> = ({
 					gatsbyImageData(width: 800, layout: CONSTRAINED)
 				}
 			}
-			author: file(relativePath: { eq: "Martin Hutchinson.jpg" }) {
+			author: file(relativePath: { eq: "Martin_Hutchinson.jpg" }) {
 				childImageSharp {
 					gatsbyImageData(width: 800, layout: CONSTRAINED)
 				}
 			}
-			book: file(relativePath: { eq: "Robert Banks Jenkinson.jpg" }) {
+			book: file(relativePath: { eq: "Robert_Banks_Jenkinson.jpg" }) {
 				childImageSharp {
 					gatsbyImageData(width: 800, layout: CONSTRAINED)
 				}
