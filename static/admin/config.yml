@@ -193,7 +193,7 @@ collections:
         required: true
       - label: Alt Text for Image
         name: imageAltText
-        widget: image
+        widget: text
         required: true
       - label: Image Brightness Adjustment
         name: imageBrightness
