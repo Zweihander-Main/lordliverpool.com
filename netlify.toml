@@ -11,13 +11,13 @@
 
 [[plugins]]
 	package = "netlify-plugin-cypress"
+  [plugins.inputs]
+    enable = false
   [plugins.inputs.postBuild]
     enable = true
     start = 'yarn run netlify:test'
     wait-on = 'http://localhost:8000'
     wait-on-timeout = '30'
-  [plugins.inputs.onSuccess]
-    enable = false
 
 [[plugins]]
   package = "@netlify/plugin-lighthouse"
