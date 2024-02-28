@@ -21,7 +21,7 @@
 		"strict": true,
 		"target": "es5",
 		"typeRoots": ["./.typings", "./node_modules/@types"],
-		"types": ["jest", "@testing-library/react"],
+		"types": ["jest"],
 		"skipLibCheck": true,
 		"resolveJsonModule": true,
 		"noEmit": true,
