@@ -10,6 +10,7 @@ const Hero: React.FC = () => {
 			<StaticImage
 				alt="Britain's Greatest Prime Minister: Lord Liverpool"
 				src="../../images/liverpoolherobg.png"
+				loading={'eager'}
 				layout="fullWidth"
 				quality={90}
 				className={styles.heroImage}
