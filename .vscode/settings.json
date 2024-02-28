@@ -9,8 +9,10 @@
 	},
 	"vim.useSystemClipboard": true,
 	"cSpell.words": [
+		"analyser",
 		"arrowdown",
 		"chrono",
+		"Decap",
 		"durationfadein",
 		"neumorphic",
 		"scalex",

@@ -1,6 +1,5 @@
 # [LordLiverpool.com](https://www.lordliverpool.com/)
 
-[![Netlify Status](https://img.shields.io/netlify/6c600477-b01f-411f-bafd-d5a428a1ec4e?logo=netlify&style=flat-square)](https://app.netlify.com/sites/torystories/deploys)
 [![Build-badge](https://img.shields.io/github/actions/workflow/status/Zweihander-Main/lordliverpool.com/test.yml?branch=master&logo=github&style=flat-square)](https://github.com/Zweihander-Main/lordliverpool.com/actions?query=workflow%3Ae2e-test)
 
 > Gatsby content site for Britain's Greatest Prime Minister
@@ -16,20 +15,17 @@
     -   Sitemap using git metadata
 -   Jest + Linting Runners
 -   Cypress + Axe + Visual Regression
--   NetlifyCMS + Netlify
+-   Decap CMS + Cloudflare
 
 ## Dev workflow
 
 ### Notes:
 
--   Deployed on Netlify
-    -   Netlify experimental cache enabled
-    -   Gatsby fingerprinting disabled
--   Netlify builds from `netlify` branch
-    -   NetlifyCMS and netlify preview deploys working from `master` branch
+-   Cloudflare builds from `cloudflare` branch
+    -   Decap CMS working from `master` branch
 -   Perf analysis:
     -   `/report.html` for `webpack-bundle-analyser` total bundle info
-    -   `/admin/report.html` for `webpack-bundle-analyser` on `netlify-cms`
+    -   `/admin/report.html` for `webpack-bundle-analyser` on Decap CMS
     -   `/_report.html` for `perf-budgets` breakdown by page
 
 ### Workflow for development:
@@ -37,15 +33,14 @@
     1. Pre-commit hooks run on code: all jest tests and lint runners
     2. Push to `master` branch
     3. E2E tests run on new code
-    4. If passed, branch pushed into `netlify`
+    4. If passed, branch pushed into `cloudflare`
 
-### Workflow for NetlifyCMS:
+### Workflow for Decap CMS:
 
     1. PR created in `master`
-    2. Preview deploys run on PR
-    3. PR manually merged or merged through UI
-    4. E2E tests run on new code
-    5. If passed, branch pushed into `netlify`
+    2. PR manually merged or merged through UI
+    3. E2E tests run on new code
+    4. If passed, branch pushed into `cloudflare`
 
 ## Scripts
 
@@ -67,7 +62,6 @@
 -   `yarn run lint:md`: Run remark markdown linter
 -   `yarn run lint:ts`: Run TypeScript compiler
 -   `yarn run prepare`: Prepare husky
--   `yarn run netlify`: Script to run as netlify that builds and generates public coverage reports
 -   `yarn run format`: Auto-format using prettier
 
 ## Possible improvements
