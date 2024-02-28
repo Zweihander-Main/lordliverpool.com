@@ -5,7 +5,6 @@ const basicIgnorePatterns = [
 	'<rootDir>/node_modules',
 	'<rootDir>/\\.cache',
 	'<rootDir>/\\.vscode',
-	'<rootDir>/\\.netlify',
 	'<rootDir>.*/public',
 	'<rootDir>/cypress',
 	'<rootDir>/coverage',
