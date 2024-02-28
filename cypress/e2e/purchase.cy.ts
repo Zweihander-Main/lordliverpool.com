@@ -1,7 +1,7 @@
 describe('Purchase flow', () => {
 	it('brings up list of valid options', () => {
 		cy.visit('/').get('main');
-		cy.findAllByLabelText(/^Bring up available retailers$/)
+		cy.findAllByLabelText(/^Order now!$/)
 			.first()
 			.click();
 		cy.findByLabelText(/^amazon\.com$/i).as('amazon-link');

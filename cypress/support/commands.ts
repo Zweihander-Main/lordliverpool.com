@@ -1,4 +1,4 @@
-// ***********************************************
+/// add this at the top of your test files 👆// ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
 // existing commands.

@@ -17,9 +17,9 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: '19'
+          node-version: '20'
 
       - name: Run install
         uses: borales/actions-yarn@v4.2.0
@@ -60,5 +60,5 @@ jobs:
         if: success()
         with:
           github_token: ${{ secrets.REPO_GITHUB_TOKEN }}
-          branch: cloudflare 
+          branch: cloudflare
           force: true
