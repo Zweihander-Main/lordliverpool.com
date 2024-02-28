@@ -15,17 +15,17 @@
     -   Sitemap using git metadata
 -   Jest + Linting Runners
 -   Cypress + Axe + Visual Regression
--   Decap CMS + Cloudflare
+-   (former) NetlifyCMS
 
 ## Dev workflow
 
 ### Notes:
 
 -   Cloudflare builds from `cloudflare` branch
-    -   Decap CMS working from `master` branch
+    -   Netlify CMS working from `master` branch
 -   Perf analysis:
     -   `/report.html` for `webpack-bundle-analyser` total bundle info
-    -   `/admin/report.html` for `webpack-bundle-analyser` on Decap CMS
+    -   `/admin/report.html` for `webpack-bundle-analyser` on Netlify CMS
     -   `/_report.html` for `perf-budgets` breakdown by page
 
 ### Workflow for development:
@@ -35,7 +35,7 @@
     3. E2E tests run on new code
     4. If passed, branch pushed into `cloudflare`
 
-### Workflow for Decap CMS:
+### Workflow for Netlify CMS:
 
     1. PR created in `master`
     2. PR manually merged or merged through UI
