@@ -83,4 +83,4 @@ hi [a+] zweisolutions {●} com
 ## License
 
 Code (outside the `/content` and `/static/docs` folders) is licensed under [MIT](./LICENSE)
-Content underneath the `/content` and `/static/docs` folders is Copyright 2020 of the book author Martin Hutchinson unless otherwise stated, All Rights Reserved.
+Content underneath the `/content` and `/static/docs` folders is Copyright 2020-2024 of the book author Martin Hutchinson unless otherwise stated, All Rights Reserved.
